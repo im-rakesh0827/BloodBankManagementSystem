@@ -27,7 +27,7 @@ BloodBankManagementSystem is a full-stack web application designed to streamline
 
 🌐 Multi-language Support – Support for multiple languages for broader accessibility.
 
-🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 Frontend: Blazor WebAssembly, Bootstrap
 
@@ -42,7 +42,7 @@ Authentication: JWT, OAuth2
 Payments: Stripe API
 
 
-📌 Installation Guide
+# 📌 Installation Guide
 
 Clone the Repository:
 
@@ -68,7 +68,7 @@ Frontend: http://localhost:5000
 
 API: http://localhost:5001/swagger
 
-📜 License
+# 📜 License
 
 This project is licensed under the MIT License.
 
