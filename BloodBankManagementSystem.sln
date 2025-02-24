@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBankManagementSystem.Core", "BloodBankManagementSystem.Core\BloodBankManagementSystem.Core.csproj", "{4AEC104D-1BE1-4063-BD97-51ED73395FDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBankManagementSystem.Infrastructure", "BloodBankManagementSystem.Infrastructure\BloodBankManagementSystem.Infrastructure.csproj", "{25F0D94B-72CD-4527-A3BC-7D4B2192BD34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBankManagementSystem.API", "BloodBankManagementSystem.API\BloodBankManagementSystem.API.csproj", "{644E5D24-25D4-45D7-8FA8-C47A23CC8D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBankManagementSystem.UI", "BloodBankManagementSystem.UI\BloodBankManagementSystem.UI.csproj", "{9370321E-632B-4B6D-8B4F-BCFB4A06701C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AEC104D-1BE1-4063-BD97-51ED73395FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AEC104D-1BE1-4063-BD97-51ED73395FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AEC104D-1BE1-4063-BD97-51ED73395FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AEC104D-1BE1-4063-BD97-51ED73395FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25F0D94B-72CD-4527-A3BC-7D4B2192BD34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25F0D94B-72CD-4527-A3BC-7D4B2192BD34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25F0D94B-72CD-4527-A3BC-7D4B2192BD34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25F0D94B-72CD-4527-A3BC-7D4B2192BD34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{644E5D24-25D4-45D7-8FA8-C47A23CC8D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644E5D24-25D4-45D7-8FA8-C47A23CC8D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644E5D24-25D4-45D7-8FA8-C47A23CC8D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644E5D24-25D4-45D7-8FA8-C47A23CC8D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9370321E-632B-4B6D-8B4F-BCFB4A06701C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9370321E-632B-4B6D-8B4F-BCFB4A06701C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9370321E-632B-4B6D-8B4F-BCFB4A06701C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9370321E-632B-4B6D-8B4F-BCFB4A06701C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

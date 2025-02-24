@@ -1,0 +1,11 @@
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/bin/Debug/net8.0/BloodBankManagementSystem.Core.deps.json
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/bin/Debug/net8.0/BloodBankManagementSystem.Core.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/bin/Debug/net8.0/BloodBankManagementSystem.Core.pdb
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.AssemblyInfoInputs.cache
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.AssemblyInfo.cs
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.csproj.CoreCompileInputs.cache
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/refint/BloodBankManagementSystem.Core.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.pdb
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/ref/BloodBankManagementSystem.Core.dll

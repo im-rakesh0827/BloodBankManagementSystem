@@ -1,0 +1,180 @@
+@page "/dashboard"
+
+<style>
+    /* Vertical Progress Bar */
+    .progress-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .progress-vertical {
+        width: 30px;
+        height: 200px;
+        position: relative;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .progress-fill {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #c12020;
+        border-radius: 5px;
+        transition: height 0.5s ease;
+    }
+
+    .progress-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 12px;
+    }
+
+    .chart-label {
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Horizontal Bar Chart */
+    .horizontal-chart-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .horizontal-chart-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .horizontal-label {
+        width: 35px;
+        text-align: left;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .horizontal-bar-wrapper {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        background-color: #e0e0e0;
+        border-radius: 5px;
+        height: 20px;
+        overflow: hidden;
+    }
+
+    .horizontal-bar {
+        height: 20px;
+        background-color: #26a6b7;
+        border-radius: 5px;
+        transition: width 0.5s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        padding: 0 5px;
+        min-width: 30px;
+        max-width: 100%;
+    }
+
+    /* Pie Chart */
+    .pie-chart {
+        background: conic-gradient(
+                @(pieChartColors)
+            );
+        position: relative;
+        width: 250px;
+        min-height: 250px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+
+    .pie-chart figcaption {
+        position: absolute;
+        bottom: 1em;
+        right: -6em;
+        font-size: smaller;
+        text-align: left;
+    }
+</style>
+
+<div class="container">
+    <div class="widget">
+        <h4>Donation Progress</h4>
+        <div class="progress-container">
+            @foreach (var bloodGroup in bloodGroups)
+            {
+                <div class="progress-vertical">
+                    <div class="progress-fill" style="height: @(bloodGroup.Value)%;">
+                        <span class="progress-label">@bloodGroup.Value%</span>
+                    </div>
+                    <div class="chart-label">@bloodGroup.Key</div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="widget">
+        <h4>Open Issues</h4>
+        <div class="chart"></div>
+    </div>
+
+    <div class="widget">
+        <h4>Blood Request (7 Days)</h4>
+        <figure class="pie-chart">
+            <figcaption>
+                @foreach (var entry in bloodRequests7Days)
+                {
+                    <div>
+                        <span style="color:@bloodTypeColors[entry.Key]"></span> @entry.Key @entry.Value
+                    </div>
+                }
+            </figcaption>
+        </figure>
+    </div>
+
+    <div class="widget">
+        <h4>All Blood Requests Till Now</h4>
+        <div class="horizontal-chart-container">
+            @foreach (var bloodRequest in sortedBloodRequests)
+            {
+                double widthPercentage = (double)bloodRequest.Value / maxBloodRequest * 100;
+                <div class="horizontal-chart-row">
+                    <div class="horizontal-label">@bloodRequest.Key</div>
+                    <div class="horizontal-bar-wrapper">
+                        <div class="horizontal-bar" style="width: @($"{widthPercentage}%");">
+                            @bloodRequest.Value
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="widget">
+        <h4>Top Contributors</h4>
+        <div class="chart">
+            <div class="chart-legend">
+                <div class="chart-legend-item">
+                    <div class="chart-legend-color" style="background-color: #4285F4;"></div>danroth27
+                </div>
+                <div class="chart-legend-item">
+                    <div class="chart-legend-color" style="background-color: #EA4335;"></div>javiercn
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

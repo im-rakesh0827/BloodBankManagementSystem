@@ -1,0 +1,25 @@
+# version: '3.8'
+# services:
+#   sqlserver:
+#     image: mcr.microsoft.com/mssql/server:2022-latest
+#     container_name: sqlserver
+#     ports:
+#       - "1433:1433"
+#     environment:
+#       SA_PASSWORD: "Password@1"
+#       ACCEPT_EULA: "Y"
+#     restart: always
+#     volumes:
+#       - sql_data:/var/opt/mssql
+
+# volumes:
+#   sql_data:
+
+services:
+  sql:
+    image: mcr.microsoft.com/azure-sql-edge
+    environment:
+      ACCEPT_EULA: "1"
+      MSSQL_SA_PASSWORD: "Password@1"
+    ports:
+      - "1433:1433"
