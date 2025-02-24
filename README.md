@@ -121,3 +121,53 @@ Developer: Rakesh
 GitHub: im-rakesh0827
 
 Email: rakesh@example.com
+
+
+
+```mermaid
+erDiagram
+    DONOR {
+        int DonorID PK
+        string Name
+        int Age
+        string BloodType
+        string Contact
+        string Address
+        date LastDonationDate
+    }
+
+    BLOOD_INVENTORY {
+        int BloodID PK
+        string BloodType
+        int Quantity
+        date ExpiryDate
+    }
+
+    PATIENT {
+        int PatientID PK
+        string Name
+        int Age
+        string BloodTypeNeeded
+        string Contact
+        string Address
+    }
+
+    REQUEST {
+        int RequestID PK
+        int PatientID FK
+        int BloodID FK
+        date RequestDate
+        string Status
+    }
+
+    HOSPITAL {
+        int HospitalID PK
+        string Name
+        string Location
+        string Contact
+    }
+
+    DONOR ||--o{ BLOOD_INVENTORY : donates
+    BLOOD_INVENTORY ||--o{ REQUEST : fulfills
+    PATIENT ||--o{ REQUEST : requests
+    REQUEST }o--|| HOSPITAL : processed_by
