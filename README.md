@@ -41,44 +41,6 @@ Authentication: JWT, OAuth2
 
 Payments: Stripe API
 
-# 📊 System Overview (Graph Representation)
-
-BloodBankManagementSystem Data Flow:
-
-+--------------------+
-|  Donor/Recipient  |
-+--------------------+
-        |
-        v
-+----------------------+
-|  Blood Inventory    |
-+----------------------+
-        |
-        v
-+------------------------+
-|  Hospital Requests    |
-+------------------------+
-        |
-        v
-+---------------------------+
-|  Matching & Allocation   |
-+---------------------------+
-        |
-        v
-+---------------------------+
-|  Reports & Analytics     |
-+---------------------------+
-
-📈 Blood Inventory Sample Graph
-
-Blood Inventory Levels (Sample Data)
--------------------------------------
-Blood Type  | A+ | A- | B+ | B- | O+ | O- | AB+ | AB- |
--------------------------------------
-Units (ml)  | 500 | 300 | 450 | 200 | 600 | 150 | 350 | 100 |
--------------------------------------
-
-(This can be visualized using charts in the Blazor UI)
 
 📌 Installation Guide
 
