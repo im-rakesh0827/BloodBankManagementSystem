@@ -44,9 +44,7 @@ Payments: Stripe API
 
 # 📌 Installation Guide
 
-Clone the Repository:
-
-git clone https://github.com/im-rakesh0827/BloodBankManagementSystem.git
+Repository: https://github.com/im-rakesh0827/BloodBankManagementSystem.git
 cd BloodBankManagementSystem
 
 Set up the Database:
