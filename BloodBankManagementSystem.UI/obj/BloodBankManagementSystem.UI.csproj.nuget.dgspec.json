@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/8.0.4/libexec/sdk/8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -89,6 +94,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -136,7 +146,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/8.0.4/libexec/sdk/8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -175,6 +185,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -193,14 +208,18 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.4, )",
+              "version": "[8.0.14, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.12, )",
+              "version": "[8.0.14, )",
               "autoReferenced": true
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[9.0.3, )"
             }
           },
           "imports": [
@@ -217,7 +236,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[8.0.12, 8.0.12]"
+              "version": "[8.0.14, 8.0.14]"
             }
           ],
           "frameworkReferences": {
@@ -225,7 +244,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/8.0.4/libexec/sdk/8.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

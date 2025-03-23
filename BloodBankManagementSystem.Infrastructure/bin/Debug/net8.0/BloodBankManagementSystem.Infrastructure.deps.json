@@ -1227,7 +1227,10 @@
       },
       "BloodBankManagementSystem.Core/1.0.0": {
         "runtime": {
-          "BloodBankManagementSystem.Core.dll": {}
+          "BloodBankManagementSystem.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

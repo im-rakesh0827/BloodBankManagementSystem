@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "f+OTJOutrYhfG10vxAzb1z39gHN33Tj2Yd7Ozya8WUTHv71/zmkHNS3pMzfSWVMm64zOpN1gAlEk2PRIBHyG9Q==",
+  "dgSpecHash": "BTmrMN+twwc=",
   "success": true,
   "projectFilePath": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/BloodBankManagementSystem.UI.csproj",
   "expectedPackageFiles": [
@@ -53,8 +53,8 @@
     "/Users/rakeshkumar/.nuget/packages/microsoft.identitymodel.tokens/6.35.0/microsoft.identitymodel.tokens.6.35.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.jsinterop/8.0.4/microsoft.jsinterop.8.0.4.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.jsinterop.webassembly/8.0.4/microsoft.jsinterop.webassembly.8.0.4.nupkg.sha512",
-    "/Users/rakeshkumar/.nuget/packages/microsoft.net.illink.tasks/8.0.4/microsoft.net.illink.tasks.8.0.4.nupkg.sha512",
-    "/Users/rakeshkumar/.nuget/packages/microsoft.net.sdk.webassembly.pack/8.0.12/microsoft.net.sdk.webassembly.pack.8.0.12.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.net.illink.tasks/8.0.14/microsoft.net.illink.tasks.8.0.14.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/microsoft.net.sdk.webassembly.pack/8.0.14/microsoft.net.sdk.webassembly.pack.8.0.14.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
@@ -71,9 +71,10 @@
     "/Users/rakeshkumar/.nuget/packages/system.drawing.common/6.0.0/system.drawing.common.6.0.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.formats.asn1/9.0.1/system.formats.asn1.9.0.1.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.identitymodel.tokens.jwt/6.35.0/system.identitymodel.tokens.jwt.6.35.0.nupkg.sha512",
-    "/Users/rakeshkumar/.nuget/packages/system.io.pipelines/9.0.1/system.io.pipelines.9.0.1.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/system.io.pipelines/9.0.3/system.io.pipelines.9.0.3.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.memory.data/1.0.2/system.memory.data.1.0.2.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/system.net.http.json/9.0.3/system.net.http.json.9.0.3.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.private.uri/4.3.0/system.private.uri.4.3.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
@@ -86,11 +87,11 @@
     "/Users/rakeshkumar/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512",
-    "/Users/rakeshkumar/.nuget/packages/system.text.encodings.web/9.0.1/system.text.encodings.web.9.0.1.nupkg.sha512",
-    "/Users/rakeshkumar/.nuget/packages/system.text.json/9.0.1/system.text.json.9.0.1.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/system.text.encodings.web/9.0.3/system.text.encodings.web.9.0.3.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/system.text.json/9.0.3/system.text.json.9.0.3.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
-    "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/microsoft.netcore.app.runtime.mono.browser-wasm.8.0.12.nupkg.sha512"
+    "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/microsoft.netcore.app.runtime.mono.browser-wasm.8.0.14.nupkg.sha512"
   ],
   "logs": []
 }

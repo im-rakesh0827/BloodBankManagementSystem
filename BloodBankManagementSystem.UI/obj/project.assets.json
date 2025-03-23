@@ -880,13 +880,13 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/8.0.4": {
+      "Microsoft.NET.ILLink.Tasks/8.0.14": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.12": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.14": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -1203,7 +1203,7 @@
           }
         }
       },
-      "System.IO.Pipelines/9.0.1": {
+      "System.IO.Pipelines/9.0.3": {
         "type": "package",
         "compile": {
           "lib/net8.0/System.IO.Pipelines.dll": {
@@ -1243,6 +1243,25 @@
           "lib/netstandard2.0/System.Memory.Data.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "System.Net.Http.Json/9.0.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Json": "9.0.3"
+        },
+        "compile": {
+          "lib/net8.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       },
       "System.Numerics.Vectors/4.5.0": {
@@ -1454,7 +1473,7 @@
           }
         }
       },
-      "System.Text.Encodings.Web/9.0.1": {
+      "System.Text.Encodings.Web/9.0.3": {
         "type": "package",
         "compile": {
           "lib/net8.0/System.Text.Encodings.Web.dll": {
@@ -1476,11 +1495,11 @@
           }
         }
       },
-      "System.Text.Json/9.0.1": {
+      "System.Text.Json/9.0.3": {
         "type": "package",
         "dependencies": {
-          "System.IO.Pipelines": "9.0.1",
-          "System.Text.Encodings.Web": "9.0.1"
+          "System.IO.Pipelines": "9.0.3",
+          "System.Text.Encodings.Web": "9.0.3"
         },
         "compile": {
           "lib/net8.0/System.Text.Json.dll": {
@@ -2405,13 +2424,13 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/8.0.4": {
+      "Microsoft.NET.ILLink.Tasks/8.0.14": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.ILLink.Tasks.props": {}
         }
       },
-      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.12": {
+      "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.14": {
         "type": "package",
         "build": {
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.props": {},
@@ -2650,7 +2669,7 @@
           }
         }
       },
-      "System.IO.Pipelines/9.0.1": {
+      "System.IO.Pipelines/9.0.3": {
         "type": "package",
         "compile": {
           "lib/net8.0/System.IO.Pipelines.dll": {
@@ -2690,6 +2709,25 @@
           "lib/netstandard2.0/System.Memory.Data.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "System.Net.Http.Json/9.0.3": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Json": "9.0.3"
+        },
+        "compile": {
+          "lib/net8.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
         }
       },
       "System.Numerics.Vectors/4.5.0": {
@@ -2873,7 +2911,7 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "System.Text.Encodings.Web/9.0.1": {
+      "System.Text.Encodings.Web/9.0.3": {
         "type": "package",
         "compile": {
           "lib/net8.0/System.Text.Encodings.Web.dll": {
@@ -2889,11 +2927,11 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "System.Text.Json/9.0.1": {
+      "System.Text.Json/9.0.3": {
         "type": "package",
         "dependencies": {
-          "System.IO.Pipelines": "9.0.1",
-          "System.Text.Encodings.Web": "9.0.1"
+          "System.IO.Pipelines": "9.0.3",
+          "System.Text.Encodings.Web": "9.0.3"
         },
         "compile": {
           "lib/net8.0/System.Text.Json.dll": {
@@ -4349,10 +4387,10 @@
         "microsoft.jsinterop.webassembly.nuspec"
       ]
     },
-    "Microsoft.NET.ILLink.Tasks/8.0.4": {
-      "sha512": "PZb5nfQ+U19nhnmnR9T1jw+LTmozhuG2eeuzuW5A7DqxD/UXW2ucjmNJqnqOuh8rdPzM3MQXoF8AfFCedJdCUw==",
+    "Microsoft.NET.ILLink.Tasks/8.0.14": {
+      "sha512": "4U2fd7PexNKrK5ZqfqIcXZj9/lRRjFsLgA/pxuFQTuGQuLYP/+7yACz/j7EmWbEj/fspOf4mafi/vHIy/rKDzQ==",
       "type": "package",
-      "path": "microsoft.net.illink.tasks/8.0.4",
+      "path": "microsoft.net.illink.tasks/8.0.14",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4366,7 +4404,7 @@
         "build/Microsoft.NET.ILLink.Analyzers.props",
         "build/Microsoft.NET.ILLink.Tasks.props",
         "build/Microsoft.NET.ILLink.targets",
-        "microsoft.net.illink.tasks.8.0.4.nupkg.sha512",
+        "microsoft.net.illink.tasks.8.0.14.nupkg.sha512",
         "microsoft.net.illink.tasks.nuspec",
         "tools/net472/ILLink.Tasks.dll",
         "tools/net472/ILLink.Tasks.dll.config",
@@ -4400,10 +4438,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.12": {
-      "sha512": "JS5B7ZJVqaBOjlbjDgOkg+COEy24CB6IdGiwNeZnPJMoIZFdxehGFUmlxl4Mz3GZaoIduOtMtwkEdy6jh+NUpg==",
+    "Microsoft.NET.Sdk.WebAssembly.Pack/8.0.14": {
+      "sha512": "PVKBB7RYzYzCMnKKHjG/sVUhTHtToCO0ewuZvrRuATsmxYiG1e01m1p7Mbg9CTkbj72KPnrMuq9pBiypA7sOyg==",
       "type": "package",
-      "path": "microsoft.net.sdk.webassembly.pack/8.0.12",
+      "path": "microsoft.net.sdk.webassembly.pack/8.0.14",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -4431,7 +4469,7 @@
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.props",
         "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets",
         "build/Wasm.web.config",
-        "microsoft.net.sdk.webassembly.pack.8.0.12.nupkg.sha512",
+        "microsoft.net.sdk.webassembly.pack.8.0.14.nupkg.sha512",
         "microsoft.net.sdk.webassembly.pack.nuspec",
         "tools/net472/Microsoft.Bcl.AsyncInterfaces.dll",
         "tools/net472/Microsoft.Build.dll",
@@ -4857,10 +4895,10 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
-    "System.IO.Pipelines/9.0.1": {
-      "sha512": "uXf5o8eV/gtzDQY4lGROLFMWQvcViKcF8o4Q6KpIOjloAQXrnscQSu6gTxYJMHuNJnh7szIF9AzkaEq+zDLoEg==",
+    "System.IO.Pipelines/9.0.3": {
+      "sha512": "aP1Qh9llcEmo0qN+VKvVDHFMe5Cqpfb1VjhBO7rjmxCXtLs3IfVSOiNqqLBZ/4Qbcr4J0SDdJq9S7EKAGpnwEA==",
       "type": "package",
-      "path": "system.io.pipelines/9.0.1",
+      "path": "system.io.pipelines/9.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4880,7 +4918,7 @@
         "lib/net9.0/System.IO.Pipelines.xml",
         "lib/netstandard2.0/System.IO.Pipelines.dll",
         "lib/netstandard2.0/System.IO.Pipelines.xml",
-        "system.io.pipelines.9.0.1.nupkg.sha512",
+        "system.io.pipelines.9.0.3.nupkg.sha512",
         "system.io.pipelines.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -4924,6 +4962,34 @@
         "lib/netstandard2.0/System.Memory.Data.xml",
         "system.memory.data.1.0.2.nupkg.sha512",
         "system.memory.data.nuspec"
+      ]
+    },
+    "System.Net.Http.Json/9.0.3": {
+      "sha512": "1PLQgaGNBaU6OYwXCcsvOncpayCaYy7gp2BsXrXHxQToKdTnLHHf5/MXyMf0nD6SfY9MMb/TC8HWR2weaNQctA==",
+      "type": "package",
+      "path": "system.net.http.json/9.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Net.Http.Json.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Net.Http.Json.targets",
+        "lib/net462/System.Net.Http.Json.dll",
+        "lib/net462/System.Net.Http.Json.xml",
+        "lib/net8.0/System.Net.Http.Json.dll",
+        "lib/net8.0/System.Net.Http.Json.xml",
+        "lib/net9.0/System.Net.Http.Json.dll",
+        "lib/net9.0/System.Net.Http.Json.xml",
+        "lib/netstandard2.0/System.Net.Http.Json.dll",
+        "lib/netstandard2.0/System.Net.Http.Json.xml",
+        "system.net.http.json.9.0.3.nupkg.sha512",
+        "system.net.http.json.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Numerics.Vectors/4.5.0": {
@@ -5477,10 +5543,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Encodings.Web/9.0.1": {
-      "sha512": "XkspqduP2t1e1x2vBUAD/xZ5ZDvmywuUwsmB93MvyQLospJfqtX0GsR/kU0vUL2h4kmvf777z3txV2W4NrQ9Qg==",
+    "System.Text.Encodings.Web/9.0.3": {
+      "sha512": "5L+iI4fBMtGwt4FHLQh40/rgdbxnw6lHaLkR3gbaHG97TohzUv+z/oP03drsTR1lKCLhOkp40cFnHYOQLtpT5A==",
       "type": "package",
-      "path": "system.text.encodings.web/9.0.1",
+      "path": "system.text.encodings.web/9.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5504,15 +5570,15 @@
         "runtimes/browser/lib/net8.0/System.Text.Encodings.Web.xml",
         "runtimes/browser/lib/net9.0/System.Text.Encodings.Web.dll",
         "runtimes/browser/lib/net9.0/System.Text.Encodings.Web.xml",
-        "system.text.encodings.web.9.0.1.nupkg.sha512",
+        "system.text.encodings.web.9.0.3.nupkg.sha512",
         "system.text.encodings.web.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/9.0.1": {
-      "sha512": "eqWHDZqYPv1PvuvoIIx5pF74plL3iEOZOl/0kQP+Y0TEbtgNnM2W6k8h8EPYs+LTJZsXuWa92n5W5sHTWvE3VA==",
+    "System.Text.Json/9.0.3": {
+      "sha512": "r2JRkLjsYrq5Dpo7+y3Wa73OfirZPdVhxiTJWwZ+oJM7FOAe0LkM3GlH+pgkNRdd1G1kwUbmRCdmh4uoaWwu1g==",
       "type": "package",
-      "path": "system.text.json/9.0.1",
+      "path": "system.text.json/9.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5575,7 +5641,7 @@
         "lib/net9.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.9.0.1.nupkg.sha512",
+        "system.text.json.9.0.3.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -5657,8 +5723,9 @@
       "BloodBankManagementSystem.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 8.0.4",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 8.0.4",
-      "Microsoft.NET.ILLink.Tasks >= 8.0.4",
-      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.12"
+      "Microsoft.NET.ILLink.Tasks >= 8.0.14",
+      "Microsoft.NET.Sdk.WebAssembly.Pack >= 8.0.14",
+      "System.Net.Http.Json >= 9.0.3"
     ]
   },
   "packageFolders": {
@@ -5699,6 +5766,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -5717,14 +5789,18 @@
           "Microsoft.NET.ILLink.Tasks": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.4, )",
+            "version": "[8.0.14, )",
             "autoReferenced": true
           },
           "Microsoft.NET.Sdk.WebAssembly.Pack": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[8.0.12, )",
+            "version": "[8.0.14, )",
             "autoReferenced": true
+          },
+          "System.Net.Http.Json": {
+            "target": "Package",
+            "version": "[9.0.3, )"
           }
         },
         "imports": [
@@ -5741,7 +5817,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-            "version": "[8.0.12, 8.0.12]"
+            "version": "[8.0.14, 8.0.14]"
           }
         ],
         "frameworkReferences": {
@@ -5749,7 +5825,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/Cellar/dotnet/8.0.4/libexec/sdk/8.0.104/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.407/PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nAczhAN/bCRBErbXmkA83qj950P5171JBUWlS9Ffm0I=",
+  "Hash": "p3Rf6jFT3AgztnucpEAMtCPIrKbF9Wy5PH6EmdXKuvY=",
   "Source": "BloodBankManagementSystem.UI",
   "BasePath": "/",
   "Mode": "Root",
@@ -223,7 +223,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/dotnet.js"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/dotnet.js"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map",
@@ -242,15 +242,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/dotnet.js.map"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/dotnet.js.map"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.12.qekeg68mbm.js",
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.14.m9s06tbr13.js",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
       "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.12.qekeg68mbm.js",
+      "RelativePath": "_framework/dotnet.native.8.0.14.m9s06tbr13.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -261,7 +261,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/dotnet.native.js"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/dotnet.native.js"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm",
@@ -280,15 +280,15 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/dotnet.native.wasm"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/dotnet.native.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.12.u584806hx2.js",
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.14.vfwjchk31w.js",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
       "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.12.u584806hx2.js",
+      "RelativePath": "_framework/dotnet.runtime.8.0.14.vfwjchk31w.js",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -299,7 +299,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/dotnet.runtime.js"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/dotnet.runtime.js"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.js.map",
@@ -318,7 +318,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/dotnet.runtime.js.map"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/dotnet.runtime.js.map"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/e_sqlite3.a",
@@ -356,7 +356,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/icudt_CJK.dat"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/icudt_CJK.dat"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat",
@@ -375,7 +375,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/icudt_EFIGS.dat"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/icudt_EFIGS.dat"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat",
@@ -394,7 +394,7 @@
       "AssetTraitValue": "native",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.12/runtimes/browser-wasm/native/icudt_no_CJK.dat"
+      "OriginalItemSpec": "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/runtimes/browser-wasm/native/icudt_no_CJK.dat"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Microsoft.AspNetCore.Authorization.wasm",
@@ -4748,25 +4748,6 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Configuration.ConfigurationManager.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/0yi257p2fo.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat"
-    },
-    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/10y5v8b9dp.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -5297,6 +5278,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/blazor.webassembly.js"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/5buxt5ym4f.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.runtime.js.map.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.js.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.js.map"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/5c7yh08sox.gz",
@@ -6078,25 +6078,6 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Collections.Immutable.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/c19s7u92m3.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.wasm.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm"
-    },
-    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/c2by35n855.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -6171,25 +6152,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Buffers.wasm"
-    },
-    {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/cx3ex46shu.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/dqyfbkcikr.gz",
@@ -6380,6 +6342,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Net.HttpListener.wasm"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/f9o4ftxv4z.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/fbik0zlfi2.gz",
@@ -7294,25 +7275,6 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Reflection.Emit.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/ktxh1vc6uo.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.map.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map"
-    },
-    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/kv1qlil2i8.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -7522,6 +7484,25 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Microsoft.VisualBasic.Core.wasm"
     },
     {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/m9s06tbr13.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.8.0.14.m9s06tbr13.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.14.m9s06tbr13.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.14.m9s06tbr13.js"
+    },
+    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/mcnsag5lb1.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -7560,6 +7541,25 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Security.Principal.Windows.wasm"
     },
     {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/mkz2te6l4e.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_no_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_no_CJK.dat"
+    },
+    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/mmf341en90.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -7596,6 +7596,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.ComponentModel.Annotations.wasm"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/moe818vkxz.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.native.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.wasm"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/mpm3wl1x5w.gz",
@@ -8054,25 +8073,6 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Microsoft.Extensions.Configuration.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/qekeg68mbm.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.native.8.0.12.qekeg68mbm.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.12.qekeg68mbm.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.native.8.0.12.qekeg68mbm.js"
-    },
-    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/qfg9krsr4g.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -8453,25 +8453,6 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.IO.Compression.FileSystem.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/ta3cdvdfgs.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.js.map.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.js.map",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.js.map"
-    },
-    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/th6juscdre.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -8546,25 +8527,6 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Microsoft.EntityFrameworkCore.Sqlite.wasm"
-    },
-    {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/u584806hx2.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.runtime.8.0.12.u584806hx2.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.12.u584806hx2.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.12.u584806hx2.js"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/u67tvpne34.gz",
@@ -8757,6 +8719,25 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Linq.Queryable.wasm"
     },
     {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/vfwjchk31w.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.runtime.8.0.14.vfwjchk31w.js.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.14.vfwjchk31w.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.runtime.8.0.14.vfwjchk31w.js"
+    },
+    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/vntsmk03yx.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -8871,25 +8852,6 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Transactions.Local.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/wk8kdpl2qt.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/icudt_CJK.dat.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat"
-    },
-    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/wppkyfeoer.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -8985,25 +8947,6 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Microsoft.Extensions.Caching.Abstractions.wasm"
     },
     {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/x9f3zj6cu1.gz",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Computed",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "_framework/dotnet.js.gz",
-      "AssetKind": "Build",
-      "AssetMode": "All",
-      "AssetRole": "Alternative",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js",
-      "AssetTraitName": "Content-Encoding",
-      "AssetTraitValue": "gzip",
-      "CopyToOutputDirectory": "PreserveNewest",
-      "CopyToPublishDirectory": "Never",
-      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js"
-    },
-    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/x9xyqbyzsv.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -9059,6 +9002,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Xml.Serialization.wasm"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/xhczvgy4b8.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_CJK.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_CJK.dat"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/xlrqvmh1qm.gz",
@@ -9118,6 +9080,25 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Web.wasm"
     },
     {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/y4mgsyxpn7.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/icudt_EFIGS.dat.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/icudt_EFIGS.dat"
+    },
+    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/y8l0gmf9tc.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -9173,6 +9154,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.IO.Compression.wasm"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/z1ucg8d0ps.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/dotnet.js.map.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/dotnet.js.map"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/zcisf12mr5.gz",

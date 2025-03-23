@@ -27,8 +27,41 @@ namespace BloodBankManagementSystem.API.Controllers
 
             user.PasswordHash = HashPassword(user.PasswordHash);
             await _userRepository.AddUserAsync(user);
-
             return Ok(new { message = "User registered successfully" });
+        }
+
+        [HttpGet("getAllUsers")]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                var users = await _userRepository.GetAllUsersAsync();
+
+                if (users == null || !users.Any())  // Fix null check
+                {
+                    return NotFound(new { message = "No users found." });
+                }
+
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching users: {ex.Message}");
+                return StatusCode(500, new { message = "Internal Server Error", error = ex.Message });
+            }
+        }
+
+
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] User loginRequest)
+        {
+            var user = await _userRepository.GetUserByEmailAsync(loginRequest.Email);
+            if (user == null || !VerifyPassword(loginRequest.PasswordHash, user.PasswordHash))
+                return Unauthorized("Invalid credentials");
+
+            return Ok(new { message = "Login successful", role = user.Role });
         }
 
         private string HashPassword(string password)
@@ -37,6 +70,11 @@ namespace BloodBankManagementSystem.API.Controllers
             var bytes = Encoding.UTF8.GetBytes(password);
             var hash = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
+        }
+
+        private bool VerifyPassword(string inputPassword, string storedHash)
+        {
+            return HashPassword(inputPassword) == storedHash;
         }
     }
 }
