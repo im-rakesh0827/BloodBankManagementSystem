@@ -44,9 +44,7 @@ Payments: Stripe API
 
 # 📌 Installation Guide
 
-Clone the Repository:
-
-git clone https://github.com/im-rakesh0827/BloodBankManagementSystem.git
+Repository: https://github.com/im-rakesh0827/BloodBankManagementSystem.git
 cd BloodBankManagementSystem
 
 Set up the Database:
@@ -62,12 +60,6 @@ Run the Application:
 docker-compose up
 dotnet run
 
-Access in Browser:
-
-Frontend: http://localhost:5000
-
-API: http://localhost:5001/swagger
-
 # 📜 License
 
 This project is licensed under the MIT License.
@@ -78,13 +70,7 @@ Contributions are welcome! Feel free to submit pull requests.
 
 # 📬 Contact
 
-Developer: Rakesh
-
-GitHub: im-rakesh0827
-
-Email: rakesh@example.com
-
-
+Developer: Rakesh Kumar
 
 ```mermaid
 erDiagram
