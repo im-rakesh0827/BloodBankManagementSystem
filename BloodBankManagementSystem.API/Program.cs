@@ -20,6 +20,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // ✅ Register Repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+
 
 // ✅ Configure CORS properly
 builder.Services.AddCors(options =>

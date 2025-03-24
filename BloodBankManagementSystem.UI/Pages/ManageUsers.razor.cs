@@ -15,7 +15,7 @@ namespace BloodBankManagementSystem.UI.Pages
         {
             try
             {
-                var response = await Http.GetAsync("api/Users/getAllUsers");
+                var response = await Http.GetAsync("api/Users/allUsers");
                 if (!response.IsSuccessStatusCode)
                 {
                     var errorText = await response.Content.ReadAsStringAsync();

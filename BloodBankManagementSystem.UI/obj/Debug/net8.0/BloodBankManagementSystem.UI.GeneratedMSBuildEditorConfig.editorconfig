@@ -30,12 +30,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9zcGl0YWxDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/ManageUsers.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlVXNlcnMucmF6b3I=
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/ManagePatients.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlUGF0aWVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Patient.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGF0aWVudC5yYXpvcg==
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/ManageUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlVXNlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/RegisterPatient.razor]

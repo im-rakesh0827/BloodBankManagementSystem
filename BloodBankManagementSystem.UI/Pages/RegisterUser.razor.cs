@@ -23,6 +23,7 @@ namespace BloodBankManagementSystem.UI.Pages{
                if (response.IsSuccessStatusCode)
                {
                     ErrorMessage = "User registered successfully!";
+                    User = new User();
                }
                else
                {

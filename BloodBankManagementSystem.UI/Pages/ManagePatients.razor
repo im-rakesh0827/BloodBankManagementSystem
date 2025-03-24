@@ -1,0 +1,83 @@
+@page "/patient"
+@inject HttpClient Http
+
+@* <h3>Registered Patients</h3> *@
+
+
+<h3 class="page-header">
+    Registered Patients
+    <button class="btn btn-success btn-sm register-btn" @onclick="ToggleRegisterPatientForm">+ New Patient</button>
+</h3>
+
+<!-- Register Patient Form (Inline) -->
+@if (ShowRegisterForm)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+        <RegisterPatient OnClose="ToggleRegisterPatientForm" OnPatientUpdated="RefreshPatientList" />
+        </div>
+    </div>
+}
+
+
+@if (FilteredPatientsList is null)
+{
+    <p>Loading...</p>
+}
+else if (!FilteredPatientsList.Any())
+{
+    <p>No patients found.</p>
+}
+else
+{
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Blood Type Needed</th>
+                <th>Phone Number</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>District</th>
+                <th>PinCode</th>
+                <th>Full Address</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var patient in FilteredPatientsList)
+            {
+                <tr>
+                    <td>@patient.FirstName</td>
+                    <td>@patient.LastName</td>
+                    <td>@patient.Age</td>
+                    <td>@patient.BloodTypeNeeded</td>
+                    <td>@patient.PhoneNumber</td>
+                    <td>@patient.Country</td>
+                    <td>@patient.State</td>
+                    <td>@patient.District</td>
+                    <td>@patient.PinCode</td>
+                    <td>@patient.Address</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" @onclick="() => OpenEditModal(patient)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeletePatient(patient.PatientID)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Modal Popup -->
+@if (ShowEditModal)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <RegisterPatient PatientData="SelectedPatient" OnClose="CloseEditModal" OnPatientUpdated="RefreshPatientList" />
+        </div>
+    </div>
+}

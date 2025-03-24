@@ -21,18 +21,18 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
         }
 
         public async Task<List<User>> GetAllUsersAsync()
-{
-    try
-    {
-        var users = await _context.Users.ToListAsync();
-        return users ?? new List<User>(); // Ensure it never returns null
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Database Error: {ex.Message}");
-        return new List<User>(); // Return an empty list on failure
-    }
-}
+        {
+            try
+            {
+                var users = await _context.Users.ToListAsync();
+                return users ?? new List<User>(); // Ensure it never returns null
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Database Error: {ex.Message}");
+                return new List<User>(); // Return an empty list on failure
+            }
+        }
 
 
 

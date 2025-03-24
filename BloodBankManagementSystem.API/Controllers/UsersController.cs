@@ -30,7 +30,7 @@ namespace BloodBankManagementSystem.API.Controllers
             return Ok(new { message = "User registered successfully" });
         }
 
-        [HttpGet("getAllUsers")]
+        [HttpGet("allUsers")]
         [Produces("application/json")]
         public async Task<IActionResult> GetAllUsers()
         {

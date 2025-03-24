@@ -100,7 +100,7 @@ main[b-g4ywb9jxby] {
     display: inline-block;
     position: relative;
     width: 1.25rem;
-    height: 1.25rem;
+    /* height: 1.25rem; */
     margin-right: 0.75rem;
     top: -1px;
     background-size: cover;
@@ -242,47 +242,3 @@ body[b-w7gcqouxhw] {
     }
 }
 /* /Pages/Home.razor.rz.scp.css */
-@keyframes chartjs-render-animation-b-k95ys2e6s7 {
-    from {
-        opacity: .99
-    }
-
-    to {
-        opacity: 1
-    }
-}
-
-.chartjs-render-monitor[b-k95ys2e6s7] {
-    animation: chartjs-render-animation-b-k95ys2e6s7 1ms;
-}
-
-.chartjs-size-monitor[b-k95ys2e6s7],
-.chartjs-size-monitor-expand[b-k95ys2e6s7],
-.chartjs-size-monitor-shrink[b-k95ys2e6s7] {
-    position: absolute;
-    direction: ltr;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    pointer-events: none;
-    visibility: hidden;
-    z-index: -1;
-}
-
-.chartjs-size-monitor-expand>div[b-k95ys2e6s7] {
-    position: absolute;
-    width: 1000000px;
-    height: 1000000px;
-    left: 0;
-    top: 0;
-}
-
-.chartjs-size-monitor-shrink>div[b-k95ys2e6s7] {
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    left: 0;
-    top: 0;
-}
