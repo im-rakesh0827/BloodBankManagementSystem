@@ -39,13 +39,11 @@ DevOps: Docker, Azure, CI/CD Pipelines
 
 Authentication: JWT, OAuth2
 
-Payments: Stripe API
 
 
 # 📌 Installation Guide
 
 Repository: https://github.com/im-rakesh0827/BloodBankManagementSystem.git
-cd BloodBankManagementSystem
 
 Set up the Database:
 
@@ -59,10 +57,6 @@ Run the Application:
 
 docker-compose up
 dotnet run
-
-# 📜 License
-
-This project is licensed under the MIT License.
 
 🤝 Contributing
 
