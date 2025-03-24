@@ -1,9 +1,5 @@
-@page "/patient"
+@page "/managePatients"
 @inject HttpClient Http
-
-@* <h3>Registered Patients</h3> *@
-
-
 <h3 class="page-header">
     Registered Patients
     <button class="btn btn-success btn-sm register-btn" @onclick="ToggleRegisterPatientForm">+ New Patient</button>
@@ -71,7 +67,6 @@ else
         </tbody>
     </table>
 }
-
 <!-- Modal Popup -->
 @if (ShowEditModal)
 {

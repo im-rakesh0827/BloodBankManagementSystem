@@ -64,6 +64,41 @@ namespace BloodBankManagementSystem.API.Controllers
             return Ok(new { message = "Login successful", role = user.Role });
         }
 
+
+        [HttpPut("update/{userId}")]
+        public async Task<IActionResult> UpdateUser(int userId, [FromBody] User updatedUser)
+        {
+            var existingUser = await _userRepository.GetUserByIdAsync(userId);
+            if (existingUser == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+            existingUser.FirstName = updatedUser.FirstName;
+            existingUser.LastName = updatedUser.LastName;
+            existingUser.Email = updatedUser.Email;
+            existingUser.Phone = updatedUser.Phone;
+            existingUser.Role = updatedUser.Role;
+            // Only update password if a new one is provided
+            if (!string.IsNullOrEmpty(updatedUser.PasswordHash))
+            {
+                existingUser.PasswordHash = HashPassword(updatedUser.PasswordHash);
+            }
+            await _userRepository.UpdateUserAsync(existingUser);
+            return Ok(new { message = "User updated successfully" });
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var user = await _userRepository.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+            await _userRepository.DeleteAsync(user);
+            return Ok(new { message = "User deleted successfully." });
+        }
+
         private string HashPassword(string password)
         {
             using var sha256 = SHA256.Create();

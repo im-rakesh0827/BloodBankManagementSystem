@@ -1,81 +1,74 @@
 @page "/registerUser"
 @inject HttpClient Http
 
-<h3>Register</h3>
+<h4>Register User</h4>
+@if (!string.IsNullOrEmpty(Message))
+{
+    <p class="alert alert-info">@Message</p>
+}
+<EditForm Model="NewUser" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">First Name:</label>
+                <InputText class="form-control" @bind-Value="NewUser.FirstName" tabindex="1" />
+            </div>
 
-<div class="register-container">
-    <div class="form-group">
-        <div class="input-row">
-            <input @bind="User.FirstName" placeholder="First Name" class="input-field" />
-            <input @bind="User.LastName" placeholder="Last Name" class="input-field" />
-        </div>
-        <div class="input-row">
-            <input @bind="User.Email" type="email" placeholder="Email" class="input-field" />
-            <input @bind="User.Phone" type="tel" placeholder="Phone" class="input-field" />
-        </div>
-        <div class="input-row">
-            <input @bind="User.PasswordHash" type="password" placeholder="Password" class="input-field" />
-            <input @bind="ConfirmPassword" type="password" placeholder="Confirm Password" class="input-field" />
-        </div>
-        
-        @if (!string.IsNullOrEmpty(ErrorMessage))
-        {
-            <p class="error-message">@ErrorMessage</p>
-        }
+            <div class="mb-3">
+                <label class="form-label">Email:</label>
+                <InputText class="form-control" type="email" @bind-Value="NewUser.Email" tabindex="3" />
+            </div>
 
-        <button @onclick="SaveUser" class="register-button">Register</button>
+            @if(!HideInputField)
+            {
+                <div class="mb-3">
+                    <label class="form-label">Password:</label>
+                    <InputText class="form-control" type="password" @bind-Value="NewUser.PasswordHash" tabindex="4" />
+               </div>
+            }
+            
+
+            <div class="mb-3">
+                <label class="form-label">Role:</label>
+                <InputSelect class="form-control" @bind-Value="NewUser.Role" tabindex="7">
+                    @foreach (var role in Roles)
+                    {
+                        <option value="@role.Value">@role.Value</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Last Name:</label>
+                <InputText class="form-control" @bind-Value="NewUser.LastName" tabindex="2" />
+            </div>
+
+             <div class="mb-3">
+                <label class="form-label">Phone Number:</label>
+                <InputText class="form-control" @bind-Value="NewUser.Phone" tabindex="5" />
+            </div>
+
+            @if(!HideInputField){
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password:</label>
+                    <InputText class="form-control" type="password" @bind-Value="ConfirmPassword" tabindex="6" />
+                </div>
+            }
+            <div class="mb-3">
+                <label class="form-label">Full Address:</label>
+                <InputText class="form-control" type="text" @bind-Value="NewUser.Address" tabindex="6" />
+            </div>
+        </div>
     </div>
-</div>
-
-<style>
-    .register-container {
-        max-width: 500px;
-        margin: auto;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-group {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .input-row {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 10px;
-    }
-
-    .input-field {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-    }
-
-    .error-message {
-        color: red;
-        font-size: 14px;
-        text-align: center;
-    }
-
-    .register-button {
-        width: 100%;
-        padding: 10px;
-        background-color:rgb(21, 105, 42);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .register-button:hover {
-        @* background-color: #0056b3; *@
-        background-color:rgb(22, 116, 32);
-    }
-</style>
+    <div class="d-flex justify-content-center gap-3 mt-2">
+        <button type="submit" class="btn btn-primary" tabindex="8">@SaveButtonTitle</button>
+        <button type="button" class="btn btn-secondary" tabindex="9" @onclick="HandleClearReset">@ClearResetTitle</button>
+        <button type="button" class="btn btn-secondary" tabindex="10" @onclick="HandleCancel">Cancel</button>
+    </div>
+</EditForm>

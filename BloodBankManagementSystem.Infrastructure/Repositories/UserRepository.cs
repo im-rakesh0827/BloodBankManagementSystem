@@ -25,21 +25,36 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
             try
             {
                 var users = await _context.Users.ToListAsync();
-                return users ?? new List<User>(); // Ensure it never returns null
+                return users ?? new List<User>();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Database Error: {ex.Message}");
-                return new List<User>(); // Return an empty list on failure
+                return new List<User>();
             }
         }
-
-
 
         public async Task AddUserAsync(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            return await _context.Users.FindAsync(userId);
+        }
+
+        public async Task UpdateUserAsync(User user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(User user)
+        {
+          _context.Users.Remove(user);
+          await _context.SaveChangesAsync();
         }
     }
 }

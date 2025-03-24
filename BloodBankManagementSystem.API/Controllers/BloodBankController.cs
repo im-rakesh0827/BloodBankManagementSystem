@@ -42,8 +42,6 @@ namespace BloodBankManagementSystem.API.Controllers{
             return Ok(patient);
         }
 
-
-
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePatient(int id, [FromBody] Patient updatedPatient)
         {

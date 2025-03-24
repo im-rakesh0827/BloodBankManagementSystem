@@ -54,13 +54,13 @@ namespace BloodBankManagementSystem.UI.Pages
                          return;
                     }
 
-                    var responseText = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Raw API Response: {responseText}"); 
-
-                    //  AllPatientsList = await response.Content.ReadFromJsonAsync<List<Patient>>();
-                    FilteredPatientsList = (await response.Content.ReadFromJsonAsync<List<Patient>>())?
-                    .Where(p => p.IsActive)
-                    .ToList();
+                    // var responseText = await response.Content.ReadAsStringAsync();
+                    // Console.WriteLine($"Raw API Response: {responseText}"); 
+                    AllPatientsList = await response.Content.ReadFromJsonAsync<List<Patient>>();
+                    ApplyFilteredPatientsList();
+                    // FilteredPatientsList = (await response.Content.ReadFromJsonAsync<List<Patient>>())?
+                    // .Where(p => p.IsActive)
+                    // .ToList();
                }
                catch (Exception ex)
                {
@@ -91,9 +91,15 @@ namespace BloodBankManagementSystem.UI.Pages
        private async Task RefreshPatientList()
        {
           await LoadAllPatients();
+          ApplyFilteredPatientsList();
           StateHasChanged(); // Force UI update
        }
 
+       public void ApplyFilteredPatientsList(){
+          FilteredPatientsList = AllPatientsList.Where(p => p.IsActive).ToList();
+       }
+
+     
 
        private void ToggleRegisterPatientForm()
         {
