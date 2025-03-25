@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using BloodBankManagementSystem.API.Services; 
+using Microsoft.Extensions.Logging; // Make sure to include this
 
 namespace BloodBankManagementSystem.API.Controllers
 {
@@ -11,23 +13,37 @@ namespace BloodBankManagementSystem.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-
         private readonly IUserRepository _userRepository;
-
-        public UsersController(IUserRepository userRepository)
+        private readonly ILogger<UsersController> _logger; // Inject Logger
+        private readonly IEmailService _emailService;
+        public UsersController(IUserRepository userRepository, IEmailService emailService, ILogger<UsersController> logger)
         {
             _userRepository = userRepository;
+            _emailService = emailService;
+            _logger = logger;
         }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User user)
         {
-            if (await _userRepository.GetUserByEmailAsync(user.Email) != null)
+            try{
+                if (await _userRepository.GetUserByEmailAsync(user.Email) != null)
                 return BadRequest("User already exists");
-
-            user.PasswordHash = HashPassword(user.PasswordHash);
-            await _userRepository.AddUserAsync(user);
-            return Ok(new { message = "User registered successfully" });
+                string UserPassword = user.PasswordHash;
+                user.PasswordHash = HashPassword(user.PasswordHash);
+                await _userRepository.AddUserAsync(user);
+                user.PasswordHash = UserPassword;
+                bool emailSent = await SendEmail(user);
+                if (!emailSent)
+                {
+                    return StatusCode(500, new { message = "User registered, but email failed to send" });
+                }
+                return Ok(new { message = "User registered successfully, email sent" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error registering user: {ex.Message}");
+                return StatusCode(500, new { message = "Internal server error" });
+            }
         }
 
         [HttpGet("allUsers")]
@@ -78,7 +94,7 @@ namespace BloodBankManagementSystem.API.Controllers
             existingUser.Email = updatedUser.Email;
             existingUser.Phone = updatedUser.Phone;
             existingUser.Role = updatedUser.Role;
-            // Only update password if a new one is provided
+            existingUser.Address = updatedUser.Address;
             if (!string.IsNullOrEmpty(updatedUser.PasswordHash))
             {
                 existingUser.PasswordHash = HashPassword(updatedUser.PasswordHash);
@@ -111,5 +127,84 @@ namespace BloodBankManagementSystem.API.Controllers
         {
             return HashPassword(inputPassword) == storedHash;
         }
+
+    private async Task<bool> SendEmail(User user)
+    {
+        try
+        {
+            string subject = "🎉 Welcome to BloodBank Management System!";
+            string body = $@"
+            <html>
+            <head>
+                <style>
+                    body {{
+                        font-family: Arial, sans-serif;
+                        background-color: #f4f4f4;
+                        padding: 20px;
+                    }}
+                    .container {{
+                        max-width: 600px;
+                        margin: auto;
+                        background: #ffffff;
+                        padding: 20px;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+                    }}
+                    h2 {{
+                        color: #d9534f;
+                    }}
+                    p {{
+                        color: #333;
+                        font-size: 16px;
+                    }}
+                    .cta-button {{
+                        display: inline-block;
+                        background-color: #d9534f;
+                        color: #ffffff;
+                        padding: 12px 24px;
+                        text-decoration: none;
+                        font-weight: bold;
+                        border-radius: 5px;
+                        margin-top: 20px;
+                    }}
+                    .footer {{
+                        margin-top: 20px;
+                        text-align: center;
+                        font-size: 12px;
+                        color: #777;
+                    }}
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <h2>Welcome, {user.FirstName}! 🎉</h2>
+                    <p>Thank you for registering with <strong>BloodBank Management System</strong>. 🩸</p>
+                    <p>Here are your details:</p>
+                    <ul>
+                        <li><strong>Name:</strong> {user.FirstName} {user.LastName}</li>
+                        <li><strong>Email:</strong> {user.Email}</li>
+                        <li><strong>Password:</strong> {user.PasswordHash}</li>
+                    </ul>
+                    <p>You can now log in and explore the system and reset your password</p>
+                    <a href='https://your-bloodbank-system.com/login' class='cta-button'>Login to Your Account</a>
+                    <p class='footer'>If you have any questions, feel free to reply to this email. <br> BloodBank Management System Team</p>
+                </div>
+            </body>
+            </html>";
+            bool emailSent = await _emailService.SendEmailAsync(user.Email, subject, body);
+            if (!emailSent)
+            {
+                _logger.LogError($"Failed to send email to {user.Email}");
+                return false;
+            }
+            _logger.LogInformation($"Email sent successfully to {user.Email}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Exception while sending email: {ex.Message}");
+            return false;
+        }
+    }
     }
 }

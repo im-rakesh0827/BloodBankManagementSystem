@@ -50,11 +50,11 @@ else
     </table>
 }
 
-@if (ShowAddUserModal)
+@if (IsCreateUpdatePopup)
 {
     <div class="modal-overlay">
         <div class="modal-content">
-            <RegisterUser OnClose="CloseAddUserModal" OnUserAddedOrUpdated="RefreshUserList" SelectedUserData="SelectedUser" />
+            <RegisterUser OnClose="CloseAddUserModal" OnUserAddedOrUpdated="RefreshUserList" SelectedUserData="SelectedUser" IsCreateUpdateUserPopup="IsCreateUpdatePopup" />
         </div>
     </div>
 }

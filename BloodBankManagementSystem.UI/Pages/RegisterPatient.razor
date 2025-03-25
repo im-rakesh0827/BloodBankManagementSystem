@@ -1,5 +1,11 @@
 @page "/registerPatient"
 @inject HttpClient Http
+@if(IsCreateUpdatePatientPopup)
+{
+    <div class="position-relative">
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close" @onclick="HandleCancelOrClose"></button>
+    </div>
+}
 <h4>@PageTitle</h4>
 @if (!string.IsNullOrEmpty(Message))
 {
@@ -74,6 +80,6 @@
     <div class="d-flex justify-content-center gap-3 mt-2">
           <button type="submit" class="btn btn-primary" tabindex="13">@ButtonName</button>
           <button type="button" class="btn btn-secondary" tabindex="13" @onclick="HandleClearRestore">@ClearResetButton</button>
-          <button type="button" class="btn btn-secondary" tabindex="14" @onclick="HandleCancelButton">Cancel</button>
+          @* <button type="button" class="btn btn-secondary" tabindex="14" @onclick="HandleCancelButton">Cancel</button> *@
      </div>
 </EditForm>

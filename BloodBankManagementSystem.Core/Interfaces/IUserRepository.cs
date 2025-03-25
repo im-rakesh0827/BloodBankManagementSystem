@@ -10,7 +10,7 @@ namespace BloodBankManagementSystem.Core.Interfaces
         Task<User?> GetUserByEmailAsync(string email);
         Task<List<User>> GetAllUsersAsync();
         Task AddUserAsync(User user);
-        Task UpdateUserAsync(User user); // New method
+        Task UpdateUserAsync(User user);
         Task DeleteAsync(User user);
 
     }

@@ -1,9 +1,26 @@
 using BloodBankManagementSystem.Infrastructure.Data;
 using BloodBankManagementSystem.Core.Interfaces;
 using BloodBankManagementSystem.Infrastructure.Repositories;
+using BloodBankManagementSystem.API.Services;
+using BloodBankManagementSystem.Core.Models;
+
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ✅ Register EmailSettings
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("SmtpSettings"));
+// ✅ Register Email Service
+builder.Services.AddScoped<IEmailService, EmailService>();
+
+
+
+
+// builder.Services.AddSingleton<EmailService>();
+// builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("SmtpSettings"));
+// builder.Services.AddTransient<IEmailService, EmailService>();
+// builder.Services.AddScoped<IEmailService, EmailService>(); // Ensure EmailService is implemented
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -31,6 +48,8 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod()
               .AllowAnyHeader());
 });
+
+
 
 var app = builder.Build();
 

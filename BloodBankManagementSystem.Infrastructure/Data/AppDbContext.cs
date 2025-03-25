@@ -9,6 +9,7 @@ namespace BloodBankManagementSystem.Infrastructure.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Patient> Patients { get; set; }  // ✅ Ensure this line exists
+        public DbSet<Donor> Donors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -20,6 +20,5 @@ namespace BloodBankManagementSystem.Core.Models
         public string State { get; set; } = string.Empty;
         public string District { get; set; } = string.Empty;
         public string PinCode { get; set; } = string.Empty;
-        public int RoleId { get; set; } = 1; // Default to "User"
     }
 }

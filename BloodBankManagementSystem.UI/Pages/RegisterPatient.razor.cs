@@ -18,24 +18,22 @@ namespace BloodBankManagementSystem.UI.Pages
         public string PageTitle {get;set;} = "Register Patient";
         private Patient NewPatient { get; set; } = new();
         private string Message { get; set; } = string.Empty;
-        [Parameter] public Patient? PatientData { get; set; }
+        [Parameter] public Patient? SelectedPatientData { get; set; }
         [Parameter] public EventCallback OnClose { get; set; }
         [Parameter] public EventCallback OnPatientUpdated { get; set; }
-
-        private void ClosePopup()
-    {
-        OnClose.InvokeAsync();
-    }
-
+        [Parameter] public bool IsCreateUpdatePatientPopup {get;set;}
 
     protected override void OnParametersSet()
     {
-        if (PatientData != null)
+        if (SelectedPatientData != null && SelectedPatientData.PatientID>0)
         {
           ButtonName = "Update";
           ClearResetButton = "Reset";
           PageTitle = "Update Patient";
           AssignPatientDataToBeUpdated();
+        }
+        else{
+          NewPatient = new Patient();
         }
     }
 
@@ -43,28 +41,28 @@ namespace BloodBankManagementSystem.UI.Pages
     {
           NewPatient = new Patient
             {
-                PatientID = PatientData.PatientID,
-                FirstName = PatientData.FirstName,
-                LastName = PatientData.LastName,
-                Age = PatientData.Age,
-                BloodTypeNeeded = PatientData.BloodTypeNeeded,
-                PhoneNumber = PatientData.PhoneNumber,
-                Address = PatientData.Address,
-                Country = PatientData.Country,
-                State = PatientData.State,
-                District = PatientData.District,
-                PinCode = PatientData.PinCode
+                PatientID = SelectedPatientData.PatientID,
+                FirstName = SelectedPatientData.FirstName,
+                LastName = SelectedPatientData.LastName,
+                Age = SelectedPatientData.Age,
+                BloodTypeNeeded = SelectedPatientData.BloodTypeNeeded,
+                PhoneNumber = SelectedPatientData.PhoneNumber,
+                Address = SelectedPatientData.Address,
+                Country = SelectedPatientData.Country,
+                State = SelectedPatientData.State,
+                District = SelectedPatientData.District,
+                PinCode = SelectedPatientData.PinCode
             };
     }
 
-    private async Task HandleCancelButton()
+    private async Task HandleCancelOrClose()
     {
-        ClosePopup();
+        OnClose.InvokeAsync();
     }
 
     private async Task HandleClearRestore()
     {
-          if(PatientData!=null){
+          if(SelectedPatientData!=null){
                AssignPatientDataToBeUpdated();
           }
           else{

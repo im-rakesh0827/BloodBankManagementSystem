@@ -8,15 +8,18 @@ namespace BloodBankManagementSystem.UI.Pages{
      public partial class RegisterUser
      {
         private User NewUser = new();
-        private string ConfirmPassword = string.Empty;
-        private string Message = string.Empty;
+        private string ConfirmPassword{get;set;} = string.Empty;
+        private string Message{get;set;} = string.Empty;
         private string Address{get; set;} = string.Empty;
         [Parameter] public EventCallback OnClose { get; set; }
         [Parameter] public EventCallback OnUserAddedOrUpdated { get; set; }
         [Parameter] public User SelectedUserData { get; set; }
+        [Parameter] public bool IsCreateUpdateUserPopup {get; set;}
         private string SaveButtonTitle {get; set;} = "Register";
         private string ClearResetTitle {get; set;} = "Clear";
-        private bool HideInputField{get;set;} = false;
+        private string RegisterUpdateTitle {get; set;} = "Register User";
+        private bool IsVisible {get; set;} = false;
+        private bool IsReadOnly {get; set;} = false;
         private Dictionary<int, string> Roles = new()
         {
           {1, "Admin" },
@@ -31,7 +34,8 @@ namespace BloodBankManagementSystem.UI.Pages{
           {
                SaveButtonTitle = "Update";
                ClearResetTitle = "Reset";
-               HideInputField = true;
+               RegisterUpdateTitle = "Update User";
+               IsVisible = true;
                AssingUserData();
           }
           else
@@ -42,11 +46,11 @@ namespace BloodBankManagementSystem.UI.Pages{
 
     private async Task HandleSubmit()
     {
-        if(SelectedUserData.Id==0){
-          await CreateUser();
+        if(SelectedUserData!=null && SelectedUserData.Id>0){
+          await UpdateUser();
         }
         else{
-          await UpdateUser();
+          await CreateUser();
         }
     }
 
@@ -101,7 +105,6 @@ namespace BloodBankManagementSystem.UI.Pages{
                var response = await Http.PutAsJsonAsync($"/api/users/update/{NewUser.Id}", NewUser);
                if (response.IsSuccessStatusCode)
                {
-                    // await OnClose.InvokeAsync();
                     await OnUserAddedOrUpdated.InvokeAsync();
                     await OnClose.InvokeAsync();
                }
@@ -113,16 +116,16 @@ namespace BloodBankManagementSystem.UI.Pages{
      }
     private void HandleClearReset()
     {
-        if(SelectedUserData.Id==0){
+        if(SelectedUserData!=null && SelectedUserData.Id>0){
+          AssingUserData();
+        }
+        else{
           NewUser = new User();
           ConfirmPassword = string.Empty;
         }
-        else{
-          AssingUserData();
-        }
         Message = string.Empty;
     }
-    private async Task HandleCancel()
+    private async Task HandleCancelOrClose()
     {
         await OnClose.InvokeAsync();
     }

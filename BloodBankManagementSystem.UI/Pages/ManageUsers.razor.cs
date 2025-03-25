@@ -11,7 +11,7 @@ namespace BloodBankManagementSystem.UI.Pages
     {
         private List<User> UsersList { get; set; } = new();
         private string Message {get; set;} = string.Empty;
-        private bool ShowAddUserModal = false;
+        private bool IsCreateUpdatePopup {get; set;} = false;
         private User SelectedUser;
         protected override async Task OnInitializedAsync()
         {
@@ -52,12 +52,12 @@ namespace BloodBankManagementSystem.UI.Pages
     private void OpenAddUserModal()
     {
         SelectedUser = new User();
-        ShowAddUserModal = true;
+        IsCreateUpdatePopup = true;
     }
 
     private void CloseAddUserModal()
     {
-        ShowAddUserModal = false;
+        IsCreateUpdatePopup = false;
         SelectedUser = null;
     }
 
@@ -71,7 +71,7 @@ namespace BloodBankManagementSystem.UI.Pages
     private void EditUser(User user)
     {
         SelectedUser = user;
-        ShowAddUserModal = true;
+        IsCreateUpdatePopup = true;
     }
 
 

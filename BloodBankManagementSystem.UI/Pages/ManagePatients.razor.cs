@@ -14,18 +14,23 @@ namespace BloodBankManagementSystem.UI.Pages
         private List<Patient> FilteredPatientsList { get; set; } = new List<Patient>();
         private string Message { get; set; } = string.Empty;
         private Patient SelectedPatient { get; set; } = new();
-        private bool ShowEditModal = false;
-        private bool ShowRegisterForm { get; set; } = false;
+        private bool IsCreateUpdatePopup{get;set;} = false;
         private void OpenEditModal(Patient patient)
         {
           SelectedPatient = patient;
-          ShowEditModal = true;
+          IsCreateUpdatePopup = true;
           StateHasChanged(); // Ensure UI updates
         }
 
-        private void CloseEditModal()
+        private void OpenCreatePoup(){
+          IsCreateUpdatePopup = true;
+          SelectedPatient = new Patient();
+          StateHasChanged(); // Ensure UI updates
+        }
+
+        private void HandleCancelOrClose()
         {
-          ShowEditModal = false;
+          IsCreateUpdatePopup = false;
           StateHasChanged(); // Ensure UI updates
         }
         protected override async Task OnInitializedAsync()
@@ -97,13 +102,6 @@ namespace BloodBankManagementSystem.UI.Pages
 
        public void ApplyFilteredPatientsList(){
           FilteredPatientsList = AllPatientsList.Where(p => p.IsActive).ToList();
-       }
-
-     
-
-       private void ToggleRegisterPatientForm()
-        {
-            ShowRegisterForm = !ShowRegisterForm;
-        } 
+     }
     }
 }

@@ -2,19 +2,8 @@
 @inject HttpClient Http
 <h3 class="page-header">
     Registered Patients
-    <button class="btn btn-success btn-sm register-btn" @onclick="ToggleRegisterPatientForm">+ New Patient</button>
+    <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePoup">+ New Patient</button>
 </h3>
-
-<!-- Register Patient Form (Inline) -->
-@if (ShowRegisterForm)
-{
-    <div class="modal-overlay">
-        <div class="modal-content">
-        <RegisterPatient OnClose="ToggleRegisterPatientForm" OnPatientUpdated="RefreshPatientList" />
-        </div>
-    </div>
-}
-
 
 @if (FilteredPatientsList is null)
 {
@@ -68,11 +57,11 @@ else
     </table>
 }
 <!-- Modal Popup -->
-@if (ShowEditModal)
+@if (IsCreateUpdatePopup)
 {
     <div class="modal-overlay">
         <div class="modal-content">
-            <RegisterPatient PatientData="SelectedPatient" OnClose="CloseEditModal" OnPatientUpdated="RefreshPatientList" />
+            <RegisterPatient SelectedPatientData="SelectedPatient" OnClose="HandleCancelOrClose" OnPatientUpdated="RefreshPatientList" IsCreateUpdatePatientPopup="IsCreateUpdatePopup" />
         </div>
     </div>
 }
