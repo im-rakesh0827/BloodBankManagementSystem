@@ -4,16 +4,16 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
+using BloodBankManagementSystem.Core.Helpers;
+using BloodBankManagementSystem.Core.Enums;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BloodBankManagementSystem.UI.Pages
 {
     public partial class RegisterPatient
     {
-        private List<string> BloodTypes = new()
-        {
-          "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"
-        };
-        public string ButtonName {get;set;} = "Register";
+        public string ButtonName {get;set;} = "Save";
         public string ClearResetButton {get;set;} = "Clear";
         public string PageTitle {get;set;} = "Register Patient";
         private Patient NewPatient { get; set; } = new();
@@ -22,6 +22,16 @@ namespace BloodBankManagementSystem.UI.Pages
         [Parameter] public EventCallback OnClose { get; set; }
         [Parameter] public EventCallback OnPatientUpdated { get; set; }
         [Parameter] public bool IsCreateUpdatePatientPopup {get;set;}
+        private bool IsLoading{get; set;} = false;
+
+        private List<string> BloodGroupsList = new List<string>();
+          private List<string> GenderList = new List<string>();
+         protected override void OnInitialized()
+        {
+          BloodGroupsList = BloodBankHelper.GetAllBloodGroups();
+          GenderList = BloodBankHelper.GetAllGenders();
+        }
+
 
     protected override void OnParametersSet()
     {
@@ -72,14 +82,16 @@ namespace BloodBankManagementSystem.UI.Pages
      
      private async Task HandleSubmit()
      {
-          if(NewPatient.PatientID==0){
-               await CreatePatient();
-          }
-          else{
+          IsLoading = true;
+          if(NewPatient!=null && NewPatient.PatientID>0){
+               await Task.Delay(1500);
                await UpdatePatient();
           }
-          await OnClose.InvokeAsync();
-          await OnPatientUpdated.InvokeAsync(); // Notify parent
+          else{
+               await CreatePatient();
+          }
+          await OnPatientUpdated.InvokeAsync();
+          IsLoading = false;
      }
 
      private async  Task CreatePatient(){

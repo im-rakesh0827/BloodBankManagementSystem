@@ -1,5 +1,12 @@
 @page "/registerPatient"
 @inject HttpClient Http
+
+@if (IsLoading)
+{
+     <div class="loader-overlay">
+          <div class="loader"></div>
+     </div>
+}
 @if(IsCreateUpdatePatientPopup)
 {
     <div class="position-relative">
@@ -54,9 +61,9 @@
                 <label class="form-label">Blood Type Needed:</label>
                 <InputSelect class="form-control" @bind-Value="NewPatient.BloodTypeNeeded" tabindex="4">
                     <option value="">Select Blood Type</option>
-                    @foreach (var bloodType in BloodTypes)
+                    @foreach (var bloodGroup in BloodGroupsList)
                     {
-                        <option value="@bloodType">@bloodType</option>
+                        <option value="@bloodGroup">@bloodGroup</option>
                     }
                 </InputSelect>
             </div>

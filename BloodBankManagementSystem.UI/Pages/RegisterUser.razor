@@ -1,6 +1,11 @@
 @page "/registerUser"
 @inject HttpClient Http
-
+@if (IsLoading)
+{
+     <div class="loader-overlay">
+          <div class="loader"></div>
+     </div>
+}
 @if(IsCreateUpdateUserPopup)
 {
     <div class="position-relative">

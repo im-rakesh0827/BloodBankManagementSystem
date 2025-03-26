@@ -55,7 +55,6 @@ namespace BloodBankManagementSystem.API.Controllers{
             {
                 return NotFound("Patient not found.");
             }
-
             // Update patient details
             existingPatient.FirstName = updatedPatient.FirstName;
             existingPatient.LastName = updatedPatient.LastName;
@@ -63,7 +62,14 @@ namespace BloodBankManagementSystem.API.Controllers{
             existingPatient.BloodTypeNeeded = updatedPatient.BloodTypeNeeded;
             existingPatient.PhoneNumber = updatedPatient.PhoneNumber;
             existingPatient.Address = updatedPatient.Address;
-
+            existingPatient.Country = updatedPatient.Country;
+            existingPatient.State = updatedPatient.State;
+            existingPatient.District = updatedPatient.District;
+            existingPatient.PinCode = updatedPatient.PinCode;
+            existingPatient.CreatedBy = updatedPatient.CreatedBy;
+            existingPatient.CreatedAt = updatedPatient.CreatedAt;
+            existingPatient.UpdatedBy = updatedPatient.UpdatedBy;
+            existingPatient.UpdatedAt = updatedPatient.UpdatedAt;
             try
             {
                 await _patientRepository.UpdateAsync(existingPatient);
@@ -79,14 +85,11 @@ namespace BloodBankManagementSystem.API.Controllers{
         public async Task<IActionResult> DeletePatient(int id)
         {
             var patient = await _patientRepository.FindByIdAsync(id);
-            
             if (patient == null)
             {
                 return NotFound(new { message = "Patient not found." });
             }
-
             await _patientRepository.DeleteAsync(patient);
-
             return Ok(new { message = "Patient deleted successfully." });
         }
 

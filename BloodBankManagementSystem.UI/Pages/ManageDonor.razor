@@ -1,0 +1,81 @@
+@page "/manageDonor"
+@inject HttpClient Http
+<h3 class="page-header">
+    Donor List
+    <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePopup">+ New Donor</button>
+</h3>
+
+@if (AllDonorsList == null)
+{
+    @* <p>Loading donors...</p> *@
+    <div class="loader-overlay">
+          <div class="loader"></div>
+     </div>
+}
+else if (!AllDonorsList.Any())
+{
+    <p>No donors found.</p>
+}
+else
+{
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Blood Group</th>
+                <th>Gender</th>
+                <th>Age</th>
+                @* <th>Weight</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>District</th>
+                <th>PinCode</th>
+                <th>Address</th> *@
+                <th>Last Donation Date</th>
+                <th>Eligible</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donor in AllDonorsList)
+            {
+                <tr>
+                    <td>@donor.FirstName</td>
+                    <td>@donor.LastName</td>
+                    <td>@donor.Email</td>
+                    <td>@donor.Phone</td>
+                    <td>@donor.BloodGroup</td>
+                    <td>@donor.Gender</td>
+                    <td>@donor.Age</td>
+                    @* <td>@donor.Weight</td>
+                    <td>@donor.Country</td>
+                    <td>@donor.State</td>
+                    <td>@donor.District</td>
+                    <td>@donor.PinCode</td>
+                    <td>@donor.Address</td> *@
+                    <td>@donor.LastDonationDate?.ToString("yyyy-MM-dd")</td>
+                    <td>@(donor.IsEligible ? "Yes" : "No")</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-primary btn-sm" @onclick="() => OpenEditModal(donor)">Edit</button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteDonor(donor.Id)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Modal Popup -->
+@if (IsCreateUpdatePopup)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <RegisterDonor SelectedDonorData="SelectedDonor" OnClose="HandleCancelOrClose" OnDonorAddedOrUpdated="RefreshDonorList" IsCreateUpdateDonorPopup="IsCreateUpdatePopup" />
+        </div>
+    </div>
+}

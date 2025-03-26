@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "BTmrMN+twwc=",
+  "dgSpecHash": "oZHppH0Dvsw=",
   "success": true,
   "projectFilePath": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/BloodBankManagementSystem.UI.csproj",
   "expectedPackageFiles": [
     "/Users/rakeshkumar/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/blazored.modal/7.3.1/blazored.modal.7.3.1.nupkg.sha512",
+    "/Users/rakeshkumar/.nuget/packages/blazored.toast/4.2.1/blazored.toast.4.2.1.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.aspnetcore.authorization/8.0.4/microsoft.aspnetcore.authorization.8.0.4.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.aspnetcore.components/8.0.4/microsoft.aspnetcore.components.8.0.4.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.aspnetcore.components.analyzers/8.0.4/microsoft.aspnetcore.components.analyzers.8.0.4.nupkg.sha512",

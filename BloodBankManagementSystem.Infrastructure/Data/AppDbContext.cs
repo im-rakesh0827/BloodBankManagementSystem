@@ -8,7 +8,7 @@ namespace BloodBankManagementSystem.Infrastructure.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Patient> Patients { get; set; }  // ✅ Ensure this line exists
+        public DbSet<Patient> Patients { get; set; }  
         public DbSet<Donor> Donors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

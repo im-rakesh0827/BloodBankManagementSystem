@@ -15,11 +15,13 @@ namespace BloodBankManagementSystem.UI.Pages{
         [Parameter] public EventCallback OnUserAddedOrUpdated { get; set; }
         [Parameter] public User SelectedUserData { get; set; }
         [Parameter] public bool IsCreateUpdateUserPopup {get; set;}
-        private string SaveButtonTitle {get; set;} = "Register";
+        private string SaveButtonTitle {get; set;} = "Save";
         private string ClearResetTitle {get; set;} = "Clear";
         private string RegisterUpdateTitle {get; set;} = "Register User";
         private bool IsVisible {get; set;} = false;
         private bool IsReadOnly {get; set;} = false;
+        private bool IsLoading{get; set;} = false;
+
         private Dictionary<int, string> Roles = new()
         {
           {1, "Admin" },
@@ -46,12 +48,15 @@ namespace BloodBankManagementSystem.UI.Pages{
 
     private async Task HandleSubmit()
     {
+        IsLoading = true;
         if(SelectedUserData!=null && SelectedUserData.Id>0){
+          await Task.Delay(1500);
           await UpdateUser();
         }
         else{
           await CreateUser();
         }
+        IsLoading = false;
     }
 
     private void AssingUserData()

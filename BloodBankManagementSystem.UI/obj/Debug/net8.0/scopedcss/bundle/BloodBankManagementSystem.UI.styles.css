@@ -1,3 +1,6 @@
+@import '_content/Blazored.Modal/Blazored.Modal.bundle.scp.css';
+@import '_content/Blazored.Toast/Blazored.Toast.bundle.scp.css';
+
 /* /Layout/MainLayout.razor.rz.scp.css */
 .page[b-g4ywb9jxby] {
     position: relative;

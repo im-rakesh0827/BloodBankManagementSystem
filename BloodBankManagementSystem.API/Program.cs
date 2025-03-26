@@ -14,6 +14,7 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Smtp
 // ✅ Register Email Service
 builder.Services.AddScoped<IEmailService, EmailService>();
 
+builder.Services.AddScoped<IDonorRepository, DonorRepository>();
 
 
 
