@@ -4,10 +4,14 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
+using BloodBankManagementSystem.Core.Helpers;
+using BloodBankManagementSystem.Core.Enums;
+using System.Collections.Generic;
+using System.Linq;
 namespace BloodBankManagementSystem.UI.Pages{
      public partial class RegisterUser
      {
-        private User NewUser = new();
+        private User UserModel = new();
         private string ConfirmPassword{get;set;} = string.Empty;
         private string Message{get;set;} = string.Empty;
         private string Address{get; set;} = string.Empty;
@@ -21,14 +25,11 @@ namespace BloodBankManagementSystem.UI.Pages{
         private bool IsVisible {get; set;} = false;
         private bool IsReadOnly {get; set;} = false;
         private bool IsLoading{get; set;} = false;
-
-        private Dictionary<int, string> Roles = new()
+        private List<string> RolesList = new List<string>();
+         protected override void OnInitialized()
         {
-          {1, "Admin" },
-          {2, "User" },
-          {3, "Doctor"},
-          {4, "Hospital"}
-        };
+          RolesList = BloodBankHelper.GetRoles();
+        }
      
         protected override void OnParametersSet()
         {
@@ -42,7 +43,7 @@ namespace BloodBankManagementSystem.UI.Pages{
           }
           else
           {
-               NewUser = new User();
+               UserModel = new User();
           }
        }
 
@@ -62,7 +63,7 @@ namespace BloodBankManagementSystem.UI.Pages{
     private void AssingUserData()
     {
 
-     NewUser = new User
+     UserModel = new User
                {
                     Id = SelectedUserData.Id,
                     FirstName = SelectedUserData.FirstName,
@@ -77,18 +78,18 @@ namespace BloodBankManagementSystem.UI.Pages{
 
      private async Task CreateUser(){
           Message = string.Empty;
-        if (NewUser.PasswordHash != ConfirmPassword)
+        if (UserModel.PasswordHash != ConfirmPassword)
         {
             Message = "Passwords do not match.";
             return;
         }
         try
         {
-            var response = await Http.PostAsJsonAsync("api/Users/register", NewUser);
+            var response = await Http.PostAsJsonAsync("api/Users/register", UserModel);
             if (response.IsSuccessStatusCode)
             {
                 Message = "User registered successfully!";
-                NewUser = new User();
+                UserModel = new User();
                 ConfirmPassword = string.Empty;
                 await OnUserAddedOrUpdated.InvokeAsync();
                 await OnClose.InvokeAsync();
@@ -107,7 +108,7 @@ namespace BloodBankManagementSystem.UI.Pages{
     {
           if (SelectedUserData != null)
           {
-               var response = await Http.PutAsJsonAsync($"/api/users/update/{NewUser.Id}", NewUser);
+               var response = await Http.PutAsJsonAsync($"/api/users/update/{UserModel.Id}", UserModel);
                if (response.IsSuccessStatusCode)
                {
                     await OnUserAddedOrUpdated.InvokeAsync();
@@ -125,7 +126,7 @@ namespace BloodBankManagementSystem.UI.Pages{
           AssingUserData();
         }
         else{
-          NewUser = new User();
+          UserModel = new User();
           ConfirmPassword = string.Empty;
         }
         Message = string.Empty;

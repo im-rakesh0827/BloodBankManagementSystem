@@ -16,7 +16,7 @@ namespace BloodBankManagementSystem.UI.Pages
         public string ButtonName {get;set;} = "Save";
         public string ClearResetButton {get;set;} = "Clear";
         public string PageTitle {get;set;} = "Register Patient";
-        private Patient NewPatient { get; set; } = new();
+        private Patient PatientModel { get; set; } = new();
         private string Message { get; set; } = string.Empty;
         [Parameter] public Patient? SelectedPatientData { get; set; }
         [Parameter] public EventCallback OnClose { get; set; }
@@ -43,13 +43,13 @@ namespace BloodBankManagementSystem.UI.Pages
           AssignPatientDataToBeUpdated();
         }
         else{
-          NewPatient = new Patient();
+          PatientModel = new Patient();
         }
     }
 
     private void AssignPatientDataToBeUpdated()
     {
-          NewPatient = new Patient
+          PatientModel = new Patient
             {
                 PatientID = SelectedPatientData.PatientID,
                 FirstName = SelectedPatientData.FirstName,
@@ -61,7 +61,11 @@ namespace BloodBankManagementSystem.UI.Pages
                 Country = SelectedPatientData.Country,
                 State = SelectedPatientData.State,
                 District = SelectedPatientData.District,
-                PinCode = SelectedPatientData.PinCode
+                PinCode = SelectedPatientData.PinCode,
+                Email = SelectedPatientData.Email,
+                Weight = SelectedPatientData.Weight,
+                IsActive = SelectedPatientData.IsActive,
+                IsAlive = SelectedPatientData.IsAlive
             };
     }
 
@@ -76,38 +80,38 @@ namespace BloodBankManagementSystem.UI.Pages
                AssignPatientDataToBeUpdated();
           }
           else{
-               NewPatient = new Patient();
+               PatientModel = new Patient();
           }
     }
      
      private async Task HandleSubmit()
      {
           IsLoading = true;
-          if(NewPatient!=null && NewPatient.PatientID>0){
+          if(PatientModel!=null && PatientModel.PatientID>0){
                await Task.Delay(1500);
                await UpdatePatient();
           }
           else{
                await CreatePatient();
           }
-          await OnPatientUpdated.InvokeAsync();
           IsLoading = false;
      }
 
      private async  Task CreatePatient(){
      try
           {
-               var response = await Http.PostAsJsonAsync("api/bloodbank/register", NewPatient);
-
+               var response = await Http.PostAsJsonAsync("api/bloodbank/register", PatientModel);
                if (response.IsSuccessStatusCode)
                {
-               Message = "Patient registered successfully!";
-               NewPatient = new(); // Reset form
+                    Message = "Patient registered successfully!";
+                    PatientModel = new(); // Reset form
+                    await OnPatientUpdated.InvokeAsync();
+                    await OnClose.InvokeAsync();
                }
                else
                {
-               var errorText = await response.Content.ReadAsStringAsync();
-               Message = $"Error: {errorText}";
+                    var errorText = await response.Content.ReadAsStringAsync();
+                    Message = $"Error: {errorText}";
                }
           }
           catch (Exception ex)
@@ -119,9 +123,10 @@ namespace BloodBankManagementSystem.UI.Pages
      private async Task UpdatePatient()
      {
           try{
-               var response = await Http.PutAsJsonAsync($"api/bloodbank/{NewPatient.PatientID}", NewPatient);
+               var response = await Http.PutAsJsonAsync($"api/bloodbank/{PatientModel.PatientID}", PatientModel);
           if (response.IsSuccessStatusCode)
           {
+               await OnPatientUpdated.InvokeAsync();
                await OnClose.InvokeAsync(); // Close modal after saving
           }
           }

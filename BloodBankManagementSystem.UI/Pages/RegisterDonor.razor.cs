@@ -23,17 +23,19 @@ namespace BloodBankManagementSystem.UI.Pages{
           [Parameter] 
           public bool IsCreateUpdateDonorPopup{get; set;}
           private bool IsLoading{get; set;} = false;
-          private Donor NewDonor { get; set; } = new();
+          private Donor DonorModel { get; set; } = new();
           private string Message { get; set; } = string.Empty;
           private string PageTitle { get; set; } = "Register as a Blood Donor";
           private string ButtonName{get;set;} = "Save";
           private string ClearResetButton{get;set;} = "Clear";
           private List<string> BloodGroupsList = new List<string>();
           private List<string> GenderList = new List<string>();
+          private List<string> HealthIssues { get; set; } = new();
          protected override void OnInitialized()
         {
           BloodGroupsList = BloodBankHelper.GetAllBloodGroups();
           GenderList = BloodBankHelper.GetAllGenders();
+          HealthIssues = BloodBankHelper.GetHealthIssue();
         }
 
         protected override void OnParametersSet()
@@ -46,13 +48,13 @@ namespace BloodBankManagementSystem.UI.Pages{
                     AssignDonorDataToBeUpdated();
                }
                else{
-                    NewDonor = new Donor();
+                    DonorModel = new Donor();
                }
         }
 
      private void AssignDonorDataToBeUpdated(){
 
-          NewDonor = new Donor{
+          DonorModel = new Donor{
                Id = SelectedDonorData.Id,
                FirstName = SelectedDonorData.FirstName,
                LastName = SelectedDonorData.LastName,
@@ -67,7 +69,11 @@ namespace BloodBankManagementSystem.UI.Pages{
                District = SelectedDonorData.District,
                Address = SelectedDonorData.Address,
                PinCode = SelectedDonorData.PinCode,
-               LastDonationDate = SelectedDonorData.LastDonationDate
+               LastDonationDate = SelectedDonorData.LastDonationDate,
+               MedicalHistory = SelectedDonorData.MedicalHistory,
+               IsActive = SelectedDonorData.IsActive,
+               IsAlive = SelectedDonorData.IsAlive,
+               IsEligible = SelectedDonorData.IsEligible
           };
      }
 
@@ -75,29 +81,23 @@ namespace BloodBankManagementSystem.UI.Pages{
      private async Task HandleSubmit()
         {
           IsLoading = true;
+          DonorModel.IsEligible = CheckEligibility();
           if(SelectedDonorData!=null && SelectedDonorData.Id>0){
                await Task.Delay(1500);
                await UpdateDonor();
           }
           else{
-
                await CreateDonor();
           }
-          await OnDonorAddedOrUpdated.InvokeAsync();
           IsLoading = false;
         }
         private async Task CreateDonor(){
-          //   if (!CheckEligibility())
-          //   {
-          //       Message = "Donor is not eligible due to weight or recent donation.";
-          //       return;
-          //   }
-            var response = await Http.PostAsJsonAsync("api/donors/register", NewDonor);
+            var response = await Http.PostAsJsonAsync("api/donors/register", DonorModel);
             if (response.IsSuccessStatusCode)
             {
                Message = "Donor registered successfully!";
-               NewDonor = new Donor();
-               // await OnDonorAddedOrUpdated.InvokeAsync();
+               DonorModel = new Donor();
+               await OnDonorAddedOrUpdated.InvokeAsync();
                await OnClose.InvokeAsync();
             }
             else
@@ -109,9 +109,11 @@ namespace BloodBankManagementSystem.UI.Pages{
         private async Task UpdateDonor(){
           if (SelectedDonorData != null)
           {
-               var response = await Http.PutAsJsonAsync($"/api/donors/update/{NewDonor.Id}", NewDonor);
+               var response = await Http.PutAsJsonAsync($"/api/donors/update/{DonorModel.Id}", DonorModel);
                if (response.IsSuccessStatusCode)
                {
+                    Message = "Donor updated successfully!";
+                    await OnDonorAddedOrUpdated.InvokeAsync();
                     await OnClose.InvokeAsync();
                }
                else
@@ -128,9 +130,9 @@ namespace BloodBankManagementSystem.UI.Pages{
                AssignDonorDataToBeUpdated();
             }
             else{
-               NewDonor = new Donor();
-               Message = string.Empty;
+               DonorModel = new Donor();
             }
+            Message = string.Empty;
         }
 
         private async Task HandleCancelOrClose()
@@ -142,23 +144,17 @@ namespace BloodBankManagementSystem.UI.Pages{
      //    {
      //        Navigation.NavigateTo("/");
      //    }
-
-        private bool CheckEligibility()
+        public bool CheckEligibility()
         {
-            if (NewDonor.Weight < 50)
-            {
-                return false; // Not eligible due to low weight
-            }
-
-            if (NewDonor.LastDonationDate.HasValue)
-            {
-                var daysSinceLastDonation = (DateTime.Now - NewDonor.LastDonationDate.Value).TotalDays;
-                if (daysSinceLastDonation < 90) // Must wait at least 3 months (90 days)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+          Donor donor = DonorModel!=null? DonorModel:new Donor();
+          if(donor!=null){
+               if (!donor.IsAlive || donor.Age < 18 || donor.Age > 65 || donor.Weight < 50 || donor.MedicalHistory.ToString()!="None") return false;
+               if (donor.LastDonationDate.HasValue && (DateTime.Now - donor.LastDonationDate.Value).TotalDays / 30 < 3) return false;
+               return true;
+          }
+          else{
+               return false;
+          }
+       }
      }
 }

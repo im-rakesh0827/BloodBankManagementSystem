@@ -1,41 +1,63 @@
 @page "/registerDonor"
 @inject HttpClient Http
+
 @if (IsLoading)
 {
-     <div class="loader-overlay">
-          <div class="loader"></div>
-     </div>
+    <div class="loader-overlay">
+        <div class="loader"></div>
+    </div>
 }
-@if(IsCreateUpdateDonorPopup)
+
+@if (IsCreateUpdateDonorPopup)
 {
     <div class="position-relative">
-        <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close" @onclick="HandleCancelOrClose"></button>
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" @onclick="HandleCancelOrClose"></button>
     </div>
 }
 <h4>@PageTitle</h4>
+
+
+<!--
+@if (IsCreateUpdateDonorPopup)
+{
+    <div class="position-relative" style="margin: 0; padding: 0;"> 
+        <div style="background-color: rgb(27, 76, 125); padding: 5px; border-bottom: 1px solid gray; margin: 0;">
+            <h4 style="color:white;">@PageTitle</h4>
+        </div>
+
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" style="color: white;" @onclick="HandleCancelOrClose"></button>
+    </div>
+}
+else
+{
+    <h4>@PageTitle</h4>
+}-->
+
+
 @if (!string.IsNullOrEmpty(Message))
 {
     <p class="alert alert-info">@Message</p>
 }
-<EditForm Model="NewDonor" OnValidSubmit="HandleSubmit">
+
+<EditForm Model="DonorModel" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="row">
-        <!-- Left Column -->
-        <div class="col-md-6">
+        <!-- First Column -->
+        <div class="col-md-4">
             <div class="mb-3">
                 <label class="form-label">First Name:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.FirstName" tabindex="1" />
+                <InputText class="form-control" @bind-Value="DonorModel.FirstName" tabindex="1" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Email:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.Email" tabindex="3" />
+                <label class="form-label">Phone Number:</label>
+                <InputText class="form-control" @bind-Value="DonorModel.Phone" tabindex="4" />
             </div>
-
+            
             <div class="mb-3">
                 <label class="form-label">Gender:</label>
-                <InputSelect class="form-control" @bind-Value="NewDonor.Gender" tabindex="5">
+                <InputSelect class="form-control" @bind-Value="DonorModel.Gender" tabindex="5">
                     <option value="">Select Gender</option>
                     @foreach (var gender in GenderList)
                     {
@@ -44,43 +66,35 @@
                 </InputSelect>
             </div>
 
-
             <div class="mb-3">
-                <label class="form-label">Age:</label>
-                <InputNumber class="form-control" @bind-Value="NewDonor.Age" tabindex="3" />
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Country:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.Country" tabindex="6" />
+                <label class="form-label">Last Donation Date:</label>
+                <InputDate class="form-control" @bind-Value="DonorModel.LastDonationDate" tabindex="12" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">District:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.District" tabindex="8" />
+                <InputText class="form-control" @bind-Value="DonorModel.District" tabindex="11" />
             </div>
+            
 
-            <div class="mb-3">
-                <label class="form-label">Last Donation Date:</label>
-                <InputDate class="form-control" @bind-Value="NewDonor.LastDonationDate" tabindex="12" />
-            </div>
+            
         </div>
-
-        <!-- Right Column -->
-        <div class="col-md-6">
+        
+        <!-- Second Column -->
+        <div class="col-md-4">
             <div class="mb-3">
                 <label class="form-label">Last Name:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.LastName" tabindex="2" />
-            </div>
-
-             <div class="mb-3">
-                <label class="form-label">Phone Number:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.Phone" tabindex="7" />
+                <InputText class="form-control" @bind-Value="DonorModel.LastName" tabindex="2" />
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Age:</label>
+                <InputNumber class="form-control" @bind-Value="DonorModel.Age" tabindex="6" />
+            </div>
+            
+            <div class="mb-3">
                 <label class="form-label">Blood Group:</label>
-                <InputSelect class="form-control" @bind-Value="NewDonor.BloodGroup" tabindex="4">
+                <InputSelect class="form-control" @bind-Value="DonorModel.BloodGroup" tabindex="7">
                     <option value="">Select Blood Group</option>
                     @foreach (var bloodType in BloodGroupsList)
                     {
@@ -90,35 +104,53 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Weight (kg):</label>
-                <InputNumber class="form-control" @bind-Value="NewDonor.Weight" tabindex="9" />
+                <label class="form-label">Country:</label>
+                <InputText class="form-control" @bind-Value="DonorModel.Country" tabindex="9" />
             </div>
-
-            <div class="mb-3">
-                <label class="form-label">State:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.State" tabindex="11" />
-            </div>
-
             <div class="mb-3">
                 <label class="form-label">Pin Code:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.PinCode" tabindex="10" />
+                <InputText class="form-control" @bind-Value="DonorModel.PinCode" tabindex="12" />
             </div>
+        </div>
+
+        <!-- Third Column -->
+        <div class="col-md-4">
 
             <div class="mb-3">
+                <label class="form-label">Email:</label>
+                <InputText class="form-control" @bind-Value="DonorModel.Email" tabindex="4" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Weight (kg):</label>
+                <InputNumber class="form-control" @bind-Value="DonorModel.Weight" tabindex="8" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Health Status:</label>
+                <InputSelect class="form-control" @bind-Value="DonorModel.MedicalHistory" tabindex="5">
+                    <option value="">Select Health Status</option>
+                    @foreach (var healthStatus in HealthIssues)
+                    {
+                        <option value="@healthStatus">@healthStatus</option>
+                    }
+                </InputSelect>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">State:</label>
+                <InputText class="form-control" @bind-Value="DonorModel.State" tabindex="10" />
+            </div>
+            
+            
+            <div class="mb-3">
                 <label class="form-label">Full Address:</label>
-                <InputText class="form-control" @bind-Value="NewDonor.Address" tabindex="12" />
+                <InputText class="form-control" @bind-Value="DonorModel.Address" tabindex="13" />
             </div>
         </div>
     </div>
 
-    <!-- Eligibility Status -->
-    @* <div class="mb-3">
-        <label class="form-label">Eligibility Status:</label>
-        <p>@(CheckEligibility() ? "Eligible to Donate" : "Not Eligible")</p>
-    </div> *@
-
     <div class="d-flex justify-content-center gap-3 mt-2">
-          <button type="submit" class="btn btn-primary" tabindex="13">@ButtonName</button>
-          <button type="button" class="btn btn-secondary" tabindex="14" @onclick="HandleClearRestore">@ClearResetButton</button>
+        <button type="submit" class="btn btn-primary" tabindex="14">@ButtonName</button>
+        <button type="button" class="btn btn-secondary" tabindex="15" @onclick="HandleClearRestore">@ClearResetButton</button>
     </div>
 </EditForm>
+

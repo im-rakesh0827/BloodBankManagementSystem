@@ -34,9 +34,9 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
           return await _context.Patients.FindAsync(id);
         }
 
-        public async Task<Patient?> FindByIdAsync(int id)
+        public async Task<Patient?> GetPatientByEmailAsync(string email)
         {
-            return await _context.Patients.FindAsync(id);
+          return await _context.Patients.FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task UpdateAsync(Patient patient)

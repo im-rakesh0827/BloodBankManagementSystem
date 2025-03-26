@@ -18,7 +18,7 @@
 {
     <p class="alert alert-info">@Message</p>
 }
-<EditForm Model="NewUser" OnValidSubmit="HandleSubmit">
+<EditForm Model="UserModel" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="row">
@@ -26,29 +26,29 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label class="form-label">First Name:</label>
-                <InputText class="form-control" @bind-Value="NewUser.FirstName" tabindex="1" />
+                <InputText class="form-control" @bind-Value="UserModel.FirstName" tabindex="1" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Email:</label>
-                <InputText class="form-control" type="email" @bind-Value="NewUser.Email" tabindex="3" />
+                <InputText class="form-control" type="email" @bind-Value="UserModel.Email" tabindex="3" />
             </div>
 
             @if(!IsVisible)
             {
                 <div class="mb-3">
                     <label class="form-label">Password:</label>
-                    <InputText class="form-control" type="password" @bind-Value="NewUser.PasswordHash" tabindex="5" />
+                    <InputText class="form-control" type="password" @bind-Value="UserModel.PasswordHash" tabindex="5" />
                </div>
             }
             
 
             <div class="mb-3">
                 <label class="form-label">Role:</label>
-                <InputSelect class="form-control" @bind-Value="NewUser.Role" tabindex="7">
-                    @foreach (var role in Roles)
+                <InputSelect class="form-control" @bind-Value="UserModel.Role" tabindex="7">
+                    @foreach (var role in RolesList)
                     {
-                        <option value="@role.Value">@role.Value</option>
+                        <option value="@role">@role</option>
                     }
                 </InputSelect>
             </div>
@@ -58,12 +58,12 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label class="form-label">Last Name:</label>
-                <InputText class="form-control" @bind-Value="NewUser.LastName" tabindex="2" />
+                <InputText class="form-control" @bind-Value="UserModel.LastName" tabindex="2" />
             </div>
 
              <div class="mb-3">
                 <label class="form-label">Phone Number:</label>
-                <InputText class="form-control" @bind-Value="NewUser.Phone" tabindex="4" />
+                <InputText class="form-control" @bind-Value="UserModel.Phone" tabindex="4" />
             </div>
 
             @if(!IsVisible){
@@ -74,7 +74,7 @@
             }
             <div class="mb-3">
                 <label class="form-label">Full Address:</label>
-                <InputText class="form-control" type="text" @bind-Value="NewUser.Address" tabindex="8" />
+                <InputText class="form-control" type="text" @bind-Value="UserModel.Address" tabindex="8" />
             </div>
         </div>
     </div>

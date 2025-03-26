@@ -45,52 +45,6 @@ namespace BloodBankManagementSystem.API.Controllers
                 return StatusCode(500, new { message = "Internal server error" });
             }
         }
-
-
-          // [HttpPost("register")]
-          // public async Task<IActionResult> RegisterDonor([FromBody] Donor donor)
-          // {
-          // try
-          // {
-          //      // Ensure donor is not null
-          //      if (donor == null)
-          //           return BadRequest(new { message = "Invalid donor data" });
-
-          //      // Validate required fields
-          //      if (string.IsNullOrEmpty(donor.FirstName) ||
-          //           string.IsNullOrEmpty(donor.LastName) ||
-          //           string.IsNullOrEmpty(donor.Email) ||
-          //           string.IsNullOrEmpty(donor.Phone) ||
-          //           string.IsNullOrEmpty(donor.BloodGroup) ||
-          //           donor.Age < 18 || donor.Weight < 50)
-          //      {
-          //           return BadRequest(new { message = "Missing or invalid donor details" });
-          //      }
-
-          //      // Check if donor already exists
-          //      if (await _donorRepository.GetDonorByEmailAsync(donor.Email) != null)
-          //           return BadRequest(new { message = "Donor already exists" });
-
-          //      // Add donor to database
-          //      await _donorRepository.AddDonorAsync(donor);
-
-          //      // Send email
-          //      bool emailSent = await SendEmail(donor);
-          //      if (!emailSent)
-          //      {
-          //           return StatusCode(500, new { message = "Donor registered, but email failed to send" });
-          //      }
-
-          //      return Ok(new { message = "Donor registered successfully, email sent" });
-          // }
-          // catch (Exception ex)
-          // {
-          //      _logger.LogError($"Error registering donor: {ex.Message}");
-          //      return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
-          // }
-          // }
-
-
         // Get all donors
         [HttpGet("allDonors")]
         [Produces("application/json")]
@@ -150,6 +104,8 @@ namespace BloodBankManagementSystem.API.Controllers
             existingDonor.PinCode = updatedDonor.PinCode;
             existingDonor.LastDonationDate = updatedDonor.LastDonationDate;
             existingDonor.IsEligible = updatedDonor.IsEligible;
+            existingDonor.MedicalHistory = updatedDonor.MedicalHistory;
+            existingDonor.IsActive = updatedDonor.IsActive;
 
             await _donorRepository.UpdateDonorAsync(existingDonor);
             return Ok(new { message = "Donor updated successfully" });

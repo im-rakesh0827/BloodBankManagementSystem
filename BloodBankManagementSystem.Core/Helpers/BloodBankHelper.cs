@@ -24,5 +24,15 @@ namespace BloodBankManagementSystem.Core.Helpers
         {
             return Enum.GetNames(typeof(Gender)).ToList();
         }
+
+        public static List<string> GetHealthIssue()
+        {
+            return Enum.GetNames(typeof(HealthIssue)).ToList();
+        }
+
+        public static List<string> GetRoles()
+        {
+            return Enum.GetNames(typeof(Roles)).ToList();
+        }
     }
 }

@@ -9,9 +9,11 @@ namespace BloodBankManagementSystem.Core.Models{
         [Required(ErrorMessage = "Last Name is required.")]
         [StringLength(50, ErrorMessage = "Last Name cannot exceed 50 characters.")]
         public string LastName { get; set; } = string.Empty;
+        public string Email{get; set;} = string.Empty;
         [Required(ErrorMessage = "Age is required.")]
         [Range(1, 120, ErrorMessage = "Age must be between 1 and 120.")]
         public int Age { get; set; }
+        public decimal Weight { get; set; }
         [Required(ErrorMessage = "Blood Type is required.")]
         public string BloodTypeNeeded { get; set; } = string.Empty;
         [Required(ErrorMessage = "Phone Number is required.")]

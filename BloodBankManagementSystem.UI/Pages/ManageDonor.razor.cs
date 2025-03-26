@@ -78,5 +78,16 @@ namespace BloodBankManagementSystem.UI.Pages
     {
         IsCreateUpdatePopup = false;
     }
+
+
+    public bool CheckEligibility(Donor donor)
+    {
+          if (!donor.IsAlive || donor.Age < 18 || donor.Age > 65 || donor.Weight < 50 || donor.MedicalHistory.ToString()!="None")
+               return false;
+          if (donor.LastDonationDate.HasValue && (DateTime.Now - donor.LastDonationDate.Value).TotalDays / 30 < 3)
+               return false;
+          return true;
+     }
+    
    }
 }

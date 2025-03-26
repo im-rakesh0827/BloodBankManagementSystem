@@ -19,5 +19,23 @@ namespace BloodBankManagementSystem.Core.Enums
             Female,
             Other
         }
+
+        public enum Roles{
+            Admin, User, Doctor, Hospital
+        }
+       
+        // [Flags]
+        public enum HealthIssue
+        {
+            None = 0,
+            ChronicDisease = 1,           // Diabetes, Kidney Disease, etc.
+            BloodborneInfection = 2,       // HIV, Hepatitis B/C, etc.
+            PregnantOrBreastfeeding = 4,   // For females
+            RecentSurgery = 8,
+            RestrictedMedications = 16,
+            TraveledToMalariaRiskArea = 32,
+            CancerHistory = 64,
+            DrugUseOrHighRiskBehavior = 128
+        }
     }
 }
