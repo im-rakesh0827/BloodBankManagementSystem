@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BloodBankManagementSystem.UI",
   "resources": {
-    "hash": "sha256-bZfVJfgb3Sqe26+QuZBrBZlAJnEvRtVM/lhOqsUQEmA=",
+    "hash": "sha256-kfH2mBaj1l8q8a9xYKIoL2ccFooTGE5gEpFxoKAIzss=",
     "jsModuleNative": {
       "dotnet.native.8.0.14.m9s06tbr13.js": "sha256-DTUQS6Jc6BNnS7sYYezFfaUKVmQq0/lanhQuJfygH/k="
     },
@@ -247,12 +247,12 @@
       "System.Private.CoreLib.wasm": "sha256-BhHYDTpkph+YJOQuAlv6aSrvjTVX0WLTIDBXecinFXo=",
       "BloodBankManagementSystem.Core.wasm": "sha256-L+RlWHBlE5Flinir3gyLNcn+UyXdCWrHco1B8GGo5Jg=",
       "BloodBankManagementSystem.Infrastructure.wasm": "sha256-HvaqGxwMw16Zn7NJ3VZvs1ATu0szgnMYe04M/E5Kv8g=",
-      "BloodBankManagementSystem.UI.wasm": "sha256-wvA+pQ6ED+cK7azKR6DANGrGj8YA8OnyQQnvlhV3GJI="
+      "BloodBankManagementSystem.UI.wasm": "sha256-1GHi/7yfGxp+elMs4oprcBU+8mQz1ipnkssCfkCbfKY="
     },
     "pdb": {
       "BloodBankManagementSystem.Core.pdb": "sha256-q2KqvBO3q9rhnkgGlmDH+y3Zj8p8vPIHsrHNrZ6ZKYA=",
       "BloodBankManagementSystem.Infrastructure.pdb": "sha256-D4nXVNIzoUqc/ELXxgyWp0rV9zgv5bbd6aTOSpubL5s=",
-      "BloodBankManagementSystem.UI.pdb": "sha256-CBuTxWQKVIv589RqX6gHteEalosVfy9hrgtKnjw9Z8M="
+      "BloodBankManagementSystem.UI.pdb": "sha256-KUYWncv7n8CLDfiXqd321rXuSa4ipgZOlAVZJVpol7c="
     }
   },
   "cacheBootResources": true,
