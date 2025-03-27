@@ -24,6 +24,10 @@ else
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Role</th>
+                <th>IsActive</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>District</th>
                 <th>Full Address</th>
                 <th>Action</th>
             </tr>
@@ -37,11 +41,19 @@ else
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
                     <td>@user.Role</td>
+                    <td>@user.IsActive</td>
+                    <td>@user.State</td>
+                    <td>@user.Country</td>
+                    <td>@user.District</td>
                     <td>@user.Address</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-primary btn-sm" @onclick="() => EditUser(user)">Edit</button>
-                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteUser(user.Id)">Delete</button>
+                            <button class="btn btn-primary btn-sm" @onclick="() => EditUser(user)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeleteUser(user.Id)"> 
+                                <i class="bi bi-trash"></i> 
+                            </button>
                         </div>
                     </td>
                 </tr>

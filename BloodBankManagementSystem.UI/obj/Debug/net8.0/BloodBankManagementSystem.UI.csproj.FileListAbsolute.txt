@@ -2,6 +2,8 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Azure.Identity.wasm
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/blazor.boot.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/blazor.webassembly.js
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Modal.wasm
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Toast.wasm
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/BloodBankManagementSystem.Core.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/BloodBankManagementSystem.Core.wasm
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/BloodBankManagementSystem.Infrastructure.pdb
@@ -251,6 +253,7 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.ValueTuple.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Security.Cryptography.Encoding.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Core.wasm.gz
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Toast.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Net.Security.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Net.ServicePoint.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.IO.FileSystem.Watcher.wasm.gz
@@ -446,6 +449,7 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Xml.XmlDocument.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Diagnostics.Process.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Microsoft.EntityFrameworkCore.Sqlite.wasm.gz
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Modal.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Runtime.Intrinsics.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Linq.Parallel.wasm.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Net.NameResolution.wasm.gz
@@ -491,6 +495,8 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/BloodBankManagementSystem.UI.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Azure.Core.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Azure.Identity.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Blazored.Modal.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Blazored.Toast.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Microsoft.AspNetCore.Components.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Microsoft.AspNetCore.Components.Forms.dll
@@ -738,6 +744,8 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/BloodBankManagementSystem.UI.sourcelink.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Azure.Core.wasm
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Azure.Identity.wasm
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Blazored.Modal.wasm
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Blazored.Toast.wasm
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Authorization.wasm
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Components.wasm
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Components.Forms.wasm
@@ -983,6 +991,8 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/542un78yps.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/rkinie3673.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/85sl8tkv85.gz
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/tve48l4a6s.gz
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/1qe565c5g4.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/olxkwy4n0f.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/izr73xudde.gz
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/guj30mx86p.gz
@@ -1229,13 +1239,3 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/refint/BloodBankManagementSystem.UI.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/BloodBankManagementSystem.UI.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/ref/BloodBankManagementSystem.UI.dll
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Modal.wasm
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Toast.wasm
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Toast.wasm.gz
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Blazored.Modal.wasm.gz
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Blazored.Modal.dll
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/Blazored.Toast.dll
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Blazored.Modal.wasm
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Blazored.Toast.wasm
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/tve48l4a6s.gz
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/1qe565c5g4.gz

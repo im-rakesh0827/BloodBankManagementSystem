@@ -60,6 +60,7 @@ namespace BloodBankManagementSystem.UI.Pages{
     private async Task HandleSubmit()
     {
         NotificationModel = new Notification();
+        Message = string.Empty;
         IsLoading = true;
         if(SelectedUserData!=null && SelectedUserData.Id>0){
           await Task.Delay(1500);
@@ -77,27 +78,28 @@ namespace BloodBankManagementSystem.UI.Pages{
     {
 
      UserModel = new User
-               {
-                    Id = SelectedUserData.Id,
-                    FirstName = SelectedUserData.FirstName,
-                    LastName = SelectedUserData.LastName,
-                    Email = SelectedUserData.Email,
-                    Phone = SelectedUserData.Phone,
-                    Role = SelectedUserData.Role,
-                    Address = SelectedUserData.Address
-               };
+          {
+               Id = SelectedUserData.Id,
+               FirstName = SelectedUserData.FirstName,
+               LastName = SelectedUserData.LastName,
+               Email = SelectedUserData.Email,
+               Phone = SelectedUserData.Phone,
+               Role = SelectedUserData.Role,
+               Address = SelectedUserData.Address
+          };
 
     }
 
      private async Task CreateUser(){
-          Message = string.Empty;
-        if (UserModel.PasswordHash != ConfirmPassword)
-        {
-            Message = "Passwords do not match.";
-            return;
-        }
         try
         {
+          if(UserModel!=null)
+          {
+               if (UserModel.PasswordHash != ConfirmPassword)
+          {
+               Message = "Passwords do not match.";
+               return;
+          }
             var response = await Http.PostAsJsonAsync("api/Users/register", UserModel);
             if (response.IsSuccessStatusCode)
             {
@@ -114,7 +116,8 @@ namespace BloodBankManagementSystem.UI.Pages{
                NotificationModel.Message = "Registration failed.";
                NotificationModel.Header = "Information";
                NotificationModel.Icon = "info";
-            }
+          }
+          }
         }
         catch (Exception ex)
         {

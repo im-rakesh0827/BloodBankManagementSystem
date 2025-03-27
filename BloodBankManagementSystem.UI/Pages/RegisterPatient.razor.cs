@@ -101,7 +101,7 @@ namespace BloodBankManagementSystem.UI.Pages
      private async  Task CreatePatient(){
      try
           {
-               var response = await Http.PostAsJsonAsync("api/bloodbank/register", PatientModel);
+               var response = await Http.PostAsJsonAsync("api/patients/register", PatientModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "Patient registered successfully!";
@@ -130,7 +130,7 @@ namespace BloodBankManagementSystem.UI.Pages
      private async Task UpdatePatient()
      {
           try{
-               var response = await Http.PutAsJsonAsync($"api/bloodbank/{PatientModel.PatientID}", PatientModel);
+               var response = await Http.PutAsJsonAsync($"api/patients/{PatientModel.PatientID}", PatientModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "Patient information updated successfully!";

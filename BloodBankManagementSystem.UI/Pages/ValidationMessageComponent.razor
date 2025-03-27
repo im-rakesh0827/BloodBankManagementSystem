@@ -1,0 +1,8 @@
+@using System.Linq.Expressions
+
+@typeparam TProperty
+<ValidationMessage For="@For" class="text-danger" />
+
+@code {
+    [Parameter, EditorRequired] public Expression<Func<TProperty>> For { get; set; } = default!;
+}

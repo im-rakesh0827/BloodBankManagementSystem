@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9Uj5rmdcmNydOaJ87l4tcv5zpl9ysdJ32BNGIb25JL4=",
+  "Hash": "5GEhtwrANqmBGoQeezm6qZKswxd9Hcd4vgYU8du4/gk=",
   "Source": "BloodBankManagementSystem.UI",
   "BasePath": "/",
   "Mode": "Root",
@@ -9477,6 +9477,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/app.css"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/css/bloodbank.css",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "css/bloodbank.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/bloodbank.css"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/css/bootstrap/bootstrap.min.css",

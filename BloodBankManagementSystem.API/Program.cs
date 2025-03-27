@@ -3,25 +3,15 @@ using BloodBankManagementSystem.Core.Interfaces;
 using BloodBankManagementSystem.Infrastructure.Repositories;
 using BloodBankManagementSystem.API.Services;
 using BloodBankManagementSystem.Core.Models;
-
-
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Register EmailSettings
+//Register EmailSettings
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("SmtpSettings"));
-// ✅ Register Email Service
+//Register Email Service
 builder.Services.AddScoped<IEmailService, EmailService>();
 
-builder.Services.AddScoped<IDonorRepository, DonorRepository>();
-
-
-
-// builder.Services.AddSingleton<EmailService>();
-// builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("SmtpSettings"));
-// builder.Services.AddTransient<IEmailService, EmailService>();
-// builder.Services.AddScoped<IEmailService, EmailService>(); // Ensure EmailService is implemented
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -31,17 +21,17 @@ builder.Services.AddHttpClient();
 var configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(configuration);
 
-// ✅ Configure DbContext with SQL Server
+// Configure DbContext with SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
     sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
 
-// ✅ Register Repository
+// Register Reposittories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<IDonorRepository, DonorRepository>();
 
-
-// ✅ Configure CORS properly
+// Configure CORS properly
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -54,10 +44,10 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// ✅ Use CORS Middleware (before Authorization)
+// Use CORS Middleware (before Authorization)
 app.UseCors("AllowAll");
 
-// ✅ Enable Swagger only in Development
+// Enable Swagger only in Development
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

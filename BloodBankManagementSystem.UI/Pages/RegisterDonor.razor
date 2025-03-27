@@ -4,9 +4,7 @@
 
 @if (IsLoading)
 {
-    <div class="loader-overlay">
-        <div class="loader"></div>
-    </div>
+     <LoaderComponent></LoaderComponent>
 }
 
 @if (IsCreateUpdateDonorPopup)
@@ -150,8 +148,8 @@ else
     </div>
 
     <div class="d-flex justify-content-center gap-3 mt-2">
-        <button type="submit" class="btn btn-primary" tabindex="15">@ButtonName</button>
-        <button type="button" class="btn btn-secondary" tabindex="16" @onclick="HandleClearRestore">@ClearResetButton</button>
+        <button type="submit" class="btn btn-primary" tabindex="15">@ButtonName <i class="fa fa-save"></i></button>
+        <button type="button" class="btn btn-secondary" tabindex="16" @onclick="HandleClearRestore">@ClearResetButton <i class="fa fa-undo"></i></button>
     </div>
 </EditForm>
 

@@ -48,8 +48,12 @@ else
                     <td>@patient.Address</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-primary btn-sm" @onclick="() => OpenEditModal(patient)">Edit</button>
-                            <button class="btn btn-danger btn-sm" @onclick="() => DeletePatient(patient.PatientID)">Delete</button>
+                            <button class="btn btn-primary btn-sm" @onclick="() => OpenEditModal(patient)">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm" @onclick="() => DeletePatient(patient.PatientID)">
+                                <i class="bi bi-trash"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>

@@ -44,7 +44,7 @@ namespace BloodBankManagementSystem.UI.Pages
         {
                try
                {
-                    var response = await Http.GetAsync("api/bloodbank/allPatients");
+                    var response = await Http.GetAsync("api/patients/allPatients");
                     if (!response.IsSuccessStatusCode)
                     {
                          var errorText = await response.Content.ReadAsStringAsync();
@@ -89,7 +89,7 @@ namespace BloodBankManagementSystem.UI.Pages
     {
         try
         {
-            var response = await Http.DeleteAsync($"api/bloodbank/{patientIdToDelete}");
+            var response = await Http.DeleteAsync($"api/patients/{patientIdToDelete}");
                if (response.IsSuccessStatusCode)
                {
                     FilteredPatientsList.Remove(FilteredPatientsList.FirstOrDefault(p => p.PatientID == patientIdToDelete));

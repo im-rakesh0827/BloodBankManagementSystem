@@ -11,11 +11,11 @@ using Microsoft.Extensions.Logging; // Make sure to include this
 namespace BloodBankManagementSystem.API.Controllers{
      [Route("api/[controller]")]
     [ApiController]
-     public class BloodBankController : ControllerBase{
+     public class PatientsController : ControllerBase{
         private readonly IPatientRepository _patientRepository;
-        private readonly ILogger<BloodBankController> _logger; 
+        private readonly ILogger<PatientsController> _logger; 
         private readonly IEmailService _emailService;
-        public BloodBankController(IPatientRepository patientRepository, IEmailService emailService, ILogger<BloodBankController> logger)
+        public PatientsController(IPatientRepository patientRepository, IEmailService emailService, ILogger<PatientsController> logger)
         {
             _patientRepository = patientRepository;
             _emailService = emailService;
