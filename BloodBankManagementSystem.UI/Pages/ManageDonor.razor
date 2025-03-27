@@ -1,18 +1,19 @@
 @page "/manageDonor"
+@inject IJSRuntime JSRuntime
 @inject HttpClient Http
 <h3 class="page-header">
     Donor List
     <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePopup">+ New Donor</button>
 </h3>
 
-@if (AllDonorsList == null)
+@if (FilteredDonorsList == null)
 {
     @* <p>Loading donors...</p> *@
     <div class="loader-overlay">
           <div class="loader"></div>
      </div>
 }
-else if (!AllDonorsList.Any())
+else if (!FilteredDonorsList.Any())
 {
     <p>No donors found.</p>
 }
@@ -40,7 +41,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var donor in AllDonorsList)
+            @foreach (var donor in FilteredDonorsList)
             {
                 <tr>
                     <td>@donor.FirstName</td>

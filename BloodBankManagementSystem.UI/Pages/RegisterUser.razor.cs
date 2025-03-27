@@ -8,6 +8,7 @@ using BloodBankManagementSystem.Core.Helpers;
 using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.JSInterop;
 namespace BloodBankManagementSystem.UI.Pages{
      public partial class RegisterUser
      {
@@ -26,6 +27,15 @@ namespace BloodBankManagementSystem.UI.Pages{
         private bool IsReadOnly {get; set;} = false;
         private bool IsLoading{get; set;} = false;
         private List<string> RolesList = new List<string>();
+        private Notification NotificationModel = new Notification();
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initializeJQueryToasts");
+        }
+    }
          protected override void OnInitialized()
         {
           RolesList = BloodBankHelper.GetRoles();
@@ -49,6 +59,7 @@ namespace BloodBankManagementSystem.UI.Pages{
 
     private async Task HandleSubmit()
     {
+        NotificationModel = new Notification();
         IsLoading = true;
         if(SelectedUserData!=null && SelectedUserData.Id>0){
           await Task.Delay(1500);
@@ -58,6 +69,8 @@ namespace BloodBankManagementSystem.UI.Pages{
           await CreateUser();
         }
         IsLoading = false;
+        await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
+
     }
 
     private void AssingUserData()
@@ -88,7 +101,9 @@ namespace BloodBankManagementSystem.UI.Pages{
             var response = await Http.PostAsJsonAsync("api/Users/register", UserModel);
             if (response.IsSuccessStatusCode)
             {
-                Message = "User registered successfully!";
+               NotificationModel.Message = "User registered successfully!";
+               NotificationModel.Header = "Success";
+               NotificationModel.Icon = "success";
                 UserModel = new User();
                 ConfirmPassword = string.Empty;
                 await OnUserAddedOrUpdated.InvokeAsync();
@@ -96,12 +111,16 @@ namespace BloodBankManagementSystem.UI.Pages{
             }
             else
             {
-                Message = "Registration failed.";
+               NotificationModel.Message = "Registration failed.";
+               NotificationModel.Header = "Information";
+               NotificationModel.Icon = "info";
             }
         }
         catch (Exception ex)
         {
-            Message = $"Error: {ex.Message}";
+            NotificationModel.Message = $"Error: {ex.Message}";;
+            NotificationModel.Header = "Error";
+            NotificationModel.Icon = "error";
         }
      }
     private async Task UpdateUser()
@@ -111,12 +130,17 @@ namespace BloodBankManagementSystem.UI.Pages{
                var response = await Http.PutAsJsonAsync($"/api/users/update/{UserModel.Id}", UserModel);
                if (response.IsSuccessStatusCode)
                {
+                    NotificationModel.Message = "User information updated successfully!";
+                    NotificationModel.Header = "Success";
+                    NotificationModel.Icon = "success";
                     await OnUserAddedOrUpdated.InvokeAsync();
                     await OnClose.InvokeAsync();
                }
                else
                {
-                    Console.WriteLine("Error updating user");
+                    NotificationModel.Message = "Error occured while updating user informations";
+                    NotificationModel.Header = "Information";
+                    NotificationModel.Icon = "info";
                }
           }
      }

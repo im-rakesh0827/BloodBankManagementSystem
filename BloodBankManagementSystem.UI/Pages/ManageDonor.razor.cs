@@ -4,26 +4,28 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
-
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.JSInterop;
 namespace BloodBankManagementSystem.UI.Pages
 {
      public partial class ManageDonor{
      private List<Donor> AllDonorsList = new();
      private List<Donor> FilteredDonorsList = new();
-
      private string Message{get; set;} = string.Empty;
      private bool IsCreateUpdatePopup{get; set;}
      public bool IsLoading {get; set;} = false;
      private Donor SelectedDonor = new Donor();
+     private int donorIdToDelete{get;set;} 
+     private DotNetObjectReference<ManageDonor> objRef;
+
      protected override async Task OnInitializedAsync()
      {
           await FetchDonors();
+          await ApplyFilterDonorsList();
      }
     private async Task FetchDonors()
     {
-     //   IsLoading = true;
-     //   await Task.Delay(1500);
-
        var response = await Http.GetAsync("api/donors/allDonors");
        if (!response.IsSuccessStatusCode)
        {
@@ -41,7 +43,6 @@ namespace BloodBankManagementSystem.UI.Pages
           return;
        }
        AllDonorsList = await response.Content.ReadFromJsonAsync<List<Donor>>();
-     //   IsLoading = false;
     }
 
     private void OpenCreatePopup()
@@ -56,10 +57,35 @@ namespace BloodBankManagementSystem.UI.Pages
         IsCreateUpdatePopup = true;
     }
 
-     private async Task DeleteDonor(int donorId)
+    protected override void OnInitialized()
     {
-        await Http.DeleteAsync($"api/donors/{donorId}");
-        AllDonorsList.RemoveAll(d => d.Id == donorId);
+        objRef = DotNetObjectReference.Create(this);
+    }
+
+    private async Task DeleteDonor(int donorId)
+    {
+        donorIdToDelete = donorId;
+        await JSRuntime.InvokeVoidAsync("ShowDeleteConfirmation", objRef, "Donor");
+    }
+
+    [JSInvokable]
+    public async Task PerformDelete()
+    {
+        try
+        {
+            await Http.DeleteAsync($"api/donors/delete/{donorIdToDelete}");
+            AllDonorsList.RemoveAll(d => d.Id == donorIdToDelete);
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+    }
+
+    public void Dispose()
+    {
+        objRef?.Dispose();
     }
 
     private async Task RefreshDonorList()
@@ -71,7 +97,8 @@ namespace BloodBankManagementSystem.UI.Pages
     }
 
     private async Task ApplyFilterDonorsList(){
-          FilteredDonorsList = AllDonorsList.Where(x=>x.IsEligible).ToList();
+          //FilteredDonorsList = AllDonorsList.Where(x=>x.IsEligible==true).ToList();
+          FilteredDonorsList = AllDonorsList;
     }
 
     private void HandleCancelOrClose()

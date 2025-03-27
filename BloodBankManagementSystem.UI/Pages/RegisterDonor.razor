@@ -1,5 +1,6 @@
 @page "/registerDonor"
 @inject HttpClient Http
+@inject IJSRuntime JSRuntime
 
 @if (IsLoading)
 {
@@ -57,7 +58,7 @@ else
             
             <div class="mb-3">
                 <label class="form-label">Gender:</label>
-                <InputSelect class="form-control" @bind-Value="DonorModel.Gender" tabindex="5">
+                <InputSelect class="form-control" @bind-Value="DonorModel.Gender" tabindex="7">
                     <option value="">Select Gender</option>
                     @foreach (var gender in GenderList)
                     {
@@ -68,12 +69,12 @@ else
 
             <div class="mb-3">
                 <label class="form-label">Last Donation Date:</label>
-                <InputDate class="form-control" @bind-Value="DonorModel.LastDonationDate" tabindex="12" />
+                <InputDate class="form-control" @bind-Value="DonorModel.LastDonationDate" tabindex="10" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">District:</label>
-                <InputText class="form-control" @bind-Value="DonorModel.District" tabindex="11" />
+                <InputText class="form-control" @bind-Value="DonorModel.District" tabindex="13" />
             </div>
             
 
@@ -89,12 +90,12 @@ else
 
             <div class="mb-3">
                 <label class="form-label">Age:</label>
-                <InputNumber class="form-control" @bind-Value="DonorModel.Age" tabindex="6" />
+                <InputNumber class="form-control" @bind-Value="DonorModel.Age" tabindex="5" />
             </div>
             
             <div class="mb-3">
                 <label class="form-label">Blood Group:</label>
-                <InputSelect class="form-control" @bind-Value="DonorModel.BloodGroup" tabindex="7">
+                <InputSelect class="form-control" @bind-Value="DonorModel.BloodGroup" tabindex="8">
                     <option value="">Select Blood Group</option>
                     @foreach (var bloodType in BloodGroupsList)
                     {
@@ -105,11 +106,11 @@ else
 
             <div class="mb-3">
                 <label class="form-label">Country:</label>
-                <InputText class="form-control" @bind-Value="DonorModel.Country" tabindex="9" />
+                <InputText class="form-control" @bind-Value="DonorModel.Country" tabindex="11" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Pin Code:</label>
-                <InputText class="form-control" @bind-Value="DonorModel.PinCode" tabindex="12" />
+                <InputText class="form-control" @bind-Value="DonorModel.PinCode" tabindex="14" />
             </div>
         </div>
 
@@ -118,15 +119,15 @@ else
 
             <div class="mb-3">
                 <label class="form-label">Email:</label>
-                <InputText class="form-control" @bind-Value="DonorModel.Email" tabindex="4" />
+                <InputText class="form-control" @bind-Value="DonorModel.Email" tabindex="3" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Weight (kg):</label>
-                <InputNumber class="form-control" @bind-Value="DonorModel.Weight" tabindex="8" />
+                <InputNumber class="form-control" @bind-Value="DonorModel.Weight" tabindex="6" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Health Status:</label>
-                <InputSelect class="form-control" @bind-Value="DonorModel.MedicalHistory" tabindex="5">
+                <InputSelect class="form-control" @bind-Value="DonorModel.MedicalHistory" tabindex="9">
                     <option value="">Select Health Status</option>
                     @foreach (var healthStatus in HealthIssues)
                     {
@@ -137,20 +138,20 @@ else
             
             <div class="mb-3">
                 <label class="form-label">State:</label>
-                <InputText class="form-control" @bind-Value="DonorModel.State" tabindex="10" />
+                <InputText class="form-control" @bind-Value="DonorModel.State" tabindex="12" />
             </div>
             
             
             <div class="mb-3">
                 <label class="form-label">Full Address:</label>
-                <InputText class="form-control" @bind-Value="DonorModel.Address" tabindex="13" />
+                <InputText class="form-control" @bind-Value="DonorModel.Address" tabindex="15" />
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-center gap-3 mt-2">
-        <button type="submit" class="btn btn-primary" tabindex="14">@ButtonName</button>
-        <button type="button" class="btn btn-secondary" tabindex="15" @onclick="HandleClearRestore">@ClearResetButton</button>
+        <button type="submit" class="btn btn-primary" tabindex="15">@ButtonName</button>
+        <button type="button" class="btn btn-secondary" tabindex="16" @onclick="HandleClearRestore">@ClearResetButton</button>
     </div>
 </EditForm>
 

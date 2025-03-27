@@ -8,6 +8,7 @@ using BloodBankManagementSystem.Core.Helpers;
 using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.JSInterop;
 
 namespace BloodBankManagementSystem.UI.Pages
 {
@@ -23,15 +24,14 @@ namespace BloodBankManagementSystem.UI.Pages
         [Parameter] public EventCallback OnPatientUpdated { get; set; }
         [Parameter] public bool IsCreateUpdatePatientPopup {get;set;}
         private bool IsLoading{get; set;} = false;
-
         private List<string> BloodGroupsList = new List<string>();
-          private List<string> GenderList = new List<string>();
-         protected override void OnInitialized()
+        private List<string> GenderList = new List<string>();
+        private Notification NotificationModel = new Notification();
+        protected override void OnInitialized()
         {
           BloodGroupsList = BloodBankHelper.GetAllBloodGroups();
           GenderList = BloodBankHelper.GetAllGenders();
         }
-
 
     protected override void OnParametersSet()
     {
@@ -94,6 +94,7 @@ namespace BloodBankManagementSystem.UI.Pages
           else{
                await CreatePatient();
           }
+          await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
           IsLoading = false;
      }
 
@@ -103,20 +104,26 @@ namespace BloodBankManagementSystem.UI.Pages
                var response = await Http.PostAsJsonAsync("api/bloodbank/register", PatientModel);
                if (response.IsSuccessStatusCode)
                {
-                    Message = "Patient registered successfully!";
-                    PatientModel = new(); // Reset form
-                    await OnPatientUpdated.InvokeAsync();
-                    await OnClose.InvokeAsync();
+                    NotificationModel.Message = "Patient registered successfully!";
+                    NotificationModel.Header = "Success";
+                    NotificationModel.Icon = "success";
                }
                else
                {
                     var errorText = await response.Content.ReadAsStringAsync();
-                    Message = $"Error: {errorText}";
+                    NotificationModel.Message = $"Error: {errorText}";
+                    NotificationModel.Header = "Information";
+                    NotificationModel.Icon = "info";
                }
+               PatientModel = new(); // Reset form
+               await OnPatientUpdated.InvokeAsync();
+               await OnClose.InvokeAsync();
           }
           catch (Exception ex)
           {
-               Message = $"An error occurred: {ex.Message}";
+               NotificationModel.Message = $"An error occurred: {ex.Message}";
+               NotificationModel.Header = "Error";
+               NotificationModel.Icon = "error";
           }
      }
 
@@ -124,14 +131,26 @@ namespace BloodBankManagementSystem.UI.Pages
      {
           try{
                var response = await Http.PutAsJsonAsync($"api/bloodbank/{PatientModel.PatientID}", PatientModel);
-          if (response.IsSuccessStatusCode)
-          {
-               await OnPatientUpdated.InvokeAsync();
-               await OnClose.InvokeAsync(); // Close modal after saving
+               if (response.IsSuccessStatusCode)
+               {
+                    NotificationModel.Message = "Patient information updated successfully!";
+                    NotificationModel.Header = "Success";
+                    NotificationModel.Icon = "success";
+                    await OnPatientUpdated.InvokeAsync();
+                    await OnClose.InvokeAsync(); // Close modal after saving
+               }
+               else{
+                    var errorText = await response.Content.ReadAsStringAsync();
+                    NotificationModel.Message = $"Error: {errorText}";
+                    NotificationModel.Header = "Information";
+                    NotificationModel.Icon = "info";
+               }
           }
-          }
-          catch(Exception){
-               throw;
+          catch(Exception ex){
+               NotificationModel.Message = $"An error occurred: {ex.Message}";
+               NotificationModel.Header = "Error";
+               NotificationModel.Icon = "error";
+               throw ex;
           }
      }
 

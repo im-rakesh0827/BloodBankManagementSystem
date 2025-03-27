@@ -2,9 +2,11 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.JSInterop;
 
 namespace BloodBankManagementSystem.UI.Pages
 {
@@ -63,9 +65,6 @@ namespace BloodBankManagementSystem.UI.Pages
                     // Console.WriteLine($"Raw API Response: {responseText}"); 
                     AllPatientsList = await response.Content.ReadFromJsonAsync<List<Patient>>();
                     ApplyFilteredPatientsList();
-                    // FilteredPatientsList = (await response.Content.ReadFromJsonAsync<List<Patient>>())?
-                    // .Where(p => p.IsActive)
-                    // .ToList();
                }
                catch (Exception ex)
                {
@@ -74,16 +73,26 @@ namespace BloodBankManagementSystem.UI.Pages
                }
           }
 
-         private async Task DeletePatient(int patientId)
+     private int patientIdToDelete {get;set;} 
+     private DotNetObjectReference<ManagePatients> objRef;
+      protected override void OnInitialized()
+    {
+        objRef = DotNetObjectReference.Create(this);
+    }
+    private async Task DeletePatient(int patientId)
+    {
+        patientIdToDelete = patientId;
+        await JSRuntime.InvokeVoidAsync("ShowDeleteConfirmation", objRef, "Patient");
+    }
+    [JSInvokable]
+    public async Task PerformDelete()
+    {
+        try
         {
-          //    bool confirmDelete = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this patient?");
-          bool confirmDelete = true;
-          if (confirmDelete)
-          {
-               var response = await Http.DeleteAsync($"api/bloodbank/{patientId}");
+            var response = await Http.DeleteAsync($"api/bloodbank/{patientIdToDelete}");
                if (response.IsSuccessStatusCode)
                {
-                    FilteredPatientsList.Remove(FilteredPatientsList.FirstOrDefault(p => p.PatientID == patientId));
+                    FilteredPatientsList.Remove(FilteredPatientsList.FirstOrDefault(p => p.PatientID == patientIdToDelete));
                     StateHasChanged();
                }
                else
@@ -91,9 +100,17 @@ namespace BloodBankManagementSystem.UI.Pages
                     var errorText = await response.Content.ReadAsStringAsync();
                     Console.WriteLine($"Error: {errorText}");
                }
-          }
-       }
-       private async Task RefreshPatientList()
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+    }
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
+     private async Task RefreshPatientList()
        {
           await LoadAllPatients();
           ApplyFilteredPatientsList();

@@ -2,9 +2,11 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.JSInterop;
 namespace BloodBankManagementSystem.UI.Pages
 {
     public partial class ManageUsers
@@ -74,26 +76,42 @@ namespace BloodBankManagementSystem.UI.Pages
         IsCreateUpdatePopup = true;
     }
 
-
+    private int userIdToDelete {get;set;} 
+    private DotNetObjectReference<ManageUsers> objRef;
+      protected override void OnInitialized()
+    {
+        objRef = DotNetObjectReference.Create(this);
+    }
     private async Task DeleteUser(int userId)
+    {
+        userIdToDelete = userId;
+        await JSRuntime.InvokeVoidAsync("ShowDeleteConfirmation", objRef, "User");
+    }
+    [JSInvokable]
+    public async Task PerformDelete()
+    {
+        try
         {
-          //    bool confirmDelete = await JS.InvokeAsync<bool>("confirm", "Are you sure you want to delete this patient?");
-          bool confirmDelete = true;
-          if (confirmDelete)
-          {
-               var response = await Http.DeleteAsync($"api/users/{userId}");
-               if (response.IsSuccessStatusCode)
-               {
-                    UsersList.Remove(UsersList.FirstOrDefault(p => p.Id == userId));
-                    StateHasChanged();
-               }
-               else
-               {
-                    var errorText = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Error: {errorText}");
-               }
-          }
-       }
+            var response = await Http.DeleteAsync($"api/users/{userIdToDelete}");
+            if (response.IsSuccessStatusCode)
+            {
+                UsersList.Remove(UsersList.FirstOrDefault(p => p.Id == userIdToDelete));
+                StateHasChanged();
+            }
+            else
+            {
+                var errorText = await response.Content.ReadAsStringAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+    }
+    public void Dispose()
+    {
+        objRef?.Dispose();
+    }
 }
 
-    }
+}

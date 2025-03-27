@@ -112,10 +112,10 @@ namespace BloodBankManagementSystem.API.Controllers
         }
 
         // Delete donor
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDonor(int id)
+        [HttpDelete("delete/{donorId}")]
+        public async Task<IActionResult> DeleteDonor(int donorId)
         {
-            var donor = await _donorRepository.GetDonorByIdAsync(id);
+            var donor = await _donorRepository.GetDonorByIdAsync(donorId);
             if (donor == null)
             {
                 return NotFound(new { message = "Donor not found." });

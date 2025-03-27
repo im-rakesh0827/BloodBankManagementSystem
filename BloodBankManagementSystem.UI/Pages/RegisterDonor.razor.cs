@@ -8,6 +8,7 @@ using BloodBankManagementSystem.Core.Helpers;
 using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.JSInterop;
 
 namespace BloodBankManagementSystem.UI.Pages{
 
@@ -31,6 +32,7 @@ namespace BloodBankManagementSystem.UI.Pages{
           private List<string> BloodGroupsList = new List<string>();
           private List<string> GenderList = new List<string>();
           private List<string> HealthIssues { get; set; } = new();
+          private Notification NotificationModel = new Notification();
          protected override void OnInitialized()
         {
           BloodGroupsList = BloodBankHelper.GetAllBloodGroups();
@@ -80,6 +82,7 @@ namespace BloodBankManagementSystem.UI.Pages{
 
      private async Task HandleSubmit()
         {
+          NotificationModel = new Notification();
           IsLoading = true;
           DonorModel.IsEligible = CheckEligibility();
           if(SelectedDonorData!=null && SelectedDonorData.Id>0){
@@ -89,39 +92,55 @@ namespace BloodBankManagementSystem.UI.Pages{
           else{
                await CreateDonor();
           }
+          await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
           IsLoading = false;
         }
         private async Task CreateDonor(){
             var response = await Http.PostAsJsonAsync("api/donors/register", DonorModel);
             if (response.IsSuccessStatusCode)
             {
-               Message = "Donor registered successfully!";
+               NotificationModel.Message = "Donor registered successfully!";
+               NotificationModel.Header = "Success";
+               NotificationModel.Icon = "success";
                DonorModel = new Donor();
                await OnDonorAddedOrUpdated.InvokeAsync();
                await OnClose.InvokeAsync();
             }
             else
             {
-               Message = "Error registering donor. Please try again.";
+               NotificationModel.Message = "Error occured while registering donor. Please try again.";
+               NotificationModel.Header = "Information";
+               NotificationModel.Icon = "info";
             }
         }
 
         private async Task UpdateDonor(){
-          if (SelectedDonorData != null)
+          try{
+               if (SelectedDonorData != null)
           {
                var response = await Http.PutAsJsonAsync($"/api/donors/update/{DonorModel.Id}", DonorModel);
                if (response.IsSuccessStatusCode)
                {
-                    Message = "Donor updated successfully!";
+                    NotificationModel.Message = "Donor information updated successfully!";
+                    NotificationModel.Header = "Success";
+                    NotificationModel.Icon = "success";
                     await OnDonorAddedOrUpdated.InvokeAsync();
                     await OnClose.InvokeAsync();
                }
                else
                {
-                    Console.WriteLine("Error updating user");
+                    NotificationModel.Message = "Error occured while updating the donor";
+                    NotificationModel.Header = "Information";
+                    NotificationModel.Icon = "info";
                }
           }
-
+          }
+          catch(Exception ex){
+               NotificationModel.Message = ex.Message;
+               NotificationModel.Header = "Error";
+               NotificationModel.Icon = "error";
+               throw;
+          }
         }
 
         private void HandleClearRestore()

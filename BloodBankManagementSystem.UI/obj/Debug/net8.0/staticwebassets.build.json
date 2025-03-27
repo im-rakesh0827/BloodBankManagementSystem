@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "W6Mz6KWI3va4be+gvVvxBujLorMLkdNsDX3rX8X3ff8=",
+  "Hash": "9Uj5rmdcmNydOaJ87l4tcv5zpl9ysdJ32BNGIb25JL4=",
   "Source": "BloodBankManagementSystem.UI",
   "BasePath": "/",
   "Mode": "Root",
@@ -9572,6 +9572,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/bloodbank.js",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "js/bloodbank.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/bloodbank.js"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/sample-data/weather.json",

@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets/index.html"
     },
     {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/bloodbank.js",
+      "PackagePath": "staticwebassets/js/bloodbank.js"
+    },
+    {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/sample-data/weather.json",
       "PackagePath": "staticwebassets/sample-data/weather.json"
     },
