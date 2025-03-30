@@ -23,6 +23,7 @@ namespace BloodBankManagementSystem.UI.Pages
         [Parameter] public EventCallback OnClose { get; set; }
         [Parameter] public EventCallback OnPatientUpdated { get; set; }
         [Parameter] public bool IsCreateUpdatePatientPopup {get;set;}
+        [Parameter] public bool IsCreateNewPatient{get;set;} = true;
         private bool IsLoading{get; set;} = false;
         private List<string> BloodGroupsList = new List<string>();
         private List<string> GenderList = new List<string>();

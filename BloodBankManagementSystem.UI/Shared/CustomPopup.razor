@@ -1,0 +1,60 @@
+@inject IJSRuntime JSRuntime
+
+<div class="popup-overlay" @onclick="ClosePopup" style="@(IsVisible ? "display: flex;" : "display: none;")">
+    <div class="popup-content" @onclick:stopPropagation="true">
+        <div class="popup-header">
+            <h3>@Title</h3>
+            <button class="close-button" @onclick="ClosePopup">✖</button>
+        </div>
+        <div class="popup-body">
+            @ChildContent
+        </div>
+        @if (ShowButtons)
+        {
+            <div class="popup-footer">
+                <button class="btn btn-secondary" @onclick="Cancel">Cancel</button>
+                <button class="btn btn-primary" @onclick="Confirm">OK</button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string Title { get; set; } = "Popup Title";
+    [Parameter] public bool ShowButtons { get; set; } = true;
+    [Parameter] public EventCallback<bool> OnClose { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    
+    private bool IsVisible { get; set; }
+
+    public void Show()
+    {
+        IsVisible = true;
+        StateHasChanged();
+        JSRuntime.InvokeVoidAsync("popupUtils.enableEscapeClose", DotNetObjectReference.Create(this));
+    }
+
+    public void Hide()
+    {
+        IsVisible = false;
+        StateHasChanged();
+    }
+
+    private void ClosePopup()
+    {
+        Hide();
+        OnClose.InvokeAsync(false);
+    }
+
+    private void Confirm()
+    {
+        Hide();
+        OnClose.InvokeAsync(true);
+    }
+
+    private void Cancel()
+    {
+        Hide();
+        OnClose.InvokeAsync(false);
+    }
+}

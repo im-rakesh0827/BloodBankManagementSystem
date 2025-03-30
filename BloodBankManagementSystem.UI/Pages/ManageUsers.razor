@@ -1,16 +1,33 @@
 @page "/users"
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
-<h3 class="page-header">
+@* <h3 class="page-header">
     Registered Users
     <button class="btn btn-success btn-sm register-btn" @onclick="OpenAddUserModal">+ New User</button>
-</h3>
+</h3> *@
 
-@if (UsersList is null)
+<div class="d-flex align-items-center">
+    <h4 class="me-3">Registered Users
+    <button class="btn btn-success btn-sm register-btn" @onclick="OpenAddUserModal">+ New User</button>
+    </h4>
+    <InputRadioGroup @bind-Value="IsShowActiveOnly" @bind-Value:after="ApplyFilterUser" class="d-flex align-items-center">
+        <div class="form-check me-3">
+            <InputRadio class="form-check-input" id="showActive" Value="true" style="cursor: pointer;" />
+            <label class="form-check-label" for="showActive">Show Active</label>
+        </div>
+        <div class="form-check">
+            <InputRadio class="form-check-input" id="showAll" Value="false" style="cursor: pointer;"/>
+            <label class="form-check-label" for="showAll">Show All</label>
+        </div>
+    </InputRadioGroup>
+</div>
+
+
+@if (FilteredUsersList is null)
 {
     <p>Loading...</p>
 }
-else if (!UsersList.Any())
+else if (!FilteredUsersList.Any())
 {
     <p>No users found.</p>
 }
@@ -24,8 +41,8 @@ else
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Role</th>
-                <th>IsActive</th>
-                <th>Country</th>
+                @* <th>IsActive</th> *@
+                @* <th>Country</th> *@
                 <th>State</th>
                 <th>District</th>
                 <th>Full Address</th>
@@ -33,7 +50,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in UsersList)
+            @foreach (var user in FilteredUsersList)
             {
                 <tr>
                     <td>@user.FirstName</td>
@@ -41,15 +58,15 @@ else
                     <td>@user.Email</td>
                     <td>@user.Phone</td>
                     <td>@user.Role</td>
-                    <td>@user.IsActive</td>
+                    @* <td>@user.IsActive</td> *@
+                    @* <td>@user.Country</td> *@
                     <td>@user.State</td>
-                    <td>@user.Country</td>
                     <td>@user.District</td>
                     <td>@user.Address</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-primary btn-sm" @onclick="() => EditUser(user)">
-                                <i class="bi bi-pencil-square"></i>
+                            <button class="btn btn-sm" @onclick="() => EditUser(user)">
+                                <EditViewIcon />
                             </button>
                             <button class="btn btn-danger btn-sm" @onclick="() => DeleteUser(user.Id)"> 
                                 <i class="bi bi-trash"></i> 

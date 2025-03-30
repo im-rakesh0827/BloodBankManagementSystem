@@ -1,10 +1,21 @@
 @page "/managePatients"
 @inject IJSRuntime JSRuntime
 @inject HttpClient Http
-<h3 class="page-header">
-    Registered Patients
+<div class="d-flex align-items-center">
+    <h4 class="me-3">Registered Patients
     <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePoup">+ New Patient</button>
-</h3>
+    </h4>
+    <InputRadioGroup @bind-Value="IsShowActiveOnly" @bind-Value:after="ApplyFilteredPatientsList" class="d-flex align-items-center">
+        <div class="form-check me-3">
+            <InputRadio class="form-check-input" id="showActive" Value="true" style="cursor: pointer;" />
+            <label class="form-check-label" for="showActive">Show Active</label>
+        </div>
+        <div class="form-check">
+            <InputRadio class="form-check-input" id="showAll" Value="false" style="cursor: pointer;"/>
+            <label class="form-check-label" for="showAll">Show All</label>
+        </div>
+    </InputRadioGroup>
+</div>
 
 @if (FilteredPatientsList is null)
 {
@@ -48,9 +59,13 @@ else
                     <td>@patient.Address</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <button class="btn btn-primary btn-sm" @onclick="() => OpenEditModal(patient)">
+                            @* <button class="btn btn-primary btn-sm" @onclick="() => OpenEditModal(patient)">
                                 <i class="bi bi-pencil-square"></i>
+                            </button> *@
+                            <button class="btn btn-sm" @onclick="() => OpenEditModal(patient)">
+                                    <EditViewIcon />
                             </button>
+
                             <button class="btn btn-danger btn-sm" @onclick="() => DeletePatient(patient.PatientID)">
                                 <i class="bi bi-trash"></i>
                             </button>

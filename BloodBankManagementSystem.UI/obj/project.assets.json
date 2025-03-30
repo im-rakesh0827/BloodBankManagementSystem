@@ -47,6 +47,18 @@
           }
         }
       },
+      "Blazored.LocalStorage/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "Blazored.Modal/7.3.1": {
         "type": "package",
         "dependencies": {
@@ -127,6 +139,23 @@
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "8.0.0",
+          "Microsoft.AspNetCore.Components": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.AspNetCore.Components.Forms/8.0.4": {
@@ -1660,6 +1689,18 @@
           }
         }
       },
+      "Blazored.LocalStorage/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "Blazored.Modal/7.3.1": {
         "type": "package",
         "dependencies": {
@@ -1740,6 +1781,23 @@
         "type": "package",
         "build": {
           "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Authorization/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "8.0.0",
+          "Microsoft.AspNetCore.Components": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Authorization.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.AspNetCore.Components.Forms/8.0.4": {
@@ -3121,6 +3179,22 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
+    "Blazored.LocalStorage/4.5.0": {
+      "sha512": "6nZuJwA7zNIKx83IsObiHXZb09ponJOpCClU3en+hI8ZFvrOKXeOw+H7TegQZQrvdR1n9fkrVkEBQZg8vx6ZTw==",
+      "type": "package",
+      "path": "blazored.localstorage/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "blazored.localstorage.4.5.0.nupkg.sha512",
+        "blazored.localstorage.nuspec",
+        "icon.png",
+        "lib/net6.0/Blazored.LocalStorage.dll",
+        "lib/net7.0/Blazored.LocalStorage.dll",
+        "lib/net8.0/Blazored.LocalStorage.dll"
+      ]
+    },
     "Blazored.Modal/7.3.1": {
       "sha512": "CWUyENSAZmNr0efiS3V5oMBkhRLkqqo1qOaY5pIqymQIR0fgGY6CDB4+57HAJP0pdks95yALrBZ6twggMaIeCg==",
       "type": "package",
@@ -3210,6 +3284,21 @@
         "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
         "microsoft.aspnetcore.components.analyzers.8.0.4.nupkg.sha512",
         "microsoft.aspnetcore.components.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Authorization/8.0.0": {
+      "sha512": "GlaNfvmRQAmXMrNlJcQJcB/K8ptShc121sQdqc82Yigd6d7lMVbMKI/P+rNr1ReEhPgMQNd66uh1INF9QlxI6Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.authorization/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net8.0/Microsoft.AspNetCore.Components.Authorization.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Components.Authorization.xml",
+        "microsoft.aspnetcore.components.authorization.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.components.authorization.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Components.Forms/8.0.4": {
@@ -5842,10 +5931,12 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Blazored.LocalStorage >= 4.5.0",
       "Blazored.Modal >= 7.3.1",
       "Blazored.Toast >= 4.2.1",
       "BloodBankManagementSystem.Core >= 1.0.0",
       "BloodBankManagementSystem.Infrastructure >= 1.0.0",
+      "Microsoft.AspNetCore.Components.Authorization >= 8.0.0",
       "Microsoft.AspNetCore.Components.WebAssembly >= 8.0.4",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 8.0.4",
       "Microsoft.NET.ILLink.Tasks >= 8.0.14",
@@ -5902,6 +5993,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Blazored.LocalStorage": {
+            "target": "Package",
+            "version": "[4.5.0, )"
+          },
           "Blazored.Modal": {
             "target": "Package",
             "version": "[7.3.1, )"
@@ -5909,6 +6004,10 @@
           "Blazored.Toast": {
             "target": "Package",
             "version": "[4.2.1, )"
+          },
+          "Microsoft.AspNetCore.Components.Authorization": {
+            "target": "Package",
+            "version": "[8.0.0, )"
           },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",

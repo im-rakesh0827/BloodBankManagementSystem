@@ -1,0 +1,22 @@
+@page "/login"
+@inject NavigationManager Navigation
+@inject AuthService AuthService
+@using BloodBankManagementSystem.UI.Services
+
+
+<h3>Login</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color:red">@errorMessage</p>
+}
+
+<div>
+    <label>Email:</label>
+    <input @bind="loginRequest.Email" type="text" />
+</div>
+<div>
+    <label>Password:</label>
+    <input @bind="loginRequest.Password" type="password" />
+</div>
+<button @onclick="HandleLogin">Login</button>

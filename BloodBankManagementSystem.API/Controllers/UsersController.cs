@@ -111,7 +111,9 @@ namespace BloodBankManagementSystem.API.Controllers
             {
                 return NotFound(new { message = "User not found." });
             }
-            await _userRepository.DeleteAsync(user);
+            // await _userRepository.DeleteAsync(user);
+            user.IsActive = false;
+            await _userRepository.UpdateUserAsync(user);
             return Ok(new { message = "User deleted successfully." });
         }
 

@@ -1,0 +1,37 @@
+@* @using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JSRuntime
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user == null || !user.Identity?.IsAuthenticated == true)
+        {
+            await JSRuntime.InvokeVoidAsync("setTimeout", 1); // Ensures async execution after rendering
+            Navigation.NavigateTo("/login", forceLoad: true);
+        }
+    }
+} *@
+
+
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IJSRuntime JSRuntime
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user == null || !user.Identity?.IsAuthenticated == true)
+        {
+            Navigation.NavigateTo("/login", forceLoad: true);
+        }
+    }
+}

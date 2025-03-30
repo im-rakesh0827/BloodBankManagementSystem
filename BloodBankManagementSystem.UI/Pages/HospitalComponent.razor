@@ -1,0 +1,24 @@
+@page "/hospital"
+@inject NavigationManager Navigation
+
+<h3>Popup Example</h3>
+<button class="btn btn-success" @onclick="OpenPopup">Open Popup</button>
+
+<CustomPopup @ref="popupRef" Title="Are you sure?" ShowButtons="true" OnClose="PopupClosed">
+    <p>This is a reusable popup component.</p>
+</CustomPopup>
+
+
+@code {
+    private CustomPopup popupRef;
+
+    private void OpenPopup()
+    {
+        popupRef?.Show(); // Ensure popupRef is not null before calling Show()
+    }
+
+    private void PopupClosed(bool confirmed)
+    {
+        Console.WriteLine(confirmed ? "User clicked OK!" : "User clicked Cancel.");
+    }
+}

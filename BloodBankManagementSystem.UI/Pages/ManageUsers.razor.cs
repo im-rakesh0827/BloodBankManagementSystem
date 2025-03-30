@@ -11,10 +11,13 @@ namespace BloodBankManagementSystem.UI.Pages
 {
     public partial class ManageUsers
     {
-        private List<User> UsersList { get; set; } = new();
+        private List<User> AllUsersList { get; set; } = new();
+        private List<User> FilteredUsersList { get; set; } = new();
+
         private string Message {get; set;} = string.Empty;
         private bool IsCreateUpdatePopup {get; set;} = false;
         private User SelectedUser;
+        private bool IsShowActiveOnly{get; set;} = true;
         protected override async Task OnInitializedAsync()
         {
             await FetchAllUsersList();
@@ -23,31 +26,32 @@ namespace BloodBankManagementSystem.UI.Pages
     private async Task FetchAllUsersList()
     {
         try
+        {
+            var response = await Http.GetAsync("api/Users/allUsers");
+            if (!response.IsSuccessStatusCode)
             {
-                var response = await Http.GetAsync("api/Users/allUsers");
-                if (!response.IsSuccessStatusCode)
+                var errorText = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"API Error: {response.StatusCode}, Response: {errorText}");
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    var errorText = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"API Error: {response.StatusCode}, Response: {errorText}");
-                    if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-                    {
-                        Message = "No users found.";
-                    }
-                    else
-                    {
-                        Message = $"Error fetching users: {errorText}";
-                    }
-                    return;
+                    Message = "No users found.";
                 }
-                //var responseText = await response.Content.ReadAsStringAsync();
-                //Console.WriteLine($"Raw API Response: {responseText}"); // Logs raw response for debugging
-                UsersList = await response.Content.ReadFromJsonAsync<List<User>>();
+                else
+                {
+                    Message = $"Error fetching users: {errorText}";
+                }
+                return;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error fetching users: {ex.Message}");
-                Message = "An error occurred while fetching users.";
-            }
+            //var responseText = await response.Content.ReadAsStringAsync();
+            //Console.WriteLine($"Raw API Response: {responseText}"); // Logs raw response for debugging
+            AllUsersList = await response.Content.ReadFromJsonAsync<List<User>>();
+            ApplyFilterUser();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching users: {ex.Message}");
+            Message = "An error occurred while fetching users.";
+        }
     }
 
 
@@ -66,7 +70,8 @@ namespace BloodBankManagementSystem.UI.Pages
     private async Task RefreshUserList()
     {
         await FetchAllUsersList();
-        StateHasChanged(); // Force UI update
+        ApplyFilterUser();
+        StateHasChanged();
     }
 
 
@@ -78,7 +83,7 @@ namespace BloodBankManagementSystem.UI.Pages
 
     private int userIdToDelete {get;set;} 
     private DotNetObjectReference<ManageUsers> objRef;
-      protected override void OnInitialized()
+    protected override void OnInitialized()
     {
         objRef = DotNetObjectReference.Create(this);
     }
@@ -95,8 +100,8 @@ namespace BloodBankManagementSystem.UI.Pages
             var response = await Http.DeleteAsync($"api/users/{userIdToDelete}");
             if (response.IsSuccessStatusCode)
             {
-                UsersList.Remove(UsersList.FirstOrDefault(p => p.Id == userIdToDelete));
-                StateHasChanged();
+                AllUsersList.Remove(AllUsersList.FirstOrDefault(p => p.Id == userIdToDelete));
+                await RefreshUserList();
             }
             else
             {
@@ -112,6 +117,15 @@ namespace BloodBankManagementSystem.UI.Pages
     {
         objRef?.Dispose();
     }
-}
 
+    public void ApplyFilterUser(){
+        Console.WriteLine("Filter method");
+        if(IsShowActiveOnly){
+            FilteredUsersList = AllUsersList.Where(p => p.IsActive && p.IsAlive).ToList();
+        }
+        else{
+            FilteredUsersList = AllUsersList.Where(p => p.IsActive).ToList();
+        }
+    }
+}
 }

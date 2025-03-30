@@ -29,12 +29,24 @@
       "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css.map"
     },
     {
-      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/favicon.png",
-      "PackagePath": "staticwebassets/favicon.png"
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/css/custom-loader.css",
+      "PackagePath": "staticwebassets/css/custom-loader.css"
+    },
+    {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/css/popup.css",
+      "PackagePath": "staticwebassets/css/popup.css"
     },
     {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/icon-192.png",
       "PackagePath": "staticwebassets/icon-192.png"
+    },
+    {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/editIcon.png",
+      "PackagePath": "staticwebassets/img/editIcon.png"
+    },
+    {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/favicon2.png",
+      "PackagePath": "staticwebassets/img/favicon2.png"
     },
     {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/index.html",
@@ -43,6 +55,10 @@
     {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/bloodbank.js",
       "PackagePath": "staticwebassets/js/bloodbank.js"
+    },
+    {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/popup.js",
+      "PackagePath": "staticwebassets/js/popup.js"
     },
     {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/sample-data/weather.json",

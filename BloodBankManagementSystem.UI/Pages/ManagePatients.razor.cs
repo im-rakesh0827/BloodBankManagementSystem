@@ -17,6 +17,7 @@ namespace BloodBankManagementSystem.UI.Pages
         private string Message { get; set; } = string.Empty;
         private Patient SelectedPatient { get; set; } = new();
         private bool IsCreateUpdatePopup{get;set;} = false;
+        private bool IsShowActiveOnly {get; set;} = true;
         private void OpenEditModal(Patient patient)
         {
           SelectedPatient = patient;
@@ -93,7 +94,7 @@ namespace BloodBankManagementSystem.UI.Pages
                if (response.IsSuccessStatusCode)
                {
                     FilteredPatientsList.Remove(FilteredPatientsList.FirstOrDefault(p => p.PatientID == patientIdToDelete));
-                    StateHasChanged();
+                    await RefreshPatientList();
                }
                else
                {
@@ -114,11 +115,18 @@ namespace BloodBankManagementSystem.UI.Pages
        {
           await LoadAllPatients();
           ApplyFilteredPatientsList();
-          StateHasChanged(); // Force UI update
+          StateHasChanged(); 
        }
 
        public void ApplyFilteredPatientsList(){
-          FilteredPatientsList = AllPatientsList.Where(p => p.IsActive).ToList();
+          // Console.WriteLine("Filter method");
+          if(IsShowActiveOnly){
+               FilteredPatientsList = AllPatientsList.Where(p => p.IsActive && p.IsAlive).ToList();
+          }
+          else{
+               FilteredPatientsList = AllPatientsList.Where(p => p.IsActive).ToList();
+          }
+           StateHasChanged();
      }
     }
 }

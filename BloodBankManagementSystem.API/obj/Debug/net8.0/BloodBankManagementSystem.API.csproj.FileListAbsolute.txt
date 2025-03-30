@@ -10,6 +10,7 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BouncyCastle.Cryptography.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Humanizer.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/MailKit.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Bcl.Cryptography.dll
@@ -211,3 +212,4 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.genruntimeconfig.cache
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/ref/BloodBankManagementSystem.API.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BCrypt.Net-Next.dll

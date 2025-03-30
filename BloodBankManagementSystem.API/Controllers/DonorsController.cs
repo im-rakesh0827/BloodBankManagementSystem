@@ -5,6 +5,7 @@ using BloodBankManagementSystem.API.Services;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BloodBankManagementSystem.API.Controllers
 {
@@ -48,6 +49,7 @@ namespace BloodBankManagementSystem.API.Controllers
         // Get all donors
         [HttpGet("allDonors")]
         [Produces("application/json")]
+     //    [Authorize]
         public async Task<IActionResult> GetAllDonors()
         {
             try

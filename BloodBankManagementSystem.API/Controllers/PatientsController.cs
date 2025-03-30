@@ -85,6 +85,7 @@ namespace BloodBankManagementSystem.API.Controllers{
             existingPatient.CreatedAt = updatedPatient.CreatedAt;
             existingPatient.UpdatedBy = updatedPatient.UpdatedBy;
             existingPatient.UpdatedAt = updatedPatient.UpdatedAt;
+            existingPatient.IsAlive = updatedPatient.IsAlive;
             try
             {
                 await _patientRepository.UpdateAsync(existingPatient);
@@ -104,7 +105,11 @@ namespace BloodBankManagementSystem.API.Controllers{
             {
                 return NotFound(new { message = "Patient not found." });
             }
-            await _patientRepository.DeleteAsync(patient);
+            // await _patientRepository.DeleteAsync(patient);
+            patient.IsActive = false;
+            // Update the patient record in the database
+            await _patientRepository.UpdateAsync(patient);
+
             return Ok(new { message = "Patient deleted successfully." });
         }
 

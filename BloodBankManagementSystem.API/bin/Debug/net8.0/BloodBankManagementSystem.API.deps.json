@@ -8,9 +8,12 @@
     ".NETCoreApp,Version=v8.0": {
       "BloodBankManagementSystem.API/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "BloodBankManagementSystem.Core": "1.0.0",
           "BloodBankManagementSystem.Infrastructure": "1.0.0",
           "MailKit": "4.11.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.0",
+          "Microsoft.AspNetCore.Authorization": "8.0.0",
           "Microsoft.AspNetCore.OpenApi": "8.0.4",
           "Microsoft.Data.SqlClient": "6.0.1",
           "Microsoft.EntityFrameworkCore.Design": "9.0.1",
@@ -56,6 +59,14 @@
           }
         }
       },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
+          }
+        }
+      },
       "BouncyCastle.Cryptography/2.5.1": {
         "runtime": {
           "lib/net6.0/BouncyCastle.Cryptography.dll": {
@@ -84,6 +95,25 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.5.0"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53112"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authorization/8.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.1",
+          "Microsoft.Extensions.Options": "9.0.1"
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/8.0.0": {},
       "Microsoft.AspNetCore.OpenApi/8.0.4": {
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
@@ -1329,6 +1359,13 @@
       "path": "azure.identity/1.11.4",
       "hashPath": "azure.identity.1.11.4.nupkg.sha512"
     },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
+    },
     "BouncyCastle.Cryptography/2.5.1": {
       "type": "package",
       "serviceable": true,
@@ -1349,6 +1386,27 @@
       "sha512": "sha512-JVoRxJ+QRqFMRtEM4veStj3pMLBPRulQGV+iZm6Tq1pnr66Dy6dFYOW9Uw02nxAVzdZAN8G+y3BsUPtgZcKXhA==",
       "path": "mailkit/4.11.0",
       "hashPath": "mailkit.4.11.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rwxaZYHips5M9vqxRkGfJthTx+Ws4O4yCuefn17J371jL3ouC5Ker43h2hXb5yd9BMnImE9rznT75KJHm6bMgg==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.0",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authorization/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OGIGJMnlWvQgcweHcv1Mq/P24Zx/brUHeEdD05NzqkSXmQSnFomTvVyCuBtCXT4JPfv2m70y1RSocmd9bIbJRg==",
+      "path": "microsoft.aspnetcore.authorization/8.0.0",
+      "hashPath": "microsoft.aspnetcore.authorization.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OmuSztiZMitRTYlbMNDkBk3BinSsVcOApSNBAsrw+KYNJh6ALarPhWLlKdtvMgrKzpyCY06xtLAjTmQLURHSlQ==",
+      "path": "microsoft.aspnetcore.metadata/8.0.0",
+      "hashPath": "microsoft.aspnetcore.metadata.8.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/8.0.4": {
       "type": "package",
