@@ -56,5 +56,28 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
           _context.Donors.Remove(donor);
           await _context.SaveChangesAsync();
         }
+
+
+
+        public async Task AddDonorHistoryAsync(DonorHistory history)
+{
+    _context.DonorHistories.Add(history);
+    await _context.SaveChangesAsync();
+}
+
+public async Task<List<DonorHistory>> GetHistoryByDonorIdAsync(int donorId)
+{
+    return await _context.DonorHistories
+                         .Where(h => h.DonorId == donorId)
+                         .OrderByDescending(h => h.ActionDate)
+                         .ToListAsync();
+}
+
+
+
+        
     }
+
+
+
 }

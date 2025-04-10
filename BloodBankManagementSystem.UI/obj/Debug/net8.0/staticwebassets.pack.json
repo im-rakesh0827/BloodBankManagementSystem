@@ -41,12 +41,28 @@
       "PackagePath": "staticwebassets/icon-192.png"
     },
     {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/delete.jpg",
+      "PackagePath": "staticwebassets/img/delete.jpg"
+    },
+    {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/doc.png",
+      "PackagePath": "staticwebassets/img/doc.png"
+    },
+    {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/edit.png",
+      "PackagePath": "staticwebassets/img/edit.png"
+    },
+    {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/editIcon.png",
       "PackagePath": "staticwebassets/img/editIcon.png"
     },
     {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/favicon2.png",
       "PackagePath": "staticwebassets/img/favicon2.png"
+    },
+    {
+      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/img/history.png",
+      "PackagePath": "staticwebassets/img/history.png"
     },
     {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/index.html",

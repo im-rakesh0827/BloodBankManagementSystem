@@ -38,6 +38,16 @@ namespace BloodBankManagementSystem.API.Controllers
                {
                     return StatusCode(500, new { message = "Donor registered, but email failed to send" });
                }
+
+               var donorHistory = new DonorHistory
+                {
+                    ActionDate = DateTime.UtcNow,
+                    ActionType = "Registration",
+                    ActionUser = "System", // Or replace with logged-in admin/user info
+                    ActionNote = "New donor registered successfully.",
+                    DonorId = donor.Id // Ensure AddDonorAsync sets the Id properly
+                };
+                await _donorRepository.AddDonorHistoryAsync(donorHistory);
                return Ok(new { message = "Donor registered successfully, email sent" });
             }
             catch (Exception ex)
@@ -110,6 +120,15 @@ namespace BloodBankManagementSystem.API.Controllers
             existingDonor.IsActive = updatedDonor.IsActive;
 
             await _donorRepository.UpdateDonorAsync(existingDonor);
+            var donorHistory = new DonorHistory
+                {
+                    ActionDate = DateTime.UtcNow,
+                    ActionType = "Update",
+                    ActionUser = "System",
+                    ActionNote = "Details updated successfully.",
+                    DonorId = updatedDonor.Id
+                };
+                await _donorRepository.AddDonorHistoryAsync(donorHistory);
             return Ok(new { message = "Donor updated successfully" });
         }
 
@@ -209,5 +228,24 @@ namespace BloodBankManagementSystem.API.Controllers
                 return false;
             }
         }
+
+
+[HttpPost]
+    [Route("history")]
+    public async Task<IActionResult> AddHistory(DonorHistory history)
+    {
+        await _donorRepository.AddDonorHistoryAsync(history);
+        return Ok(new { message = "History added successfully." });
+    }
+
+    [HttpGet("history/{donorId}")]
+    public async Task<ActionResult<IEnumerable<DonorHistory>>> GetHistoryByDonor(int donorId)
+    {
+        var history = await _donorRepository.GetHistoryByDonorIdAsync(donorId);
+        return Ok(history);
+    }
+
+
+        
     }
 }

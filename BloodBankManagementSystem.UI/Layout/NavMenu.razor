@@ -18,11 +18,11 @@
             </NavLink>
         </div>
 
-        <div class="nav-item px-3">
+        @* <div class="nav-item px-3">
             <NavLink class="nav-link d-flex align-items-center gap-2" href="/dashboard">
                 <i class="bi bi-speedometer2 fs-5 align-middle"></i> <span class="fw-semibold">Dashboard</span>
             </NavLink>
-        </div>
+        </div> *@
 
         <div class="nav-item px-3">
             <NavLink class="nav-link d-flex align-items-center gap-2" href="/manageDonor">
@@ -76,3 +76,84 @@
         collapseNavMenu = !collapseNavMenu;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* @using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Vital Drops</a>
+
+        <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse @(collapseNavMenu ? "" : "show") justify-content-center">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                        <i class="bi bi-house-door me-1"></i> Home
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/manageDonor">
+                        <i class="bi bi-heart-pulse me-1"></i> Manage Donor
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/registerDonor">
+                        <i class="bi bi-heart-pulse me-1"></i> Register Donor
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/managePatients">
+                        <i class="bi bi-person-hearts me-1"></i> Manage Patients
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/hospital">
+                        <i class="bi bi-hospital me-1"></i> Hospital
+                    </NavLink>
+                </li>
+                <li class="nav-item d-none">
+                    <NavLink class="nav-link" href="/registerPatient">
+                        <i class="bi bi-file-earmark-person me-1"></i> Register Patient
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/registerUser">
+                        <i class="bi bi-person-plus me-1"></i> Register User
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/users">
+                        <i class="bi bi-people me-1"></i> Manage Users
+                    </NavLink>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+} *@

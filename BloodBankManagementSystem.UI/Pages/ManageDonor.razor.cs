@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
+using BloodBankManagementSystem.UI.Helpers;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,7 +115,41 @@ namespace BloodBankManagementSystem.UI.Pages
           if (donor.LastDonationDate.HasValue && (DateTime.Now - donor.LastDonationDate.Value).TotalDays / 30 < 3)
                return false;
           return true;
-     }
+    }
+
+
+    private bool ShowHistoryPopup = false;
+    private List<DonorHistory> DonorHistoryList = new();
+
+    private async Task ShowDonorHistory(Donor donor)
+    {
+        SelectedDonor = donor;
+        // Ideally, fetch from API
+        DonorHistoryList = await GetDonorHistory(donor.Id); 
+        ShowHistoryPopup = true;
+    }
+
+    private void CloseHistoryPopup()
+    {
+        ShowHistoryPopup = false;
+    }
+
+private async Task<List<DonorHistory>> GetDonorHistory(int donorId)
+{
+    try
+    {
+        // var url = $"{ServerConstants.BaseApiUrl}{ServerConstants.Donor.GetHistoryById}{donorId}";
+
+        var url = $"{ServerConstants.Donor.GetDonorHistoryById}{donorId}";
+        var response = await Http.GetFromJsonAsync<List<DonorHistory>>(url);
+        return response ?? new List<DonorHistory>();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error fetching donor history: {ex.Message}");
+        return new List<DonorHistory>();
+    }
+}
     
    }
 }

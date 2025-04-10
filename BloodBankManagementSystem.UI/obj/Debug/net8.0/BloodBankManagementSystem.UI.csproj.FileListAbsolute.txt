@@ -992,8 +992,6 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/staticwebassets.pack.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Layout/MainLayout.razor.rz.scp.css
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Layout/NavMenu.razor.rz.scp.css
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Pages/DashboardComponent.razor.rz.scp.css
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Pages/Home.razor.rz.scp.css
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/bundle/BloodBankManagementSystem.UI.styles.css
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/projectbundle/BloodBankManagementSystem.UI.bundle.scp.css
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/542un78yps.gz
@@ -1249,3 +1247,5 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/refint/BloodBankManagementSystem.UI.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/BloodBankManagementSystem.UI.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/ref/BloodBankManagementSystem.UI.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Pages/DashboardComponent.razor.rz.scp.css
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Pages/Home.razor.rz.scp.css

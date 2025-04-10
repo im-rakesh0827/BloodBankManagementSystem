@@ -166,6 +166,12 @@ main[b-g4ywb9jxby] {
         overflow-y: auto;
     }
 }
+
+
+.navbar-nav .nav-link[b-8b0n0p0z1h] {
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
 /* /Pages/DashboardComponent.razor.rz.scp.css */
 body[b-w7gcqouxhw] {
     font-family: sans-serif;

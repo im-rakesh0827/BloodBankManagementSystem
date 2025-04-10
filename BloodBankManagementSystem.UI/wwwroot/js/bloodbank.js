@@ -50,7 +50,8 @@ function ShowToastAlert(alertMessage, alertHeader, alertIcon) {
         loader: true,
         showHideTransition: 'fade', // 'slide', 'plain'
         loaderBg: '#9EC600',
-        position: 'top-right' 
+        // position: 'top-right' 
+        position: 'bottom-right'
     });
 }
 

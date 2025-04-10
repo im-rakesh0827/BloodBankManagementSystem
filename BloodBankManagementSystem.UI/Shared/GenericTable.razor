@@ -1,0 +1,35 @@
+@typeparam TModel
+
+@if (Data == null || !Data.Any())
+{
+    <p>No records found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                @foreach (var column in Columns)
+                {
+                    <th>@column</th>
+                }
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Data)
+            {
+                <tr>
+                    @foreach (var column in Columns)
+                    {
+                        <td>@GetPropertyValue(item, column)</td>
+                    }
+                    <td>
+                        <button class="btn btn-primary btn-sm" @onclick="() => OnEdit.InvokeAsync(item)">Edit</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => OnDelete.InvokeAsync(item)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
