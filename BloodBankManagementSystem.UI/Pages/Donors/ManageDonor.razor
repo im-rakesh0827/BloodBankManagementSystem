@@ -88,6 +88,15 @@ else
     </div>
 }
 
+@* <CustomPopup @ref="donorPopupRef" Title="Add / Update Donor" ShowButtons="false" OnClose="HandleCancelOrClose">
+    <RegisterDonor 
+        SelectedDonorData="SelectedDonor" 
+        OnClose="HandleCancelOrClose" 
+        OnDonorAddedOrUpdated="RefreshDonorList" 
+        IsCreateUpdateDonorPopup="IsCreateUpdatePopup" />
+</CustomPopup> *@
+
+
 
 @if(ShowHistoryPopup){
     <div class="modal-overlay">
@@ -99,5 +108,7 @@ else
         </div>
     </div>
 }
+
+
 
 

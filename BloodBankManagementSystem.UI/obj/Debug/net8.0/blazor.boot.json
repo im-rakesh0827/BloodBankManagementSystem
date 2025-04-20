@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BloodBankManagementSystem.UI",
   "resources": {
-    "hash": "sha256-56ljK+D0xgFvWjP2Xk9HRJH2oHID4uEZxkZfyPQK/6Y=",
+    "hash": "sha256-NGCyZR/tvMfmRpjPK0qMjfexUFXpgdXt7h4OEHE+vyY=",
     "jsModuleNative": {
       "dotnet.native.8.0.14.m9s06tbr13.js": "sha256-DTUQS6Jc6BNnS7sYYezFfaUKVmQq0/lanhQuJfygH/k="
     },
@@ -247,14 +247,14 @@
       "mscorlib.wasm": "sha256-8L4O6tiH48gEZfzf0Y84J01S+3eEG59Bo5bfpH2H+9Y=",
       "netstandard.wasm": "sha256-sEvS/ZjfGhf1dLglmk72ysM50loOygjujJ/J5OhFLEw=",
       "System.Private.CoreLib.wasm": "sha256-BhHYDTpkph+YJOQuAlv6aSrvjTVX0WLTIDBXecinFXo=",
-      "BloodBankManagementSystem.Core.wasm": "sha256-uPbbx0kfQqdHhrtHebnfha9ACl1hbbuucs6rG2QVb7s=",
-      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-zV/esSS5ZFEZfrn3w/YyPJRPBb/hMJEEKC4/c60lzz8=",
-      "BloodBankManagementSystem.UI.wasm": "sha256-yI6Osg/nZVFLWtgOxCqIxnrwi12fEu05Q0AA4a3FZzo="
+      "BloodBankManagementSystem.Core.wasm": "sha256-KkF2H5z1BTjewVbu4C7TGF4bqzYHHZHvdj7LKYIRBxU=",
+      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-qknjDR1TP6WareO8hAkqYJ4b7LfnWgBdT6i+P45/R28=",
+      "BloodBankManagementSystem.UI.wasm": "sha256-SI0QkHAe/izQCz5zFsrrW4k6LK08pjVpOKhw0GSIhZk="
     },
     "pdb": {
-      "BloodBankManagementSystem.Core.pdb": "sha256-bB+nqUyqLEbDwTMV2H62JtzCrLTD9MNexe7uveLbaPU=",
-      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-emXbUEFSadPZm2so8NTUOU3VPCr9PkfjP0uoyOzmhjM=",
-      "BloodBankManagementSystem.UI.pdb": "sha256-PGuYQ5wdNlC3RKo8/+w2jo/1S5CTYaUYViC4pShylFg="
+      "BloodBankManagementSystem.Core.pdb": "sha256-FKxQuhS9wjycfyDcwS6/ZAhxs6bdYPaYLLsCcXGBTq0=",
+      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-++EynHyyREGe1z07Wk1l4Q6f3ovXrat8YIAQPt6WJQQ=",
+      "BloodBankManagementSystem.UI.pdb": "sha256-WyMwKrDAG7k/an7Z1yLR1RLCp9RSkAI1QbsEbOMmLtk="
     }
   },
   "cacheBootResources": true,

@@ -6,7 +6,7 @@
         <div class="position-relative">
             <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" @onclick="Close"></button>
         </div>
-        <h5 class="m-3">Donor History - @Donor?.FirstName @Donor?.LastName</h5>
+        <h5 class="m-3">Patient History - @Patient?.FirstName @Patient?.LastName</h5>
 
         @if (HistoryList != null && HistoryList.Any())
         {
@@ -36,7 +36,7 @@
         }
         else
         {
-            <p class="m-3">No donation history available.</p>
+            <p class="m-3">No history available.</p>
         }
     </div>
 }
@@ -44,6 +44,7 @@
 <style>
     .table-wrapper {
         max-height: 50vh;
+        min-height:50vh;
         overflow-y: auto;
         border: 1px solid #dee2e6;
     }
@@ -70,8 +71,8 @@
 @code {
     [Parameter] public bool IsVisible { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Parameter] public Donor? Donor { get; set; }
-    [Parameter] public List<DonorHistory> HistoryList { get; set; } = new();
+    [Parameter] public Patient? Patient { get; set; }
+    [Parameter] public List<PatientHistory> HistoryList { get; set; } = new();
 
     private void Close()
     {

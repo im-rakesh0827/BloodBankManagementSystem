@@ -23,8 +23,8 @@ namespace BloodBankManagementSystem.Core.Models{
         public string Address { get; set; } = string.Empty;
         public string CreatedBy { get; set; } = string.Empty;
         public string UpdatedBy { get; set; } = string.Empty;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
         public bool IsActive { get; set; } = true;
         public bool IsAlive { get; set; } = true;
         public string Country { get; set; } = string.Empty;

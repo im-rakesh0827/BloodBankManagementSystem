@@ -12,12 +12,26 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
 
         public UserRepository(AppDbContext context)
         {
-            _context = context;
+            try
+            {
+                _context = context;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            try
+            {
+                return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<List<User>> GetAllUsersAsync()
@@ -36,25 +50,70 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
 
         public async Task AddUserAsync(User user)
         {
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Users.Add(user);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception){
+                throw;
+            }
         }
 
         public async Task<User> GetUserByIdAsync(int userId)
         {
-            return await _context.Users.FindAsync(userId);
+            try{
+                return await _context.Users.FindAsync(userId);
+            }
+            catch(Exception){
+                throw;
+            }
         }
 
         public async Task UpdateUserAsync(User user)
         {
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
+            try{
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception){
+                throw;
+            }
         }
 
         public async Task DeleteAsync(User user)
         {
-          _context.Users.Remove(user);
-          await _context.SaveChangesAsync();
+          try{
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+          }
+          catch(Exception){
+            throw;
+          }
+        }
+
+        public async Task AddUserHistoryAsync(UserHistory history)
+        {
+            try{
+                _context.UserHistories.Add(history);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception){
+                throw;
+            }
+        }
+
+        public async Task<List<UserHistory>> GetUserHistoryByIdAsync(int userId)
+        {
+            try{
+                return await _context.UserHistories
+                                .Where(h => h.UserId == userId)
+                                .OrderByDescending(h => h.ActionDate)
+                                .ToListAsync();
+            }
+            catch(Exception){
+                throw;
+            }
         }
     }
 }

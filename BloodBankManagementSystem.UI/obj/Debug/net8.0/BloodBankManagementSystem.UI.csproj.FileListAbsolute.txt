@@ -1249,3 +1249,4 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/ref/BloodBankManagementSystem.UI.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Pages/DashboardComponent.razor.rz.scp.css
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Pages/Home.razor.rz.scp.css
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/scopedcss/Shared/CustomPopup.razor.rz.scp.css

@@ -12,12 +12,28 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
 
         public DonorRepository(AppDbContext context)
         {
-            _context = context;
+            try
+            {
+                _context = context;
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         public async Task<Donor?> GetDonorByEmailAsync(string email)
         {
-            return await _context.Donors.FirstOrDefaultAsync(u => u.Email == email);
+            try
+            {
+                return await _context.Donors.FirstOrDefaultAsync(u => u.Email == email);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         public async Task<List<Donor>> GetAllDonorsAsync()
@@ -36,48 +52,87 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
 
         public async Task AddDonorAsync(Donor donor)
         {
-            _context.Donors.Add(donor);
-            await _context.SaveChangesAsync();
+           try
+           {
+             _context.Donors.Add(donor);
+             await _context.SaveChangesAsync();
+           }
+           catch (System.Exception)
+           {
+            throw;
+           }
         }
 
         public async Task<Donor> GetDonorByIdAsync(int donorId)
         {
-            return await _context.Donors.FindAsync(donorId);
+            try
+            {
+                return await _context.Donors.FindAsync(donorId);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         public async Task UpdateDonorAsync(Donor donor)
         {
-            _context.Donors.Update(donor);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Donors.Update(donor);
+                await _context.SaveChangesAsync();
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         public async Task DeleteAsync(Donor donor)
         {
-          _context.Donors.Remove(donor);
-          await _context.SaveChangesAsync();
+          try
+          {
+            _context.Donors.Remove(donor);
+            await _context.SaveChangesAsync();
+          }
+          catch (System.Exception)
+          {
+            
+            throw;
+          }
         }
 
 
 
-        public async Task AddDonorHistoryAsync(DonorHistory history)
-{
-    _context.DonorHistories.Add(history);
-    await _context.SaveChangesAsync();
-}
-
-public async Task<List<DonorHistory>> GetHistoryByDonorIdAsync(int donorId)
-{
-    return await _context.DonorHistories
-                         .Where(h => h.DonorId == donorId)
-                         .OrderByDescending(h => h.ActionDate)
-                         .ToListAsync();
-}
-
-
-
-        
+    public async Task AddDonorHistoryAsync(DonorHistory history)
+    {
+        try
+        {
+            _context.DonorHistories.Add(history);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
     }
 
-
-
+    public async Task<List<DonorHistory>> GetHistoryByDonorIdAsync(int donorId)
+    {
+        try
+        {
+            return await _context.DonorHistories
+                            .Where(h => h.DonorId == donorId)
+                            .OrderByDescending(h => h.ActionDate)
+                            .ToListAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+    }       
+    }
 }

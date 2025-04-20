@@ -24,45 +24,61 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        Console.WriteLine("✅ API Login method hit!");
-
-        if (request == null || string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+        try
         {
-            return BadRequest("Invalid login request.");
-        }
+            Console.WriteLine("✅ API Login method hit!");
 
-        var user = await _userRepository.GetUserByEmailAsync(request.Email);
-        if (user == null)
-        {
-            return Unauthorized("User not found.");
-        }
+            if (request == null || string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+            {
+                return BadRequest("Invalid login request.");
+            }
 
-        if (!VerifyPassword(request.Password, user.PasswordHash))
-        {
-            return Unauthorized("Invalid credentials.");
-        }
+            var user = await _userRepository.GetUserByEmailAsync(request.Email);
+            if (user == null)
+            {
+                return Unauthorized("User not found.");
+            }
 
-        string token = _jwtTokenService.GenerateToken(user.Id.ToString(), user.Email);
-     //    return Ok(new { Token = token });
+            if (!VerifyPassword(request.Password, user.PasswordHash))
+            {
+                return Unauthorized("Invalid credentials.");
+            }
 
-          // var accessToken = GenerateJwtToken(user);
-          // var refreshToken = GenerateRefreshToken();
-          var accessToken = token;
+            string token = _jwtTokenService.GenerateToken(user.Id.ToString(), user.Email);
+        //    return Ok(new { Token = token });
+
+            // var accessToken = GenerateJwtToken(user);
+            // var refreshToken = GenerateRefreshToken();
+            var accessToken = token;
             return Ok(new
             {
                 token_type = "Bearer",
                 access_token = accessToken,
-                expires_in = DateTime.UtcNow.AddHours(9),
+                expires_in = DateTime.Now.AddHours(9),
             });
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
     }
     
 
     private bool VerifyPassword(string enteredPassword, string storedPasswordHash)
     {
-        using (var sha256 = System.Security.Cryptography.SHA256.Create())
+        try
         {
-            var enteredHash = System.Convert.ToBase64String(sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(enteredPassword)));
-            return enteredHash == storedPasswordHash;
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                var enteredHash = System.Convert.ToBase64String(sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(enteredPassword)));
+                return enteredHash == storedPasswordHash;
+            }
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
         }
     }
 }

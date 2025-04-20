@@ -6,9 +6,11 @@ using BloodBankManagementSystem.Core.Models;
 using BloodBankManagementSystem.UI.Helpers;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using BloodBankManagementSystem.UI.Shared;
+
 using System.Linq;
 using Microsoft.JSInterop;
-namespace BloodBankManagementSystem.UI.Pages
+namespace BloodBankManagementSystem.UI.Pages.Donors
 {
      public partial class ManageDonor{
      private List<Donor> AllDonorsList = new();
@@ -19,6 +21,7 @@ namespace BloodBankManagementSystem.UI.Pages
      private Donor SelectedDonor = new Donor();
      private int donorIdToDelete{get;set;} 
      private DotNetObjectReference<ManageDonor> objRef;
+     private CustomPopup donorPopupRef;
 
      protected override async Task OnInitializedAsync()
      {
@@ -50,12 +53,14 @@ namespace BloodBankManagementSystem.UI.Pages
     {
         SelectedDonor = new Donor();
         IsCreateUpdatePopup = true;
+        donorPopupRef?.Show(); // ✅ Opens the popup
     }
 
     private void OpenEditModal(Donor donor)
     {
         SelectedDonor = donor;
         IsCreateUpdatePopup = true;
+        donorPopupRef?.Show(); // ✅ Open the custom popup
     }
 
     protected override void OnInitialized()
@@ -105,6 +110,7 @@ namespace BloodBankManagementSystem.UI.Pages
     private void HandleCancelOrClose()
     {
         IsCreateUpdatePopup = false;
+        donorPopupRef?.Hide(); // ✅ Close popup
     }
 
 

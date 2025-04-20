@@ -11,44 +11,122 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
         private readonly AppDbContext _context;
         public PatientRepository(AppDbContext context)
         {
-          _context = context;
+          try
+          {
+            _context = context;
+          }
+          catch (System.Exception)
+          {
+            throw;
+          }
         }
         public async Task<int> RegisterPatientAsync(Patient patient)
         {
-          patient.CreatedAt = DateTime.UtcNow;
-          patient.UpdatedAt = DateTime.UtcNow;
-          patient.CreatedBy = "Admin";
-          patient.UpdatedBy = "Admin";
-          _context.Patients.Add(patient);
-          await _context.SaveChangesAsync();
-          return patient.PatientID;
+          try
+          {
+            patient.CreatedAt = DateTime.Now;
+            patient.CreatedBy = "Admin";
+            patient.UpdatedBy = "Admin";
+            _context.Patients.Add(patient);
+            await _context.SaveChangesAsync();
+            return patient.PatientID;
+          }
+          catch (System.Exception)
+          {
+            
+            throw;
+          }
         }
 
         public async Task<List<Patient>> GetAllPatientsAsync()
         {
-          return await _context.Patients.ToListAsync();
+          try
+          {
+            return await _context.Patients.ToListAsync();
+          }
+          catch (System.Exception)
+          {
+            throw;
+          }
         }
 
         public async Task<Patient> GetPatientByIdAsync(int id)
         {
-          return await _context.Patients.FindAsync(id);
+          try
+          {
+            return await _context.Patients.FindAsync(id);
+          }
+          catch (System.Exception)
+          {
+            throw;
+          }
         }
 
         public async Task<Patient?> GetPatientByEmailAsync(string email)
         {
-          return await _context.Patients.FirstOrDefaultAsync(u => u.Email == email);
+          try
+          {
+            return await _context.Patients.FirstOrDefaultAsync(u => u.Email == email);
+          }
+          catch (System.Exception)
+          {
+            throw;
+          }
         }
 
         public async Task UpdateAsync(Patient patient)
         {
-            _context.Patients.Update(patient);
-            await _context.SaveChangesAsync();
+            try
+            {
+              _context.Patients.Update(patient);
+              await _context.SaveChangesAsync();
+            }
+            catch (System.Exception)
+            {
+              throw;
+            }
         }
 
         public async Task DeleteAsync(Patient patient)
         {
-          _context.Patients.Remove(patient);
-          await _context.SaveChangesAsync();
+          try
+          {
+            _context.Patients.Remove(patient);
+            await _context.SaveChangesAsync();
+          }
+          catch (System.Exception)
+          {
+            throw;
+          }
+        }
+
+
+        public async Task AddPatientHistoryAsync(PatientHistory history)
+        {
+            try
+            {
+              _context.PatientHistories.Add(history);
+            await _context.SaveChangesAsync();
+            }
+            catch (System.Exception)
+            {
+              throw;
+            }
+        }
+
+        public async Task<List<PatientHistory>> GetHistoryPatientIdAsync(int patientId)
+        {
+            try
+            {
+              return await _context.PatientHistories
+                                .Where(h => h.PatientId == patientId)
+                                .OrderByDescending(h => h.ActionDate)
+                                .ToListAsync();
+            }
+            catch (System.Exception)
+            {
+              throw;
+            }
         }
     }
 }

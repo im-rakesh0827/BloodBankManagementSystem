@@ -29,7 +29,7 @@ namespace BloodBankManagementSystem.Core.Models{
         public bool IsAlive { get; set; } = true;
         public string CreatedBy { get; set; } = string.Empty;
         public string UpdatedBy { get; set; } = string.Empty;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; }
     }
 }

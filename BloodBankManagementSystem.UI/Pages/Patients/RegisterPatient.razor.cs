@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
 
-namespace BloodBankManagementSystem.UI.Pages
+namespace BloodBankManagementSystem.UI.Pages.Patients
 {
     public partial class RegisterPatient
     {
@@ -89,7 +89,7 @@ namespace BloodBankManagementSystem.UI.Pages
      {
           IsLoading = true;
           if(PatientModel!=null && PatientModel.PatientID>0){
-               await Task.Delay(1500);
+               await Task.Delay(500);
                await UpdatePatient();
           }
           else{
@@ -131,7 +131,7 @@ namespace BloodBankManagementSystem.UI.Pages
      private async Task UpdatePatient()
      {
           try{
-               var response = await Http.PutAsJsonAsync($"api/patients/{PatientModel.PatientID}", PatientModel);
+               var response = await Http.PutAsJsonAsync($"api/patients/update/{PatientModel.PatientID}", PatientModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "Patient information updated successfully!";

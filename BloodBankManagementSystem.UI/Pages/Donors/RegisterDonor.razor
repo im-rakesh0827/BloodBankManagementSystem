@@ -15,24 +15,6 @@
 }
 <h4>@PageTitle</h4>
 
-
-<!--
-@if (IsCreateUpdateDonorPopup)
-{
-    <div class="position-relative" style="margin: 0; padding: 0;"> 
-        <div style="background-color: rgb(27, 76, 125); padding: 5px; border-bottom: 1px solid gray; margin: 0;">
-            <h4 style="color:white;">@PageTitle</h4>
-        </div>
-
-        <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" style="color: white;" @onclick="HandleCancelOrClose"></button>
-    </div>
-}
-else
-{
-    <h4>@PageTitle</h4>
-}-->
-
-
 @if (!string.IsNullOrEmpty(Message))
 {
     <p class="alert alert-info">@Message</p>

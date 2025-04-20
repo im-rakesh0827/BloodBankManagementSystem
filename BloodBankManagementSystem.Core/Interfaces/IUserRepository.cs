@@ -13,5 +13,8 @@ namespace BloodBankManagementSystem.Core.Interfaces
         Task UpdateUserAsync(User user);
         Task DeleteAsync(User user);
 
+        Task AddUserHistoryAsync(UserHistory userHistory);
+        Task<List<UserHistory>> GetUserHistoryByIdAsync(int userId);
+
     }
 }

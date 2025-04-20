@@ -31,23 +31,15 @@ namespace BloodBankManagementSystem.API.Controllers
             {
                if (await _donorRepository.GetDonorByEmailAsync(donor.Email) != null)
                     return BadRequest("Donor already exists");
-
                await _donorRepository.AddDonorAsync(donor);
+               await AddHistory(donor.Id, "Sysstem User", "Create", "Donor crated successfully");
                bool emailSent = await SendEmail(donor);
-               if (!emailSent)
-               {
+               if(emailSent){
+                    await AddHistory(donor.Id, "Sysstem User", "Email", "Email sent successfully");
+               }
+               else{
                     return StatusCode(500, new { message = "Donor registered, but email failed to send" });
                }
-
-               var donorHistory = new DonorHistory
-                {
-                    ActionDate = DateTime.UtcNow,
-                    ActionType = "Registration",
-                    ActionUser = "System", // Or replace with logged-in admin/user info
-                    ActionNote = "New donor registered successfully.",
-                    DonorId = donor.Id // Ensure AddDonorAsync sets the Id properly
-                };
-                await _donorRepository.AddDonorHistoryAsync(donorHistory);
                return Ok(new { message = "Donor registered successfully, email sent" });
             }
             catch (Exception ex)
@@ -83,53 +75,62 @@ namespace BloodBankManagementSystem.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDonorById(int id)
         {
-            var donor = await _donorRepository.GetDonorByIdAsync(id);
-            if (donor == null)
-                return NotFound(new { message = "Donor not found" });
+            try
+            {
+                var donor = await _donorRepository.GetDonorByIdAsync(id);
+                if (donor == null)
+                    return NotFound(new { message = "Donor not found" });
 
-            return Ok(donor);
+                return Ok(donor);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         // Update donor
         [HttpPut("update/{donorId}")]
         public async Task<IActionResult> UpdateDonor(int donorId, [FromBody] Donor updatedDonor)
         {
-            var existingDonor = await _donorRepository.GetDonorByIdAsync(donorId);
-            if (existingDonor == null)
+            try
             {
-                return NotFound(new { message = "Donor not found." });
-            }
-
-            // Update fields
-            existingDonor.FirstName = updatedDonor.FirstName;
-            existingDonor.LastName = updatedDonor.LastName;
-            existingDonor.Email = updatedDonor.Email;
-            existingDonor.Phone = updatedDonor.Phone;
-            existingDonor.BloodGroup = updatedDonor.BloodGroup;
-            existingDonor.Gender = updatedDonor.Gender;
-            existingDonor.Age = updatedDonor.Age;
-            existingDonor.Weight = updatedDonor.Weight;
-            existingDonor.Address = updatedDonor.Address;
-            existingDonor.Country = updatedDonor.Country;
-            existingDonor.State = updatedDonor.State;
-            existingDonor.District = updatedDonor.District;
-            existingDonor.PinCode = updatedDonor.PinCode;
-            existingDonor.LastDonationDate = updatedDonor.LastDonationDate;
-            existingDonor.IsEligible = updatedDonor.IsEligible;
-            existingDonor.MedicalHistory = updatedDonor.MedicalHistory;
-            existingDonor.IsActive = updatedDonor.IsActive;
-
-            await _donorRepository.UpdateDonorAsync(existingDonor);
-            var donorHistory = new DonorHistory
+                var existingDonor = await _donorRepository.GetDonorByIdAsync(donorId);
+                if (existingDonor == null)
                 {
-                    ActionDate = DateTime.UtcNow,
-                    ActionType = "Update",
-                    ActionUser = "System",
-                    ActionNote = "Details updated successfully.",
-                    DonorId = updatedDonor.Id
-                };
-                await _donorRepository.AddDonorHistoryAsync(donorHistory);
-            return Ok(new { message = "Donor updated successfully" });
+                    return NotFound(new { message = "Donor not found." });
+                }
+
+                // Update fields
+                existingDonor.FirstName = updatedDonor.FirstName;
+                existingDonor.LastName = updatedDonor.LastName;
+                existingDonor.Email = updatedDonor.Email;
+                existingDonor.Phone = updatedDonor.Phone;
+                existingDonor.BloodGroup = updatedDonor.BloodGroup;
+                existingDonor.Gender = updatedDonor.Gender;
+                existingDonor.Age = updatedDonor.Age;
+                existingDonor.Weight = updatedDonor.Weight;
+                existingDonor.Address = updatedDonor.Address;
+                existingDonor.Country = updatedDonor.Country;
+                existingDonor.State = updatedDonor.State;
+                existingDonor.District = updatedDonor.District;
+                existingDonor.PinCode = updatedDonor.PinCode;
+                existingDonor.LastDonationDate = updatedDonor.LastDonationDate;
+                existingDonor.IsEligible = updatedDonor.IsEligible;
+                existingDonor.MedicalHistory = updatedDonor.MedicalHistory;
+                existingDonor.IsActive = updatedDonor.IsActive;
+                existingDonor.UpdatedAt = DateTime.Now;
+
+                await _donorRepository.UpdateDonorAsync(existingDonor);
+                await AddHistory(updatedDonor.Id, "Sysstem User", "Update", "Donor details updated");
+                return Ok(new { message = "Donor updated successfully" });
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         // Delete donor
@@ -207,7 +208,7 @@ namespace BloodBankManagementSystem.API.Controllers
                         </ul>
                         <p>Please keep your profile updated and help us when there is a need for blood.</p>
                         <a href='https://your-bloodbank-system.com/login' class='cta-button'>Update Profile</a>
-                        <p class='footer'>If you have any questions, feel free to reply to this email. <br> BloodBank Management System Team</p>
+                        <p class='footer'>If you have any questions, feel free to reply to this email. <br> Vital Drop Team</p>
                     </div>
                 </body>
                 </html>";
@@ -229,23 +230,40 @@ namespace BloodBankManagementSystem.API.Controllers
             }
         }
 
-
-[HttpPost]
-    [Route("history")]
-    public async Task<IActionResult> AddHistory(DonorHistory history)
+    public async Task<IActionResult> AddHistory(int donorId, string actionUser, string actionType, string actionNote)
     {
-        await _donorRepository.AddDonorHistoryAsync(history);
-        return Ok(new { message = "History added successfully." });
+        try
+        {
+            var donorHistory = new DonorHistory
+                {
+                    ActionDate = DateTime.Now,
+                    ActionType = actionType,
+                    ActionUser = actionUser,
+                    ActionNote = actionNote,
+                    DonorId = donorId
+                };
+            await _donorRepository.AddDonorHistoryAsync(donorHistory);
+            return Ok(new { message = "History added successfully." });
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 
     [HttpGet("history/{donorId}")]
     public async Task<ActionResult<IEnumerable<DonorHistory>>> GetHistoryByDonor(int donorId)
     {
-        var history = await _donorRepository.GetHistoryByDonorIdAsync(donorId);
-        return Ok(history);
+        try
+        {
+            var history = await _donorRepository.GetHistoryByDonorIdAsync(donorId);
+            return Ok(history);
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
     }
-
-
-        
-    }
+  }
 }

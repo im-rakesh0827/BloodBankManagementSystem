@@ -13,10 +13,7 @@ namespace BloodBankManagementSystem.Core.Interfaces
         Task UpdateDonorAsync(Donor donor);
         Task DeleteAsync(Donor donor);
 
-
         Task AddDonorHistoryAsync(DonorHistory history);
-        // Task<IEnumerable<DonorHistory>> GetHistoryByDonorIdAsync(int donorId);
         Task<List<DonorHistory>> GetHistoryByDonorIdAsync(int donorId);
-
     }
 }

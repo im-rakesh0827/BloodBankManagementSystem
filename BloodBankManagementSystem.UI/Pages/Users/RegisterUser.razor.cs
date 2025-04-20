@@ -9,7 +9,7 @@ using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
-namespace BloodBankManagementSystem.UI.Pages{
+namespace BloodBankManagementSystem.UI.Pages.Users{
      public partial class RegisterUser
      {
         private User UserModel = new();

@@ -65,6 +65,9 @@ else
                     <td>@user.Address</td>
                     <td>
                         <div class="d-flex gap-2">
+                           <button class="btn btn-sm" @onclick="() => ShowUsertHistory(user)">
+                              <HistoryIcon />
+                            </button>
                             <button class="btn btn-sm" @onclick="() => EditUser(user)">
                                 <EditViewIcon />
                             </button>
@@ -84,6 +87,19 @@ else
     <div class="modal-overlay">
         <div class="modal-content">
             <RegisterUser OnClose="CloseAddUserModal" OnUserAddedOrUpdated="RefreshUserList" SelectedUserData="SelectedUser" IsCreateUpdateUserPopup="IsCreateUpdatePopup" />
+        </div>
+    </div>
+}
+
+
+@if(ShowHistoryPopup){
+    <div class="modal-overlay">
+        <div class="modal-content">
+        <UserHistoryComponent 
+              IsVisible="ShowHistoryPopup"
+              User="SelectedUser"
+              HistoryList="UserHistoryList"
+              OnClose="CloseHistoryPopup" />
         </div>
     </div>
 }

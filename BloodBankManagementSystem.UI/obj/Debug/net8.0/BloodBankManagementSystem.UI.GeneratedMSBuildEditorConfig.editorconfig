@@ -26,68 +26,76 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/DeleteIcon.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVsZXRlSWNvbi5yYXpvcg==
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Donors/DonorHistoryComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9ub3JzL0Rvbm9ySGlzdG9yeUNvbXBvbmVudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/DonorHistoryComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9ub3JIaXN0b3J5Q29tcG9uZW50LnJhem9y
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Donors/ManageDonor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9ub3JzL01hbmFnZURvbm9yLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/EditViewIcon.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdFZpZXdJY29uLnJhem9y
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Donors/RegisterDonor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRG9ub3JzL1JlZ2lzdGVyRG9ub3IucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/HistoryIcon.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSGlzdG9yeUljb24ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/HospitalComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9zcGl0YWxDb21wb25lbnQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/LoaderComponent.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9hZGVyQ29tcG9uZW50LnJhem9y
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Hospital/HospitalComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9zcGl0YWwvSG9zcGl0YWxDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/ManageDonor.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlRG9ub3IucmF6b3I=
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Patients/ManagePatients.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGF0aWVudHMvTWFuYWdlUGF0aWVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/ManagePatients.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlUGF0aWVudHMucmF6b3I=
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Patients/PatientHistoryComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGF0aWVudHMvUGF0aWVudEhpc3RvcnlDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/ManageUsers.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTWFuYWdlVXNlcnMucmF6b3I=
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Patients/RegisterPatient.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGF0aWVudHMvUmVnaXN0ZXJQYXRpZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/RegisterDonor.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXJEb25vci5yYXpvcg==
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Requests/RequestBlood.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVxdWVzdHMvUmVxdWVzdEJsb29kLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/RegisterPatient.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXJQYXRpZW50LnJhem9y
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Users/ManageUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvTWFuYWdlVXNlcnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/RegisterUser.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXJVc2VyLnJhem9y
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Users/RegisterUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvUmVnaXN0ZXJVc2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Users/UserHistoryComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVXNlcnMvVXNlckhpc3RvcnlDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/ValidationMessageComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmFsaWRhdGlvbk1lc3NhZ2VDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/CustomPopup.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0N1c3RvbVBvcHVwLnJhem9y
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/DeleteIcon.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0RlbGV0ZUljb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/EditViewIcon.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0VkaXRWaWV3SWNvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/GenericTable.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0dlbmVyaWNUYWJsZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/HistoryIcon.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0hpc3RvcnlJY29uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/LoaderComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0xvYWRlckNvbXBvbmVudC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/RedirectToLogin.razor]
@@ -113,3 +121,7 @@ build_metadata.AdditionalFiles.CssScope = b-w7gcqouxhw
 [/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-k95ys2e6s7
+
+[/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/Shared/CustomPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0N1c3RvbVBvcHVwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-33qb8mjw80

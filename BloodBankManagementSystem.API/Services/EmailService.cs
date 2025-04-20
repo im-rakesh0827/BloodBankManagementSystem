@@ -15,8 +15,16 @@ namespace BloodBankManagementSystem.API.Services
 
         public EmailService(IOptions<EmailSettings> emailSettings, ILogger<EmailService> logger)
         {
-            _emailSettings = emailSettings.Value;
-            _logger = logger;
+            try
+            {
+                _emailSettings = emailSettings.Value;
+                _logger = logger;
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         public async Task<bool> SendEmailAsync(string toEmail, string subject, string body)

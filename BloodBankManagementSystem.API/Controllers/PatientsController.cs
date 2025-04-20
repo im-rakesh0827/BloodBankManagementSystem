@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.API.Services; 
-using Microsoft.Extensions.Logging; // Make sure to include this
+using Microsoft.Extensions.Logging;
 
 namespace BloodBankManagementSystem.API.Controllers{
      [Route("api/[controller]")]
@@ -25,70 +25,98 @@ namespace BloodBankManagementSystem.API.Controllers{
         [HttpPost("register")]
         public async Task<IActionResult> RegisterPatient([FromBody] Patient patient)
         {
-            if (patient == null)
+            try
             {
-                return BadRequest("Invalid patient data.");
+                if (patient == null)
+                {
+                    return BadRequest("Invalid patient data.");
+                }
+                if (await _patientRepository.GetPatientByEmailAsync(patient.Email) != null)
+                        return BadRequest("Patient already exists");
+                var patientId = await _patientRepository.RegisterPatientAsync(patient);
+                await AddHistory(patientId, "Sysstem User", "Create", "Patient created/registered");
+                bool emailSent = await SendEmail(patient);
+                if(emailSent){
+                    await AddHistory(patientId, "Sysstem User", "Email", "Email sent");
+                }
+                else{
+                    return StatusCode(500, new { message = "Donor registered, but email failed to send" });
+                }
+                return Ok(new { message = "Patient registered successfully, email sent" });
             }
-            if (await _patientRepository.GetPatientByEmailAsync(patient.Email) != null)
-                    return BadRequest("Patient already exists");
-            var patientId = await _patientRepository.RegisterPatientAsync(patient);
-            bool emailSent = await SendEmail(patient);
-            if (!emailSent)
+            catch (System.Exception)
             {
-                return StatusCode(500, new { message = "Donor registered, but email failed to send" });
+                
+                throw;
             }
-            return Ok(new { message = "Patient registered successfully, email sent" });
         }
 
         // Get all patients
         [HttpGet("allPatients")]
         public async Task<IActionResult> GetAllPatients()
         {
-            var patients = await _patientRepository.GetAllPatientsAsync();
-            return Ok(patients);
+            try
+            {
+                var patients = await _patientRepository.GetAllPatientsAsync();
+                return Ok(patients);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
         // Get patient by ID
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPatientById(int id)
         {
-            var patient = await _patientRepository.GetPatientByIdAsync(id);
-            if (patient == null)
-                return NotFound("Patient not found");
-            return Ok(patient);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdatePatient(int id, [FromBody] Patient updatedPatient)
-        {
-            if (updatedPatient == null || id != updatedPatient.PatientID)
-            {
-                return BadRequest("Invalid patient data or ID mismatch.");
-            }
-
-            var existingPatient = await _patientRepository.GetPatientByIdAsync(id);
-            if (existingPatient == null)
-            {
-                return NotFound("Patient not found.");
-            }
-            // Update patient details
-            existingPatient.FirstName = updatedPatient.FirstName;
-            existingPatient.LastName = updatedPatient.LastName;
-            existingPatient.Age = updatedPatient.Age;
-            existingPatient.BloodTypeNeeded = updatedPatient.BloodTypeNeeded;
-            existingPatient.PhoneNumber = updatedPatient.PhoneNumber;
-            existingPatient.Address = updatedPatient.Address;
-            existingPatient.Country = updatedPatient.Country;
-            existingPatient.State = updatedPatient.State;
-            existingPatient.District = updatedPatient.District;
-            existingPatient.PinCode = updatedPatient.PinCode;
-            existingPatient.CreatedBy = updatedPatient.CreatedBy;
-            existingPatient.CreatedAt = updatedPatient.CreatedAt;
-            existingPatient.UpdatedBy = updatedPatient.UpdatedBy;
-            existingPatient.UpdatedAt = updatedPatient.UpdatedAt;
-            existingPatient.IsAlive = updatedPatient.IsAlive;
             try
             {
+                var patient = await _patientRepository.GetPatientByIdAsync(id);
+                if (patient == null) return NotFound("Patient not found");
+                return Ok(patient);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdatePatient(int id, [FromBody] Patient updatedPatient)
+        {
+            try
+            {
+                if (updatedPatient == null || id != updatedPatient.PatientID)
+                {
+                    return BadRequest("Invalid patient data or ID mismatch.");
+                }
+
+                var existingPatient = await _patientRepository.GetPatientByIdAsync(id);
+                if (existingPatient == null)
+                {
+                    return NotFound("Patient not found.");
+                }
+                // Update patient details
+                existingPatient.FirstName = updatedPatient.FirstName;
+                existingPatient.LastName = updatedPatient.LastName;
+                existingPatient.Age = updatedPatient.Age;
+                existingPatient.BloodTypeNeeded = updatedPatient.BloodTypeNeeded;
+                existingPatient.PhoneNumber = updatedPatient.PhoneNumber;
+                existingPatient.Address = updatedPatient.Address;
+                existingPatient.Country = updatedPatient.Country;
+                existingPatient.State = updatedPatient.State;
+                existingPatient.District = updatedPatient.District;
+                existingPatient.PinCode = updatedPatient.PinCode;
+                // existingPatient.CreatedBy = updatedPatient.CreatedBy;
+                // existingPatient.CreatedAt = updatedPatient.CreatedAt;
+                existingPatient.UpdatedBy = updatedPatient.UpdatedBy;
+                existingPatient.UpdatedAt = DateTime.Now;
+                existingPatient.IsAlive = updatedPatient.IsAlive;
+            
                 await _patientRepository.UpdateAsync(existingPatient);
+                await AddHistory(updatedPatient.PatientID, "Sysstem User", "Update", "Patient details updated");
                 return Ok(new { message = "Patient details updated successfully." });
             }
             catch
@@ -100,24 +128,34 @@ namespace BloodBankManagementSystem.API.Controllers{
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePatient(int id)
         {
-            var patient = await _patientRepository.GetPatientByIdAsync(id);
-            if (patient == null)
+            try
             {
-                return NotFound(new { message = "Patient not found." });
-            }
-            // await _patientRepository.DeleteAsync(patient);
-            patient.IsActive = false;
-            // Update the patient record in the database
-            await _patientRepository.UpdateAsync(patient);
+                var patient = await _patientRepository.GetPatientByIdAsync(id);
+                if (patient == null)
+                {
+                    return NotFound(new { message = "Patient not found." });
+                }
+                // await _patientRepository.DeleteAsync(patient);
+                patient.IsActive = false;
+                // patient.IsAlive = false;
+                // Update the patient record in the database
+                await _patientRepository.UpdateAsync(patient);
+                await AddHistory(id, "Sysstem User", "Delete", "Patient deleted");
 
-            return Ok(new { message = "Patient deleted successfully." });
+                return Ok(new { message = "Patient deleted successfully." });
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         private async Task<bool> SendEmail(Patient patient)
         {
             try
             {
-                string subject = "🩸 Welcome to BloodBank Management System!";
+                string subject = "🩸 Welcome to Vital Drop";
                 string body = $@"
                 <html>
                 <head>
@@ -171,7 +209,7 @@ namespace BloodBankManagementSystem.API.Controllers{
                 <body>
                     <div class='container'>
                         <h2>Welcome, {patient.FirstName}! 🏥</h2>
-                        <p>Thank you for registering with <strong>BloodBank Management System</strong>.</p>
+                        <p>Thank you for registering with <strong>Vital Drop</strong>.</p>
                         
                         <div class='info-box'>
                             <p>Your account has been successfully created! Here are your details:</p>
@@ -205,5 +243,45 @@ namespace BloodBankManagementSystem.API.Controllers{
                 return false;
             }
     }
+
+
+    
+    public async Task<IActionResult> AddHistory(int patinetId, string actionUser, string actionType, string actionNote)
+    {
+        try
+        {
+            var patientHistory = new PatientHistory
+            {
+                ActionDate = DateTime.Now,
+                ActionType = actionType,
+                ActionUser = actionUser,
+                ActionNote = actionNote,
+                PatientId = patinetId
+            };
+            await _patientRepository.AddPatientHistoryAsync(patientHistory);
+            return Ok(new { message = "History added successfully." });
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+    }
+
+    [HttpGet("history/{patinetId}")]
+    public async Task<ActionResult<IEnumerable<PatientHistory>>> GetHistoryByPatientId(int patinetId)
+    {
+        try
+        {
+            var history = await _patientRepository.GetHistoryPatientIdAsync(patinetId);
+            return Ok(history);
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+    }
+
     }    
 }

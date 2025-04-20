@@ -1,0 +1,16 @@
+@* @page "/request-blood"
+@inject HttpClient Http
+
+<h3>Request Blood</h3>
+
+<EditForm Model="request" OnValidSubmit="SubmitRequest">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <InputText @bind-Value="request.PatientName" placeholder="Name" />
+    <InputText @bind-Value="request.BloodGroup" placeholder="Blood Group" />
+    <InputNumber @bind-Value="request.UnitsRequired" />
+    <InputText @bind-Value="request.Location" />
+    <InputText @bind-Value="request.ContactNumber" />
+
+    <button class="btn btn-primary">Submit</button>
+</EditForm> *@

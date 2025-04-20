@@ -3,12 +3,10 @@ namespace BloodBankManagementSystem.UI.Helpers
     public static class ServerConstants
     {
 
-
-
-        // [StringValue("api/donors/history")]
-
         public const string BaseApiUrl = "https://localhost:5001/api/";
-
+        public const string GetPatientHistoryById = "api/patients/history/"; 
+        public const string GetUserHistoryById = "api/users/history/"; 
+        
         public static class Donor
         {
             public const string GetDonorHistoryById = "api/donors/history/"; 

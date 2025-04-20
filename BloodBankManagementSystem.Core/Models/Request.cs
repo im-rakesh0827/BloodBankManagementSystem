@@ -4,7 +4,7 @@ namespace BloodBankManagementSystem.Core.Models{
         public int RequestID { get; set; }
         public int PatientID { get; set; }
         public int BloodID { get; set; }
-        public DateTime RequestDate { get; set; } = DateTime.UtcNow;
+        public DateTime RequestDate { get; set; } = DateTime.Now;
         public string Status { get; set; } = "Pending";
         
         // Navigation Properties (Optional)

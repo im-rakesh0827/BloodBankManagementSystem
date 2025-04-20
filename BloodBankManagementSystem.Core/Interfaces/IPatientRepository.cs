@@ -13,5 +13,8 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
      //    Task<Patient?> FindByIdAsync(int id);
         Task UpdateAsync(Patient patient);
         Task DeleteAsync(Patient patient);
+
+        Task AddPatientHistoryAsync(PatientHistory patientHistory);
+        Task<List<PatientHistory>> GetHistoryPatientIdAsync(int patientId);
     }
 }

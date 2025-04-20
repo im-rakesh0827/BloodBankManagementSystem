@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using BloodBankManagementSystem.UI.Helpers;
 using System.Linq;
 using Microsoft.JSInterop;
 
-namespace BloodBankManagementSystem.UI.Pages
+namespace BloodBankManagementSystem.UI.Pages.Patients
 {
     public partial class ManagePatients
     {
@@ -128,5 +129,47 @@ namespace BloodBankManagementSystem.UI.Pages
           }
            StateHasChanged();
      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+     private bool ShowHistoryPopup = false;
+    private List<PatientHistory> PatientHistoryList = new();
+
+    private async Task ShowPatientHistory(Patient patient)
+    {
+        SelectedPatient = patient;
+        PatientHistoryList = await GetPatientHistory(patient.PatientID); 
+        ShowHistoryPopup = true;
+    }
+
+    private void CloseHistoryPopup()
+    {
+        ShowHistoryPopup = false;
+    }
+
+private async Task<List<PatientHistory>> GetPatientHistory(int patientId)
+{
+    try
+    {
+        var url = $"{ServerConstants.GetPatientHistoryById}{patientId}";
+        var response = await Http.GetFromJsonAsync<List<PatientHistory>>(url);
+        return response ?? new List<PatientHistory>();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error fetching patient history: {ex.Message}");
+        return new List<PatientHistory>();
+    }
+}
     }
 }

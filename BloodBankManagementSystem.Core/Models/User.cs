@@ -36,8 +36,8 @@ using System.ComponentModel.DataAnnotations;
         // [RegularExpression("^(User|Admin)$", ErrorMessage = "Role must be either 'User' or 'Admin'.")]
         public string Role { get; set; } = "User";
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
 
         // [Required]
         public string CreatedBy { get; set; } = "System";

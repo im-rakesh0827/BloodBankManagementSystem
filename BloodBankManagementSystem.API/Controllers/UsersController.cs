@@ -31,9 +31,14 @@ namespace BloodBankManagementSystem.API.Controllers
                 string UserPassword = user.PasswordHash;
                 user.PasswordHash = HashPassword(user.PasswordHash);
                 await _userRepository.AddUserAsync(user);
+                await AddHistory(user.Id, "System User", "Register", "User registered");
                 user.PasswordHash = UserPassword;
                 bool emailSent = await SendEmail(user);
-                if (!emailSent)
+                if(emailSent)
+                {
+                    await AddHistory(user.Id, "System User", "Email Sent", "Email sent");
+                }
+                else
                 {
                     return StatusCode(500, new { message = "User registered, but email failed to send" });
                 }
@@ -73,56 +78,91 @@ namespace BloodBankManagementSystem.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] User loginRequest)
         {
-            var user = await _userRepository.GetUserByEmailAsync(loginRequest.Email);
-            if (user == null || !VerifyPassword(loginRequest.PasswordHash, user.PasswordHash))
-                return Unauthorized("Invalid credentials");
-
-            return Ok(new { message = "Login successful", role = user.Role });
+            try
+            {
+                var user = await _userRepository.GetUserByEmailAsync(loginRequest.Email);
+                if (user == null || !VerifyPassword(loginRequest.PasswordHash, user.PasswordHash))
+                    return Unauthorized("Invalid credentials");
+                return Ok(new { message = "Login successful", role = user.Role });
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
 
         [HttpPut("update/{userId}")]
         public async Task<IActionResult> UpdateUser(int userId, [FromBody] User updatedUser)
         {
-            var existingUser = await _userRepository.GetUserByIdAsync(userId);
-            if (existingUser == null)
+            try
             {
-                return NotFound(new { message = "User not found." });
+                var existingUser = await _userRepository.GetUserByIdAsync(userId);
+                if (existingUser == null)
+                {
+                    return NotFound(new { message = "User not found." });
+                }
+                existingUser.FirstName = updatedUser.FirstName;
+                existingUser.LastName = updatedUser.LastName;
+                existingUser.Email = updatedUser.Email;
+                existingUser.Phone = updatedUser.Phone;
+                existingUser.Role = updatedUser.Role;
+                existingUser.Address = updatedUser.Address;
+                existingUser.UpdatedAt = DateTime.Now;
+
+                if (!string.IsNullOrEmpty(updatedUser.PasswordHash))
+                {
+                    existingUser.PasswordHash = HashPassword(updatedUser.PasswordHash);
+                }
+                await _userRepository.UpdateUserAsync(existingUser);
+                await AddHistory(existingUser.Id, "System User", "Update", "User details updated");
+
+                return Ok(new { message = "User updated successfully" });
             }
-            existingUser.FirstName = updatedUser.FirstName;
-            existingUser.LastName = updatedUser.LastName;
-            existingUser.Email = updatedUser.Email;
-            existingUser.Phone = updatedUser.Phone;
-            existingUser.Role = updatedUser.Role;
-            existingUser.Address = updatedUser.Address;
-            if (!string.IsNullOrEmpty(updatedUser.PasswordHash))
+            catch (System.Exception)
             {
-                existingUser.PasswordHash = HashPassword(updatedUser.PasswordHash);
+                
+                throw;
             }
-            await _userRepository.UpdateUserAsync(existingUser);
-            return Ok(new { message = "User updated successfully" });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _userRepository.GetUserByIdAsync(id);
-            if (user == null)
+            try
             {
-                return NotFound(new { message = "User not found." });
+                var user = await _userRepository.GetUserByIdAsync(id);
+                if (user == null)
+                {
+                    return NotFound(new { message = "User not found." });
+                }
+                // await _userRepository.DeleteAsync(user);
+                user.IsActive = false;
+                await _userRepository.UpdateUserAsync(user);
+                await AddHistory(user.Id, "System User", "Delete", "User deleted/removed");
+                return Ok(new { message = "User deleted successfully." });
             }
-            // await _userRepository.DeleteAsync(user);
-            user.IsActive = false;
-            await _userRepository.UpdateUserAsync(user);
-            return Ok(new { message = "User deleted successfully." });
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         private string HashPassword(string password)
         {
-            using var sha256 = SHA256.Create();
-            var bytes = Encoding.UTF8.GetBytes(password);
-            var hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
+            try
+            {
+                using var sha256 = SHA256.Create();
+                var bytes = Encoding.UTF8.GetBytes(password);
+                var hash = sha256.ComputeHash(bytes);
+                return Convert.ToBase64String(hash);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         private bool VerifyPassword(string inputPassword, string storedHash)
@@ -134,7 +174,7 @@ namespace BloodBankManagementSystem.API.Controllers
     {
         try
         {
-            string subject = "🎉 Welcome to BloodBank Management System!";
+            string subject = "🎉 Welcome to Vital Drop";
             string body = $@"
             <html>
             <head>
@@ -180,7 +220,7 @@ namespace BloodBankManagementSystem.API.Controllers
             <body>
                 <div class='container'>
                     <h2>Welcome, {user.FirstName}! 🎉</h2>
-                    <p>Thank you for registering with <strong>BloodBank Management System</strong>. 🩸</p>
+                    <p>Thank you for registering with <strong>Vital Drop</strong>. 🩸</p>
                     <p>Here are your details:</p>
                     <ul>
                         <li><strong>Name:</strong> {user.FirstName} {user.LastName}</li>
@@ -206,6 +246,44 @@ namespace BloodBankManagementSystem.API.Controllers
         {
             _logger.LogError($"Exception while sending email: {ex.Message}");
             return false;
+        }
+    }
+
+
+
+    public async Task<IActionResult> AddHistory(int userId, string actionUser, string actionType, string actionNote)
+    {
+        try
+        {
+            var userHistory = new UserHistory
+            {
+                ActionDate = DateTime.Now,
+                ActionType = actionType,
+                ActionUser = actionUser,
+                ActionNote = actionNote,
+                UserId = userId
+            };
+            await _userRepository.AddUserHistoryAsync(userHistory);
+            return Ok(new { message = "History added successfully." });
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
+    }
+
+    [HttpGet("history/{userId}")]
+    public async Task<ActionResult<IEnumerable<UserHistory>>> GetHistoryByUserId(int userId)
+    {
+        try
+        {
+            var history = await _userRepository.GetUserHistoryByIdAsync(userId);
+            return Ok(history);
+        }
+        catch (System.Exception)
+        {
+            throw;
         }
     }
     }

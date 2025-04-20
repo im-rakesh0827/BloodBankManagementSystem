@@ -51,17 +51,17 @@
 
             <div class="mb-3">
                 <label class="form-label">Email:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.Email" tabindex="3" />
+                <InputText class="form-control" @bind-Value="PatientModel.Email" tabindex="4" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Age:</label>
-                <InputNumber class="form-control" @bind-Value="PatientModel.Age" tabindex="5" />
+                <InputNumber class="form-control" @bind-Value="PatientModel.Age" tabindex="7" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Blood Type Needed:</label>
-                <InputSelect class="form-control" @bind-Value="PatientModel.BloodTypeNeeded" tabindex="7">
+                <InputSelect class="form-control" @bind-Value="PatientModel.BloodTypeNeeded" tabindex="10">
                     <option value="">Select Blood Type</option>
                     @foreach (var bloodGroup in BloodGroupsList)
                     {
@@ -80,17 +80,17 @@
 
             <div class="mb-3">
                 <label class="form-label">Phone Number:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.PhoneNumber" tabindex="4" />
+                <InputText class="form-control" @bind-Value="PatientModel.PhoneNumber" tabindex="5" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Weight:</label>
-                <InputNumber class="form-control" @bind-Value="PatientModel.Weight" tabindex="6" />
+                <InputNumber class="form-control" @bind-Value="PatientModel.Weight" tabindex="8" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Country:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.Country" tabindex="8" />
+                <InputText class="form-control" @bind-Value="PatientModel.Country" tabindex="11" />
             </div>
         </div>
 
@@ -98,17 +98,17 @@
         <div class="col-md-4">
             <div class="mb-3">
                 <label class="form-label">State:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.State" tabindex="9" />
+                <InputText class="form-control" @bind-Value="PatientModel.State" tabindex="3" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">District:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.District" tabindex="10" />
+                <InputText class="form-control" @bind-Value="PatientModel.District" tabindex="6" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Pin Code:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.PinCode" tabindex="11" />
+                <InputText class="form-control" @bind-Value="PatientModel.PinCode" tabindex="9" />
             </div>
 
             <div class="mb-3">

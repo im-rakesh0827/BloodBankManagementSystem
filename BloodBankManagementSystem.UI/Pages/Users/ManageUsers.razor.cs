@@ -3,11 +3,13 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
+using BloodBankManagementSystem.UI.Pages;
+using BloodBankManagementSystem.UI.Helpers;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
-namespace BloodBankManagementSystem.UI.Pages
+namespace BloodBankManagementSystem.UI.Pages.Users
 {
     public partial class ManageUsers
     {
@@ -119,7 +121,6 @@ namespace BloodBankManagementSystem.UI.Pages
     }
 
     public void ApplyFilterUser(){
-        Console.WriteLine("Filter method");
         if(IsShowActiveOnly){
             FilteredUsersList = AllUsersList.Where(p => p.IsActive && p.IsAlive).ToList();
         }
@@ -127,5 +128,38 @@ namespace BloodBankManagementSystem.UI.Pages
             FilteredUsersList = AllUsersList.Where(p => p.IsActive).ToList();
         }
     }
+
+
+
+
+    private bool ShowHistoryPopup = false;
+    private List<UserHistory> UserHistoryList = new();
+
+    private async Task ShowUsertHistory(User user)
+    {
+        SelectedUser = user;
+        UserHistoryList = await GetUserHistory(user.Id); 
+        ShowHistoryPopup = true;
+    }
+
+    private void CloseHistoryPopup()
+    {
+        ShowHistoryPopup = false;
+    }
+
+private async Task<List<UserHistory>> GetUserHistory(int userId)
+{
+    try
+    {
+        var url = $"{ServerConstants.GetUserHistoryById}{userId}";
+        var response = await Http.GetFromJsonAsync<List<UserHistory>>(url);
+        return response ?? new List<UserHistory>();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error fetching patient history: {ex.Message}");
+        return new List<UserHistory>();
+    }
+}
 }
 }
