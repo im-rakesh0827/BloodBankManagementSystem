@@ -19,7 +19,7 @@ public class BloodRequestController : ControllerBase
         _repository = repository;
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> RequestBlood([FromBody] BloodRequest request)
     {
         try
@@ -34,7 +34,7 @@ public class BloodRequestController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("allBloodRequests")]
     public async Task<ActionResult<List<BloodRequest>>> GetAllRequests()
     {
        try
@@ -47,19 +47,25 @@ public class BloodRequestController : ControllerBase
        }
     }
 
-    [HttpPut("{id}/status")]
-    public async Task<IActionResult> UpdateStatus(int id, [FromBody] string status)
+
+    [HttpPut("updatestatus/{id}")]
+    public async Task<IActionResult> UpdateBloodRequestStatus(int id, [FromQuery] bool status)
     {
-        try
-        {
-            await _repository.UpdateRequestStatusAsync(id, status);
-            return Ok(new { message = "Status updated" });
-        }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
+        string StatusValue = status?"Approved":"Rejected";
+        var updated = await _repository.UpdateRequestStatusAsync(id, StatusValue);
+        if (!updated)
+            return NotFound(new { message = "Blood request not found." });
+
+        return Ok(new { message = "Blood request approved successfully." });
+    }
+
+
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _repository.DeleteRequestAsync(id);
+        return Ok();
     }
 }
 }

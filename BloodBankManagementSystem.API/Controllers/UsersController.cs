@@ -251,7 +251,7 @@ namespace BloodBankManagementSystem.API.Controllers
 
 
 
-    public async Task<IActionResult> AddHistory(int userId, string actionUser, string actionType, string actionNote)
+    private async Task AddHistory(int userId, string actionUser, string actionType, string actionNote)
     {
         try
         {
@@ -264,7 +264,7 @@ namespace BloodBankManagementSystem.API.Controllers
                 UserId = userId
             };
             await _userRepository.AddUserHistoryAsync(userHistory);
-            return Ok(new { message = "History added successfully." });
+            // return Ok(new { message = "History added successfully." });
         }
         catch (System.Exception)
         {

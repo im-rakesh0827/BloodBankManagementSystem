@@ -1,0 +1,32 @@
+@inject HttpClient Http
+
+<h3>My Blood Requests</h3>
+
+@if (requests == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Blood Group</th>
+                <th>Units</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var req in requests)
+        {
+            <tr>
+                <td>@req.BloodGroup</td>
+                <td>@req.UnitsRequired</td>
+                <td>@req.RequestedDate.ToString("yyyy-MM-dd")</td>
+                <td>@req.Status</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

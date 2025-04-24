@@ -63,23 +63,33 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
         }
     }
 
-    public async Task UpdateRequestStatusAsync(int id, string status)
+
+    public async Task<bool> UpdateRequestStatusAsync(int id, string status)
+{
+    try
     {
-        try
+        var request = await _context.BloodRequests.FindAsync(id);
+        if (request != null)
         {
-            var request = await _context.BloodRequests.FindAsync(id);
-            if (request != null)
-            {
-                request.Status = status;
-                await _context.SaveChangesAsync();
+            if(status=="Delete"){
+                // request.IsActive = false;
             }
+            if(status=="Approved"){
+                request.ApprovedDate = DateTime.Now;
+            }
+            request.Status = status;
+            await _context.SaveChangesAsync();
+            return true;
         }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
+
+        return false; // Not found
     }
+    catch (Exception)
+    {
+        // Log exception if needed
+        throw;
+    }
+}
 
      public async Task DeleteRequestAsync(int id)
     {

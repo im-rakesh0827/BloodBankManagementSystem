@@ -1,0 +1,114 @@
+@page "/manageRequest"
+
+@inject IJSRuntime JSRuntime
+@inject HttpClient Http
+
+
+@if (IsLoading)
+{
+     <LoaderComponent></LoaderComponent>
+}
+<div class="d-flex align-items-center">
+    <h4 class="me-3">Blood Requests
+        <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreateRequestPopup">+ New Request</button>
+    </h4>
+</div>
+
+@if (FilteredRequestsList is null)
+{
+    <p>Loading...</p>
+}
+else if (!FilteredRequestsList.Any())
+{
+    <p>No blood requests found.</p>
+}
+else
+{
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Requester Type</th>
+                <th>Requester Name</th>
+                <th>Gender</th>
+                <th>Blood Group</th>
+                <th>Units Required</th>
+                @* <th>Location</th> *@
+                <th>Contact Number</th>
+                @* <th>Email</th> *@
+                <th>Status</th>
+                <th>Requested Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in FilteredRequestsList)
+            {
+                <tr>
+                    <td>@request.RequesterType</td>
+                    <td>@request.PatientName</td>
+                    <td>@request.Gender</td>
+                    <td>@request.BloodGroup</td>
+                    <td>@request.UnitsRequired</td>
+                    @* <td>@request.Location</td> *@
+                    <td>@request.ContactNumber</td>
+                    @* <td>@request.Email</td> *@
+                    <td>@request.Status</td>
+                    <td>@request.RequestedDate.ToShortDateString()</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            @if(IsAdmin){
+                                   <button class="btn btn-sm" @onclick="() => OpenEditRequestModal(request)">
+                                        <EditViewIcon />
+                                   </button>
+                                   <button class="btn btn-sm" @onclick="() => DeleteRequest(request.Id)">
+                                        <DeleteIcon />
+                                   </button>
+                            }
+                            <button 
+                                   class="btn btn-sm btn-success" 
+                                   title="Approve" 
+                                   disabled="@("Approved".Equals(request.Status, StringComparison.OrdinalIgnoreCase))"
+                                   @onclick="@(() => UpdateRequestStatus(request.Id, "Approve"))">
+                                   Approve
+                            </button>
+                            <button class="btn btn-sm btn-danger" 
+                                    title="Reject" 
+                                    disabled="@("Rejected".Equals(request.Status, StringComparison.OrdinalIgnoreCase))"
+                                     @onclick="@(() => UpdateRequestStatus(request.Id, "Reject"))">
+                                   Reject
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<!-- Create/Edit Request Modal -->
+@if (IsCreateUpdatePopup)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <RequestBlood 
+                SelectedRequest="SelectedRequest"
+                OnClose="HandleCreateUpdatePopup"
+                IsCreateUpdateRequestPopup="IsCreateUpdatePopup"
+                />
+        </div>
+    </div>
+}
+
+<!-- View Request Details Modal -->
+@if (ShowDetailsPopup)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <RequestBlood 
+                SelectedRequest="SelectedRequest"
+                IsCreateUpdateRequestPopup="IsCreateUpdatePopup"
+                OnClose="OpenCreateRequestPopup" />
+        </div>
+    </div>
+}
+

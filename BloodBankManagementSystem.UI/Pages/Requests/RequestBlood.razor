@@ -1,16 +1,95 @@
-@* @page "/request-blood"
+@page "/bloodRequest"
 @inject HttpClient Http
+@inject NavigationManager Nav
+@inject IJSRuntime JSRuntime
 
-<h3>Request Blood</h3>
 
-<EditForm Model="request" OnValidSubmit="SubmitRequest">
+@if (IsLoading)
+{
+     <LoaderComponent></LoaderComponent>
+}
+
+@if (IsCreateUpdateRequestPopup)
+{
+    <div class="position-relative">
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" @onclick="HandleCancelOrClose"></button>
+    </div>
+}
+
+<h4 class="page-header">Blood Request Form</h4>
+
+@* @if (isSuccess)
+{
+    <div class="alert alert-success">Blood request submitted successfully!</div>
+}
+else if (hasError)
+{
+    <div class="alert alert-danger">An error occurred while submitting the request.</div>
+} *@
+
+<EditForm Model="requestModel" OnValidSubmit="SubmitRequest">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    <InputText @bind-Value="request.PatientName" placeholder="Name" />
-    <InputText @bind-Value="request.BloodGroup" placeholder="Blood Group" />
-    <InputNumber @bind-Value="request.UnitsRequired" />
-    <InputText @bind-Value="request.Location" />
-    <InputText @bind-Value="request.ContactNumber" />
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label class="form-label">Patient Name:</label>
+                <InputText class="form-control" @bind-Value="requestModel.PatientName" tabindex="1" />
+            </div>
 
-    <button class="btn btn-primary">Submit</button>
-</EditForm> *@
+            <div class="mb-3">
+                <label class="form-label">Blood Group:</label>
+                <InputSelect class="form-control" @bind-Value="requestModel.BloodGroup" tabindex="4">
+                    <option value="">Select Blood Group</option>
+                    @foreach (var group in BloodGroupsList)
+                    {
+                        <option value="@group">@group</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Gender:</label>
+                <InputSelect class="form-control" @bind-Value="requestModel.Gender" tabindex="7">
+                    <option value="">Select Gender</option>
+                    @foreach (var gender in GenderList)
+                    {
+                        <option value="@gender">@gender</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
+
+        <!-- Middle Column -->
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label class="form-label">Units Required:</label>
+                <InputNumber class="form-control" @bind-Value="requestModel.UnitsRequired" tabindex="2" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Location:</label>
+                <InputText class="form-control" @bind-Value="requestModel.Location" tabindex="5" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Contact Number:</label>
+                <InputText class="form-control" @bind-Value="requestModel.ContactNumber" tabindex="8" />
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label class="form-label">Description:</label>
+                <InputTextArea class="form-control" @bind-Value="requestModel.Description" tabindex="3" />
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-3 mt-2">
+        <button type="submit" class="btn btn-primary" tabindex="9">Submit <i class="fa fa-save"></i></button>
+        <button type="button" class="btn btn-secondary" tabindex="10" @onclick="HandleClearRestore">Clear <i class="fa fa-undo"></i></button>
+    </div>
+</EditForm>

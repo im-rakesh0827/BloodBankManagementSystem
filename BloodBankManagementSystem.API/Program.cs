@@ -214,6 +214,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IDonorRepository, DonorRepository>();
+builder.Services.AddScoped<IBloodRequestRepository, BloodRequestRepository>();
+
 
 // ✅ Register JWT Token Service
 builder.Services.AddSingleton<JwtTokenService>();
