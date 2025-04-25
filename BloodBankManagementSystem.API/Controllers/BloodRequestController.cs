@@ -60,6 +60,32 @@ public class BloodRequestController : ControllerBase
     }
 
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetRequestById(int id)
+    {
+        var request = await _repository.GetRequestByIdAsync(id);
+        if (request == null)
+            return NotFound(new { message = "Donor not found" });
+
+        return Ok(request);
+    }
+
+
+    [HttpPut("update")]
+    public async Task<IActionResult> UpdateRequestInfo([FromBody] BloodRequest updateRequest){
+        var existingRequest = await _repository.GetRequestByIdAsync(updateRequest.Id);
+        if (existingRequest == null)
+        {
+            return NotFound(new { message = "Request not found." });
+        }
+        existingRequest.Id = updateRequest.Id;
+        existingRequest.Description = updateRequest.Description;
+        existingRequest.UpdatedAt = DateTime.Now;
+        existingRequest.UpdatedBy = "Admin";
+        await _repository.UpdateRequestDetailsAsync(existingRequest);
+        return Ok(new { message = "Request updated successfully" });
+    }
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)

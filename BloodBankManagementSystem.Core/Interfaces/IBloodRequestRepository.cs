@@ -7,7 +7,8 @@ namespace BloodBankManagementSystem.Core.Interfaces
           Task AddRequestAsync(BloodRequest request);
           Task<List<BloodRequest>> GetAllRequestsAsync();
           Task<BloodRequest?> GetRequestByIdAsync(int id);
-          // Task UpdateRequestStatusAsync(int id, string status);
+          // Task UpdateRequestDetails(int id, BloodRequest request);
+          Task UpdateRequestDetailsAsync(BloodRequest request);
           Task<bool> UpdateRequestStatusAsync(int id, string status);
 
           Task DeleteRequestAsync(int id);

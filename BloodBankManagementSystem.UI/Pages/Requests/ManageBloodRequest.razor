@@ -93,21 +93,9 @@ else
             <RequestBlood 
                 SelectedRequest="SelectedRequest"
                 OnClose="HandleCreateUpdatePopup"
+                OnRequestAddedOrUpdated="RefreshBloodRequestList"
                 IsCreateUpdateRequestPopup="IsCreateUpdatePopup"
                 />
-        </div>
-    </div>
-}
-
-<!-- View Request Details Modal -->
-@if (ShowDetailsPopup)
-{
-    <div class="modal-overlay">
-        <div class="modal-content">
-            <RequestBlood 
-                SelectedRequest="SelectedRequest"
-                IsCreateUpdateRequestPopup="IsCreateUpdatePopup"
-                OnClose="OpenCreateRequestPopup" />
         </div>
     </div>
 }

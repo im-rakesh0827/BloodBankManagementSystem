@@ -50,7 +50,7 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
         }
     }
 
-    public async Task<BloodRequest?> GetRequestByIdAsync(int id)
+    public async Task<BloodRequest> GetRequestByIdAsync(int id)
     {
         try
         {
@@ -63,6 +63,10 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
         }
     }
 
+    public async Task UpdateRequestDetailsAsync(BloodRequest requestModel){
+        _context.BloodRequests.Update(requestModel);
+        await _context.SaveChangesAsync();
+    }
 
     public async Task<bool> UpdateRequestStatusAsync(int id, string status)
 {
@@ -73,9 +77,13 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
         {
             if(status=="Delete"){
                 // request.IsActive = false;
+                request.ApprovedDate = null;
             }
             if(status=="Approved"){
                 request.ApprovedDate = DateTime.Now;
+            }
+            else{
+                request.ApprovedDate = null;
             }
             request.Status = status;
             await _context.SaveChangesAsync();

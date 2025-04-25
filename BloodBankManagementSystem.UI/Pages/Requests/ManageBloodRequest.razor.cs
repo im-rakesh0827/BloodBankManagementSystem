@@ -17,14 +17,20 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
     private BloodRequest SelectedRequest = new();
     private bool ShowPendingOnly = true;
     private bool IsCreateUpdatePopup = false;
-    private bool ShowDetailsPopup = false;
-    private bool IsAdmin = false;
+    private bool IsAdmin = true;
     private bool IsLoading{get; set;} = false;
     private Notification NotificationModel = new Notification();
 
     protected override async Task OnInitializedAsync()
     {
         await LoadRequestsAsync();
+    }
+
+    private async Task RefreshBloodRequestList()
+    {
+        IsCreateUpdatePopup = false;
+        await LoadRequestsAsync();
+        StateHasChanged(); 
     }
 
     private async Task LoadRequestsAsync()
@@ -105,16 +111,9 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
         await LoadRequestsAsync();
     }
 
-    private void ShowDetails(BloodRequest request)
-    {
-        SelectedRequest = request;
-        ShowDetailsPopup = true;
-    }
+    
 
-    private void CloseDetailsPopup()
-    {
-        ShowDetailsPopup = false;
-    }
+    
 
     private async Task DeleteRequest(int id)
     {
@@ -128,6 +127,9 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
 
 
      private async Task UpdateRequestStatus(int requestId, string statusValue){
+
+          // var confirmed = await JSRuntime.InvokeAsync<bool>("confirm", $"Are you sure you want to {statusValue.ToLower()} this blood request?");
+          // if (!confirmed) return;
           IsLoading = true;
           bool IsApprove = statusValue=="Approve"?true:false;
           await Task.Delay(500);

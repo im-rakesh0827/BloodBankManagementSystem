@@ -27,7 +27,7 @@ else if (hasError)
     <div class="alert alert-danger">An error occurred while submitting the request.</div>
 } *@
 
-<EditForm Model="requestModel" OnValidSubmit="SubmitRequest">
+<EditForm Model="requestModel" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="row">

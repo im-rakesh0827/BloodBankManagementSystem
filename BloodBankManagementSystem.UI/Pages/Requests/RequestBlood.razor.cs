@@ -25,13 +25,66 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
     public BloodRequest? SelectedRequest{get; set;}
     [Parameter] 
      public bool IsCreateUpdateRequestPopup{get; set;}
+     [Parameter] 
+     public EventCallback OnRequestAddedOrUpdated { get; set; }
     protected override void OnInitialized()
      {
           BloodGroupsList = BloodBankHelper.GetAllBloodGroups();
           GenderList = BloodBankHelper.GetAllGenders();
      }
 
-    private async Task SubmitRequest()
+     protected override void OnParametersSet(){
+
+          if(SelectedRequest!=null && SelectedRequest.Id>0){
+                AssignRequestInfo();
+          }
+          else{
+               requestModel = new BloodRequest();
+          }
+     }
+
+     private void AssignRequestInfo(){
+          requestModel = SelectedRequest;
+     }
+
+
+
+     private async Task HandleSubmit(){
+
+          if(SelectedRequest!=null && SelectedRequest.Id>0){
+               await UpateRequest();
+          }
+          else{
+               await CreateRequest();
+          }
+
+     }
+
+     private async Task UpateRequest(){
+          IsLoading = true;
+          await Task.Delay(500);
+          var response = await Http.PutAsJsonAsync($"api/bloodrequest/update", requestModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+               NotificationModel.Message = "Blood request updated successfully!";
+               NotificationModel.Header = "Success";
+               NotificationModel.Icon = "success";
+               await OnRequestAddedOrUpdated.InvokeAsync();
+               OnClose.InvokeAsync();
+            }
+            else
+            {
+               NotificationModel.Message = "An error occurred while updating the request";
+               NotificationModel.Header = "Information";
+               NotificationModel.Icon = "info";
+            }
+          IsLoading = false;
+          await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
+          
+     }
+
+    private async Task CreateRequest()
     {
         try
         {
@@ -44,6 +97,8 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                NotificationModel.Header = "Success";
                NotificationModel.Icon = "success";
                requestModel = new(); 
+               await OnRequestAddedOrUpdated.InvokeAsync();
+               OnClose.InvokeAsync();
             }
             else
             {
@@ -52,15 +107,14 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                NotificationModel.Icon = "info";
             }
           IsLoading = false;
-          OnClose.InvokeAsync();
           await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
-
         }
         catch(Exception ex)
         {
                NotificationModel.Message = ex.Message;
                NotificationModel.Header = "Error";
                NotificationModel.Icon = "error";
+              await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
         }
     }
 
