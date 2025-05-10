@@ -9,7 +9,7 @@ using BloodBankManagementSystem.API.Services;
 using Microsoft.Extensions.Logging;
 
 namespace BloodBankManagementSystem.API.Controllers{
-     [Route("api/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
      public class PatientsController : ControllerBase{
         private readonly IPatientRepository _patientRepository;
@@ -242,46 +242,46 @@ namespace BloodBankManagementSystem.API.Controllers{
                 _logger.LogError($"Exception while sending email: {ex.Message}");
                 return false;
             }
-    }
+        }
 
 
     
-    private async Task AddHistory(int patinetId, string actionUser, string actionType, string actionNote)
-    {
-        try
+        private async Task AddHistory(int patinetId, string actionUser, string actionType, string actionNote)
         {
-            var patientHistory = new PatientHistory
+            try
             {
-                ActionDate = DateTime.Now,
-                ActionType = actionType,
-                ActionUser = actionUser,
-                ActionNote = actionNote,
-                PatientId = patinetId
-            };
-            await _patientRepository.AddPatientHistoryAsync(patientHistory);
-            // return Ok(new { message = "History added successfully." });
+                var patientHistory = new PatientHistory
+                {
+                    ActionDate = DateTime.Now,
+                    ActionType = actionType,
+                    ActionUser = actionUser,
+                    ActionNote = actionNote,
+                    PatientId = patinetId
+                };
+                await _patientRepository.AddPatientHistoryAsync(patientHistory);
+                // return Ok(new { message = "History added successfully." });
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
-    }
 
-    [HttpGet("history/{patinetId}")]
-    public async Task<ActionResult<IEnumerable<PatientHistory>>> GetHistoryByPatientId(int patinetId)
-    {
-        try
+        [HttpGet("history/{patinetId}")]
+        public async Task<ActionResult<IEnumerable<PatientHistory>>> GetHistoryByPatientId(int patinetId)
         {
-            var history = await _patientRepository.GetHistoryPatientIdAsync(patinetId);
-            return Ok(history);
+            try
+            {
+                var history = await _patientRepository.GetHistoryPatientIdAsync(patinetId);
+                return Ok(history);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
-    }
 
     }    
 }

@@ -146,7 +146,7 @@ private async Task<List<DonorHistory>> GetDonorHistory(int donorId)
     {
         // var url = $"{ServerConstants.BaseApiUrl}{ServerConstants.Donor.GetHistoryById}{donorId}";
 
-        var url = $"{ServerConstants.Donor.GetDonorHistoryById}{donorId}";
+        var url = $"{ServerConstants.GetDonorHistoryById}{donorId}";
         var response = await Http.GetFromJsonAsync<List<DonorHistory>>(url);
         return response ?? new List<DonorHistory>();
     }

@@ -27,6 +27,11 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
      public bool IsCreateUpdateRequestPopup{get; set;}
      [Parameter] 
      public EventCallback OnRequestAddedOrUpdated { get; set; }
+
+     private bool IsReadOnly{get; set;} = false;
+     private string SaveUpdateButton{get; set;} = "Save";
+     private string ClearResetButton{get; set;} = "Clear";
+     private string Title{get; set;} = "Create Blood Request";
     protected override void OnInitialized()
      {
           BloodGroupsList = BloodBankHelper.GetAllBloodGroups();
@@ -36,7 +41,11 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
      protected override void OnParametersSet(){
 
           if(SelectedRequest!=null && SelectedRequest.Id>0){
+               IsReadOnly = "Approved".Equals(SelectedRequest.Status, StringComparison.OrdinalIgnoreCase);
                 AssignRequestInfo();
+                SaveUpdateButton = "Update";
+                ClearResetButton = "Reset";
+                Title = "Update Blood Request";
           }
           else{
                requestModel = new BloodRequest();
@@ -120,7 +129,27 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
 
     private async Task HandleClearRestore()
     {
-          requestModel = new BloodRequest();
+          if(SelectedRequest!=null && SelectedRequest.Id>0){
+               AssignRequestDataTobeUpdated();
+          }
+          else{
+               requestModel = new BloodRequest();
+          }
+    }
+
+
+    private void AssignRequestDataTobeUpdated(){
+     requestModel = new BloodRequest(){
+          Id = SelectedRequest.Id,
+          RequesterId = SelectedRequest.RequesterId,
+          PatientName = SelectedRequest.PatientName,
+          UnitsRequired = SelectedRequest.UnitsRequired,
+          Description = SelectedRequest.Description,
+          BloodGroup = SelectedRequest.BloodGroup,
+          Location = SelectedRequest.Location,
+          Gender  = SelectedRequest.Gender,
+          ContactNumber = SelectedRequest.ContactNumber
+     };
     }
 
     private async Task HandleCancelOrClose()

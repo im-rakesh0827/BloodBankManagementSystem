@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.API.Services; 
-using Microsoft.Extensions.Logging; // Make sure to include this
+using Microsoft.Extensions.Logging;
 
 namespace BloodBankManagementSystem.API.Controllers
 {
@@ -170,121 +170,121 @@ namespace BloodBankManagementSystem.API.Controllers
             return HashPassword(inputPassword) == storedHash;
         }
 
-    private async Task<bool> SendEmail(User user)
-    {
-        try
+        private async Task<bool> SendEmail(User user)
         {
-            string subject = "🎉 Welcome to Vital Drop";
-            string body = $@"
-            <html>
-            <head>
-                <style>
-                    body {{
-                        font-family: Arial, sans-serif;
-                        background-color: #f4f4f4;
-                        padding: 20px;
-                    }}
-                    .container {{
-                        max-width: 600px;
-                        margin: auto;
-                        background: #ffffff;
-                        padding: 20px;
-                        border-radius: 10px;
-                        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-                    }}
-                    h2 {{
-                        color: #d9534f;
-                    }}
-                    p {{
-                        color: #333;
-                        font-size: 16px;
-                    }}
-                    .cta-button {{
-                        display: inline-block;
-                        background-color: #d9534f;
-                        color: #ffffff;
-                        padding: 12px 24px;
-                        text-decoration: none;
-                        font-weight: bold;
-                        border-radius: 5px;
-                        margin-top: 20px;
-                    }}
-                    .footer {{
-                        margin-top: 20px;
-                        text-align: center;
-                        font-size: 12px;
-                        color: #777;
-                    }}
-                </style>
-            </head>
-            <body>
-                <div class='container'>
-                    <h2>Welcome, {user.FirstName}! 🎉</h2>
-                    <p>Thank you for registering with <strong>Vital Drop</strong>. 🩸</p>
-                    <p>Here are your details:</p>
-                    <ul>
-                        <li><strong>Name:</strong> {user.FirstName} {user.LastName}</li>
-                        <li><strong>Email:</strong> {user.Email}</li>
-                        <li><strong>Password:</strong> {user.PasswordHash}</li>
-                    </ul>
-                    <p>You can now log in and explore the system and reset your password</p>
-                    <a href='https://your-bloodbank-system.com/login' class='cta-button'>Login to Your Account</a>
-                    <p class='footer'>If you have any questions, feel free to reply to this email. <br> BloodBank Management System Team</p>
-                </div>
-            </body>
-            </html>";
-            bool emailSent = await _emailService.SendEmailAsync(user.Email, subject, body);
-            if (!emailSent)
+            try
             {
-                _logger.LogError($"Failed to send email to {user.Email}");
+                string subject = "🎉 Welcome to Vital Drop";
+                string body = $@"
+                <html>
+                <head>
+                    <style>
+                        body {{
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f4;
+                            padding: 20px;
+                        }}
+                        .container {{
+                            max-width: 600px;
+                            margin: auto;
+                            background: #ffffff;
+                            padding: 20px;
+                            border-radius: 10px;
+                            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+                        }}
+                        h2 {{
+                            color: #d9534f;
+                        }}
+                        p {{
+                            color: #333;
+                            font-size: 16px;
+                        }}
+                        .cta-button {{
+                            display: inline-block;
+                            background-color: #d9534f;
+                            color: #ffffff;
+                            padding: 12px 24px;
+                            text-decoration: none;
+                            font-weight: bold;
+                            border-radius: 5px;
+                            margin-top: 20px;
+                        }}
+                        .footer {{
+                            margin-top: 20px;
+                            text-align: center;
+                            font-size: 12px;
+                            color: #777;
+                        }}
+                    </style>
+                </head>
+                <body>
+                    <div class='container'>
+                        <h2>Welcome, {user.FirstName}! 🎉</h2>
+                        <p>Thank you for registering with <strong>Vital Drop</strong>. 🩸</p>
+                        <p>Here are your details:</p>
+                        <ul>
+                            <li><strong>Name:</strong> {user.FirstName} {user.LastName}</li>
+                            <li><strong>Email:</strong> {user.Email}</li>
+                            <li><strong>Password:</strong> {user.PasswordHash}</li>
+                        </ul>
+                        <p>You can now log in and explore the system and reset your password</p>
+                        <a href='https://your-bloodbank-system.com/login' class='cta-button'>Login to Your Account</a>
+                        <p class='footer'>If you have any questions, feel free to reply to this email. <br> BloodBank Management System Team</p>
+                    </div>
+                </body>
+                </html>";
+                bool emailSent = await _emailService.SendEmailAsync(user.Email, subject, body);
+                if (!emailSent)
+                {
+                    _logger.LogError($"Failed to send email to {user.Email}");
+                    return false;
+                }
+                _logger.LogInformation($"Email sent successfully to {user.Email}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Exception while sending email: {ex.Message}");
                 return false;
             }
-            _logger.LogInformation($"Email sent successfully to {user.Email}");
-            return true;
         }
-        catch (Exception ex)
+
+
+
+        private async Task AddHistory(int userId, string actionUser, string actionType, string actionNote)
         {
-            _logger.LogError($"Exception while sending email: {ex.Message}");
-            return false;
-        }
-    }
-
-
-
-    private async Task AddHistory(int userId, string actionUser, string actionType, string actionNote)
-    {
-        try
-        {
-            var userHistory = new UserHistory
+            try
             {
-                ActionDate = DateTime.Now,
-                ActionType = actionType,
-                ActionUser = actionUser,
-                ActionNote = actionNote,
-                UserId = userId
-            };
-            await _userRepository.AddUserHistoryAsync(userHistory);
-            // return Ok(new { message = "History added successfully." });
+                var userHistory = new UserHistory
+                {
+                    ActionDate = DateTime.Now,
+                    ActionType = actionType,
+                    ActionUser = actionUser,
+                    ActionNote = actionNote,
+                    UserId = userId
+                };
+                await _userRepository.AddUserHistoryAsync(userHistory);
+                // return Ok(new { message = "History added successfully." });
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
-    }
 
-    [HttpGet("history/{userId}")]
-    public async Task<ActionResult<IEnumerable<UserHistory>>> GetHistoryByUserId(int userId)
-    {
-        try
+        [HttpGet("history/{userId}")]
+        public async Task<ActionResult<IEnumerable<UserHistory>>> GetHistoryByUserId(int userId)
         {
-            var history = await _userRepository.GetUserHistoryByIdAsync(userId);
-            return Ok(history);
+            try
+            {
+                var history = await _userRepository.GetUserHistoryByIdAsync(userId);
+                return Ok(history);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
-        catch (System.Exception)
-        {
-            throw;
-        }
-    }
     }
 }

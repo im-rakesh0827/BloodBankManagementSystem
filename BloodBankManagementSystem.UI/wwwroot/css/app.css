@@ -7,15 +7,25 @@ h1:focus {
     outline: none;
 }
 
-a,
-.btn-link {
+a, .btn-link {
     color: #0071c1;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:hover  {
+    background-color: #0d4077;
+    color: white;
+    border-color: #0d4077;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #0d4077;
+    border-color: #0d4077;
 }
 
 .btn:focus,
@@ -174,4 +184,10 @@ code {
 
 .modal-content .btn {
     margin-top: 10px;
+}
+
+
+.form-label {
+    /* margin-bottom: .5rem; */
+    font-weight: bold;
 }

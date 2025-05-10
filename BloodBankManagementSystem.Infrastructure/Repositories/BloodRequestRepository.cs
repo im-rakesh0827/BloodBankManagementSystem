@@ -108,6 +108,30 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
     }
+
+    public async Task AddBloodRequestHistoryAsync(BloodRequestHistory history){
+
+        try
+        {
+            _context.BloodRequestHistories.Add(history);
+            await _context.SaveChangesAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<List<BloodRequestHistory>> GetHistoryByRequestIdAsync(int requestId){
+        try
+        {
+           return await _context.BloodRequestHistories.Where(x=>x.RequestId==requestId).OrderByDescending(y=>y.ActionDate).ToListAsync();
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+    }
 }
 }
 

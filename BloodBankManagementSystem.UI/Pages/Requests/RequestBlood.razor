@@ -16,7 +16,7 @@
     </div>
 }
 
-<h4 class="page-header">Blood Request Form</h4>
+<h4 class="page-header">@Title</h4>
 
 @* @if (isSuccess)
 {
@@ -35,12 +35,15 @@ else if (hasError)
         <div class="col-md-4">
             <div class="mb-3">
                 <label class="form-label">Patient Name:</label>
-                <InputText class="form-control" @bind-Value="requestModel.PatientName" tabindex="1" />
+                <InputText class="form-control" 
+                           @bind-Value="requestModel.PatientName" 
+                           tabindex="1"  
+                           disabled="@IsReadOnly"/>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Blood Group:</label>
-                <InputSelect class="form-control" @bind-Value="requestModel.BloodGroup" tabindex="4">
+                <InputSelect class="form-control" @bind-Value="requestModel.BloodGroup" tabindex="4" disabled="@IsReadOnly">
                     <option value="">Select Blood Group</option>
                     @foreach (var group in BloodGroupsList)
                     {
@@ -51,7 +54,7 @@ else if (hasError)
 
             <div class="mb-3">
                 <label class="form-label">Gender:</label>
-                <InputSelect class="form-control" @bind-Value="requestModel.Gender" tabindex="7">
+                <InputSelect class="form-control" @bind-Value="requestModel.Gender" tabindex="7" disabled="@IsReadOnly">
                     <option value="">Select Gender</option>
                     @foreach (var gender in GenderList)
                     {
@@ -65,17 +68,17 @@ else if (hasError)
         <div class="col-md-4">
             <div class="mb-3">
                 <label class="form-label">Units Required:</label>
-                <InputNumber class="form-control" @bind-Value="requestModel.UnitsRequired" tabindex="2" />
+                <InputNumber class="form-control" @bind-Value="requestModel.UnitsRequired" tabindex="2" disabled="@IsReadOnly"/>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Location:</label>
-                <InputText class="form-control" @bind-Value="requestModel.Location" tabindex="5" />
+                <InputText class="form-control" @bind-Value="requestModel.Location" tabindex="5" disabled="@(IsReadOnly)"/>
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Contact Number:</label>
-                <InputText class="form-control" @bind-Value="requestModel.ContactNumber" tabindex="8" />
+                <InputText class="form-control" @bind-Value="requestModel.ContactNumber" tabindex="8" disabled="@IsReadOnly"/>
             </div>
         </div>
 
@@ -83,13 +86,13 @@ else if (hasError)
         <div class="col-md-4">
             <div class="mb-3">
                 <label class="form-label">Description:</label>
-                <InputTextArea class="form-control" @bind-Value="requestModel.Description" tabindex="3" />
+                <InputTextArea class="form-control" @bind-Value="requestModel.Description" tabindex="3" disabled="@IsReadOnly" />
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-center gap-3 mt-2">
-        <button type="submit" class="btn btn-primary" tabindex="9">Submit <i class="fa fa-save"></i></button>
-        <button type="button" class="btn btn-secondary" tabindex="10" @onclick="HandleClearRestore">Clear <i class="fa fa-undo"></i></button>
+        <button type="submit" class="btn btn-primary" tabindex="9" disabled="@IsReadOnly">@SaveUpdateButton <i class="fa fa-save"></i></button>
+        <button type="button" class="btn btn-secondary" tabindex="10" @onclick="HandleClearRestore" disabled="@IsReadOnly">@ClearResetButton <i class="fa fa-undo"></i></button>
     </div>
 </EditForm>

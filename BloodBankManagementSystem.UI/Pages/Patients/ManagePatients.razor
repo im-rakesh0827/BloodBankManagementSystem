@@ -3,7 +3,7 @@
 @inject HttpClient Http
 <div class="d-flex align-items-center">
     <h4 class="me-3">Registered Patients
-    <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePoup">+ New Patient</button>
+    <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePoup">Patient +</button>
     </h4>
     <InputRadioGroup @bind-Value="IsShowActiveOnly" @bind-Value:after="ApplyFilteredPatientsList" class="d-flex align-items-center">
         <div class="form-check me-3">

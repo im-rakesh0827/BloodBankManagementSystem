@@ -63,7 +63,7 @@ namespace BloodBankManagementSystem.UI.Pages.Users{
         Message = string.Empty;
         IsLoading = true;
         if(SelectedUserData!=null && SelectedUserData.Id>0){
-          await Task.Delay(1500);
+          await Task.Delay(300);
           await UpdateUser();
         }
         else{

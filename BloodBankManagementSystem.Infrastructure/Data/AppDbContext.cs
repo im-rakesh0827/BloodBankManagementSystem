@@ -14,6 +14,7 @@ namespace BloodBankManagementSystem.Infrastructure.Data
         public DbSet<UserHistory> UserHistories { get; set; }
 
         public DbSet<BloodRequest> BloodRequests { get; set; }
+        public DbSet<BloodRequestHistory> BloodRequestHistories{get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

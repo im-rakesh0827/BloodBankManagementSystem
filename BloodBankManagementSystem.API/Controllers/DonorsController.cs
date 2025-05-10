@@ -230,33 +230,33 @@ namespace BloodBankManagementSystem.API.Controllers
             }
         }
 
-    private async Task AddHistory(int donorId, string actionUser, string actionType, string actionNote)
-    {
-        var donorHistory = new DonorHistory
+        private async Task AddHistory(int donorId, string actionUser, string actionType, string actionNote)
         {
-            ActionDate = DateTime.Now,
-            ActionType = actionType,
-            ActionUser = actionUser,
-            ActionNote = actionNote,
-            DonorId = donorId
-        };
-        await _donorRepository.AddDonorHistoryAsync(donorHistory);
-    }
+            var donorHistory = new DonorHistory
+            {
+                ActionDate = DateTime.Now,
+                ActionType = actionType,
+                ActionUser = actionUser,
+                ActionNote = actionNote,
+                DonorId = donorId
+            };
+            await _donorRepository.AddDonorHistoryAsync(donorHistory);
+        }
 
 
-    [HttpGet("history/{donorId}")]
-    public async Task<ActionResult<IEnumerable<DonorHistory>>> GetHistoryByDonor(int donorId)
-    {
-        try
+        [HttpGet("history/{donorId}")]
+        public async Task<ActionResult<IEnumerable<DonorHistory>>> GetHistoryByDonor(int donorId)
         {
-            var history = await _donorRepository.GetHistoryByDonorIdAsync(donorId);
-            return Ok(history);
-        }
-        catch (System.Exception)
-        {
-            
-            throw;
+            try
+            {
+                var history = await _donorRepository.GetHistoryByDonorIdAsync(donorId);
+                return Ok(history);
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
     }
-  }
 }
