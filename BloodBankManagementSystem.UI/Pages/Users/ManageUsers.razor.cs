@@ -29,7 +29,8 @@ namespace BloodBankManagementSystem.UI.Pages.Users
     {
         try
         {
-            var response = await Http.GetAsync("api/Users/allUsers");
+            var url = $"{ServerConstants.APICallNames.GetAllUsers.GetStringValue()}";
+            var response = await Http.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {
                 var errorText = await response.Content.ReadAsStringAsync();
@@ -99,7 +100,8 @@ namespace BloodBankManagementSystem.UI.Pages.Users
     {
         try
         {
-            var response = await Http.DeleteAsync($"api/users/{userIdToDelete}");
+            var url = $"{ServerConstants.APICallNames.DeleteUser.GetStringValue()}{userIdToDelete}";
+            var response = await Http.DeleteAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 AllUsersList.Remove(AllUsersList.FirstOrDefault(p => p.Id == userIdToDelete));
@@ -151,7 +153,7 @@ private async Task<List<UserHistory>> GetUserHistory(int userId)
 {
     try
     {
-        var url = $"{ServerConstants.GetUserHistoryById}{userId}";
+        var url = $"{ServerConstants.APICallNames.GetUserHistoryById.GetStringValue()}{userId}";
         var response = await Http.GetFromJsonAsync<List<UserHistory>>(url);
         return response ?? new List<UserHistory>();
     }

@@ -9,6 +9,7 @@ using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
+using BloodBankManagementSystem.UI.Helpers;
 
 namespace BloodBankManagementSystem.UI.Pages.Patients
 {
@@ -102,7 +103,8 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
      private async  Task CreatePatient(){
      try
           {
-               var response = await Http.PostAsJsonAsync("api/patients/register", PatientModel);
+               var url = $"{ServerConstants.APICallNames.RegisterPatient.GetStringValue()}";
+               var response = await Http.PostAsJsonAsync(url, PatientModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "Patient registered successfully!";
@@ -131,7 +133,8 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
      private async Task UpdatePatient()
      {
           try{
-               var response = await Http.PutAsJsonAsync($"api/patients/update/{PatientModel.PatientID}", PatientModel);
+               var url = $"{ServerConstants.APICallNames.UpdatePatient.GetStringValue()}{PatientModel.PatientID}";
+               var response = await Http.PutAsJsonAsync(url, PatientModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "Patient information updated successfully!";

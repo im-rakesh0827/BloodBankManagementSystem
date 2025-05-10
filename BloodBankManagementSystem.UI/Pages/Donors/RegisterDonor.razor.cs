@@ -9,6 +9,7 @@ using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
+using BloodBankManagementSystem.UI.Helpers;
 
 namespace BloodBankManagementSystem.UI.Pages.Donors{
 
@@ -132,7 +133,8 @@ namespace BloodBankManagementSystem.UI.Pages.Donors{
      {
           try
           {
-               var response = await Http.PostAsJsonAsync("api/donors/register", DonorModel);
+               var url = $"{ServerConstants.APICallNames.RegisterDonor.GetStringValue()}";
+               var response = await Http.PostAsJsonAsync(url, DonorModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "Donor registered successfully!";
@@ -161,7 +163,8 @@ namespace BloodBankManagementSystem.UI.Pages.Donors{
           try{
                if (SelectedDonorData != null)
           {
-               var response = await Http.PutAsJsonAsync($"/api/donors/update/{DonorModel.Id}", DonorModel);
+               var url = $"{ServerConstants.APICallNames.UpdateDonor.GetStringValue()}{DonorModel.Id}";
+               var response = await Http.PutAsJsonAsync(url, DonorModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "Donor information updated successfully!";

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
 using BloodBankManagementSystem.Core.Helpers;
+using BloodBankManagementSystem.UI.Helpers;
 using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,8 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           {
                try
                {
-                    AllRequestsList = await Http.GetFromJsonAsync<List<BloodRequest>>("api/bloodrequest/allBloodRequests");
+                    var url = $"{ServerConstants.APICallNames.GetAllBloodRequests.GetStringValue()}";
+                    AllRequestsList = await Http.GetFromJsonAsync<List<BloodRequest>>(url);
                     FilteredRequestsList = AllRequestsList;
                     ApplyFilter();
                }
@@ -122,7 +124,8 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                var confirmed = await JSRuntime.InvokeAsync<bool>("confirm", "Are you sure you want to delete this request?");
                if (confirmed)
                {
-                    await Http.DeleteAsync($"api/bloodrequest/{id}");
+                    var url = $"{ServerConstants.APICallNames.DeleteRequest.GetStringValue()}{id}";
+                    await Http.DeleteAsync(url);
                     await LoadRequestsAsync();
                }
           }
@@ -135,7 +138,8 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                     bool IsApprove = statusValue=="Approve"?true:false;
                     await Task.Delay(500);
                     var content = new StringContent(""); 
-                    var response = await Http.PutAsync($"api/bloodrequest/updatestatus/{requestId}?status={IsApprove}", content);
+                    var url = $"{ServerConstants.APICallNames.UpdateBloodRequestStatus.GetStringValue()}{requestId}?status={IsApprove}";
+                    var response = await Http.PutAsync(url, content);
                     if (response.IsSuccessStatusCode)
                     {
                          string _status = IsApprove?"approved":"rejected";

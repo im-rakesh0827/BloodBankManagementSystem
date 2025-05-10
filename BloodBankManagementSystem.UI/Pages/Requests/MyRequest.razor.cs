@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
 using BloodBankManagementSystem.Core.Models;
+using BloodBankManagementSystem.UI.Helpers;
+
 namespace BloodBankManagementSystem.UI.Pages.Requests
 {
      public partial class MyRequest{

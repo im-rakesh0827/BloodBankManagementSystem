@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
 using BloodBankManagementSystem.Core.Helpers;
+using BloodBankManagementSystem.UI.Helpers;
 using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
+
 namespace BloodBankManagementSystem.UI.Pages.Users{
      public partial class RegisterUser
      {
@@ -100,7 +102,8 @@ namespace BloodBankManagementSystem.UI.Pages.Users{
                Message = "Passwords do not match.";
                return;
           }
-            var response = await Http.PostAsJsonAsync("api/Users/register", UserModel);
+           var url = $"{ServerConstants.APICallNames.RegisterUser.GetStringValue()}";
+            var response = await Http.PostAsJsonAsync(url, UserModel);
             if (response.IsSuccessStatusCode)
             {
                NotificationModel.Message = "User registered successfully!";
@@ -130,7 +133,8 @@ namespace BloodBankManagementSystem.UI.Pages.Users{
     {
           if (SelectedUserData != null)
           {
-               var response = await Http.PutAsJsonAsync($"/api/users/update/{UserModel.Id}", UserModel);
+               var url = $"{ServerConstants.APICallNames.UpdateUser.GetStringValue()}{UserModel.Id}";
+               var response = await Http.PutAsJsonAsync(url, UserModel);
                if (response.IsSuccessStatusCode)
                {
                     NotificationModel.Message = "User information updated successfully!";

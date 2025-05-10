@@ -30,7 +30,8 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
      }
     private async Task FetchDonors()
     {
-       var response = await Http.GetAsync("api/donors/allDonors");
+        var url = $"{ServerConstants.APICallNames.GetAllDonors.GetStringValue()}";
+       var response = await Http.GetAsync(url);
        if (!response.IsSuccessStatusCode)
        {
           var errorText = await response.Content.ReadAsStringAsync();
@@ -53,14 +54,14 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
     {
         SelectedDonor = new Donor();
         IsCreateUpdatePopup = true;
-        donorPopupRef?.Show(); // ✅ Opens the popup
+        donorPopupRef?.Show(); 
     }
 
     private void OpenEditModal(Donor donor)
     {
         SelectedDonor = donor;
         IsCreateUpdatePopup = true;
-        donorPopupRef?.Show(); // ✅ Open the custom popup
+        donorPopupRef?.Show();
     }
 
     protected override void OnInitialized()
@@ -79,7 +80,8 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
     {
         try
         {
-            await Http.DeleteAsync($"api/donors/delete/{donorIdToDelete}");
+            var url = $"{ServerConstants.APICallNames.DeleteDonor.GetStringValue()}{donorIdToDelete}";
+            await Http.DeleteAsync(url);
             AllDonorsList.RemoveAll(d => d.Id == donorIdToDelete);
             StateHasChanged();
         }
@@ -110,7 +112,7 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
     private void HandleCancelOrClose()
     {
         IsCreateUpdatePopup = false;
-        donorPopupRef?.Hide(); // ✅ Close popup
+        donorPopupRef?.Hide();
     }
 
 
@@ -130,7 +132,6 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
     private async Task ShowDonorHistory(Donor donor)
     {
         SelectedDonor = donor;
-        // Ideally, fetch from API
         DonorHistoryList = await GetDonorHistory(donor.Id); 
         ShowHistoryPopup = true;
     }
@@ -144,9 +145,7 @@ private async Task<List<DonorHistory>> GetDonorHistory(int donorId)
 {
     try
     {
-        // var url = $"{ServerConstants.BaseApiUrl}{ServerConstants.Donor.GetHistoryById}{donorId}";
-
-        var url = $"{ServerConstants.GetDonorHistoryById}{donorId}";
+        var url = $"{ServerConstants.APICallNames.GetDonorHistoryById.GetStringValue()}{donorId}";
         var response = await Http.GetFromJsonAsync<List<DonorHistory>>(url);
         return response ?? new List<DonorHistory>();
     }

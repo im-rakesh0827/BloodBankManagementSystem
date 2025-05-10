@@ -11,7 +11,7 @@ using Microsoft.JSInterop;
 
 namespace BloodBankManagementSystem.UI.Pages.Patients
 {
-    public partial class ManagePatients
+  public partial class ManagePatients
     {
         private List<Patient> AllPatientsList { get; set; } = new();
         private List<Patient> FilteredPatientsList { get; set; } = new List<Patient>();
@@ -46,7 +46,8 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         {
                try
                {
-                    var response = await Http.GetAsync("api/patients/allPatients");
+                    var url = $"{ServerConstants.APICallNames.GetAllPatients.GetStringValue()}";
+                    var response = await Http.GetAsync(url);
                     if (!response.IsSuccessStatusCode)
                     {
                          var errorText = await response.Content.ReadAsStringAsync();
@@ -91,11 +92,12 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
     {
         try
         {
-            var response = await Http.DeleteAsync($"api/patients/{patientIdToDelete}");
+            var url = $"{ServerConstants.APICallNames.DeletePatient.GetStringValue()}{patientIdToDelete}";
+            var response = await Http.DeleteAsync(url);
                if (response.IsSuccessStatusCode)
                {
-                    FilteredPatientsList.Remove(FilteredPatientsList.FirstOrDefault(p => p.PatientID == patientIdToDelete));
-                    await RefreshPatientList();
+                  FilteredPatientsList.Remove(FilteredPatientsList.FirstOrDefault(p => p.PatientID == patientIdToDelete));
+                  await RefreshPatientList();
                }
                else
                {
@@ -157,19 +159,22 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         ShowHistoryPopup = false;
     }
 
-private async Task<List<PatientHistory>> GetPatientHistory(int patientId)
-{
-    try
+    private async Task<List<PatientHistory>> GetPatientHistory(int patientId)
     {
-        var url = $"{ServerConstants.GetPatientHistoryById}{patientId}";
-        var response = await Http.GetFromJsonAsync<List<PatientHistory>>(url);
-        return response ?? new List<PatientHistory>();
+          try
+          {
+              // var url = $"{ServerConstants.GetPatientHistoryById}{patientId}";
+              // string endpoint = ServerConstants.APICallNames.GetPatientHistoryById.GetStringValue();
+              string url = $"{ServerConstants.APICallNames.GetPatientHistoryById.GetStringValue()}{patientId}";
+
+              var response = await Http.GetFromJsonAsync<List<PatientHistory>>(url);
+              return response ?? new List<PatientHistory>();
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine($"Error fetching patient history: {ex.Message}");
+              return new List<PatientHistory>();
+          }
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error fetching patient history: {ex.Message}");
-        return new List<PatientHistory>();
-    }
-}
     }
 }
