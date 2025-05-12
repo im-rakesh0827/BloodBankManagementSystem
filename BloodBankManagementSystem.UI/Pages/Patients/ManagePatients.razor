@@ -1,21 +1,35 @@
 @page "/managePatients"
 @inject IJSRuntime JSRuntime
 @inject HttpClient Http
-<div class="d-flex align-items-center">
-    <h4 class="me-3">Registered Patients
-    <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePoup">Patient +</button>
-    </h4>
-    <InputRadioGroup @bind-Value="IsShowActiveOnly" @bind-Value:after="ApplyFilteredPatientsList" class="d-flex align-items-center">
-        <div class="form-check me-3">
-            <InputRadio class="form-check-input" id="showActive" Value="true" style="cursor: pointer;" />
-            <label class="form-check-label" for="showActive">Show Active</label>
-        </div>
-        <div class="form-check">
-            <InputRadio class="form-check-input" id="showAll" Value="false" style="cursor: pointer;"/>
-            <label class="form-check-label" for="showAll">Show All</label>
-        </div>
-    </InputRadioGroup>
+@if(IsLoading){
+    <LoaderComponent></LoaderComponent>
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Left section: Title and Register button -->
+    <div class="d-flex align-items-center">
+        <h4 class="me-3 mb-0">Registered Patients</h4>
+        <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePoup">Patient +</button>
+    </div>
+
+    <!-- Right section: Filter and Export -->
+    <div class="d-flex align-items-center">
+        <label for="filterDropdown" class="mb-0 me-2">Filter:</label>
+        <InputSelect id="filterDropdown"
+                     @bind-Value="FilterBasedOn"
+                     class="form-select filterDropdown"
+                     style="width: 160px;"
+                     @bind-Value:after="ApplyFilteredPatientsList">
+            <option value="Active">Show Active</option>
+            <option value="Last7Days">Last 7 Days</option>
+            <option value="Last30Days">Last 30 Days</option>
+            <option value="Last1Year">Last 1 Year</option>
+            <option value="All">Show All</option>
+        </InputSelect>
+
+        <button class="btn btn-primary btn-sm ms-3" @onclick="ExportPatientsToExcel">Export to Excel</button>
+    </div>
 </div>
+
 
 @if (FilteredPatientsList is null)
 {

@@ -22,7 +22,10 @@
 
 <EditForm Model="DonorModel" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator />
-    <ValidationSummary />
+    @* <ValidationSummary /> *@
+    <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+    @* <Blazorise.ValidationSummary /> *@
+
     <div class="row">
         <!-- First Column -->
         <div class="col-md-4">

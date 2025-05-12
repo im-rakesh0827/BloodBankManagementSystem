@@ -9,10 +9,13 @@ namespace BloodBankManagementSystem.Core.Models{
         [Required(ErrorMessage = "Last Name is required.")]
         [StringLength(50, ErrorMessage = "Last Name cannot exceed 50 characters.")]
         public string LastName { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Email is required.")]
         public string Email{get; set;} = string.Empty;
         [Required(ErrorMessage = "Age is required.")]
         [Range(1, 120, ErrorMessage = "Age must be between 1 and 120.")]
         public int Age { get; set; }
+        [Required(ErrorMessage = "Weight is required.")]
+        [Range(5, 120, ErrorMessage = "Weight must be between 5 and 120.")]
         public decimal Weight { get; set; }
         [Required(ErrorMessage = "Blood Type is required.")]
         public string BloodTypeNeeded { get; set; } = string.Empty;
@@ -27,9 +30,13 @@ namespace BloodBankManagementSystem.Core.Models{
         public DateTime? UpdatedAt { get; set; }
         public bool IsActive { get; set; } = true;
         public bool IsAlive { get; set; } = true;
+        [Required(ErrorMessage = "Country is required.")]
         public string Country { get; set; } = string.Empty;
+        [Required(ErrorMessage = "State is required.")]
         public string State { get; set; } = string.Empty;
+        [Required(ErrorMessage = "District is required.")]
         public string District { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Pincode is required.")]
         public string PinCode { get; set; } = string.Empty;
     }
 }

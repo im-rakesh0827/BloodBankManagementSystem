@@ -39,7 +39,8 @@
 
 <EditForm Model="PatientModel" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator />
-    <ValidationSummary />
+    <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
+    @* <Blazorise.ValidationSummary /> *@
 
     <div class="row">
         <!-- Left Column -->
@@ -47,16 +48,22 @@
             <div class="mb-3">
                 <label class="form-label">First Name:</label>
                 <InputText class="form-control" @bind-Value="PatientModel.FirstName" tabindex="1" />
+                <ValidationMessageComponent For="@(() => PatientModel.FirstName)" />
+
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Email:</label>
                 <InputText class="form-control" @bind-Value="PatientModel.Email" tabindex="4" />
+                <ValidationMessageComponent For="@(() => PatientModel.Email)" />
+
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Age:</label>
                 <InputNumber class="form-control" @bind-Value="PatientModel.Age" tabindex="7" />
+                <ValidationMessageComponent For="@(() => PatientModel.Age)" />
+
             </div>
 
             <div class="mb-3">

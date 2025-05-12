@@ -20,6 +20,10 @@
     <Import Project="$(NuGetPackageRoot)microsoft.net.illink.tasks/8.0.14/build/Microsoft.NET.ILLink.Tasks.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.illink.tasks/8.0.14/build/Microsoft.NET.ILLink.Tasks.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore/9.0.1/buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore/9.0.1/buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly/8.0.4/build/net8.0/Microsoft.AspNetCore.Components.WebAssembly.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.webassembly/8.0.4/build/net8.0/Microsoft.AspNetCore.Components.WebAssembly.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise/1.7.6/buildTransitive/Blazorise.props" Condition="Exists('$(NuGetPackageRoot)blazorise/1.7.6/buildTransitive/Blazorise.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.icons.fontawesome/1.7.6/buildTransitive/Blazorise.Icons.FontAwesome.props" Condition="Exists('$(NuGetPackageRoot)blazorise.icons.fontawesome/1.7.6/buildTransitive/Blazorise.Icons.FontAwesome.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.datagrid/1.7.6/buildTransitive/Blazorise.DataGrid.props" Condition="Exists('$(NuGetPackageRoot)blazorise.datagrid/1.7.6/buildTransitive/Blazorise.DataGrid.props')" />
+    <Import Project="$(NuGetPackageRoot)blazorise.bootstrap5/1.7.6/buildTransitive/Blazorise.Bootstrap5.props" Condition="Exists('$(NuGetPackageRoot)blazorise.bootstrap5/1.7.6/buildTransitive/Blazorise.Bootstrap5.props')" />
     <Import Project="$(NuGetPackageRoot)blazored.toast/4.2.1/buildTransitive/Blazored.Toast.props" Condition="Exists('$(NuGetPackageRoot)blazored.toast/4.2.1/buildTransitive/Blazored.Toast.props')" />
     <Import Project="$(NuGetPackageRoot)blazored.modal/7.3.1/buildTransitive/Blazored.Modal.props" Condition="Exists('$(NuGetPackageRoot)blazored.modal/7.3.1/buildTransitive/Blazored.Modal.props')" />
   </ImportGroup>

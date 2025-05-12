@@ -37,6 +37,11 @@
         <script src="js/aggrid-interop.js"></script>
 
 
+        <link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
+        <link href="_content/Blazorise.Bootstrap5/blazorise.bootstrap5.css" rel="stylesheet" />
+        <!-- <link href="_content/Blazorise.Icons.FontAwesome/blazorise.icons.fontawesome.css" rel="stylesheet" /> -->
+
+
     </head>
 
     <body>
@@ -54,6 +59,48 @@
             <a class="dismiss">🗙</a>
         </div>
         <script src="_framework/blazor.webassembly.js"></script>
+
+        <!-- <script src="_content/Blazorise/blazorise.js"></script> -->
+        <!-- <script src="_content/Blazorise.Bootstrap5/blazorise.bootstrap5.js"></script> -->
+        <!-- <script src="_content/Blazorise.Icons.FontAwesome/blazorise.icons.fontawesome.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
     </body>
 
 </html>
+
+
+<script>
+    window.exportToExcel = (data, fileName) => {
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.json_to_sheet(data);
+        const range = XLSX.utils.decode_range(ws['!ref']);
+        for (let col = range.s.c; col <= range.e.c; col++) {
+            const cell = ws[XLSX.utils.encode_cell({ r: range.s.r, c: col })];
+            if (cell) {
+                cell.v = cell.v.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
+                    index === 0 ? match.toLowerCase() : match.toUpperCase()
+                );
+                cell.s = {
+                    font: { bold: true },
+                    fill: { fgColor: { rgb: "FFFF00" } }
+                };
+            }
+        }
+        const colWidths = [];
+        for (let col = range.s.c; col <= range.e.c; col++) {
+            let maxLength = 0;
+            for (let row = range.s.r; row <= range.e.r; row++) {
+                const cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
+                if (cell && cell.v) {
+                    maxLength = Math.max(maxLength, cell.v.toString().length);
+                }
+            }
+            colWidths.push({ wpx: maxLength * 10 });
+        }
+        ws['!cols'] = colWidths;
+        XLSX.utils.book_append_sheet(wb, ws, "Patients");
+        XLSX.writeFile(wb, fileName || 'exported_data.xlsx');
+    };
+
+</script>

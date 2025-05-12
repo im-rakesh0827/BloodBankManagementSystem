@@ -29,7 +29,8 @@ else if (hasError)
 
 <EditForm Model="requestModel" OnValidSubmit="HandleSubmit">
     <DataAnnotationsValidator />
-    <ValidationSummary />
+    @* <ValidationSummary /> *@
+    <Blazorise.ValidationSummary />
     <div class="row">
         <!-- Left Column -->
         <div class="col-md-4">

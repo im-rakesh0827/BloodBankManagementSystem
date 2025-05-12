@@ -1,5 +1,4 @@
-@using BloodBankManagementSystem.Core.Models
-
+@using BloodBankManagementSystem.Core.Models;
 @if (IsVisible)
 {
     <div class="history-modal">
@@ -10,72 +9,29 @@
 
         @if (HistoryList != null && HistoryList.Any())
         {
-            <div class="table-wrapper">
-                <table class="table table-striped table-bordered m-0">
-                    <thead class="table-light sticky-header">
-                        <tr>
-                            <th style="width: 20%;">Date</th>
-                            <th style="width: 20%;">Action</th>
-                            <th style="width: 20%;">User</th>
-                            <th style="width: 40%;">Note</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var history in HistoryList)
-                        {
-                            <tr>
-                                <td>@history.ActionDate</td>
-                                <td>@history.ActionType</td>
-                                <td>@history.ActionUser</td>
-                                <td>@history.ActionNote</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <DataGrid TItem="PatientHistory"
+                      Data="@pagedHistory"
+                      TotalItems="@filteredHistory.Count"
+                      ShowPager="true"
+                      PageSize="10"
+                      ShowFilterRow="true"
+                      ShowCaptions="true"
+                      Responsive="true"
+                      Striped="true"
+                      Bordered="true"
+                      Filterable="true"
+                      ReadData="@OnReadDataAsync">
+                <DataGridColumns>
+                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionDate)" Caption="Date" />
+                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionType)" Caption="Action" />
+                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionUser)" Caption="User" />
+                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionNote)" Caption="Note" />
+                </DataGridColumns>
+            </DataGrid>
         }
         else
         {
             <p class="m-3">No history available.</p>
         }
     </div>
-}
-
-<style>
-    .table-wrapper {
-        max-height: 50vh;
-        min-height:50vh;
-        overflow-y: auto;
-        border: 1px solid #dee2e6;
-    }
-
-    .table-wrapper table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .sticky-header th {
-        position: sticky;
-        top: 0;
-        background-color: #f8f9fa; /* Bootstrap light background */
-        z-index: 2;
-    }
-
-    .table th, .table td {
-        white-space: nowrap;
-        text-align: left;
-        vertical-align: middle;
-    }
-</style>
-
-@code {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public EventCallback OnClose { get; set; }
-    [Parameter] public Patient? Patient { get; set; }
-    [Parameter] public List<PatientHistory> HistoryList { get; set; } = new();
-
-    private void Close()
-    {
-        OnClose.InvokeAsync();
-    }
 }

@@ -46,10 +46,10 @@
 }
 
 .btn {
-    padding: 8px 15px;
+    padding: 7px 14px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 @keyframes fadeIn {

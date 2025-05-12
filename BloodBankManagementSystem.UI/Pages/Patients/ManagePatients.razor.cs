@@ -18,7 +18,8 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         private string Message { get; set; } = string.Empty;
         private Patient SelectedPatient { get; set; } = new();
         private bool IsCreateUpdatePopup{get;set;} = false;
-        private bool IsShowActiveOnly {get; set;} = true;
+        private string FilterBasedOn {get; set;} = "Active";
+        private bool IsLoading{get; set;} = false;
         private void OpenEditModal(Patient patient)
         {
           SelectedPatient = patient;
@@ -122,13 +123,30 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
        }
 
        public void ApplyFilteredPatientsList(){
-          // Console.WriteLine("Filter method");
-          if(IsShowActiveOnly){
-               FilteredPatientsList = AllPatientsList.Where(p => p.IsActive && p.IsAlive).ToList();
-          }
-          else{
-               FilteredPatientsList = AllPatientsList.Where(p => p.IsActive).ToList();
-          }
+            switch (FilterBasedOn)
+            {
+              case "Active":
+                  FilteredPatientsList = AllPatientsList.Where(p => p.IsActive && p.IsAlive).ToList();
+              break;
+              case "Last7Days":
+                  var sevenDaysAgo = DateTime.Now.AddDays(-7);
+                  FilteredPatientsList = AllPatientsList.Where(p => p.CreatedAt >= sevenDaysAgo && p.IsActive && p.IsAlive).ToList();
+              break;
+              case "Last30Days":
+                    var thirtyDaysAgo = DateTime.Now.AddDays(-30);
+                    FilteredPatientsList = AllPatientsList.Where(p => p.CreatedAt >= thirtyDaysAgo && p.IsActive && p.IsAlive).ToList();
+                    break;
+              case "Last1Year":
+                    var oneYearAgo = DateTime.Now.AddYears(-1);
+                    FilteredPatientsList = AllPatientsList.Where(p => p.CreatedAt >= oneYearAgo && p.IsActive && p.IsAlive).ToList();
+              break;
+              case "All":
+                  FilteredPatientsList = AllPatientsList.Where(p=>p.IsActive).ToList();
+              break;
+              default:
+                  FilteredPatientsList = AllPatientsList.Where(p => p.IsActive && p.IsAlive).ToList();
+              break;
+            }
            StateHasChanged();
      }
 
@@ -149,9 +167,12 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
 
     private async Task ShowPatientHistory(Patient patient)
     {
+        IsLoading = true;
         SelectedPatient = patient;
         PatientHistoryList = await GetPatientHistory(patient.PatientID); 
         ShowHistoryPopup = true;
+        await Task.Delay(100);
+        IsLoading = false;
     }
 
     private void CloseHistoryPopup()
@@ -176,5 +197,29 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
               return new List<PatientHistory>();
           }
     }
+
+
+
+    private async Task ExportPatientsToExcel()
+{
+    var exportData = FilteredPatientsList.Select(p => new
+    {
+        p.FirstName,
+        p.LastName,
+        p.Age,
+        p.BloodTypeNeeded,
+        p.PhoneNumber,
+        p.Country,
+        p.State,
+        p.District,
+        p.PinCode,
+        FullAddress = p.Address
+    }).ToList();
+
+    await JSRuntime.InvokeVoidAsync("exportToExcel", exportData, "RegisteredPatients.xlsx");
+}
+
+
+
     }
 }

@@ -208,6 +208,22 @@
               "target": "Package",
               "version": "[4.2.1, )"
             },
+            "Blazorise": {
+              "target": "Package",
+              "version": "[1.7.6, )"
+            },
+            "Blazorise.Bootstrap5": {
+              "target": "Package",
+              "version": "[1.7.6, )"
+            },
+            "Blazorise.DataGrid": {
+              "target": "Package",
+              "version": "[1.7.6, )"
+            },
+            "Blazorise.Icons.FontAwesome": {
+              "target": "Package",
+              "version": "[1.7.6, )"
+            },
             "Microsoft.AspNetCore.Components.Authorization": {
               "target": "Package",
               "version": "[8.0.0, )"
