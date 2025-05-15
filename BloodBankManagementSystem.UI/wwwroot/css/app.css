@@ -199,3 +199,30 @@ code {
     padding-left: .5rem;
     font-size: .875rem;
 }
+
+
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: rgba(9, 52, 98, 0.894) !important;
+}
+
+.main-content {
+    padding-top: 1rem;
+}
+
+
+/* Radzen Grid Custom CSS */
+.rz-pager-element .rzi, .rz-button-md .rzi{
+    color:red;
+}
+
+.rz-grid-filter-buttons .rz-button.rz-shade-default.rz-apply-filter {
+    background-color: #0d4077 !important;
+}
+
+
+.customButton {
+    color: #fff;
+    background-color: #0d4077;
+    border-color: #0d4077;
+}

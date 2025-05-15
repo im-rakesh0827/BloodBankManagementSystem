@@ -13,8 +13,7 @@
     <SourceRoot Include="/Users/rakeshkumar/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.analyzers/3.3.4/buildTransitive/Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.analyzers/3.3.4/buildTransitive/Microsoft.CodeAnalysis.Analyzers.props')" />
-    <Import Project="$(NuGetPackageRoot)radzen.blazor/6.6.3/buildTransitive/Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor/6.6.3/buildTransitive/Radzen.Blazor.props')" />
+    <Import Project="$(NuGetPackageRoot)radzen.blazor/7.0.3/buildTransitive/Radzen.Blazor.props" Condition="Exists('$(NuGetPackageRoot)radzen.blazor/7.0.3/buildTransitive/Radzen.Blazor.props')" />
     <Import Project="$(NuGetPackageRoot)mudblazor/8.5.1/buildTransitive/MudBlazor.props" Condition="Exists('$(NuGetPackageRoot)mudblazor/8.5.1/buildTransitive/MudBlazor.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack/8.0.14/build/Microsoft.NET.Sdk.WebAssembly.Pack.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.sdk.webassembly.pack/8.0.14/build/Microsoft.NET.Sdk.WebAssembly.Pack.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.net.illink.tasks/8.0.14/build/Microsoft.NET.ILLink.Tasks.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.illink.tasks/8.0.14/build/Microsoft.NET.ILLink.Tasks.props')" />
@@ -28,7 +27,6 @@
     <Import Project="$(NuGetPackageRoot)blazored.modal/7.3.1/buildTransitive/Blazored.Modal.props" Condition="Exists('$(NuGetPackageRoot)blazored.modal/7.3.1/buildTransitive/Blazored.Modal.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/Users/rakeshkumar/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.4</PkgMicrosoft_CodeAnalysis_Analyzers>
     <PkgMicrosoft_NET_Sdk_WebAssembly_Pack Condition=" '$(PkgMicrosoft_NET_Sdk_WebAssembly_Pack)' == '' ">/Users/rakeshkumar/.nuget/packages/microsoft.net.sdk.webassembly.pack/8.0.14</PkgMicrosoft_NET_Sdk_WebAssembly_Pack>
     <PkgMicrosoft_NET_ILLink_Tasks Condition=" '$(PkgMicrosoft_NET_ILLink_Tasks)' == '' ">/Users/rakeshkumar/.nuget/packages/microsoft.net.illink.tasks/8.0.14</PkgMicrosoft_NET_ILLink_Tasks>
     <PkgMicrosoft_AspNetCore_Components_WebAssembly_DevServer Condition=" '$(PkgMicrosoft_AspNetCore_Components_WebAssembly_DevServer)' == '' ">/Users/rakeshkumar/.nuget/packages/microsoft.aspnetcore.components.webassembly.devserver/8.0.4</PkgMicrosoft_AspNetCore_Components_WebAssembly_DevServer>

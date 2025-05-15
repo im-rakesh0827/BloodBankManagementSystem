@@ -7,15 +7,48 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
 using Blazorise.DataGrid;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using BloodBankManagementSystem.UI.Helpers;
 namespace BloodBankManagementSystem.UI.Pages.Patients
 {
      public partial class PatientHistoryComponent{
-          [Parameter] public bool IsVisible { get; set; }
           [Parameter] public EventCallback OnClose { get; set; }
           [Parameter] public Patient? Patient { get; set; }
-          [Parameter] public List<PatientHistory> HistoryList { get; set; } = new();
+          [Parameter] public int SelectedPatientId { get; set; }
+          
+          public List<PatientHistory> HistoryList { get; set; } = new();
           private List<PatientHistory> filteredHistory = new();
           private List<PatientHistory> pagedHistory = new();
+          public bool IsLoading { get; set; } = false;
+
+        protected override async Task OnInitializedAsync(){
+               await ShowPatientHistory();
+        }
+
+          private async Task ShowPatientHistory()
+          {
+               IsLoading = true;
+               HistoryList = await GetPatientHistory(SelectedPatientId); 
+               await Task.Delay(100);
+               IsLoading = false;
+          }
+
+          private async Task<List<PatientHistory>> GetPatientHistory(int patientId)
+          {
+               try
+               {
+               string url = $"{ServerConstants.APICallNames.GetPatientHistoryById.GetStringValue()}{patientId}";
+               var response = await Http.GetFromJsonAsync<List<PatientHistory>>(url);
+               return response ?? new List<PatientHistory>();
+               }
+               catch (Exception ex)
+               {
+               Console.WriteLine($"Error fetching patient history: {ex.Message}");
+               return new List<PatientHistory>();
+               }
+          }
+
 
           private void Close()
           {

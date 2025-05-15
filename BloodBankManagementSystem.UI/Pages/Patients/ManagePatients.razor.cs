@@ -6,6 +6,7 @@ using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using BloodBankManagementSystem.UI.Helpers;
+using BloodBankManagementSystem.Core.Enums;
 using System.Linq;
 using Microsoft.JSInterop;
 
@@ -20,6 +21,7 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         private bool IsCreateUpdatePopup{get;set;} = false;
         private string FilterBasedOn {get; set;} = "Active";
         private bool IsLoading{get; set;} = false;
+        private Dictionary<string, string> FilterOptions = new Dictionary<string, string>();
         private void OpenEditModal(Patient patient)
         {
           SelectedPatient = patient;
@@ -40,7 +42,13 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         }
         protected override async Task OnInitializedAsync()
         {
+          // IsLoading = true;
+          // await Task.Delay(500);
           await LoadAllPatients();
+          FilterOptions = FilterOptionsHelper.AllFilterOption;
+          ApplyFilteredPatientsList();
+          // IsLoading=false;
+
         }
 
         private async Task LoadAllPatients()
@@ -64,11 +72,10 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
                          }
                          return;
                     }
-
                     // var responseText = await response.Content.ReadAsStringAsync();
                     // Console.WriteLine($"Raw API Response: {responseText}"); 
                     AllPatientsList = await response.Content.ReadFromJsonAsync<List<Patient>>();
-                    ApplyFilteredPatientsList();
+                    // ApplyFilteredPatientsList();
                }
                catch (Exception ex)
                {
@@ -123,6 +130,7 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
        }
 
        public void ApplyFilteredPatientsList(){
+
             switch (FilterBasedOn)
             {
               case "Active":
@@ -150,55 +158,17 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
            StateHasChanged();
      }
 
-
-
-
-
-
-
-
-
-
-
-
-
      private bool ShowHistoryPopup = false;
-    private List<PatientHistory> PatientHistoryList = new();
-
     private async Task ShowPatientHistory(Patient patient)
     {
-        IsLoading = true;
         SelectedPatient = patient;
-        PatientHistoryList = await GetPatientHistory(patient.PatientID); 
         ShowHistoryPopup = true;
-        await Task.Delay(100);
-        IsLoading = false;
     }
 
     private void CloseHistoryPopup()
     {
         ShowHistoryPopup = false;
     }
-
-    private async Task<List<PatientHistory>> GetPatientHistory(int patientId)
-    {
-          try
-          {
-              // var url = $"{ServerConstants.GetPatientHistoryById}{patientId}";
-              // string endpoint = ServerConstants.APICallNames.GetPatientHistoryById.GetStringValue();
-              string url = $"{ServerConstants.APICallNames.GetPatientHistoryById.GetStringValue()}{patientId}";
-
-              var response = await Http.GetFromJsonAsync<List<PatientHistory>>(url);
-              return response ?? new List<PatientHistory>();
-          }
-          catch (Exception ex)
-          {
-              Console.WriteLine($"Error fetching patient history: {ex.Message}");
-              return new List<PatientHistory>();
-          }
-    }
-
-
 
     private async Task ExportPatientsToExcel()
 {
@@ -219,7 +189,10 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
     await JSRuntime.InvokeVoidAsync("exportToExcel", exportData, "RegisteredPatients.xlsx");
 }
 
-
-
+private void OnRowSelect(Patient patient)
+    {
+        SelectedPatient = patient;
+        // Console.WriteLine($"Selected Patient Id : {SelectedPatient.PatientID}");
+    }
     }
 }

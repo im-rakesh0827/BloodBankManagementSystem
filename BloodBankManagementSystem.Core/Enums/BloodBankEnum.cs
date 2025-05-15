@@ -38,4 +38,16 @@ namespace BloodBankManagementSystem.Core.Enums
             DrugUseOrHighRiskBehavior = 128
         }
     }
+
+    public static class FilterOptionsHelper
+    {
+        public static readonly Dictionary<string, string> AllFilterOption = new()
+        {
+            { "Active", "Show Active" },
+            { "Last7Days", "Last 7 Days" },
+            { "Last30Days", "Last 30 Days" },
+            { "Last1Year", "Last 1 Year" },
+            { "All", "Show All" }
+        };
+    }
 }

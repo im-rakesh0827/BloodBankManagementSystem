@@ -1,35 +1,8 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
-
-
-
-
-
-
-@* @inherits LayoutComponentBase
 <PageTitle>Vital Drops</PageTitle>
-<div class="main-layout">
-    <NavMenu />
-    <div class="main-content container" >
-        @Body
-    </div>
+
+<NavMenu />
+
+<div class="main-content p-4">
+    @Body
 </div>
-<style>
-    .main-content {
-        padding-top: 1rem;
-    }
-</style> *@

@@ -1,39 +1,62 @@
 @page "/managePatients"
-@inject IJSRuntime JSRuntime
 @inject HttpClient Http
-@if(IsLoading){
-    <LoaderComponent></LoaderComponent>
-}
+@inject IJSRuntime JSRuntime
+@using BloodBankManagementSystem.Core.Models;
+
+ @if(IsLoading){
+        <LoaderComponent></LoaderComponent>
+    }
+
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- Left section: Title and Register button -->
+    <!-- Left Section: Title + Button -->
     <div class="d-flex align-items-center">
         <h4 class="me-3 mb-0">Registered Patients</h4>
-        <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePoup">Patient +</button>
+        <button class="btn btn-success btn-sm" @onclick="OpenCreatePoup">Patient +</button>
     </div>
 
-    <!-- Right section: Filter and Export -->
-    <div class="d-flex align-items-center">
+    <!-- Right Section: Filter + Export -->
+    @* <div class="d-flex align-items-center gap-2 flex-wrap">
         <label for="filterDropdown" class="mb-0 me-2">Filter:</label>
-        <InputSelect id="filterDropdown"
-                     @bind-Value="FilterBasedOn"
-                     class="form-select filterDropdown"
-                     style="width: 160px;"
-                     @bind-Value:after="ApplyFilteredPatientsList">
-            <option value="Active">Show Active</option>
-            <option value="Last7Days">Last 7 Days</option>
-            <option value="Last30Days">Last 30 Days</option>
-            <option value="Last1Year">Last 1 Year</option>
-            <option value="All">Show All</option>
-        </InputSelect>
 
-        <button class="btn btn-primary btn-sm ms-3" @onclick="ExportPatientsToExcel">Export to Excel</button>
+        <InputSelect id="filterDropdown"
+                    class="form-select"
+                    style="width: 160px;"
+                    @bind-Value="FilterBasedOn"
+                    @bind-Value:after="ApplyFilteredPatientsList">
+            @foreach (var option in FilterOptions)
+            {
+                <option value="@option.Key">@option.Value</option>
+            }
+        </InputSelect>
+        <button class="btn btn-primary btn-sm" @onclick="ExportPatientsToExcel">Export to Excel</button>
+    </div> *@
+
+
+
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+        <label for="PatientFilterDropDown" class="form-label mb-0 me-2">Filter:</label>
+        <RadzenDropDown
+            Name="PatientFilterDropDown"
+            Style="width: 160px;"
+            TValue="string"
+            @bind-Value="FilterBasedOn"
+            Data="@FilterOptions.ToList()"
+            TextProperty="Value"
+            ValueProperty="Key"
+            Change="@(args => ApplyFilteredPatientsList())" />
+            <button class="btn customButton btn-sm" @onclick="ExportPatientsToExcel" title="Export to Excel">
+                <i class="fas fa-file-excel"></i> Excel
+            </button>
+            <button class="btn customButton btn-sm" @onclick="ExportPatientsToExcel" title="Export to CSV">
+                <i class="fas fa-file-csv"></i> CSV
+            </button>
+
     </div>
 </div>
 
-
 @if (FilteredPatientsList is null)
 {
-    <p>Loading...</p>
+    <p>Loading patients...</p>
 }
 else if (!FilteredPatientsList.Any())
 {
@@ -41,75 +64,76 @@ else if (!FilteredPatientsList.Any())
 }
 else
 {
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Blood Type Needed</th>
-                <th>Phone Number</th>
-                <th>Country</th>
-                <th>State</th>
-                <th>District</th>
-                <th>PinCode</th>
-                <th>Full Address</th>
-                <th>Action</th> 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var patient in FilteredPatientsList)
-            {
-                <tr>
-                    <td>@patient.FirstName</td>
-                    <td>@patient.LastName</td>
-                    <td>@patient.Age</td>
-                    <td>@patient.BloodTypeNeeded</td>
-                    <td>@patient.PhoneNumber</td>
-                    <td>@patient.Country</td>
-                    <td>@patient.State</td>
-                    <td>@patient.District</td>
-                    <td>@patient.PinCode</td>
-                    <td>@patient.Address</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-sm" @onclick="() => ShowPatientHistory(patient)">
-                              <HistoryIcon />
-                            </button>
-                            <button class="btn btn-sm" @onclick="() => OpenEditModal(patient)">
-                                    <EditViewIcon />
-                            </button>
+    <!-- Wrap the grid in a scrollable container -->
+    <div style="overflow-x: auto; width: 100%;">
+    <RadzenDataGrid TItem="Patient"
+                    Data="@FilteredPatientsList"
+                    Count="@FilteredPatientsList.Count"
+                    AllowPaging="true"
+                    PageSize="10"
+                    AllowSorting="true"
+                    AllowFiltering="true"
+                    AllowColumnReorder="true"
+                    RowSelect="@OnRowSelect"
+                    FrozenColumns="FrozenColumns.Right"
+                    Class="w-100"
+                    Style="min-width: 800px;">
+        <Columns>
+            <RadzenDataGridColumn TItem="Patient" Property="FirstName" Title="First Name" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="LastName" Title="Last Name" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="BloodTypeNeeded" Title="Blood Type Needed" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="PhoneNumber" Title="Phone Number" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="Country" Title="Country" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="State" Title="State" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="District" Title="District" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="PinCode" Title="PinCode" Width="160px" />
+            <RadzenDataGridColumn TItem="Patient" Property="Address" Title="Full Address" Width="300px" />
 
-                            <button class="btn btn-sm" @onclick="() => DeletePatient(patient.PatientID)">
-                                <DeleteIcon />
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+            <RadzenDataGridColumn TItem="Patient"
+                                  Title="Actions"
+                                  Filterable="false"
+                                  Sortable="false"
+                                  Frozen="true"
+                                  Width="180px">
+                <Template Context="patient">
+                    <div class="d-flex gap-1 flex-nowrap">
+                        <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => ShowPatientHistory(patient))">
+                            <HistoryIcon></HistoryIcon>
+                        </RadzenButton>
+                        <RadzenButton ButtonStyle="ButtonStyle.Light"  Click="@(() => OpenEditModal(patient))">
+                            <EditViewIcon></EditViewIcon>
+                        </RadzenButton>
+                        <RadzenButton ButtonStyle="ButtonStyle.Light" Icon="delete" Click="@(() => DeletePatient(patient.PatientID))" />
+                    </div>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</div>
+
 }
-<!-- Modal Popup -->
+
+<!-- Create & Update Popup -->
 @if (IsCreateUpdatePopup)
 {
     <div class="modal-overlay">
         <div class="modal-content">
-            <RegisterPatient SelectedPatientData="SelectedPatient" OnClose="HandleCancelOrClose" OnPatientUpdated="RefreshPatientList" IsCreateUpdatePatientPopup="IsCreateUpdatePopup" />
+            <RegisterPatient SelectedPatientData="SelectedPatient"
+                             OnClose="HandleCancelOrClose"
+                             OnPatientUpdated="RefreshPatientList"
+                             IsCreateUpdatePatientPopup="IsCreateUpdatePopup" />
         </div>
     </div>
 }
 
-
-
-@if(ShowHistoryPopup){
+<!-- History Popup -->
+@if (ShowHistoryPopup)
+{
     <div class="modal-overlay">
         <div class="modal-content">
-        <PatientHistoryComponent 
-              IsVisible="ShowHistoryPopup"
-              Patient="SelectedPatient"
-              HistoryList="PatientHistoryList"
-              OnClose="CloseHistoryPopup" />
+            <PatientHistoryComponent Patient="SelectedPatient"
+                                     SelectedPatientId="SelectedPatient.PatientID"
+                                     OnClose="CloseHistoryPopup" />
         </div>
     </div>
 }

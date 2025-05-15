@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BloodBankManagementSystem.UI",
   "resources": {
-    "hash": "sha256-Mc4BcMVMf0lneMX7Hwo7E9yDwHj2UIOoybPu7YQSq+E=",
+    "hash": "sha256-8/bSZLEOhy6FbSE2kUKb0u8Ag3je9Jizsm9qf17qZOE=",
     "jsModuleNative": {
       "dotnet.native.8.0.14.m9s06tbr13.js": "sha256-DTUQS6Jc6BNnS7sYYezFfaUKVmQq0/lanhQuJfygH/k="
     },
@@ -35,8 +35,6 @@
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-Y+EHIYfJGzXgN3vluuzwmKa+sQxqvGiB07pahOLsVJU=",
       "Microsoft.AspNetCore.Metadata.wasm": "sha256-WqXwQkujGiES/0Dqpa6SChJqSetdki7dySrknprHqvc=",
       "Microsoft.Bcl.AsyncInterfaces.wasm": "sha256-uV6JPE8pFJZ3vgxDKUeimvMSk+wGuYyOKWg5xKqP7Qo=",
-      "Microsoft.CodeAnalysis.wasm": "sha256-UrCKIA7ySpcVuJFCzqzHYPujBSMtSeyQCqfCmliSttY=",
-      "Microsoft.CodeAnalysis.CSharp.wasm": "sha256-VcpjgiVQGVhlsFFL+GzVh/tl1ycxkiTzhb3zMyKI0Yg=",
       "Microsoft.Data.SqlClient.wasm": "sha256-gxrEs8lqqUTMmbA1w4wX/vH8hjYWSIK1J2729Qeu4LY=",
       "Microsoft.Data.Sqlite.wasm": "sha256-P2bebxNDR1F2Zs68hg69juWpGhuHFKeUVMfw2MdI6XY=",
       "Microsoft.EntityFrameworkCore.wasm": "sha256-HwUadfXGK/cdsw3eQyPTteSCaaK1CBA0Q92dv5eJKB4=",
@@ -76,7 +74,7 @@
       "Microsoft.SqlServer.Server.wasm": "sha256-Fig+5hq00gGQlXAgSnyFlUlWyhlx9f+yPJb4INt3gNc=",
       "Microsoft.Win32.SystemEvents.wasm": "sha256-1kUoFxSGzlbndQM4zal3G/YBdouUTf444lDjqhuWALU=",
       "MudBlazor.wasm": "sha256-B1r0lQbtoPPuBaAzUXcZygkrhkuxdQBKjsDc0ugfazM=",
-      "Radzen.Blazor.wasm": "sha256-vstBSA5Y5P+Fw9vaioEBV5GCW1PtQAdgpALWJFCinQs=",
+      "Radzen.Blazor.wasm": "sha256-SJYdHiDDSVlJwPHdMA3O0Px/UlONVFTpfeS0AUJOLb8=",
       "SQLitePCLRaw.batteries_v2.wasm": "sha256-r5pUQvWwdp1MxZ7qFfD4+L+mh0WmE7DrApFw8tLgXLA=",
       "SQLitePCLRaw.core.wasm": "sha256-aT9iJxIXrYsk8FoIIsd6aHViCVRd9BN56E6BlayaAI4=",
       "SQLitePCLRaw.provider.e_sqlite3.wasm": "sha256-IqWf9GZE+hQv57kMpvhKmc8Uuo5cD4NOnTGLYFaOhL0=",
@@ -258,68 +256,14 @@
       "mscorlib.wasm": "sha256-8L4O6tiH48gEZfzf0Y84J01S+3eEG59Bo5bfpH2H+9Y=",
       "netstandard.wasm": "sha256-sEvS/ZjfGhf1dLglmk72ysM50loOygjujJ/J5OhFLEw=",
       "System.Private.CoreLib.wasm": "sha256-BhHYDTpkph+YJOQuAlv6aSrvjTVX0WLTIDBXecinFXo=",
-      "BloodBankManagementSystem.Core.wasm": "sha256-4lkgh1a9wggc3VzFkEiyYgt+f0V3PT8rhl2mXbO7Zpw=",
-      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-STvEv5idsbq+2fqw4MibBxve6Kg5vtIvh77BKrQUg6E=",
-      "BloodBankManagementSystem.UI.wasm": "sha256-AKt68AIHs/OwVm14PIa4ovgBW+0vwEBlkJtZIJPq95Q="
+      "BloodBankManagementSystem.Core.wasm": "sha256-bz+l8DkRist+MdgaCmsw3fJuHaAjqFuG/8YY7Pcb4uU=",
+      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-q48m7Dn7CMOOC4t6Qr6qjIPpp/HUYeMICdMLaUelyRI=",
+      "BloodBankManagementSystem.UI.wasm": "sha256-bvJJ3V+XdY9DwA7k9GGFqJV0Cy3sAS8lu46FtEtR8hk="
     },
     "pdb": {
-      "BloodBankManagementSystem.Core.pdb": "sha256-31BKIXB6IdQPZll7ALo//2X7d0yJgWbBtfyDkv42BAk=",
-      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-iX5eEuEzWY4vgS7ORuBbxkqTOdAG2b20Ry+P0AKZyWI=",
-      "BloodBankManagementSystem.UI.pdb": "sha256-+70UmEpSRKtUbg+ouyINvQji4M8RBxiiw+c22bBO2dA="
-    },
-    "satelliteResources": {
-      "cs": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-L3bKdVeK4S0Y6aWqPts668EX9n2zkOL6TqgUzlASxv8=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-NyqJWAQffi5s2B7+jr2gd4NGYR1uGQU3ugVMslD15Co="
-      },
-      "de": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-7X63txji8CRVNINAmel5bUHinrFp3g7ieHLz2sM9x4I=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-aoMjXlggVRObU8Fi12eR7M6hky7HTvuodgMZqURQh74="
-      },
-      "es": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-Uh9Oeki14vqSrSMueTb++lYjt1j7RjWJhBExSX/2phY=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-NXEmu0iSMse7rCCuGQ37z1EXcx43ZgSZvs2x/xYEjfM="
-      },
-      "fr": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-R/p6rSzNfHwN9vIXl20l+HdlxjDgJH02ujXITSaAbdw=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-l+BbxzrrOid2ArJyD5uSb3KoeUetmb4/Pkh6fIdYctE="
-      },
-      "it": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-oHeY9/V1n4CJRGTiLT9rJfBAn5S8YHqysdxSeh0MyVY=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-VWB38g4CaKU00JtNZr5LfBmrfWCTLPagpowJXgNOq4E="
-      },
-      "ja": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-Cc4fdG4NwA+RTo9DT7F9Sbhv0kpsKZ3S7Nc5RT3rasg=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-3BAXPNBL6akRlFzhYSFgye4I9p+Mb+MBioYO2/SRTOY="
-      },
-      "ko": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-uWFHPvAgn8I3ZZzG62SJxDqim5XJ1Nl00+hkjYQ7X2c=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-MPj6p69oheP7XsyvKgZIXp1vyRNT4X4yxSmdUDwFZ0A="
-      },
-      "pl": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-E9DhkvWStAmI/pIFbJuoZ7IymnFENRUtmJxMHJmxSx0=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-sxwDwwrPt5JfmJ1O/dyIUtEGQ7TAatqnCZ3xpwX7Txk="
-      },
-      "pt-BR": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-p2wHOUhg+WLHoaTyB1+Q5wAA7f8EfKp6bH2AQPrY6jY=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-AwBtAuX3y8JuLD66WMgOkw3SsJ2gZmZ7tgQhjPSdgos="
-      },
-      "ru": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-+7mZeRjGc2M6hJ1qiMRJ8OEm5UyZWf3qPw/Z0sZUQcc=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-gyvuLjq56xJ52UJ4PYF5kNrg/0o7U+fwNd7Y/ymQ6KA="
-      },
-      "tr": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-gqd81F4jNypiqxlOrU8EwRHawcFDnr4kBcOs+jTsGpg=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-OowbIL5ac+p0DilPW+iu1yXTSqqZcWbh7HEgwNXVn4o="
-      },
-      "zh-Hans": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-ztaU1ohgQYAeC1Q3IltD5DYmkXv0Lgz9mQBsUssQ2a4=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-blb8qJxNtyTL5n3Q0mtUkbE56uV98Eo9aj8RQt5a6Jc="
-      },
-      "zh-Hant": {
-        "Microsoft.CodeAnalysis.resources.wasm": "sha256-zFLRkAZCZbhRpwNfnTOr862AwXfo7UhDnhJH7ZfKB8w=",
-        "Microsoft.CodeAnalysis.CSharp.resources.wasm": "sha256-IMqU+o7J2aQWaVQIPaCReB1GsG6WoH4fYK2Djri4ilA="
-      }
+      "BloodBankManagementSystem.Core.pdb": "sha256-KfPa51k2RjOU7PPIVmFC/C9Oh82jW93lQf7sIYNOn3E=",
+      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-PgEt4mE8KB0wGR/NNRr6dFAcGDrJhSzdG9eNMVNE3oM=",
+      "BloodBankManagementSystem.UI.pdb": "sha256-lqcjqQcAcc+g6UR+LDDQegY157XPmRtltj5mD6xBnGo="
     }
   },
   "cacheBootResources": true,

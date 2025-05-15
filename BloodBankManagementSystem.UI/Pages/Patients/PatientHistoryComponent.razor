@@ -1,37 +1,38 @@
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime
 @using BloodBankManagementSystem.Core.Models;
-@if (IsVisible)
-{
-    <div class="history-modal">
-        <div class="position-relative">
-            <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" @onclick="Close"></button>
-        </div>
-        <h5 class="m-3">Patient History - @Patient?.FirstName @Patient?.LastName</h5>
-
-        @if (HistoryList != null && HistoryList.Any())
-        {
-            <DataGrid TItem="PatientHistory"
-                      Data="@pagedHistory"
-                      TotalItems="@filteredHistory.Count"
-                      ShowPager="true"
-                      PageSize="10"
-                      ShowFilterRow="true"
-                      ShowCaptions="true"
-                      Responsive="true"
-                      Striped="true"
-                      Bordered="true"
-                      Filterable="true"
-                      ReadData="@OnReadDataAsync">
-                <DataGridColumns>
-                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionDate)" Caption="Date" />
-                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionType)" Caption="Action" />
-                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionUser)" Caption="User" />
-                    <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionNote)" Caption="Note" />
-                </DataGridColumns>
-            </DataGrid>
-        }
-        else
-        {
-            <p class="m-3">No history available.</p>
-        }
+<div class="history-modal">
+    <div class="position-relative">
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" @onclick="Close"></button>
     </div>
-}
+    <h5 class="m-3">Patient History - @Patient?.FirstName @Patient?.LastName</h5>
+    @if(IsLoading){
+        <LoaderComponent></LoaderComponent>
+    }
+    else if (HistoryList != null && HistoryList.Any())
+    {
+        <DataGrid TItem="PatientHistory"
+                    Data="@pagedHistory"
+                    TotalItems="@filteredHistory.Count"
+                    ShowPager="true"
+                    PageSize="10"
+                    ShowFilterRow="true"
+                    ShowCaptions="true"
+                    Responsive="true"
+                    Striped="true"
+                    Bordered="true"
+                    Filterable="true"
+                    ReadData="@OnReadDataAsync">
+            <DataGridColumns>
+                <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionDate)" Caption="Date" />
+                <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionType)" Caption="Action" />
+                <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionUser)" Caption="User" />
+                <DataGridColumn TItem="PatientHistory" Field="@nameof(PatientHistory.ActionNote)" Caption="Note" />
+            </DataGridColumns>
+        </DataGrid>
+    }
+    else
+    {
+        <p class="m-3">No history available.</p>
+    }
+</div>

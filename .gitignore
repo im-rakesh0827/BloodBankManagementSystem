@@ -1,0 +1,22 @@
+# .NET build folders
+bin/
+obj/
+
+# WebAssembly output
+wwwroot/_framework/
+**/webcil/
+
+# User files
+*.user
+*.suo
+
+# IDE config
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
