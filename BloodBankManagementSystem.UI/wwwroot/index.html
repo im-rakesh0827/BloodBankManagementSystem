@@ -81,22 +81,29 @@
     window.exportToExcel = (data, fileName) => {
         const wb = XLSX.utils.book_new();
         const ws = XLSX.utils.json_to_sheet(data);
+
         const range = XLSX.utils.decode_range(ws['!ref']);
+
+        // UPPERCASE headers + style
         for (let col = range.s.c; col <= range.e.c; col++) {
-            const cell = ws[XLSX.utils.encode_cell({ r: range.s.r, c: col })];
+            const headerCellRef = XLSX.utils.encode_cell({ r: range.s.r, c: col });
+            const cell = ws[headerCellRef];
             if (cell) {
-                cell.v = cell.v.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
-                    index === 0 ? match.toLowerCase() : match.toUpperCase()
-                );
+                // Convert to UPPERCASE
+                cell.v = cell.v.toString().toUpperCase();
+
+                // Apply styling
                 cell.s = {
                     font: { bold: true },
                     fill: { fgColor: { rgb: "FFFF00" } }
                 };
             }
         }
+
+        // Auto column widths
         const colWidths = [];
         for (let col = range.s.c; col <= range.e.c; col++) {
-            let maxLength = 0;
+            let maxLength = 10; // fallback width
             for (let row = range.s.r; row <= range.e.r; row++) {
                 const cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
                 if (cell && cell.v) {
@@ -108,6 +115,26 @@
         ws['!cols'] = colWidths;
         XLSX.utils.book_append_sheet(wb, ws, "Patients");
         XLSX.writeFile(wb, fileName || 'exported_data.xlsx');
+    };
+
+
+
+    window.BlazorDownloadFile = (fileName, contentType, base64Data) => {
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = `data:${contentType};base64,${base64Data}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    window.BlazorDownloadFile = (filename, contentType, base64Data) => {
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = `data:${contentType};base64,${base64Data}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
 </script>

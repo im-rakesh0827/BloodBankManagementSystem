@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BloodBankManagementSystem.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8179670f06a96b937e1cef238468110d3b15b50f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac4f2b52a984cbbd0e945b95868cf771e956532a")]
 [assembly: System.Reflection.AssemblyProductAttribute("BloodBankManagementSystem.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BloodBankManagementSystem.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

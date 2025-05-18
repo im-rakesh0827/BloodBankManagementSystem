@@ -1,17 +1,22 @@
 @page "/manageDonor"
 @inject IJSRuntime JSRuntime
 @inject HttpClient Http
-<h3 class="page-header">
-    Donor List
-    <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreatePopup">Donor +</button>
-</h3>
+@using BloodBankManagementSystem.Core.Models;
+
+@if (IsLoading)
+{
+    <LoaderComponent></LoaderComponent>
+}
+
+<CustomActionComponent  OnFilterOptionChanged="HandleApplyFilter" 
+                        OnExportData="HandleExportData"
+                        PageTitle="Registered Donor"
+                        OnCreateRecord="OpenCreatePopUp">
+</CustomActionComponent>
 
 @if (FilteredDonorsList == null)
 {
-    @* <p>Loading donors...</p> *@
-    <div class="loader-overlay">
-          <div class="loader"></div>
-     </div>
+    <p>Loading...</p>
 }
 else if (!FilteredDonorsList.Any())
 {
@@ -19,63 +24,55 @@ else if (!FilteredDonorsList.Any())
 }
 else
 {
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Blood Group</th>
-                <th>Gender</th>
-                <th>Age</th>
-                @* <th>Weight</th>
-                <th>Country</th>
-                <th>State</th>
-                <th>District</th>
-                <th>PinCode</th>
-                <th>Address</th> *@
-                <th>Last Donation Date</th>
-                <th>Eligible</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var donor in FilteredDonorsList)
-            {
-                <tr>
-                    <td>@donor.FirstName</td>
-                    <td>@donor.LastName</td>
-                    <td>@donor.Email</td>
-                    <td>@donor.Phone</td>
-                    <td>@donor.BloodGroup</td>
-                    <td>@donor.Gender</td>
-                    <td>@donor.Age</td>
-                    @* <td>@donor.Weight</td>
-                    <td>@donor.Country</td>
-                    <td>@donor.State</td>
-                    <td>@donor.District</td>
-                    <td>@donor.PinCode</td>
-                    <td>@donor.Address</td> *@
-                    <td>@donor.LastDonationDate?.ToString("yyyy-MM-dd")</td>
-                    <td>@(donor.IsEligible ? "Yes" : "No")</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-sm" @onclick="() => ShowDonorHistory(donor)">
-                              <HistoryIcon />
-                            </button>
-                            <button class="btn btn-sm" @onclick="() => OpenEditModal(donor)">
-                              <EditViewIcon />
-                            </button>
-                            <button class="btn btn-sm" @onclick="() => DeleteDonor(donor.Id)">
-                              <DeleteIcon />
-                            </button>
+    <div style="overflow-x: auto;">
+        <RadzenDataGrid TItem="Donor"
+                        Data="@FilteredDonorsList"
+                        Count="@FilteredDonorsList.Count"
+                        AllowPaging="true"
+                        PageSize="10"
+                        AllowSorting="true"
+                        AllowFiltering="true"
+                        AllowColumnResize="true"
+                        AllowColumnReorder="true"
+                        Responsive="true"
+                        Class="w-100"
+                        Style="min-width: 1100px;">
+            <Columns>
+                <RadzenDataGridColumn TItem="Donor" Property="FirstName" Title="First Name" Width="120px" />
+                <RadzenDataGridColumn TItem="Donor" Property="LastName" Title="Last Name" Width="120px" />
+                <RadzenDataGridColumn TItem="Donor" Property="Email" Title="Email" Width="180px" />
+                <RadzenDataGridColumn TItem="Donor" Property="Phone" Title="Phone" Width="130px" />
+                <RadzenDataGridColumn TItem="Donor" Property="BloodGroup" Title="Blood Group" Width="100px" />
+                <RadzenDataGridColumn TItem="Donor" Property="Gender" Title="Gender" Width="100px" />
+                <RadzenDataGridColumn TItem="Donor" Property="Age" Title="Age" Width="80px" />
+                <RadzenDataGridColumn TItem="Donor" Property="Weight" Title="Weight" Width="100px" />
+                <RadzenDataGridColumn TItem="Donor" Property="Country" Title="Country" Width="120px" />
+                <RadzenDataGridColumn TItem="Donor" Property="State" Title="State" Width="120px" />
+                <RadzenDataGridColumn TItem="Donor" Property="District" Title="District" Width="120px" />
+                <RadzenDataGridColumn TItem="Donor" Property="PinCode" Title="PinCode" Width="100px" />
+                <RadzenDataGridColumn TItem="Donor" Property="Address" Title="Address" Width="200px" />
+                <RadzenDataGridColumn TItem="Donor" Property="LastDonationDate" Title="Last Donation Date" Width="150px">
+                    <Template Context="donor">
+                        @donor.LastDonationDate?.ToString("yyyy-MM-dd")
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="Donor" Property="IsEligible" Title="Eligible" Width="100px">
+                    <Template Context="donor">
+                        @(donor.IsEligible ? "Yes" : "No")
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="Donor" Title="Actions" Filterable="false" Sortable="false" Width="130px">
+                    <Template Context="donor">
+                        <div class="d-flex gap-1 flex-nowrap">
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => ShowDonorHistory(donor))" Icon="history" />
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(donor))" Icon="edit" />
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => DeleteDonor(donor.Id))" Icon="delete" />
                         </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
 }
 
 <!-- Modal Popup -->
@@ -83,32 +80,22 @@ else
 {
     <div class="modal-overlay">
         <div class="modal-content">
-            <RegisterDonor SelectedDonorData="SelectedDonor" OnClose="HandleCancelOrClose" OnDonorAddedOrUpdated="RefreshDonorList" IsCreateUpdateDonorPopup="IsCreateUpdatePopup" />
+            <RegisterDonor 
+                SelectedDonorData="SelectedDonor"
+                OnClose="HandleCancelOrClose"
+                OnDonorAddedOrUpdated="RefreshDonorList"
+                IsCreateUpdateDonorPopup="IsCreateUpdatePopup" />
         </div>
     </div>
 }
 
-@* <CustomPopup @ref="donorPopupRef" Title="Add / Update Donor" ShowButtons="false" OnClose="HandleCancelOrClose">
-    <RegisterDonor 
-        SelectedDonorData="SelectedDonor" 
-        OnClose="HandleCancelOrClose" 
-        OnDonorAddedOrUpdated="RefreshDonorList" 
-        IsCreateUpdateDonorPopup="IsCreateUpdatePopup" />
-</CustomPopup> *@
-
-
-
-@if(ShowHistoryPopup){
+@if (ShowHistoryPopup)
+{
     <div class="modal-overlay">
         <div class="modal-content">
-        <DonorHistoryComponent IsVisible="ShowHistoryPopup"
-              Donor="SelectedDonor"
-              HistoryList="DonorHistoryList"
-              OnClose="CloseHistoryPopup" />
+            <DonorHistoryComponent 
+                DonorDetails="SelectedDonor"
+                OnClose="CloseHistoryPopup" />
         </div>
     </div>
 }
-
-
-
-

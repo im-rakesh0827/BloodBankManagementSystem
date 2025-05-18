@@ -14,6 +14,8 @@
     <PackageReference Include="Blazorise.Bootstrap5" Version="1.7.6" />
     <PackageReference Include="Blazorise.DataGrid" Version="1.7.6" />
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.7.6" />
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="EPPlus" Version="8.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.4" PrivateAssets="all" />
     <PackageReference Include="MudBlazor" Version="8.5.1" />

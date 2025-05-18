@@ -186,10 +186,8 @@ code {
     margin-top: 10px;
 }
 
-
 .form-label {
-    /* margin-bottom: .5rem; */
-    font-weight: bold;
+    margin-bottom: .2rem !important;
 }
 
 
@@ -206,12 +204,16 @@ code {
     background-color: rgba(9, 52, 98, 0.894) !important;
 }
 
-.main-content {
+/* .main-content {
     padding-top: 1rem;
+} */
+ .main-content {
+    padding-top: 0.5rem;
+    padding: 1rem;
 }
 
 
-/* Radzen Grid Custom CSS */
+/* -----------------------------------Radzen Grid Custom CSS --------------------------------------*/
 .rz-pager-element .rzi, .rz-button-md .rzi{
     color:red;
 }
@@ -221,8 +223,53 @@ code {
 }
 
 
+.rz-pager-element .rzi, .rz-button-md .rzi {
+    color: #0d4077 !important;
+}
+
+/* -----------------------------------Radzen Grid Custom CSS --------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------- */
+
 .customButton {
     color: #fff;
     background-color: #0d4077;
     border-color: #0d4077;
+}
+
+
+
+
+
+.custom-navbar {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    min-height: 30px;
+}
+.custom-navbar .nav-link {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    font-size: 0.95rem;
+}
+
+
+
+
+.sub-nav {
+    background-color: #f8f9fa; /* Light gray */
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: 1px solid #dee2e6;
 }

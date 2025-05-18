@@ -22,23 +22,23 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         private string FilterBasedOn {get; set;} = "Active";
         private bool IsLoading{get; set;} = false;
         private Dictionary<string, string> FilterOptions = new Dictionary<string, string>();
-        private void OpenEditModal(Patient patient)
+        private void OpenEditOrUpdatePopUp(Patient patient)
         {
           SelectedPatient = patient;
           IsCreateUpdatePopup = true;
-          StateHasChanged(); // Ensure UI updates
+          StateHasChanged(); 
         }
 
-        private void OpenCreatePoup(){
+        private void OpenCreatePopUp(){
           IsCreateUpdatePopup = true;
           SelectedPatient = new Patient();
-          StateHasChanged(); // Ensure UI updates
+          StateHasChanged();
         }
 
         private void HandleCancelOrClose()
         {
           IsCreateUpdatePopup = false;
-          StateHasChanged(); // Ensure UI updates
+          StateHasChanged(); 
         }
         protected override async Task OnInitializedAsync()
         {
@@ -46,7 +46,7 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
           // await Task.Delay(500);
           await LoadAllPatients();
           FilterOptions = FilterOptionsHelper.AllFilterOption;
-          ApplyFilteredPatientsList();
+          ApplyFilterePatient();
           // IsLoading=false;
 
         }
@@ -125,11 +125,13 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
      private async Task RefreshPatientList()
        {
           await LoadAllPatients();
-          ApplyFilteredPatientsList();
+          ApplyFilterePatient();
           StateHasChanged(); 
        }
 
-       public void ApplyFilteredPatientsList(){
+       public void ApplyFilterePatient(){
+
+        Console.WriteLine("I am in Manage Patient, ApplyFilterePatient method ");
 
             switch (FilterBasedOn)
             {
@@ -170,23 +172,57 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         ShowHistoryPopup = false;
     }
 
-    private async Task ExportPatientsToExcel()
-{
-    var exportData = FilteredPatientsList.Select(p => new
-    {
-        p.FirstName,
-        p.LastName,
-        p.Age,
-        p.BloodTypeNeeded,
-        p.PhoneNumber,
-        p.Country,
-        p.State,
-        p.District,
-        p.PinCode,
-        FullAddress = p.Address
-    }).ToList();
+    // private async Task ExportToExcel()
+    // {
+    //     var exportData = FilteredPatientsList.Select(p => new
+    //     {
+    //         p.FirstName,
+    //         p.LastName,
+    //         p.Age,
+    //         p.BloodTypeNeeded,
+    //         p.PhoneNumber,
+    //         p.Country,
+    //         p.State,
+    //         p.District,
+    //         p.PinCode,
+    //         FullAddress = p.Address
+    //     }).ToList();
+    //     await JSRuntime.InvokeVoidAsync("exportToExcel", exportData, "RegisteredPatients.xlsx");
+    // }
 
-    await JSRuntime.InvokeVoidAsync("exportToExcel", exportData, "RegisteredPatients.xlsx");
+    private async Task ExportCSV(){
+
+        await ExportGridData.ExportGridToCsv(FilteredPatientsList, JSRuntime, "FilteredPatient.csv");
+    }
+
+    private async Task ExportExcel()
+    {
+          var fileBytes = ExportGridData.ExportToExcelBytes(FilteredPatientsList);
+          var base64 = Convert.ToBase64String(fileBytes);
+          await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", "FilteredPatient.xlsx", 
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", base64);
+      }
+
+
+private async Task HandleExportData(string exportType){
+  switch(exportType.ToUpper()){
+    case "EXCEL":
+      ExportExcel();
+    break;
+    case "CSV":
+      ExportCSV();
+    break;
+    default:
+      ExportExcel();
+    break;
+  }
+
+}
+
+public void HandleApplyFilter(string filterOption){
+  FilterBasedOn = filterOption;
+  ApplyFilterePatient();
+  
 }
 
 private void OnRowSelect(Patient patient)

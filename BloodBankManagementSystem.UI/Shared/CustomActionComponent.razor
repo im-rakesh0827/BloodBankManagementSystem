@@ -1,0 +1,47 @@
+@inject IJSRuntime JSRuntime
+@inject HttpClient Http
+@using BloodBankManagementSystem.Core.Models;
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Left Section: Title + Button -->
+    <div class="d-flex align-items-center">
+        <h5 class="me-3 mb-0">@PageTitle</h5>
+        <button class="btn btn-success btn-sm" @onclick="CrateOrUpdate">@ButtonName +</button>
+    </div>
+
+
+    <!-- Right Section: Filter + Export -->
+    @* <div class="d-flex align-items-center gap-2 flex-wrap">
+        <label for="filterDropdown" class="mb-0 me-2">Filter:</label>
+        <InputSelect id="filterDropdown"
+                    class="form-select"
+                    style="width: 160px;"
+                    @bind-Value="FilterBasedOn"
+                    @bind-Value:after="ApplyFilteredPatientsList">
+            @foreach (var option in FilterOptions)
+            {
+                <option value="@option.Key">@option.Value</option>
+            }
+        </InputSelect>
+        <button class="btn btn-primary btn-sm" @onclick="ExportPatientsToExcel">Export to Excel</button>
+    </div> *@
+
+
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+        <label for="filterDropdown" class="form-label mb-0 me-2">Filter:</label>
+        <RadzenDropDown
+            Name="filterDropdown"
+            Style="width: 160px;"
+            TValue="string"
+            @bind-Value="FilterOption"
+            Data="@FilterOptions.ToList()"
+            TextProperty="Value"
+            ValueProperty="Key"
+            Change="@(args => ApplyFilterData())" />
+            <button class="btn btn-sm btn btn-primary" @onclick="@( () => ExportData("excel"))" title="Export to Excel">
+               <i class="fas fa-file-excel"></i> Excel
+          </button>
+          <button class="btn btn-sm btn btn-primary" @onclick="@( () => ExportData("csv"))" title="Export to CSV">
+               <i class="fas fa-file-csv"></i> CSV
+          </button>
+     </div>
+</div>

@@ -2,6 +2,7 @@
 @inject IJSRuntime JSRuntime
 @inject HttpClient Http
 
+
 @if (IsLoading)
 {
     <LoaderComponent></LoaderComponent>
@@ -15,7 +16,7 @@
 }
 
 <div class="d-flex align-items-center">
-    <h4 class="me-3">@PageTitle</h4>
+    <h5 class="me-3 page-title">@PageTitle</h5>
     @if(SelectedPatientData!=null && SelectedPatientData.PatientID>0){
         <InputRadioGroup @bind-Value="PatientModel.IsAlive" class="d-flex align-items-center">
         <div class="form-check me-3">

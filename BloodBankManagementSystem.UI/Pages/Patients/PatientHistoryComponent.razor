@@ -5,7 +5,7 @@
     <div class="position-relative">
         <button type="button" class="btn-close position-absolute top-0 end-0 m-1" aria-label="Close" @onclick="Close"></button>
     </div>
-    <h5 class="m-3">Patient History - @Patient?.FirstName @Patient?.LastName</h5>
+    <h5 class="m-3">Patient History - @FullName</h5>
     @if(IsLoading){
         <LoaderComponent></LoaderComponent>
     }

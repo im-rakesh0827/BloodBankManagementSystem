@@ -27,9 +27,13 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           private List<int> ApproveListId{get;set;} = new List<int>();
           private List<int> RejectListId{get; set;} = new List<int>();
           private bool IsButtonEnabled{get; set;} = false;
+          private Dictionary<string, string> FilterOptions = new Dictionary<string, string>();
+          private string FilterBasedOn {get; set;} = "Active";
+
 
           protected override async Task OnInitializedAsync()
           {
+               FilterOptions = FilterOptionsHelper.AllFilterOption;
                await LoadRequestsAsync();
           }
 
@@ -74,13 +78,13 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
 
           }
 
-          private void OpenCreateRequestPopup()
+          private void OpenCreatePopUp()
           {
                SelectedRequest = new BloodRequest();
                IsCreateUpdatePopup = true;
           }
 
-          private void OpenEditRequestModal(BloodRequest request)
+          private void OpenEditOrUpdatePopUp(BloodRequest request)
           {
                SelectedRequest = new BloodRequest
                {
@@ -169,6 +173,53 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           private void SaveButton()
           {
 
+          }
+
+          private void OnRowSelect(BloodRequest request){
+
+          }
+
+
+
+
+          public void ApplyFiltereBloodRequest()
+          {
+
+          }
+
+          private async Task ExportCSV(){
+
+               await ExportGridData.ExportGridToCsv(FilteredRequestsList, JSRuntime, "RequestsList.csv");
+          }
+
+          private async Task ExportExcel()
+          {
+               var fileBytes = ExportGridData.ExportToExcelBytes(FilteredRequestsList);
+               var base64 = Convert.ToBase64String(fileBytes);
+               await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", "RequestsList.xlsx", 
+               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", base64);
+          }
+
+
+
+          private async Task HandleExportData(string exportType){
+               switch(exportType.ToUpper()){
+                    case "EXCEL":
+                         ExportExcel();
+                    break;
+                    case "CSV":
+                         ExportCSV();
+                    break;
+                    default:
+                         ExportExcel();
+                    break;
+               }
+
+          }
+
+          public void HandleApplyFilter(string filterOption){
+               FilterBasedOn = filterOption;
+               ApplyFiltereBloodRequest();
           }
      }
 }

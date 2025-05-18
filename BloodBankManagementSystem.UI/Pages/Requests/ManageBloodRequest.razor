@@ -1,18 +1,17 @@
 @page "/manageRequest"
-
-@inject IJSRuntime JSRuntime;
-@inject HttpClient Http;
+@using BloodBankManagementSystem.Core.Models;
+@inject IJSRuntime JSRuntime
+@inject HttpClient Http
 
 @if (IsLoading)
 {
-     <LoaderComponent></LoaderComponent>
+    <LoaderComponent></LoaderComponent>
 }
-<div class="d-flex align-items-center">
-    <h4 class="me-3">Blood Requests
-        <button class="btn btn-success btn-sm register-btn" @onclick="OpenCreateRequestPopup">Request +</button>
-        @* <button type="submit" class="btn btn-primary ms-4" tabindex="9" disabled="@IsReadOnly" @onclick="SaveButton">Save <i class="fa fa-save"></i></button> *@
-    </h4>
-</div>
+<CustomActionComponent  OnFilterOptionChanged="HandleApplyFilter" 
+                        OnExportData="HandleExportData"
+                        PageTitle="Blood Requests"
+                        OnCreateRecord="OpenCreatePopUp">
+</CustomActionComponent>
 
 @if (FilteredRequestsList is null)
 {
@@ -24,69 +23,70 @@ else if (!FilteredRequestsList.Any())
 }
 else
 {
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>Requester Type</th>
-                <th>Requester Name</th>
-                <th>Gender</th>
-                <th>Blood Group</th>
-                <th>Units Required</th>
-                @* <th>Location</th> *@
-                <th>Contact Number</th>
-                @* <th>Email</th> *@
-                @* <th>Status</th> *@
-                <th>Requested Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var request in FilteredRequestsList)
-            {
-                <tr>
-                    <td>@request.RequesterType</td>
-                    <td>@request.PatientName</td>
-                    <td>@request.Gender</td>
-                    <td>@request.BloodGroup</td>
-                    <td>@request.UnitsRequired</td>
-                    @* <td>@request.Location</td> *@
-                    <td>@request.ContactNumber</td>
-                    @* <td>@request.Email</td> *@
-                    @* <td>@request.Status</td> *@
-                    <td>@request.RequestedDate.ToShortDateString()</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                            @if(IsAdmin){
-                                   <button class="btn btn-sm" 
-                                           @onclick="() => OpenEditRequestModal(request)">
-                                           <EditViewIcon />
-                                   </button>
-                                   <button class="btn btn-sm" 
-                                           disabled="@("Approved".Equals(request.Status, StringComparison.OrdinalIgnoreCase))"
-                                           @onclick="() => DeleteRequest(request.Id)">
-                                           <DeleteIcon />
-                                   </button>
+    <div style="overflow-x: auto; width: 100%;">
+        <RadzenDataGrid TItem="BloodRequest"
+                        Data="@FilteredRequestsList"
+                        Count="@FilteredRequestsList.Count"
+                        AllowPaging="true"
+                        PageSize="10"
+                        AllowSorting="true"
+                        AllowFiltering="true"
+                        AllowColumnResize="true"
+                        AllowColumnReorder="true"
+                        RowSelect="@OnRowSelect"
+                        Class="w-100"
+                        Style="min-width: 900px;">
+            <Columns>
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Requester Type" Width="150px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Requester Name" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="100px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="BloodGroup" Title="Blood Group" Width="120px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="UnitsRequired" Title="Units Required" Width="130px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Contact Number" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="Email" Title="Email" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="Location" Title="Address" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Requested Date" Width="140px">
+                    <Template Context="request">
+                        @request.RequestedDate.ToShortDateString()
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="BloodRequest"
+                                      Title="Action"
+                                      Filterable="false"
+                                      Sortable="false"
+                                      Width="300px">
+                    <Template Context="request">
+                        <div class="d-flex gap-1 flex-nowrap">
+                            @if (IsAdmin)
+                            {
+                                <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
+                                    <EditViewIcon />
+                                </RadzenButton>
+
+                                <RadzenButton ButtonStyle="ButtonStyle.Light"
+                                              Disabled="@(request.Status.Equals("Approved", StringComparison.OrdinalIgnoreCase))"
+                                              Click="@(() => DeleteRequest(request.Id))">
+                                    <DeleteIcon />
+                                </RadzenButton>
                             }
-                            
-                            <button 
-                                   class="btn btn-sm btn-success" 
-                                   title="Approve" 
-                                   disabled="@("Approved".Equals(request.Status, StringComparison.OrdinalIgnoreCase))"
-                                   @onclick="@(() => UpdateRequestStatus(request.Id, "Approve"))">
-                                   Approve
-                            </button>
-                            <button class="btn btn-sm btn-danger" 
-                                    title="Reject" 
-                                    disabled="@("Rejected".Equals(request.Status, StringComparison.OrdinalIgnoreCase))"
-                                     @onclick="@(() => UpdateRequestStatus(request.Id, "Reject"))">
-                                   Reject
-                            </button>
+
+                            <RadzenButton ButtonStyle="ButtonStyle.Success"
+                                          Disabled="@(request.Status.Equals("Approved", StringComparison.OrdinalIgnoreCase))"
+                                          Click="@(() => UpdateRequestStatus(request.Id, "Approve"))">
+                                Approve
+                            </RadzenButton>
+
+                            <RadzenButton ButtonStyle="ButtonStyle.Danger"
+                                          Disabled="@(request.Status.Equals("Rejected", StringComparison.OrdinalIgnoreCase))"
+                                          Click="@(() => UpdateRequestStatus(request.Id, "Reject"))">
+                                Reject
+                            </RadzenButton>
                         </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
 }
 
 <!-- Create/Edit Request Modal -->
@@ -99,8 +99,7 @@ else
                 OnClose="HandleCreateUpdatePopup"
                 OnRequestAddedOrUpdated="RefreshBloodRequestList"
                 IsCreateUpdateRequestPopup="IsCreateUpdatePopup"
-                />
+            />
         </div>
     </div>
 }
-

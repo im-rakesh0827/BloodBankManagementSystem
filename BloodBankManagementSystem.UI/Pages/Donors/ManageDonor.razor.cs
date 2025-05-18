@@ -4,10 +4,10 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.Core.Models;
 using BloodBankManagementSystem.UI.Helpers;
+using BloodBankManagementSystem.Core.Enums;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using BloodBankManagementSystem.UI.Shared;
-
 using System.Linq;
 using Microsoft.JSInterop;
 namespace BloodBankManagementSystem.UI.Pages.Donors
@@ -22,9 +22,14 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
      private int donorIdToDelete{get;set;} 
      private DotNetObjectReference<ManageDonor> objRef;
      private CustomPopup donorPopupRef;
+    private Dictionary<string, string> FilterOptions = new Dictionary<string, string>();
+    private string FilterBasedOn {get; set;} = "Active";
+
+
 
      protected override async Task OnInitializedAsync()
      {
+          FilterOptions = FilterOptionsHelper.AllFilterOption;
           await FetchDonors();
           await ApplyFilterDonorsList();
      }
@@ -50,19 +55,22 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
        AllDonorsList = await response.Content.ReadFromJsonAsync<List<Donor>>();
     }
 
-    private void OpenCreatePopup()
+    private void OpenCreatePopUp()
     {
         SelectedDonor = new Donor();
         IsCreateUpdatePopup = true;
         donorPopupRef?.Show(); 
     }
 
-    private void OpenEditModal(Donor donor)
+    private void OpenEditOrUpdatePopUp(Donor donor)
     {
         SelectedDonor = donor;
         IsCreateUpdatePopup = true;
         donorPopupRef?.Show();
     }
+
+
+    
 
     protected override void OnInitialized()
     {
@@ -83,7 +91,7 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
             var url = $"{ServerConstants.APICallNames.DeleteDonor.GetStringValue()}{donorIdToDelete}";
             await Http.DeleteAsync(url);
             AllDonorsList.RemoveAll(d => d.Id == donorIdToDelete);
-            StateHasChanged();
+            await RefreshDonorList();
         }
         catch (Exception ex)
         {
@@ -127,12 +135,9 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
 
 
     private bool ShowHistoryPopup = false;
-    private List<DonorHistory> DonorHistoryList = new();
-
     private async Task ShowDonorHistory(Donor donor)
     {
         SelectedDonor = donor;
-        DonorHistoryList = await GetDonorHistory(donor.Id); 
         ShowHistoryPopup = true;
     }
 
@@ -141,20 +146,55 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
         ShowHistoryPopup = false;
     }
 
-private async Task<List<DonorHistory>> GetDonorHistory(int donorId)
-{
-    try
-    {
-        var url = $"{ServerConstants.APICallNames.GetDonorHistoryById.GetStringValue()}{donorId}";
-        var response = await Http.GetFromJsonAsync<List<DonorHistory>>(url);
-        return response ?? new List<DonorHistory>();
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error fetching donor history: {ex.Message}");
-        return new List<DonorHistory>();
-    }
-}
-    
+       private async Task ExportToExcel()
+       {
+            var exportData = FilteredDonorsList.Select(p => new
+            {
+                p.FirstName,
+                p.LastName
+            }).ToList();
+            await JSRuntime.InvokeVoidAsync("exportToExcel", exportData, "DonorsList.xlsx");
+        }
+
+
+
+
+
+
+
+        private async Task ExportCSV(){
+
+               await ExportGridData.ExportGridToCsv(FilteredDonorsList, JSRuntime, "DonorsList.csv");
+          }
+
+          private async Task ExportExcel()
+          {
+               var fileBytes = ExportGridData.ExportToExcelBytes(FilteredDonorsList);
+               var base64 = Convert.ToBase64String(fileBytes);
+               await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", "DonorsList.xlsx", 
+               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", base64);
+          }
+
+
+
+          private async Task HandleExportData(string exportType){
+               switch(exportType.ToUpper()){
+                    case "EXCEL":
+                         ExportExcel();
+                    break;
+                    case "CSV":
+                         ExportCSV();
+                    break;
+                    default:
+                         ExportExcel();
+                    break;
+               }
+
+          }
+
+          public void HandleApplyFilter(string filterOption){
+               FilterBasedOn = filterOption;
+               ApplyFilterDonorsList();
+          }
    }
 }

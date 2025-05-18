@@ -14,26 +14,19 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
 {
      public partial class PatientHistoryComponent{
           [Parameter] public EventCallback OnClose { get; set; }
-          [Parameter] public Patient? Patient { get; set; }
-          [Parameter] public int SelectedPatientId { get; set; }
+          [Parameter] public Patient? PatientDetails { get; set; }
           
           public List<PatientHistory> HistoryList { get; set; } = new();
           private List<PatientHistory> filteredHistory = new();
           private List<PatientHistory> pagedHistory = new();
           public bool IsLoading { get; set; } = false;
+          private string FullName{get; set;} = string.Empty;
+
 
         protected override async Task OnInitializedAsync(){
-               await ShowPatientHistory();
+               FullName = PatientDetails.FirstName+" "+PatientDetails.LastName;
+               HistoryList = await GetPatientHistory(PatientDetails.PatientID); 
         }
-
-          private async Task ShowPatientHistory()
-          {
-               IsLoading = true;
-               HistoryList = await GetPatientHistory(SelectedPatientId); 
-               await Task.Delay(100);
-               IsLoading = false;
-          }
-
           private async Task<List<PatientHistory>> GetPatientHistory(int patientId)
           {
                try

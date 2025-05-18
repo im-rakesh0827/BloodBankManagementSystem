@@ -7,52 +7,12 @@
         <LoaderComponent></LoaderComponent>
     }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <!-- Left Section: Title + Button -->
-    <div class="d-flex align-items-center">
-        <h4 class="me-3 mb-0">Registered Patients</h4>
-        <button class="btn btn-success btn-sm" @onclick="OpenCreatePoup">Patient +</button>
-    </div>
+<CustomActionComponent  OnFilterOptionChanged="HandleApplyFilter" 
+                        OnExportData="HandleExportData"
+                        PageTitle="Registered Patients"
+                        OnCreateRecord="OpenCreatePopUp">
+</CustomActionComponent>
 
-    <!-- Right Section: Filter + Export -->
-    @* <div class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="filterDropdown" class="mb-0 me-2">Filter:</label>
-
-        <InputSelect id="filterDropdown"
-                    class="form-select"
-                    style="width: 160px;"
-                    @bind-Value="FilterBasedOn"
-                    @bind-Value:after="ApplyFilteredPatientsList">
-            @foreach (var option in FilterOptions)
-            {
-                <option value="@option.Key">@option.Value</option>
-            }
-        </InputSelect>
-        <button class="btn btn-primary btn-sm" @onclick="ExportPatientsToExcel">Export to Excel</button>
-    </div> *@
-
-
-
-    <div class="d-flex align-items-center gap-2 flex-wrap">
-        <label for="PatientFilterDropDown" class="form-label mb-0 me-2">Filter:</label>
-        <RadzenDropDown
-            Name="PatientFilterDropDown"
-            Style="width: 160px;"
-            TValue="string"
-            @bind-Value="FilterBasedOn"
-            Data="@FilterOptions.ToList()"
-            TextProperty="Value"
-            ValueProperty="Key"
-            Change="@(args => ApplyFilteredPatientsList())" />
-            <button class="btn customButton btn-sm" @onclick="ExportPatientsToExcel" title="Export to Excel">
-                <i class="fas fa-file-excel"></i> Excel
-            </button>
-            <button class="btn customButton btn-sm" @onclick="ExportPatientsToExcel" title="Export to CSV">
-                <i class="fas fa-file-csv"></i> CSV
-            </button>
-
-    </div>
-</div>
 
 @if (FilteredPatientsList is null)
 {
@@ -88,7 +48,6 @@ else
             <RadzenDataGridColumn TItem="Patient" Property="District" Title="District" Width="160px" />
             <RadzenDataGridColumn TItem="Patient" Property="PinCode" Title="PinCode" Width="160px" />
             <RadzenDataGridColumn TItem="Patient" Property="Address" Title="Full Address" Width="300px" />
-
             <RadzenDataGridColumn TItem="Patient"
                                   Title="Actions"
                                   Filterable="false"
@@ -100,7 +59,7 @@ else
                         <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => ShowPatientHistory(patient))">
                             <HistoryIcon></HistoryIcon>
                         </RadzenButton>
-                        <RadzenButton ButtonStyle="ButtonStyle.Light"  Click="@(() => OpenEditModal(patient))">
+                        <RadzenButton ButtonStyle="ButtonStyle.Light"  Click="@(() => OpenEditOrUpdatePopUp(patient))">
                             <EditViewIcon></EditViewIcon>
                         </RadzenButton>
                         <RadzenButton ButtonStyle="ButtonStyle.Light" Icon="delete" Click="@(() => DeletePatient(patient.PatientID))" />
@@ -131,8 +90,7 @@ else
 {
     <div class="modal-overlay">
         <div class="modal-content">
-            <PatientHistoryComponent Patient="SelectedPatient"
-                                     SelectedPatientId="SelectedPatient.PatientID"
+            <PatientHistoryComponent PatientDetails="SelectedPatient"
                                      OnClose="CloseHistoryPopup" />
         </div>
     </div>

@@ -45,14 +45,19 @@
     justify-content: space-around;
 }
 
-.btn {
+/* .btn {
     padding: 7px 14px;
     border: none;
     cursor: pointer;
     font-size: 15px;
+} */
+
+
+.btn {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  font-size: 12px;
 }
-
-
 
 
 /* .history-modal {

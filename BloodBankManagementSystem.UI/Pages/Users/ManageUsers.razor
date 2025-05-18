@@ -1,27 +1,12 @@
 @page "/users"
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
-@* <h3 class="page-header">
-    Registered Users
-    <button class="btn btn-success btn-sm register-btn" @onclick="OpenAddUserModal">+ New User</button>
-</h3> *@
-
-<div class="d-flex align-items-center">
-    <h4 class="me-3">Registered Users
-    <button class="btn btn-success btn-sm register-btn" @onclick="OpenAddUserModal">User +</button>
-    </h4>
-    <InputRadioGroup @bind-Value="IsShowActiveOnly" @bind-Value:after="ApplyFilterUser" class="d-flex align-items-center">
-        <div class="form-check me-3">
-            <InputRadio class="form-check-input" id="showActive" Value="true" style="cursor: pointer;" />
-            <label class="form-check-label" for="showActive">Show Active</label>
-        </div>
-        <div class="form-check">
-            <InputRadio class="form-check-input" id="showAll" Value="false" style="cursor: pointer;"/>
-            <label class="form-check-label" for="showAll">Show All</label>
-        </div>
-    </InputRadioGroup>
-</div>
-
+@using BloodBankManagementSystem.Core.Models;
+<CustomActionComponent  OnFilterOptionChanged="HandleApplyFilter" 
+                        OnExportData="HandleExportData"
+                        PageTitle="Registered Users"
+                        OnCreateRecord="OpenCreatePopUp">
+</CustomActionComponent>
 
 @if (FilteredUsersList is null)
 {
@@ -33,73 +18,61 @@ else if (!FilteredUsersList.Any())
 }
 else
 {
-    <table class="data-table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Role</th>
-                @* <th>IsActive</th> *@
-                @* <th>Country</th> *@
-                <th>State</th>
-                <th>District</th>
-                <th>Full Address</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in FilteredUsersList)
-            {
-                <tr>
-                    <td>@user.FirstName</td>
-                    <td>@user.LastName</td>
-                    <td>@user.Email</td>
-                    <td>@user.Phone</td>
-                    <td>@user.Role</td>
-                    @* <td>@user.IsActive</td> *@
-                    @* <td>@user.Country</td> *@
-                    <td>@user.State</td>
-                    <td>@user.District</td>
-                    <td>@user.Address</td>
-                    <td>
-                        <div class="d-flex gap-2">
-                           <button class="btn btn-sm" @onclick="() => ShowUsertHistory(user)">
-                              <HistoryIcon />
-                            </button>
-                            <button class="btn btn-sm" @onclick="() => EditUser(user)">
-                                <EditViewIcon />
-                            </button>
-                            <button class="btn btn-sm" @onclick="() => DeleteUser(user.Id)"> 
-                                <DeleteIcon />
-                            </button>
+    <div style="overflow-x: auto;">
+        <RadzenDataGrid TItem="User"
+                        Data="@FilteredUsersList"
+                        Count="@FilteredUsersList.Count"
+                        AllowPaging="true"
+                        PageSize="10"
+                        AllowSorting="true"
+                        AllowFiltering="true"
+                        AllowColumnResize="true"
+                        AllowColumnReorder="true"
+                        Responsive="true"
+                        Class="w-100"
+                        Style="min-width: 1000px;">
+            <Columns>
+                <RadzenDataGridColumn TItem="User" Property="FirstName" Title="First Name" Width="120px" />
+                <RadzenDataGridColumn TItem="User" Property="LastName" Title="Last Name" Width="120px" />
+                <RadzenDataGridColumn TItem="User" Property="Email" Title="Email" Width="180px" />
+                <RadzenDataGridColumn TItem="User" Property="Phone" Title="Phone" Width="130px" />
+                <RadzenDataGridColumn TItem="User" Property="Role" Title="Role" Width="100px" />
+                <RadzenDataGridColumn TItem="User" Property="State" Title="State" Width="120px" />
+                <RadzenDataGridColumn TItem="User" Property="District" Title="District" Width="120px" />
+                <RadzenDataGridColumn TItem="User" Property="Address" Title="Full Address" Width="200px" />
+                <RadzenDataGridColumn TItem="User" Title="Actions" Filterable="false" Sortable="false" Width="130px">
+                    <Template Context="user">
+                        <div class="d-flex gap-1 flex-nowrap">
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => ShowUsertHistory(user))" Icon="history" />
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(user))" Icon="edit" />
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => DeleteUser(user.Id))" Icon="delete" />
                         </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
 }
 
 @if (IsCreateUpdatePopup)
 {
     <div class="modal-overlay">
         <div class="modal-content">
-            <RegisterUser OnClose="CloseAddUserModal" OnUserAddedOrUpdated="RefreshUserList" SelectedUserData="SelectedUser" IsCreateUpdateUserPopup="IsCreateUpdatePopup" />
+            <RegisterUser OnClose="CloseAddUserModal"
+                          OnUserAddedOrUpdated="RefreshUserList"
+                          SelectedUserData="SelectedUser"
+                          IsCreateUpdateUserPopup="IsCreateUpdatePopup" />
         </div>
     </div>
 }
 
-
-@if(ShowHistoryPopup){
+@if (ShowHistoryPopup)
+{
     <div class="modal-overlay">
         <div class="modal-content">
-        <UserHistoryComponent 
-              IsVisible="ShowHistoryPopup"
-              User="SelectedUser"
-              HistoryList="UserHistoryList"
-              OnClose="CloseHistoryPopup" />
+            <UserHistoryComponent 
+                UserDetails="SelectedUser"
+                OnClose="CloseHistoryPopup" />
         </div>
     </div>
 }

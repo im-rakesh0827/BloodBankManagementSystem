@@ -1,0 +1,36 @@
+@page "/patients"
+@using BloodBankManagementSystem.UI.Pages.Patients
+@inject IJSRuntime JS
+
+<!-- Sub-navigation buttons -->
+<div class="sub-nav d-flex gap-3 mb-4">
+    <button class="btn @(CurrentTab == "register" ? "btn-primary" : "btn-outline-primary")"
+            @onclick='() => SetActiveTab("register")'>Register Patient</button>
+    <button class="btn @(CurrentTab == "manage" ? "btn-primary" : "btn-outline-primary")"
+            @onclick='() => SetActiveTab("manage")'>Manage Patients</button>
+    <button class="btn @(CurrentTab == "approve" ? "btn-primary" : "btn-outline-primary")" hidden
+            @onclick='() => SetActiveTab("approve")'>Approve Patients</button>
+</div>
+
+<!-- Render child component based on active tab -->
+@if (CurrentTab == "register")
+{
+    <RegisterPatient />
+}
+else if (CurrentTab == "manage")
+{
+    <ManagePatients />
+}
+else if (CurrentTab == "approve")
+{
+    <ApprovePatients />
+}
+
+@code {
+    private string CurrentTab = "register"; // default tab
+
+    private void SetActiveTab(string tab)
+    {
+        CurrentTab = tab;
+    }
+}

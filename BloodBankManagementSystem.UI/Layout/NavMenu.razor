@@ -1,22 +1,20 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
     <div class="container-fluid">
-        @* Navbar brand (optional) *@
-        @* <a class="navbar-brand" href="/">Vital Drops</a> *@
-
         <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse @(collapseNavMenu ? "" : "show")">
             <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-center w-100 gap-2">
-                <li class="nav-item">
-                    @* <NavLink class="nav-link text-white" href="/" Match="NavLinkMatch.All">
-                        <i class="bi bi-house-door me-1"></i> Home
-                    </NavLink> *@
+                <li class="nav-item d-none">
+                    <NavLink class="nav-link text-white" href="/" Match="NavLinkMatch.All">
+                        @* <i class="bi bi-house-door me-1"></i> Home *@
+                    </NavLink>
                 </li>
+
                 <li class="nav-item">
                     <NavLink class="nav-link text-white" href="/" Match="NavLinkMatch.All">
                         <i class="bi bi-house-door me-1"></i> Home
@@ -27,12 +25,18 @@
                         <i class="bi bi-heart-pulse me-1"></i> Manage Donor
                     </NavLink>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" hidden>
                     <NavLink class="nav-link text-white" href="/registerDonor">
                         <i class="bi bi-heart-pulse me-1"></i> Register Donor
                     </NavLink>
                 </li>
                 <li class="nav-item">
+                    <NavLink class="nav-link text-white" href="/patients">
+                        <i class="bi bi-person-hearts me-1"></i> Patient
+                    </NavLink>
+                </li>
+                
+                <li class="nav-item" hidden>
                     <NavLink class="nav-link text-white" href="/managePatients">
                         <i class="bi bi-person-hearts me-1"></i> Manage Patients
                     </NavLink>
@@ -42,7 +46,7 @@
                         <i class="bi bi-file-earmark-person me-1"></i> Register Patient
                     </NavLink>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" hidden>
                     <NavLink class="nav-link text-white" href="/registerUser">
                         <i class="bi bi-person-plus me-1"></i> Register User
                     </NavLink>
@@ -57,7 +61,7 @@
                         <i class="bi bi-people me-1"></i> Manage Request
                     </NavLink>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item d-none">
                     <NavLink class="nav-link text-white" href="/bloodRequest">
                         <i class="bi bi-people me-1"></i> Blood Request
                     </NavLink>
