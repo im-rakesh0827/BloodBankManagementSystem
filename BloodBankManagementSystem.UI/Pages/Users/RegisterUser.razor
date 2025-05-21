@@ -1,4 +1,4 @@
-@page "/registerUser"
+@page "/user/create"
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
 @if (IsLoading)
@@ -11,7 +11,7 @@
         <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close" @onclick="HandleCancelOrClose"></button>
     </div>
 }
-<h4>@RegisterUpdateTitle</h4>
+<h5>@RegisterUpdateTitle</h5>
 
 @if (!string.IsNullOrEmpty(Message))
 {

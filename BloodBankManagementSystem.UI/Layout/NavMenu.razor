@@ -1,81 +1,61 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<div style="padding:0.5rem; background-color:rgb(138, 201, 252);">
+    <RadzenMenu Click="OnParentClicked"  Style="background-color:rgb(138, 201, 252);; color: white;">
+        <RadzenMenuItem Text="Home" Icon="home" Path="home" />
 
-        <div class="collapse navbar-collapse @(collapseNavMenu ? "" : "show")">
-            <ul class="navbar-nav d-flex flex-row flex-wrap justify-content-center w-100 gap-2">
-                <li class="nav-item d-none">
-                    <NavLink class="nav-link text-white" href="/" Match="NavLinkMatch.All">
-                        @* <i class="bi bi-house-door me-1"></i> Home *@
-                    </NavLink>
-                </li>
+        <RadzenMenuItem Text="Dashboard" Icon="dashboard" Path="dashboard" />
 
-                <li class="nav-item">
-                    <NavLink class="nav-link text-white" href="/" Match="NavLinkMatch.All">
-                        <i class="bi bi-house-door me-1"></i> Home
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link text-white" href="/manageDonor">
-                        <i class="bi bi-heart-pulse me-1"></i> Manage Donor
-                    </NavLink>
-                </li>
-                <li class="nav-item" hidden>
-                    <NavLink class="nav-link text-white" href="/registerDonor">
-                        <i class="bi bi-heart-pulse me-1"></i> Register Donor
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link text-white" href="/patients">
-                        <i class="bi bi-person-hearts me-1"></i> Patient
-                    </NavLink>
-                </li>
-                
-                <li class="nav-item" hidden>
-                    <NavLink class="nav-link text-white" href="/managePatients">
-                        <i class="bi bi-person-hearts me-1"></i> Manage Patients
-                    </NavLink>
-                </li>
-                <li class="nav-item d-none">
-                    <NavLink class="nav-link text-white" href="/registerPatient">
-                        <i class="bi bi-file-earmark-person me-1"></i> Register Patient
-                    </NavLink>
-                </li>
-                <li class="nav-item" hidden>
-                    <NavLink class="nav-link text-white" href="/registerUser">
-                        <i class="bi bi-person-plus me-1"></i> Register User
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link text-white" href="/users">
-                        <i class="bi bi-people me-1"></i> Manage Users
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link text-white" href="/manageRequest">
-                        <i class="bi bi-people me-1"></i> Manage Request
-                    </NavLink>
-                </li>
-                <li class="nav-item d-none">
-                    <NavLink class="nav-link text-white" href="/bloodRequest">
-                        <i class="bi bi-people me-1"></i> Blood Request
-                    </NavLink>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+        <RadzenMenuItem Text="Patient" Icon="person">
+            <RadzenMenuItem Text="Register" Path="patient/create" Icon="person_add" />
+            <RadzenMenuItem Text="All Patients" Path="patient/manage" Icon="list_alt" />
+            <RadzenMenuItem Text="Approve" Path="approve" Icon="check_circle" hidden />
+        </RadzenMenuItem>
+
+        <RadzenMenuItem Text="Donor" Icon="group">
+            <RadzenMenuItem Text="Register" Path="donor/create" Icon="person_add_alt" />
+            <RadzenMenuItem Text="All Donors" Path="donor/manage" Icon="list_alt" />
+            <RadzenMenuItem Text="Approve" Path="donor/approve" Icon="how_to_reg" hidden/>
+        </RadzenMenuItem>
+
+        <RadzenMenuItem Text="Requests" Icon="request_page">
+            <RadzenMenuItem Text="Blood Request" Path="request/create" Icon="local_hospital" />
+            <RadzenMenuItem Text="All Requests" Path="request/manage" Icon="list_alt" />
+            <RadzenMenuItem Text="Approve" Path="request/approve" Icon="check_circle" />
+        </RadzenMenuItem>
+
+        <RadzenMenuItem Text="Inventory" Icon="inventory" class="d-none">
+            <RadzenMenuItem Text="Blood Inventory" Path="inventory/list" Icon="invert_colors" />
+            <RadzenMenuItem Text="Update Stock" Path="inventory/update" Icon="sync_alt" />
+        </RadzenMenuItem>
+
+        <RadzenMenuItem Text="Reports" Icon="analytics" hidden>
+            <RadzenMenuItem Text="Generate Report" Path="reports/generate" Icon="assessment" />
+            <RadzenMenuItem Text="View Reports" Path="reports/view" Icon="visibility" />
+        </RadzenMenuItem>
+
+        <RadzenMenuItem Text="Users" Icon="person">
+            <RadzenMenuItem Text="Register" Path="user/create" Icon="person_add_alt" />
+            <RadzenMenuItem Text="All Users" Path="user/manage" Icon="list_alt" />
+            <RadzenMenuItem Text="Approve" Path="user/approve" Icon="how_to_reg" hidden />
+        </RadzenMenuItem>
+
+        <RadzenMenuItem Text="Settings" Icon="settings" hidden>
+            <RadzenMenuItem Text="Profile Settings" Path="settings/profile" Icon="account_circle" />
+            <RadzenMenuItem Text="Role Management" Path="settings/roles" Icon="admin_panel_settings" />
+        </RadzenMenuItem>
+    </RadzenMenu>
+</div>
 
 @code {
-    private bool collapseNavMenu = true;
-
-    private void ToggleNavMenu()
+    void OnParentClicked(MenuItemEventArgs args)
     {
-        collapseNavMenu = !collapseNavMenu;
+        Console.WriteLine($"{args.Text} clicked from parent");
+    }
+
+    void OnChildClicked(MenuItemEventArgs args)
+    {
+        Console.WriteLine($"{args.Text} clicked from child");
     }
 }

@@ -213,7 +213,7 @@ code {
 }
 
 
-/* -----------------------------------Radzen Grid Custom CSS --------------------------------------*/
+/* -----------------------------------Radzen Custom CSS Start--------------------------------------*/
 .rz-pager-element .rzi, .rz-button-md .rzi{
     color:red;
 }
@@ -227,7 +227,15 @@ code {
     color: #0d4077 !important;
 }
 
-/* -----------------------------------Radzen Grid Custom CSS --------------------------------------*/
+
+
+/* .rz-menu:not(.rz-profile-menu) .rz-navigation-item-link {
+    color: white !important;
+    white-space: nowrap;
+} */
+
+
+/* -----------------------------------Radzen Custom CSS End--------------------------------------*/
 
 
 
