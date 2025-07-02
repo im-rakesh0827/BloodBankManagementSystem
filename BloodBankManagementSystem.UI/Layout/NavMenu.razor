@@ -2,8 +2,8 @@
 @using Microsoft.AspNetCore.Components
 
 <div style="padding:0.5rem; background-color:rgb(138, 201, 252);">
-    <RadzenMenu Click="OnParentClicked"  Style="background-color:rgb(138, 201, 252);; color: white;">
-        <RadzenMenuItem Text="Home" Icon="home" Path="home" />
+    <RadzenMenu Click="OnParentClicked" Style="background-color:rgb(138, 201, 252); color: white;">
+        <RadzenMenuItem Text="Home" Icon="home" Path="" />
 
         <RadzenMenuItem Text="Dashboard" Icon="dashboard" Path="dashboard" />
 
@@ -39,6 +39,12 @@
             <RadzenMenuItem Text="Register" Path="user/create" Icon="person_add_alt" />
             <RadzenMenuItem Text="All Users" Path="user/manage" Icon="list_alt" />
             <RadzenMenuItem Text="Approve" Path="user/approve" Icon="how_to_reg" hidden />
+        </RadzenMenuItem>
+
+        <!-- ✅ New Settings menu beside Users -->
+        <RadzenMenuItem Text="Settings" Icon="settings">
+            <RadzenMenuItem Text="Profile" Path="settings/profile" Icon="account_circle" />
+            <RadzenMenuItem Text="Logout" Path="logout" Icon="logout" />
         </RadzenMenuItem>
 
         <RadzenMenuItem Text="Settings" Icon="settings" hidden>

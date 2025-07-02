@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BloodBankManagementSystem.UI",
   "resources": {
-    "hash": "sha256-yWLnybva43xsFWhSYZO67LvwoxO6RNe+GaTU2AXtU5I=",
+    "hash": "sha256-Jve5tR1DH7Fn2ZwP0jD5nvSX0CzJlhUCdE8NmJZCdbM=",
     "jsModuleNative": {
       "dotnet.native.8.0.14.m9s06tbr13.js": "sha256-DTUQS6Jc6BNnS7sYYezFfaUKVmQq0/lanhQuJfygH/k="
     },
@@ -34,13 +34,13 @@
       "EPPlus.wasm": "sha256-x/9riGthEwldgnCQ7cBxcyv2VItiZR9kHVwVOe0dhOE=",
       "EPPlus.Interfaces.wasm": "sha256-OejkJKtaV+kGlNq01osM+pqQwDxt8Q9gqW2P2ynl3dY=",
       "ExcelNumberFormat.wasm": "sha256-DWrWJf+NGbjj12iqpO+Ufl4YS0bkW1yz6JwjocU15wY=",
-      "Microsoft.AspNetCore.Authorization.wasm": "sha256-kcIOasiNC2iD+Tg022f6aTCKnjwzyE8MQTNpQDoIzyw=",
-      "Microsoft.AspNetCore.Components.wasm": "sha256-DQpYnGUhJtjc5Lun2LKa8TfWW1uZsIf0oaXSKg5o8TY=",
+      "Microsoft.AspNetCore.Authorization.wasm": "sha256-dzswwxTfVvqZ1kXmOQSnuPXU5/dOuES3IABIuosjXSA=",
+      "Microsoft.AspNetCore.Components.wasm": "sha256-PSjQfh0eYVZHAE5+uuUTjgynEWSsCpSUTm+zcm7kFrI=",
       "Microsoft.AspNetCore.Components.Authorization.wasm": "sha256-EFv+L1YnGvKwdvpSUAgxwhBJoxTLebypp66mmnzNKr4=",
-      "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-QbQYD1i1kIfQf790hDwaN1AS44hTIDmXGQuabj0OKxo=",
-      "Microsoft.AspNetCore.Components.Web.wasm": "sha256-m8+avpuhQ/qPTLAI9eLjN0pRtp+9qJ0YmI2mkGi71wI=",
+      "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-+62TV9nf3bjEux5PLux447ANQeEl7xaM2g/fDxawK9U=",
+      "Microsoft.AspNetCore.Components.Web.wasm": "sha256-hFEN8fyTQmzXUQWf9PclMvS6/O98roQs9v2+F7pL5XE=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-Y+EHIYfJGzXgN3vluuzwmKa+sQxqvGiB07pahOLsVJU=",
-      "Microsoft.AspNetCore.Metadata.wasm": "sha256-WqXwQkujGiES/0Dqpa6SChJqSetdki7dySrknprHqvc=",
+      "Microsoft.AspNetCore.Metadata.wasm": "sha256-7uLadit2FUExVxPXN4ghsWPGj0JsiRIs7XxW1mKwFT4=",
       "Microsoft.Bcl.AsyncInterfaces.wasm": "sha256-uV6JPE8pFJZ3vgxDKUeimvMSk+wGuYyOKWg5xKqP7Qo=",
       "Microsoft.Data.SqlClient.wasm": "sha256-gxrEs8lqqUTMmbA1w4wX/vH8hjYWSIK1J2729Qeu4LY=",
       "Microsoft.Data.Sqlite.wasm": "sha256-P2bebxNDR1F2Zs68hg69juWpGhuHFKeUVMfw2MdI6XY=",
@@ -51,11 +51,11 @@
       "Microsoft.EntityFrameworkCore.SqlServer.wasm": "sha256-RxTTSuUOXgIYvnZyrfYPHU1/r51nnHq7CBF9zO1A5CQ=",
       "Microsoft.Extensions.Caching.Abstractions.wasm": "sha256-Et9Rgyc/SgJ2hE1+zxjQQoF+Gq25AAeXY6WrJofMpzM=",
       "Microsoft.Extensions.Caching.Memory.wasm": "sha256-JAXHjVL5ibny9HDD0GbLFZ2ynrPBCgK6yov47+il3wo=",
-      "Microsoft.Extensions.Configuration.wasm": "sha256-UDGEQR7J3WTfzYMgOzxVIBwFQtKEeJvO8UgrWagypdE=",
-      "Microsoft.Extensions.Configuration.Abstractions.wasm": "sha256-8mTrv78Nil2qP1AZAdmKXMG6nghLH7PlkeP1bQoq5X0=",
+      "Microsoft.Extensions.Configuration.wasm": "sha256-ULwl8A/b+HHv5WYcvZHsTjjUsqUlCNQHD31QHq50Dbc=",
+      "Microsoft.Extensions.Configuration.Abstractions.wasm": "sha256-4Kpm5p7bzy4gMQcx3vM5jCLmOckPkuauxi8v8vsmxyc=",
       "Microsoft.Extensions.Configuration.Binder.wasm": "sha256-GSjil45tcp9Gt2YUvSdWcCKn7FqCK6B5Pf2C3ImL+bA=",
-      "Microsoft.Extensions.Configuration.FileExtensions.wasm": "sha256-w4E5uayo1SFMsRc1dLJu4EYYaRQpyP7cvyeJNAqH5+4=",
-      "Microsoft.Extensions.Configuration.Json.wasm": "sha256-ViitoeUHw71Xhs0JJ88lGca05eRKDi+p+NyaYc6cRIQ=",
+      "Microsoft.Extensions.Configuration.FileExtensions.wasm": "sha256-SrAtaND/3+ZSfueBc9meuKzyFgcamyVA581L4R7Amzs=",
+      "Microsoft.Extensions.Configuration.Json.wasm": "sha256-CtLsl9w5UTJXGXTbp+SQxMzt9f/gjQ4EkywrtuCscvU=",
       "Microsoft.Extensions.DependencyInjection.wasm": "sha256-iavAbpd853ulFubsww3NWY9hfpPwGArPTwgG+437LDs=",
       "Microsoft.Extensions.DependencyInjection.Abstractions.wasm": "sha256-qGtf86XB4dRhq3/EMLhtUV1sIG4bc8smQyce7gPNCd0=",
       "Microsoft.Extensions.DependencyModel.wasm": "sha256-Y/EqkIUz+Lmxc1nZwFt9IOXANWqoCcOw3qafT+kJDKk=",
@@ -67,7 +67,7 @@
       "Microsoft.Extensions.Logging.wasm": "sha256-gIpA3pXLVLHjZnNprvjxvxMJwJ/kJGmNMrtxCRRHw0A=",
       "Microsoft.Extensions.Logging.Abstractions.wasm": "sha256-UMOmprAvubW79VKDKv0qQl2PjDZUhiEU/uhvUKA26RY=",
       "Microsoft.Extensions.Options.wasm": "sha256-BtA/N/AlMPv51hz2jJYO7v/kO9AteKMf2zorALx8mfI=",
-      "Microsoft.Extensions.Primitives.wasm": "sha256-NbowOn7lV3+hjWQAw8/jVkxeyn+EFMBV9Kj9lOv7pbo=",
+      "Microsoft.Extensions.Primitives.wasm": "sha256-a9a8HyWUCgAKARk6fhk1SpszY6HAzOCi7/lW/K3Js3c=",
       "Microsoft.Identity.Client.wasm": "sha256-RqUUQdll3GxLo8wtacfmL9tJYkenzrd0x2atOJoCaEA=",
       "Microsoft.Identity.Client.Extensions.Msal.wasm": "sha256-4WyJjsOVdSuGyNEo32OkpX4Mx1kOu0iPXbftEFdTa9Q=",
       "Microsoft.IdentityModel.Abstractions.wasm": "sha256-zjEXw82eqpT6mBpJoKGq7h9owR8a9SXQEKdXAtxbxCA=",
@@ -77,7 +77,7 @@
       "Microsoft.IdentityModel.Protocols.OpenIdConnect.wasm": "sha256-RgOe7J9L12oMsSaprXN4sC9zXbwXOeqduQY0fz5J0tA=",
       "Microsoft.IdentityModel.Tokens.wasm": "sha256-aRkBevAl9X4Lsxqf6yFoTtx1W3wtpcifUVrVNu6ju70=",
       "Microsoft.IO.RecyclableMemoryStream.wasm": "sha256-PLLNYyORp9p97V0x5KgrbBal9u/7enJGj68o7bI3pgU=",
-      "Microsoft.JSInterop.wasm": "sha256-GsAOzdCVCC+n7tPF4K83ctQiqj1M850bsiJ5oPCpOiE=",
+      "Microsoft.JSInterop.wasm": "sha256-IB3YL+9FQbkVfM0qMgXpRPazxhBiiiFCXAYE4iYBKDA=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-k1ycznAW3kfyxO+I3lroU5VWTHPfMEmvwPqq6dnWPtk=",
       "Microsoft.SqlServer.Server.wasm": "sha256-Fig+5hq00gGQlXAgSnyFlUlWyhlx9f+yPJb4INt3gNc=",
       "Microsoft.Win32.SystemEvents.wasm": "sha256-1kUoFxSGzlbndQM4zal3G/YBdouUTf444lDjqhuWALU=",
@@ -269,14 +269,14 @@
       "mscorlib.wasm": "sha256-8L4O6tiH48gEZfzf0Y84J01S+3eEG59Bo5bfpH2H+9Y=",
       "netstandard.wasm": "sha256-sEvS/ZjfGhf1dLglmk72ysM50loOygjujJ/J5OhFLEw=",
       "System.Private.CoreLib.wasm": "sha256-BhHYDTpkph+YJOQuAlv6aSrvjTVX0WLTIDBXecinFXo=",
-      "BloodBankManagementSystem.Core.wasm": "sha256-WS5T3b/AJYyvvmm7iNUwykUy0aBnCmv5On0aLgzuy1A=",
-      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-4CE/CD4qsaqaDK23ELdtjRyRpNsKQG33tYdo/Ix89UU=",
-      "BloodBankManagementSystem.UI.wasm": "sha256-jQSqXHK7pB7qWNGuDqoO6Eqi9DjHWXgsYDvwQbeYbZo="
+      "BloodBankManagementSystem.Core.wasm": "sha256-k8Dt+avdaJBBpikGFlHfHWBO9QNm8RoEJk4t96IfiN8=",
+      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-k1HQ2G9JesOoWDCVcA2tU/n0CRESkMOBoI/4Z8UDUUY=",
+      "BloodBankManagementSystem.UI.wasm": "sha256-Dxc9QcTobNPQ8bc/oi2ft2kyBhd/3/pnCVA+QgXJf/c="
     },
     "pdb": {
-      "BloodBankManagementSystem.Core.pdb": "sha256-ZZ/U3BuzHgsP43WF/8HnK3JamQiREjsx5x7cHZMalhc=",
-      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-pio/RS0xAqpEvFb4WbkX8zx6pVQ1jyKnds59nq/wykQ=",
-      "BloodBankManagementSystem.UI.pdb": "sha256-9VjRb7rIKSoPqUFkJv63PV8RJ9vNCk2KzyJztxbJXzc="
+      "BloodBankManagementSystem.Core.pdb": "sha256-TABpp3zykbomLJaI2sRQVOrMfg3rPxcQgq2czLPdYHs=",
+      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-GfqEXq7svqPJytiqLQd6s70rt1D2mWizl9Q3fTNVJVQ=",
+      "BloodBankManagementSystem.UI.pdb": "sha256-AXy4v7gKWF5e8W/Eks3K90yVOShmfSoz6408ar/VmJU="
     }
   },
   "cacheBootResources": true,

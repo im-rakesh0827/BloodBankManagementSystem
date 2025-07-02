@@ -185,6 +185,32 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           public void ApplyFiltereBloodRequest()
           {
 
+               switch (FilterBasedOn)
+            {
+              case "Active":
+               //    FilteredRequestsList = AllRequestsList.Where(p => p.IsActive && p.IsAlive).ToList();
+              break;
+              case "Last7Days":
+                  var sevenDaysAgo = DateTime.Now.AddDays(-7);
+                  FilteredRequestsList = AllRequestsList.Where(p => p.RequestedDate >= sevenDaysAgo).ToList();
+              break;
+              case "Last30Days":
+                    var thirtyDaysAgo = DateTime.Now.AddDays(-30);
+                    FilteredRequestsList = AllRequestsList.Where(p => p.RequestedDate >= thirtyDaysAgo).ToList();
+                    break;
+              case "Last1Year":
+                    var oneYearAgo = DateTime.Now.AddYears(-1);
+                    FilteredRequestsList = AllRequestsList.Where(p => p.RequestedDate >= oneYearAgo).ToList();
+              break;
+              case "All":
+                  FilteredRequestsList = AllRequestsList.ToList();
+              break;
+              default:
+                  FilteredRequestsList = AllRequestsList.ToList();
+              break;
+            }
+           StateHasChanged();
+
           }
 
           private async Task ExportCSV(){

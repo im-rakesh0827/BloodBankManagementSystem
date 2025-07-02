@@ -1,3 +1,11 @@
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.csproj.AssemblyReference.cache
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.AssemblyInfoInputs.cache
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.AssemblyInfo.cs
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.csproj.CoreCompileInputs.cache
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.MvcApplicationPartsAssemblyInfo.cs
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.MvcApplicationPartsAssemblyInfo.cache
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.sourcelink.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/appsettings.Development.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/appsettings.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BloodBankManagementSystem.API
@@ -7,6 +15,7 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BloodBankManagementSystem.API.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Azure.Core.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Azure.Identity.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BCrypt.Net-Next.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BouncyCastle.Cryptography.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Humanizer.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/MailKit.dll
@@ -31,6 +40,7 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Extensions.Caching.Abstractions.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Extensions.Caching.Memory.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Extensions.Configuration.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
@@ -190,14 +200,6 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BloodBankManagementSystem.Infrastructure.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BloodBankManagementSystem.Core.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BloodBankManagementSystem.Infrastructure.pdb
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.csproj.AssemblyReference.cache
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.GeneratedMSBuildEditorConfig.editorconfig
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.AssemblyInfoInputs.cache
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.AssemblyInfo.cs
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.csproj.CoreCompileInputs.cache
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.MvcApplicationPartsAssemblyInfo.cs
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.MvcApplicationPartsAssemblyInfo.cache
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.sourcelink.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/staticwebassets.build.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/staticwebassets.development.json
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/staticwebassets/msbuild.BloodBankManagementSystem.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -212,4 +214,3 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.genruntimeconfig.cache
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/ref/BloodBankManagementSystem.API.dll
-/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/BCrypt.Net-Next.dll

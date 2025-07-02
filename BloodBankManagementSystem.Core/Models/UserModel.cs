@@ -1,11 +1,51 @@
+ using System;
+using System.ComponentModel.DataAnnotations;
 namespace BloodBankManagementSystem.Core.Models
 {
-    using System;
-using System.ComponentModel.DataAnnotations;
+    
+    public class RegisterRequest
+    {
+        public string Name { get; set; }
+
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        public string Role { get; set; } = "User"; // Optional: defaults to "User"
+    }
+
+    public class TokenResponse
+{
+    public string Token { get; set; } = string.Empty;
+    public string Expiration { get; set; } = string.Empty;
+}
+
+
+
+     public class LoginModel
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
+
+
+    public class AuthResponseDto
+    {
+        public string Token { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string Role { get; set; }
+    }
+
+
+
+
 
     public class User
     {
         public int Id { get; set; }
+
+        // public string Username { get; set; }    
 
         [Required(ErrorMessage = "First Name is required.")]
         [StringLength(50, ErrorMessage = "First Name cannot exceed 50 characters.")]
@@ -64,4 +104,6 @@ using System.ComponentModel.DataAnnotations;
         // [StringLength(10, ErrorMessage = "PinCode cannot exceed 10 characters.")]
         public string PinCode { get; set; } = string.Empty;
     }
+
+
 }

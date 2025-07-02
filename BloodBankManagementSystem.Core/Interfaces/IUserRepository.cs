@@ -17,4 +17,6 @@ namespace BloodBankManagementSystem.Core.Interfaces
         Task<List<UserHistory>> GetUserHistoryByIdAsync(int userId);
 
     }
+
+    
 }

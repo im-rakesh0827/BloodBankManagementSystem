@@ -1,22 +1,65 @@
 @page "/login"
+@using Blazored.LocalStorage
+@inject HttpClient Http
+@inject ILocalStorageService LocalStorage
+@inject JwtAuthStateProvider AuthProvider
 @inject NavigationManager Navigation
-@inject AuthService AuthService
-@using BloodBankManagementSystem.UI.Services
-
-
+@using BloodBankManagementSystem.UI.Services;
+@using BloodBankManagementSystem.Core.Models;
 <h3>Login</h3>
 
-@if (!string.IsNullOrEmpty(errorMessage))
+<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+    <InputText @bind-Value="loginModel.Email" placeholder="Email" />
+    <InputText @bind-Value="loginModel.Password" type="password" placeholder="Password" />
+    <button type="submit">Login</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
 {
-    <p style="color:red">@errorMessage</p>
+    <div class="text-danger">@ErrorMessage</div>
 }
 
-<div>
-    <label>Email:</label>
-    <input @bind="loginRequest.Email" type="text" />
-</div>
-<div>
-    <label>Password:</label>
-    <input @bind="loginRequest.Password" type="password" />
-</div>
-<button @onclick="HandleLogin">Login</button>
+
+@code {
+    private LoginModel loginModel = new();
+    private string ErrorMessage{get; set;} = string.Empty;
+
+    private async Task HandleLogin()
+{
+    try
+    {
+        var response = await Http.PostAsJsonAsync("api/auth/login", loginModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var result = await response.Content.ReadFromJsonAsync<TokenResponse>();
+
+            if (result != null && !string.IsNullOrWhiteSpace(result.Token))
+            {
+                await LocalStorage.SetItemAsync("authToken", result.Token);
+                AuthProvider.NotifyUserAuthentication(result.Token);
+                Navigation.NavigateTo("/");
+            }
+            else
+            {
+                ErrorMessage = "Login failed: Invalid token received.";
+            }
+        }
+        else
+        {
+            ErrorMessage = "Login failed: Invalid email or password.";
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Login exception: " + ex.Message);
+        ErrorMessage = "An unexpected error occurred during login.";
+    }
+}
+
+
+
+    
+
+    
+}

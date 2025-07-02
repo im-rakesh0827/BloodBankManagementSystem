@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yTqTQMPwNIAsTFrbz/py1Z/fIiG6w9hMrUGdS0cCrps=",
+  "Hash": "wUE6hKBOCjWkIkLipAxdWWHxigfHA8BWL1NmJhzSiok=",
   "Source": "BloodBankManagementSystem.UI",
   "BasePath": "/",
   "Mode": "Root",
@@ -12688,25 +12688,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
-    },
-    {
-      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/aggrid-interop.js",
-      "SourceId": "BloodBankManagementSystem.UI",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/",
-      "BasePath": "/",
-      "RelativePath": "js/aggrid-interop.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/js/aggrid-interop.js"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/bloodbank.js",

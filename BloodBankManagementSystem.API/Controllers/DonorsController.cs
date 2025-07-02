@@ -48,10 +48,9 @@ namespace BloodBankManagementSystem.API.Controllers
                 return StatusCode(500, new { message = "Internal server error" });
             }
         }
-        // Get all donors
+
         [HttpGet("allDonors")]
         [Produces("application/json")]
-     //    [Authorize]
         public async Task<IActionResult> GetAllDonors()
         {
             try

@@ -128,12 +128,45 @@ namespace BloodBankManagementSystem.UI.Pages.Users
         }
 
         public void ApplyFilterUser(){
-            if(IsShowActiveOnly){
-                FilteredUsersList = AllUsersList.Where(p => p.IsActive && p.IsAlive).ToList();
+            // if(IsShowActiveOnly){
+            //     FilteredUsersList = AllUsersList.Where(p => p.IsActive && p.IsAlive).ToList();
+            // }
+            // else{
+            //     FilteredUsersList = AllUsersList.Where(p => p.IsActive).ToList();
+            // }
+
+            switch (FilterBasedOn)
+            {
+              case "Active":
+                  FilteredUsersList = AllUsersList.Where(p => p.IsActive && p.IsAlive).ToList();
+              break;
+              case "Last7Days":
+                  var sevenDaysAgo = DateTime.Now.AddDays(-7);
+                  FilteredUsersList = AllUsersList.Where(p => p.CreatedAt >= sevenDaysAgo && p.IsActive && p.IsAlive).ToList();
+              break;
+              case "Last30Days":
+                    var thirtyDaysAgo = DateTime.Now.AddDays(-30);
+                    FilteredUsersList = AllUsersList.Where(p => p.CreatedAt >= thirtyDaysAgo && p.IsActive && p.IsAlive).ToList();
+                    break;
+              case "Last1Year":
+                    var oneYearAgo = DateTime.Now.AddYears(-1);
+                    FilteredUsersList = AllUsersList.Where(p => p.CreatedAt >= oneYearAgo && p.IsActive && p.IsAlive).ToList();
+              break;
+              case "All":
+                  FilteredUsersList = AllUsersList.Where(p=>p.IsActive).ToList();
+              break;
+              default:
+                  FilteredUsersList = AllUsersList.Where(p => p.IsActive && p.IsAlive).ToList();
+              break;
             }
-            else{
-                FilteredUsersList = AllUsersList.Where(p => p.IsActive).ToList();
-            }
+
+
+            
+
+            
+
+
+
         }
 
         private async Task ShowUsertHistory(User user)

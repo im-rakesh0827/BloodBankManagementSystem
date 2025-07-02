@@ -281,3 +281,10 @@ code {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     border: 1px solid #dee2e6;
 }
+
+
+
+
+.navMenu{
+    background-color: var(--rz-grid-selected-background-color);
+}

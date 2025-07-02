@@ -64,7 +64,7 @@
 
 
 
-/* .customLoader2 {
+.customLoader2 {
   width: 50px;
   aspect-ratio: 1;
   display:grid;
@@ -92,7 +92,7 @@
 
 @keyframes l26 {
   100% {transform:rotate(1turn)}
-} */
+}
 
 
 

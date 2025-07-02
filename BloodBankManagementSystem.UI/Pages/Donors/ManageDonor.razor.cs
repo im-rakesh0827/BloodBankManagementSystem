@@ -114,7 +114,32 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
 
     private async Task ApplyFilterDonorsList(){
           //FilteredDonorsList = AllDonorsList.Where(x=>x.IsEligible==true).ToList();
-          FilteredDonorsList = AllDonorsList;
+        //   FilteredDonorsList = AllDonorsList;
+
+        switch (FilterBasedOn)
+            {
+              case "Active":
+                  FilteredDonorsList = AllDonorsList.Where(p => p.IsActive && p.IsAlive).ToList();
+              break;
+              case "Last7Days":
+                  var sevenDaysAgo = DateTime.Now.AddDays(-7);
+                  FilteredDonorsList = AllDonorsList.Where(p => p.CreatedAt >= sevenDaysAgo && p.IsActive && p.IsAlive).ToList();
+              break;
+              case "Last30Days":
+                    var thirtyDaysAgo = DateTime.Now.AddDays(-30);
+                    FilteredDonorsList = AllDonorsList.Where(p => p.CreatedAt >= thirtyDaysAgo && p.IsActive && p.IsAlive).ToList();
+                    break;
+              case "Last1Year":
+                    var oneYearAgo = DateTime.Now.AddYears(-1);
+                    FilteredDonorsList = AllDonorsList.Where(p => p.CreatedAt >= oneYearAgo && p.IsActive && p.IsAlive).ToList();
+              break;
+              case "All":
+                  FilteredDonorsList = AllDonorsList.Where(p=>p.IsActive).ToList();
+              break;
+              default:
+                  FilteredDonorsList = AllDonorsList.Where(p => p.IsActive && p.IsAlive).ToList();
+              break;
+            }
     }
 
     private void HandleCancelOrClose()

@@ -1,0 +1,17 @@
+@page "/logout"
+@using Blazored.LocalStorage
+@inject ILocalStorageService LocalStorage
+@inject JwtAuthStateProvider AuthProvider
+@inject NavigationManager Navigation
+@using BloodBankManagementSystem.UI.Services
+
+<h3>Logging out...</h3>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await LocalStorage.RemoveItemAsync("authToken");
+        AuthProvider.NotifyUserLogout();
+        Navigation.NavigateTo("/login");
+    }
+}

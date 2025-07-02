@@ -69,10 +69,6 @@
       "PackagePath": "staticwebassets/index.html"
     },
     {
-      "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/aggrid-interop.js",
-      "PackagePath": "staticwebassets/js/aggrid-interop.js"
-    },
-    {
       "Id": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/wwwroot/js/bloodbank.js",
       "PackagePath": "staticwebassets/js/bloodbank.js"
     },

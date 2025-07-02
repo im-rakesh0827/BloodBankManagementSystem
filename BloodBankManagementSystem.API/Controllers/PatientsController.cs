@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.API.Services; 
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BloodBankManagementSystem.API.Controllers{
     [Route("api/[controller]")]
@@ -52,6 +53,7 @@ namespace BloodBankManagementSystem.API.Controllers{
         }
 
         // Get all patients
+        // [Authorize]
         [HttpGet("allPatients")]
         public async Task<IActionResult> GetAllPatients()
         {

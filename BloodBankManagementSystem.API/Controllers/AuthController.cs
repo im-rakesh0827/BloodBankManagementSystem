@@ -1,85 +1,69 @@
-using Microsoft.AspNetCore.Mvc;
 using BloodBankManagementSystem.Core.Interfaces;
-using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using BloodBankManagementSystem.Core.Models;
+using BloodBankManagementSystem.API.Services;
+
+using Microsoft.Extensions.Logging;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using BloodBankManagementSystem.API.Services; 
-using Microsoft.Extensions.Logging; 
-namespace BloodBankManagementSystem.API.Controllers{
-    [Route("api/auth")]
+
+namespace BloodBankManagementSystem.API.Controllers
+{
+    [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly JwtTokenService _jwtTokenService;
+        private readonly IJwtService _jwtService;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IUserRepository userRepository, JwtTokenService jwtTokenService)
+
+        public AuthController(IUserRepository userRepository, IJwtService jwtService, ILogger<AuthController> logger)
         {
             _userRepository = userRepository;
-            _jwtTokenService = jwtTokenService;
+            _jwtService = jwtService;
+            _logger = logger;
         }
+
+
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginModel loginRequest)
         {
             try
             {
-                Console.WriteLine("API Login method hit!");
+                var user = await _userRepository.GetUserByEmailAsync(loginRequest.Email);
+                if (user == null || !VerifyPassword(loginRequest.Password, user.PasswordHash))
+                    return Unauthorized(new { message = "Invalid credentials" });
 
-                if (request == null || string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+                var token = _jwtService.GenerateJwtToken(user);
+                return Ok(new AuthResponseDto
                 {
-                    return BadRequest("Invalid login request.");
-                }
-
-                var user = await _userRepository.GetUserByEmailAsync(request.Email);
-                if (user == null)
-                {
-                    return Unauthorized("User not found.");
-                }
-
-                if (!VerifyPassword(request.Password, user.PasswordHash))
-                {
-                    return Unauthorized("Invalid credentials.");
-                }
-
-                string token = _jwtTokenService.GenerateToken(user.Id.ToString(), user.Email);
-            //    return Ok(new { Token = token });
-
-                // var accessToken = GenerateJwtToken(user);
-                // var refreshToken = GenerateRefreshToken();
-                var accessToken = token;
-                return Ok(new
-                {
-                    token_type = "Bearer",
-                    access_token = accessToken,
-                    expires_in = DateTime.Now.AddHours(9),
+                    Token = token,
+                    UserId = user.Id,
+                    UserName = $"{user.FirstName} {user.LastName}",
+                    Role = user.Role
                 });
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                _logger.LogError(ex, "Error logging in");
+                return StatusCode(500, new { message = "Internal server error" });
             }
         }
 
-        private bool VerifyPassword(string enteredPassword, string storedPasswordHash)
+        private bool VerifyPassword(string inputPassword, string storedHash)
         {
-            try
-            {
-                using (var sha256 = System.Security.Cryptography.SHA256.Create())
-                {
-                    var enteredHash = System.Convert.ToBase64String(sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(enteredPassword)));
-                    return enteredHash == storedPasswordHash;
-                }
-            }
-            catch (System.Exception)
-            {
-                
-                throw;
-            }
+            var hashedInput = HashPassword(inputPassword);
+            return hashedInput == storedHash;
+        }
+
+        private string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(password);
+            var hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
         }
     }
 }
-
-

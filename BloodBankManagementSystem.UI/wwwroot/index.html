@@ -6,46 +6,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vital Drops</title>
         <base href="/" />
+
+        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
         <link rel="stylesheet" href="css/app.css" />
-        <link rel="icon" type="image/png" href="favicon.png" />
+        <!-- <link rel="icon" type="image/png" href="favicon.png" /> -->
         <link href="BloodBankManagementSystem.UI.styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Bootstrap Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- jQuery (MUST load before scripts using $) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- Toast plugin -->
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
-        <script src="js/bloodbank.js"></script>
-        <link rel="stylesheet" href="css/bloodbank.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/bloodbank.css" />
         <link rel="stylesheet" href="css/custom-loader.css" />
-        <script src="js/popup.js"></script>
         <link rel="stylesheet" href="css/popup.css" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-        <!-- <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" /> -->
 
-        <!-- AG Grid CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css" rel="stylesheet" />
-
-        <!-- AG Grid JS -->
-        <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-
-        <!-- Custom JS Interop -->
-        <script src="js/aggrid-interop.js"></script>
-
-
+        <!-- Blazorise & Radzen CSS -->
         <link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
         <link href="_content/Blazorise.Bootstrap5/blazorise.bootstrap5.css" rel="stylesheet" />
-        <!-- <link href="_content/Blazorise.Icons.FontAwesome/blazorise.icons.fontawesome.css" rel="stylesheet" /> -->
-
-
         <link href="_content/Radzen.Blazor/css/default-base.css" rel="stylesheet" />
 
-
-
+        <!-- Your custom JS (after jQuery) -->
+        <script src="js/bloodbank.js"></script>
+        <script src="js/popup.js"></script>
     </head>
 
     <body>
@@ -62,79 +60,57 @@
             <a href="" class="reload">Reload</a>
             <a class="dismiss">🗙</a>
         </div>
+
         <script src="_framework/blazor.webassembly.js"></script>
-
-        <!-- <script src="_content/Blazorise/blazorise.js"></script> -->
-        <!-- <script src="_content/Blazorise.Bootstrap5/blazorise.bootstrap5.js"></script> -->
-        <!-- <script src="_content/Blazorise.Icons.FontAwesome/blazorise.icons.fontawesome.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
         <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
 
+        <script>
+            window.exportToExcel = (data, fileName) => {
+                const wb = XLSX.utils.book_new();
+                const ws = XLSX.utils.json_to_sheet(data);
 
+                const range = XLSX.utils.decode_range(ws['!ref']);
+
+                // Uppercase headers + style
+                for (let col = range.s.c; col <= range.e.c; col++) {
+                    const headerCellRef = XLSX.utils.encode_cell({ r: range.s.r, c: col });
+                    const cell = ws[headerCellRef];
+                    if (cell) {
+                        cell.v = cell.v.toString().toUpperCase();
+                        cell.s = {
+                            font: { bold: true },
+                            fill: { fgColor: { rgb: "FFFF00" } }
+                        };
+                    }
+                }
+
+                // Auto column widths
+                const colWidths = [];
+                for (let col = range.s.c; col <= range.e.c; col++) {
+                    let maxLength = 10;
+                    for (let row = range.s.r; row <= range.e.r; row++) {
+                        const cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
+                        if (cell && cell.v) {
+                            maxLength = Math.max(maxLength, cell.v.toString().length);
+                        }
+                    }
+                    colWidths.push({ wpx: maxLength * 10 });
+                }
+                ws['!cols'] = colWidths;
+                XLSX.utils.book_append_sheet(wb, ws, "Patients");
+                XLSX.writeFile(wb, fileName || 'exported_data.xlsx');
+            };
+
+            window.BlazorDownloadFile = (fileName, contentType, base64Data) => {
+                const link = document.createElement('a');
+                link.download = fileName;
+                link.href = `data:${contentType};base64,${base64Data}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            };
+        </script>
     </body>
 
 </html>
-
-
-<script>
-    window.exportToExcel = (data, fileName) => {
-        const wb = XLSX.utils.book_new();
-        const ws = XLSX.utils.json_to_sheet(data);
-
-        const range = XLSX.utils.decode_range(ws['!ref']);
-
-        // UPPERCASE headers + style
-        for (let col = range.s.c; col <= range.e.c; col++) {
-            const headerCellRef = XLSX.utils.encode_cell({ r: range.s.r, c: col });
-            const cell = ws[headerCellRef];
-            if (cell) {
-                // Convert to UPPERCASE
-                cell.v = cell.v.toString().toUpperCase();
-
-                // Apply styling
-                cell.s = {
-                    font: { bold: true },
-                    fill: { fgColor: { rgb: "FFFF00" } }
-                };
-            }
-        }
-
-        // Auto column widths
-        const colWidths = [];
-        for (let col = range.s.c; col <= range.e.c; col++) {
-            let maxLength = 10; // fallback width
-            for (let row = range.s.r; row <= range.e.r; row++) {
-                const cell = ws[XLSX.utils.encode_cell({ r: row, c: col })];
-                if (cell && cell.v) {
-                    maxLength = Math.max(maxLength, cell.v.toString().length);
-                }
-            }
-            colWidths.push({ wpx: maxLength * 10 });
-        }
-        ws['!cols'] = colWidths;
-        XLSX.utils.book_append_sheet(wb, ws, "Patients");
-        XLSX.writeFile(wb, fileName || 'exported_data.xlsx');
-    };
-
-
-
-    window.BlazorDownloadFile = (fileName, contentType, base64Data) => {
-        const link = document.createElement('a');
-        link.download = fileName;
-        link.href = `data:${contentType};base64,${base64Data}`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
-    window.BlazorDownloadFile = (filename, contentType, base64Data) => {
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = `data:${contentType};base64,${base64Data}`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
-</script>

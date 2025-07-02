@@ -1,11 +1,11 @@
 using BloodBankManagementSystem.Core.Interfaces;
 using BloodBankManagementSystem.Core.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using BloodBankManagementSystem.API.Services; 
-using Microsoft.Extensions.Logging;
+using BloodBankManagementSystem.API.Services;
 
 namespace BloodBankManagementSystem.API.Controllers
 {
@@ -14,83 +14,88 @@ namespace BloodBankManagementSystem.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly ILogger<UsersController> _logger; // Inject Logger
         private readonly IEmailService _emailService;
+        private readonly ILogger<UsersController> _logger;
+
         public UsersController(IUserRepository userRepository, IEmailService emailService, ILogger<UsersController> logger)
         {
             _userRepository = userRepository;
             _emailService = emailService;
             _logger = logger;
         }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User user)
         {
-            try{
-                if (await _userRepository.GetUserByEmailAsync(user.Email) != null)
-                return BadRequest("User already exists");
-                string UserPassword = user.PasswordHash;
-                user.PasswordHash = HashPassword(user.PasswordHash);
+            try
+            {
+                var existingUser = await _userRepository.GetUserByEmailAsync(user.Email);
+                if (existingUser != null)
+                    return BadRequest(new { message = "User already exists" });
+
+                var plainPassword = user.PasswordHash; // Save plain password for email (not recommended in real apps)
+
+                user.PasswordHash = HashPassword(plainPassword);
+                user.IsActive = true;
+                user.CreatedAt = DateTime.Now;
+
                 await _userRepository.AddUserAsync(user);
-                await AddHistory(user.Id, "System User", "Register", "User registered");
-                user.PasswordHash = UserPassword;
-                bool emailSent = await SendEmail(user);
-                if(emailSent)
+
+                await AddHistory(user.Id, "System", "Register", "User registered");
+
+                var emailSent = await SendEmail(user, plainPassword);
+                if (emailSent)
                 {
-                    await AddHistory(user.Id, "System User", "Email Sent", "Email sent");
+                    await AddHistory(user.Id, "System", "Email Sent", "Welcome email sent");
                 }
                 else
                 {
-                    return StatusCode(500, new { message = "User registered, but email failed to send" });
+                    return StatusCode(500, new { message = "User registered, but failed to send email" });
                 }
-                return Ok(new { message = "User registered successfully, email sent" });
+
+                return Ok(new { message = "User registered successfully and email sent" });
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error registering user: {ex.Message}");
+                _logger.LogError(ex, "Error registering user");
                 return StatusCode(500, new { message = "Internal server error" });
             }
         }
 
+
+        [HttpGet("{email}")]
+        public async Task<IActionResult> GetUserByEmailAsync(string email){
+            try
+            {
+                var user = await _userRepository.GetUserByEmailAsync(email);
+                return Ok(user);
+
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
+        }
+
         [HttpGet("allUsers")]
-        [Produces("application/json")]
         public async Task<IActionResult> GetAllUsers()
         {
             try
             {
                 var users = await _userRepository.GetAllUsersAsync();
-
-                if (users == null || !users.Any())  // Fix null check
+                if (users == null || !users.Any())
                 {
-                    return NotFound(new { message = "No users found." });
+                    return NotFound(new { message = "No users found" });
                 }
-
                 return Ok(users);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error fetching users: {ex.Message}");
-                return StatusCode(500, new { message = "Internal Server Error", error = ex.Message });
+                _logger.LogError(ex, "Error fetching users");
+                return StatusCode(500, new { message = "Internal server error" });
             }
         }
-
-
-
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] User loginRequest)
-        {
-            try
-            {
-                var user = await _userRepository.GetUserByEmailAsync(loginRequest.Email);
-                if (user == null || !VerifyPassword(loginRequest.PasswordHash, user.PasswordHash))
-                    return Unauthorized("Invalid credentials");
-                return Ok(new { message = "Login successful", role = user.Role });
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
-        }
-
 
         [HttpPut("update/{userId}")]
         public async Task<IActionResult> UpdateUser(int userId, [FromBody] User updatedUser)
@@ -100,8 +105,9 @@ namespace BloodBankManagementSystem.API.Controllers
                 var existingUser = await _userRepository.GetUserByIdAsync(userId);
                 if (existingUser == null)
                 {
-                    return NotFound(new { message = "User not found." });
+                    return NotFound(new { message = "User not found" });
                 }
+
                 existingUser.FirstName = updatedUser.FirstName;
                 existingUser.LastName = updatedUser.LastName;
                 existingUser.Email = updatedUser.Email;
@@ -114,15 +120,16 @@ namespace BloodBankManagementSystem.API.Controllers
                 {
                     existingUser.PasswordHash = HashPassword(updatedUser.PasswordHash);
                 }
+
                 await _userRepository.UpdateUserAsync(existingUser);
-                await AddHistory(existingUser.Id, "System User", "Update", "User details updated");
+                await AddHistory(existingUser.Id, "System", "Update", "User details updated");
 
                 return Ok(new { message = "User updated successfully" });
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                _logger.LogError(ex, "Error updating user");
+                return StatusCode(500, new { message = "Internal server error" });
             }
         }
 
@@ -134,142 +141,19 @@ namespace BloodBankManagementSystem.API.Controllers
                 var user = await _userRepository.GetUserByIdAsync(id);
                 if (user == null)
                 {
-                    return NotFound(new { message = "User not found." });
+                    return NotFound(new { message = "User not found" });
                 }
-                // await _userRepository.DeleteAsync(user);
+
                 user.IsActive = false;
                 await _userRepository.UpdateUserAsync(user);
-                await AddHistory(user.Id, "System User", "Delete", "User deleted/removed");
-                return Ok(new { message = "User deleted successfully." });
-            }
-            catch (System.Exception)
-            {
-                
-                throw;
-            }
-        }
+                await AddHistory(user.Id, "System", "Delete", "User deactivated");
 
-        private string HashPassword(string password)
-        {
-            try
-            {
-                using var sha256 = SHA256.Create();
-                var bytes = Encoding.UTF8.GetBytes(password);
-                var hash = sha256.ComputeHash(bytes);
-                return Convert.ToBase64String(hash);
-            }
-            catch (System.Exception)
-            {
-                
-                throw;
-            }
-        }
-
-        private bool VerifyPassword(string inputPassword, string storedHash)
-        {
-            return HashPassword(inputPassword) == storedHash;
-        }
-
-        private async Task<bool> SendEmail(User user)
-        {
-            try
-            {
-                string subject = "🎉 Welcome to Vital Drop";
-                string body = $@"
-                <html>
-                <head>
-                    <style>
-                        body {{
-                            font-family: Arial, sans-serif;
-                            background-color: #f4f4f4;
-                            padding: 20px;
-                        }}
-                        .container {{
-                            max-width: 600px;
-                            margin: auto;
-                            background: #ffffff;
-                            padding: 20px;
-                            border-radius: 10px;
-                            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-                        }}
-                        h2 {{
-                            color: #d9534f;
-                        }}
-                        p {{
-                            color: #333;
-                            font-size: 16px;
-                        }}
-                        .cta-button {{
-                            display: inline-block;
-                            background-color: #d9534f;
-                            color: #ffffff;
-                            padding: 12px 24px;
-                            text-decoration: none;
-                            font-weight: bold;
-                            border-radius: 5px;
-                            margin-top: 20px;
-                        }}
-                        .footer {{
-                            margin-top: 20px;
-                            text-align: center;
-                            font-size: 12px;
-                            color: #777;
-                        }}
-                    </style>
-                </head>
-                <body>
-                    <div class='container'>
-                        <h2>Welcome, {user.FirstName}! 🎉</h2>
-                        <p>Thank you for registering with <strong>Vital Drop</strong>. 🩸</p>
-                        <p>Here are your details:</p>
-                        <ul>
-                            <li><strong>Name:</strong> {user.FirstName} {user.LastName}</li>
-                            <li><strong>Email:</strong> {user.Email}</li>
-                            <li><strong>Password:</strong> {user.PasswordHash}</li>
-                        </ul>
-                        <p>You can now log in and explore the system and reset your password</p>
-                        <a href='https://your-bloodbank-system.com/login' class='cta-button'>Login to Your Account</a>
-                        <p class='footer'>If you have any questions, feel free to reply to this email. <br> BloodBank Management System Team</p>
-                    </div>
-                </body>
-                </html>";
-                bool emailSent = await _emailService.SendEmailAsync(user.Email, subject, body);
-                if (!emailSent)
-                {
-                    _logger.LogError($"Failed to send email to {user.Email}");
-                    return false;
-                }
-                _logger.LogInformation($"Email sent successfully to {user.Email}");
-                return true;
+                return Ok(new { message = "User deleted successfully" });
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Exception while sending email: {ex.Message}");
-                return false;
-            }
-        }
-
-
-
-        private async Task AddHistory(int userId, string actionUser, string actionType, string actionNote)
-        {
-            try
-            {
-                var userHistory = new UserHistory
-                {
-                    ActionDate = DateTime.Now,
-                    ActionType = actionType,
-                    ActionUser = actionUser,
-                    ActionNote = actionNote,
-                    UserId = userId
-                };
-                await _userRepository.AddUserHistoryAsync(userHistory);
-                // return Ok(new { message = "History added successfully." });
-            }
-            catch (System.Exception)
-            {
-                
-                throw;
+                _logger.LogError(ex, "Error deleting user");
+                return StatusCode(500, new { message = "Internal server error" });
             }
         }
 
@@ -281,10 +165,67 @@ namespace BloodBankManagementSystem.API.Controllers
                 var history = await _userRepository.GetUserHistoryByIdAsync(userId);
                 return Ok(history);
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                throw;
+                _logger.LogError(ex, "Error fetching user history");
+                return StatusCode(500, new { message = "Internal server error" });
             }
+        }
+
+        private string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var bytes = Encoding.UTF8.GetBytes(password);
+            var hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
+        }
+
+        private bool VerifyPassword(string inputPassword, string storedHash)
+        {
+            var hashedInput = HashPassword(inputPassword);
+            return hashedInput == storedHash;
+        }
+
+        private async Task<bool> SendEmail(User user, string plainPassword)
+        {
+            try
+            {
+                var subject = "🎉 Welcome to Vital Drop";
+                var body = $@"
+                <html>
+                <body>
+                    <div style='font-family: Arial, sans-serif;'>
+                        <h2>Welcome, {user.FirstName}!</h2>
+                        <p>Thank you for registering with <strong>Vital Drop</strong>.</p>
+                        <p>You can now log in to your account using your email: <strong>{user.Email}</strong>.</p>
+                        <p>We recommend changing your password after first login for security reasons.</p>
+                        <a href='https://your-bloodbank-system.com/login' style='background-color: #d9534f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>Login Now</a>
+                        <p style='font-size: 12px; color: #777;'>If you have questions, reply to this email.</p>
+                    </div>
+                </body>
+                </html>";
+
+                var result = await _emailService.SendEmailAsync(user.Email, subject, body);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error sending email to {user.Email}");
+                return false;
+            }
+        }
+
+        private async Task AddHistory(int userId, string actionUser, string actionType, string actionNote)
+        {
+            var history = new UserHistory
+            {
+                ActionDate = DateTime.Now,
+                ActionType = actionType,
+                ActionUser = actionUser,
+                ActionNote = actionNote,
+                UserId = userId
+            };
+            await _userRepository.AddUserHistoryAsync(history);
         }
     }
 }
