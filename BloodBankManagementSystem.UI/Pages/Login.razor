@@ -5,61 +5,84 @@
 @inject JwtAuthStateProvider AuthProvider
 @inject NavigationManager Navigation
 @using BloodBankManagementSystem.UI.Services;
-@using BloodBankManagementSystem.Core.Models;
-<h3>Login</h3>
 
-<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
-    <InputText @bind-Value="loginModel.Email" placeholder="Email" />
-    <InputText @bind-Value="loginModel.Password" type="password" placeholder="Password" />
-    <button type="submit">Login</button>
-</EditForm>
+<style>
+/* Center container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f6fa;
+}
 
-@if (!string.IsNullOrEmpty(ErrorMessage))
+.login-form {
+    background-color: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+.text-danger {
+    color: red;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+</style>
+
+@if (IsLoading)
 {
-    <div class="text-danger">@ErrorMessage</div>
+    <LoaderComponent></LoaderComponent>
 }
+<div class="login-container">
+    <div class="login-form">
+        <h3>Login</h3>
+        <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+            <div>
+                <label for="email">Email</label>
+                <InputText id="email" @bind-Value="loginModel.Email" placeholder="Email" />
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <InputText id="password" @bind-Value="loginModel.Password" type="password" placeholder="Password" />
+            </div>
+            <button type="submit">Login</button>
+        </EditForm>
 
-
-@code {
-    private LoginModel loginModel = new();
-    private string ErrorMessage{get; set;} = string.Empty;
-
-    private async Task HandleLogin()
-{
-    try
-    {
-        var response = await Http.PostAsJsonAsync("api/auth/login", loginModel);
-
-        if (response.IsSuccessStatusCode)
+        @if (!string.IsNullOrEmpty(ErrorMessage))
         {
-            var result = await response.Content.ReadFromJsonAsync<TokenResponse>();
-
-            if (result != null && !string.IsNullOrWhiteSpace(result.Token))
-            {
-                await LocalStorage.SetItemAsync("authToken", result.Token);
-                AuthProvider.NotifyUserAuthentication(result.Token);
-                Navigation.NavigateTo("/");
-            }
-            else
-            {
-                ErrorMessage = "Login failed: Invalid token received.";
-            }
+            <div class="text-danger">@ErrorMessage</div>
         }
-        else
-        {
-            ErrorMessage = "Login failed: Invalid email or password.";
-        }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Login exception: " + ex.Message);
-        ErrorMessage = "An unexpected error occurred during login.";
-    }
-}
-
-
-
-    
-
-    
-}
+    </div>
+</div>

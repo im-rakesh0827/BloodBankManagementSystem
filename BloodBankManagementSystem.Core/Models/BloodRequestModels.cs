@@ -1,5 +1,11 @@
-namespace BloodBankManagementSystem.Core.Models{
-     public class BloodRequest
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace BloodBankManagementSystem.Core.Models
+{
+    public class BloodRequest
 {
     public int Id { get; set; }
     public int? RequesterId { get; set; }  = 101;
@@ -24,4 +30,13 @@ namespace BloodBankManagementSystem.Core.Models{
     // public bool? IsActive {get; set;} = true;
 }
 
+public class BloodRequestHistory
+     {
+          public int Id { get; set; }
+          public int RequestId{get; set;}
+          public DateTime ActionDate { get; set; }
+          public string ActionType { get; set; } = string.Empty;
+          public string ActionUser { get; set; } = string.Empty;
+          public string ActionNote { get; set; } = string.Empty;
+     }
 }

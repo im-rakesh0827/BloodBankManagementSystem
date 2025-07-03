@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BloodBankManagementSystem.UI",
   "resources": {
-    "hash": "sha256-Jve5tR1DH7Fn2ZwP0jD5nvSX0CzJlhUCdE8NmJZCdbM=",
+    "hash": "sha256-QjQ5SqkojSeP/HTqLzfzZjbay5XQth34+6qF1WuVcEc=",
     "jsModuleNative": {
       "dotnet.native.8.0.14.m9s06tbr13.js": "sha256-DTUQS6Jc6BNnS7sYYezFfaUKVmQq0/lanhQuJfygH/k="
     },
@@ -19,6 +19,7 @@
     "assembly": {
       "Azure.Core.wasm": "sha256-cUx0yT4TBboCr8yulFrimAvC9ecu4FtrhfEZ7T8ragU=",
       "Azure.Identity.wasm": "sha256-wxR1E0zJLWYxnckYUOXZsbZoUjCYCwgg3aYbYbCLaGo=",
+      "BCrypt.Net-Next.wasm": "sha256-vn1+CLDQA7cXT++8crd9GTBHootDpHMDJ06/FyiImpA=",
       "Blazored.LocalStorage.wasm": "sha256-OaMAAd5n7ORfyur5e3QIyEVKJ76MKIvwbg7/icnnYcU=",
       "Blazored.Modal.wasm": "sha256-Y6pVrSnmzq2FCEnAkNngv+mtNlIljEmH3BEmGpr5jEQ=",
       "Blazored.Toast.wasm": "sha256-tCNYnYuB69ZO7+n7obUv//+KkNP809fARvATEkvPug4=",
@@ -269,14 +270,14 @@
       "mscorlib.wasm": "sha256-8L4O6tiH48gEZfzf0Y84J01S+3eEG59Bo5bfpH2H+9Y=",
       "netstandard.wasm": "sha256-sEvS/ZjfGhf1dLglmk72ysM50loOygjujJ/J5OhFLEw=",
       "System.Private.CoreLib.wasm": "sha256-BhHYDTpkph+YJOQuAlv6aSrvjTVX0WLTIDBXecinFXo=",
-      "BloodBankManagementSystem.Core.wasm": "sha256-k8Dt+avdaJBBpikGFlHfHWBO9QNm8RoEJk4t96IfiN8=",
-      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-k1HQ2G9JesOoWDCVcA2tU/n0CRESkMOBoI/4Z8UDUUY=",
-      "BloodBankManagementSystem.UI.wasm": "sha256-Dxc9QcTobNPQ8bc/oi2ft2kyBhd/3/pnCVA+QgXJf/c="
+      "BloodBankManagementSystem.Core.wasm": "sha256-EZAXWQmlbXjr2mMbbbOGaf0B5vXGuOjLcA7O/VnDQkg=",
+      "BloodBankManagementSystem.Infrastructure.wasm": "sha256-BqMLIwybkXsluPxIPqAjr6qyrD0I8jDUN5ddR8Gh1NI=",
+      "BloodBankManagementSystem.UI.wasm": "sha256-h+EszPW+jPC1j4Gwf/Ptmnj2ImgcC9DZczFSP9AlcHw="
     },
     "pdb": {
-      "BloodBankManagementSystem.Core.pdb": "sha256-TABpp3zykbomLJaI2sRQVOrMfg3rPxcQgq2czLPdYHs=",
-      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-GfqEXq7svqPJytiqLQd6s70rt1D2mWizl9Q3fTNVJVQ=",
-      "BloodBankManagementSystem.UI.pdb": "sha256-AXy4v7gKWF5e8W/Eks3K90yVOShmfSoz6408ar/VmJU="
+      "BloodBankManagementSystem.Core.pdb": "sha256-sMZZnQmDBsxcKP2co27DPq64bVddz/JOkzLIfudGyGQ=",
+      "BloodBankManagementSystem.Infrastructure.pdb": "sha256-hxk5xmP49e02vdDSWZVouigTPqKeI9XqUbz0+Z12r5o=",
+      "BloodBankManagementSystem.UI.pdb": "sha256-p5FqBBjHPaGzQr6x6zp1AwmiYV//ZgjdTocb3btvjSM="
     }
   },
   "cacheBootResources": true,

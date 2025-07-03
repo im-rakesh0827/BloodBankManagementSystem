@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace BloodBankManagementSystem.API.Controllers{
     [Route("api/[controller]")]
     [ApiController]
+    // [Authorize]
      public class PatientsController : ControllerBase{
         private readonly IPatientRepository _patientRepository;
         private readonly ILogger<PatientsController> _logger; 

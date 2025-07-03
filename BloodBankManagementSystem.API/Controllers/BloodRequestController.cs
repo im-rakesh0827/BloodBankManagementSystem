@@ -10,6 +10,7 @@ namespace BloodBankManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    // [Authorize]
     public class BloodRequestController : ControllerBase
     {
         private readonly IBloodRequestRepository _requestRepository;

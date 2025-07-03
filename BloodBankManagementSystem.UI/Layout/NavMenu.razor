@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNetCore.Components.Routing
-@using Microsoft.AspNetCore.Components
-
+﻿
 <div style="padding:0.5rem; background-color:rgb(138, 201, 252);">
     <RadzenMenu Click="OnParentClicked" Style="background-color:rgb(138, 201, 252); color: white;">
         <RadzenMenuItem Text="Home" Icon="home" Path="" />
@@ -19,7 +17,7 @@
             <RadzenMenuItem Text="Approve" Path="donor/approve" Icon="how_to_reg" hidden/>
         </RadzenMenuItem>
 
-        <RadzenMenuItem Text="Requests" Icon="request_page">
+        <RadzenMenuItem Text="Requests" Icon="request_page" Visible="@IsAdmin">
             <RadzenMenuItem Text="Blood Request" Path="request/create" Icon="local_hospital" />
             <RadzenMenuItem Text="All Requests" Path="request/manage" Icon="list_alt" />
             <RadzenMenuItem Text="Approve" Path="request/approve" Icon="check_circle" />
@@ -53,15 +51,3 @@
         </RadzenMenuItem>
     </RadzenMenu>
 </div>
-
-@code {
-    void OnParentClicked(MenuItemEventArgs args)
-    {
-        Console.WriteLine($"{args.Text} clicked from parent");
-    }
-
-    void OnChildClicked(MenuItemEventArgs args)
-    {
-        Console.WriteLine($"{args.Text} clicked from child");
-    }
-}

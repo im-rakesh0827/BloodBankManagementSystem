@@ -1,7 +1,8 @@
 @page "/patients"
 @using BloodBankManagementSystem.UI.Pages.Patients
 @inject IJSRuntime JS
-
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
 <!-- Sub-navigation buttons -->
 <div class="sub-nav d-flex gap-3 mb-4">
     <button class="btn @(CurrentTab == "register" ? "btn-primary" : "btn-outline-primary")"

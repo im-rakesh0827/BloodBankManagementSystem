@@ -11,6 +11,7 @@ namespace BloodBankManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    // [Authorize]
     public class DonorsController : ControllerBase
     {
         private readonly IDonorRepository _donorRepository;

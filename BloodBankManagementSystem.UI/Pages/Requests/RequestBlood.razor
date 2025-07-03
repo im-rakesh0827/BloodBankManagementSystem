@@ -2,7 +2,8 @@
 @inject HttpClient Http
 @inject NavigationManager Nav
 @inject IJSRuntime JSRuntime
-
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
 
 @if (IsLoading)
 {

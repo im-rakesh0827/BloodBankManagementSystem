@@ -131,7 +131,7 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
 
        public void ApplyFilterePatient(){
 
-        Console.WriteLine("I am in Manage Patient, ApplyFilterePatient method ");
+        // Console.WriteLine("I am in Manage Patient, ApplyFilterePatient method ");
 
             switch (FilterBasedOn)
             {

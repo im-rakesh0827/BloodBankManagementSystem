@@ -13,23 +13,20 @@
 </div>
 
 @code {
-    // Optional: You can remove this completely if you don't need logging
-    // If you want to keep it, you can leave it uncommented
-    /*
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthProvider.GetAuthenticationStateAsync();
         var user = authState.User;
-
         if (user.Identity != null && user.Identity.IsAuthenticated)
         {
             Console.WriteLine($"🔒 Authenticated: {user.Identity.IsAuthenticated}");
-            Console.WriteLine($"👤 Username: {user.Identity.Name}");
+            //Console.WriteLine($"👤 Username: {user.Identity.Name}");
+            //Console.WriteLine($"👤 User: {user.Identity}");
         }
         else
         {
             Console.WriteLine("User not authenticated");
         }
     }
-    */
+
 }

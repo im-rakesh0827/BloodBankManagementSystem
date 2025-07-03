@@ -6,11 +6,14 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BloodBankManagementSystem.API.Services;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace BloodBankManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    // [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _userRepository;

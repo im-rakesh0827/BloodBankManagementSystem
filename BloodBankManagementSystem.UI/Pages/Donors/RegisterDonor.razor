@@ -1,6 +1,8 @@
 @page "/donor/create"
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
 
 @if (IsLoading)
 {

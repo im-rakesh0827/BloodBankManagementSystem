@@ -5,22 +5,31 @@
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    @* Redirect to login if not authorized *@
-                    <RedirectToLogin />
+                    @* If user is NOT authorized, redirect to login *@
+                    @if (!context.User.Identity.IsAuthenticated)
+                    {
+                        <RedirectToLogin />
+                    }
+                    else
+                    {
+                        <p>You are not authorized to access this resource.</p>
+                    }
                 </NotAuthorized>
                 <Authorizing>
-                    <p>Checking authorization...</p>
+                    <p>Authorizing...</p>
                 </Authorizing>
             </AuthorizeRouteView>
         </Found>
         <NotFound>
-            <p>Sorry, there's nothing at this address.</p>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
 
-@code {
-}
+
+
 
 
 

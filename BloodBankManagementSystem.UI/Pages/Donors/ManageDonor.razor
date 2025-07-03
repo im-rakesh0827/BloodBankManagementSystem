@@ -2,6 +2,8 @@
 @inject IJSRuntime JSRuntime
 @inject HttpClient Http
 @using BloodBankManagementSystem.Core.Models;
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
 
 @if (IsLoading)
 {
