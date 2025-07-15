@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zLAkNpRuP0TBFnsiPVWIeyJ6KH8aYQFjO3zpPvJc0T8=",
+  "Hash": "1UEPFAC3XsWJD9Zl8ok/P1v+9qcK5DmV+ZA3HV7ZmdA=",
   "Source": "BloodBankManagementSystem.UI",
   "BasePath": "/",
   "Mode": "Root",
@@ -2525,6 +2525,25 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/ClosedXML.wasm"
     },
     {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Dapper.wasm",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Dapper.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/Dapper.wasm"
+    },
+    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/DocumentFormat.OpenXml.Framework.wasm",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -4347,6 +4366,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/System.Data.DataSetExtensions.wasm"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Data.SqlClient.wasm",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Data.SqlClient.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/webcil/System.Data.SqlClient.wasm"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Data.wasm",
@@ -9593,6 +9631,25 @@
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Runtime.Caching.wasm"
     },
     {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/hxihjhzbs5.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/System.Data.SqlClient.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Data.SqlClient.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/System.Data.SqlClient.wasm"
+    },
+    {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/i3i2k9nvxq.gz",
       "SourceId": "BloodBankManagementSystem.UI",
       "SourceType": "Computed",
@@ -11776,6 +11833,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/BloodBankManagementSystem.Core.wasm"
+    },
+    {
+      "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/v1cubnf4ig.gz",
+      "SourceId": "BloodBankManagementSystem.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Dapper.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Dapper.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/bin/Debug/net8.0/wwwroot/_framework/Dapper.wasm"
     },
     {
       "Identity": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/obj/Debug/net8.0/compressed/v84e8m3g8r.gz",

@@ -16,6 +16,12 @@ namespace BloodBankManagementSystem.Core.Interfaces
         Task AddUserHistoryAsync(UserHistory userHistory);
         Task<List<UserHistory>> GetUserHistoryByIdAsync(int userId);
 
+
+        Task<bool> UpdateOtpAsync(string email, string otpCode, DateTime otpExpiry);
+        Task<bool> VerifyOtpAsync(string email, string otpCode);
+        Task<bool> UpdatePasswordAsync(string email, string newPasswordHash);
+
+
     }
 
     

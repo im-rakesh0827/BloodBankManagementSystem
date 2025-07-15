@@ -67,18 +67,36 @@ builder.Services.AddAuthorization();
 
 
 // ✅ Configure CORS (Restrict in Production)
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAll", policy =>
+//         policy.AllowAnyOrigin()
+//               .AllowAnyMethod()
+//               .AllowAnyHeader());
+
+//     options.AddPolicy("AllowSpecific", policy =>
+//         policy.WithOrigins(configuration["AllowedHosts"] ?? "http://localhost:5097") // Change for Production
+//               .AllowAnyMethod()
+//               .AllowAnyHeader());
+// });
+
+
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
         policy.AllowAnyOrigin()
               .AllowAnyMethod()
-              .AllowAnyHeader());
+              .AllowAnyHeader()
+              .SetPreflightMaxAge(TimeSpan.FromMinutes(1))); // for example, 1 hour
 
     options.AddPolicy("AllowSpecific", policy =>
         policy.WithOrigins(configuration["AllowedHosts"] ?? "http://localhost:5097") // Change for Production
               .AllowAnyMethod()
-              .AllowAnyHeader());
+              .AllowAnyHeader()
+              .SetPreflightMaxAge(TimeSpan.FromHours(1))); // for example, 1 hour
 });
+
 
 // ✅ Add Controllers & Swagger
 builder.Services.AddControllers();

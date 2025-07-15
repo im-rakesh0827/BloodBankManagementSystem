@@ -103,6 +103,11 @@ namespace BloodBankManagementSystem.Core.Models
         // [Required(ErrorMessage = "PinCode is required.")]
         // [StringLength(10, ErrorMessage = "PinCode cannot exceed 10 characters.")]
         public string PinCode { get; set; } = string.Empty;
+
+
+        public string OtpCode { get; set; }
+        public DateTime? OtpExpiry { get; set; }
+
     }
 
 
@@ -114,6 +119,45 @@ namespace BloodBankManagementSystem.Core.Models
     public string ActionType { get; set; } = string.Empty;
     public string ActionUser { get; set; } = string.Empty;
     public string ActionNote { get; set; } = string.Empty;
+}
+
+
+// public class EmailRequest
+// {
+//     // [Required(ErrorMessage = "Email is required")]
+//     // [EmailAddress(ErrorMessage = "Invalid email")]
+//     public string Email { get; set; }
+// }
+
+// public class OtpVerificationRequest
+// {
+//     public string Email { get; set; }
+//     public string Otp { get; set; }
+// }
+
+// public class ResetPasswordAfterOtpRequest
+// {
+//     public string Email { get; set; }
+//     public string Otp { get; set; }
+//     public string NewPassword { get; set; }
+// }
+
+public class ForgotPasswordRequest
+{
+    public string Email { get; set; }
+}
+
+public class VerifyOtpRequest
+{
+    public string Email { get; set; }
+    public string Otp { get; set; }
+}
+
+public class ResetPasswordRequest
+{
+    public string Email { get; set; }
+    public string Otp { get; set; }
+    public string NewPassword { get; set; }
 }
 
 

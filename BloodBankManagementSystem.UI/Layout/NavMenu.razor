@@ -17,10 +17,10 @@
             <RadzenMenuItem Text="Approve" Path="donor/approve" Icon="how_to_reg" hidden/>
         </RadzenMenuItem>
 
-        <RadzenMenuItem Text="Requests" Icon="request_page" Visible="@IsAdmin">
+        <RadzenMenuItem Text="Requests" Icon="request_page" >
             <RadzenMenuItem Text="Blood Request" Path="request/create" Icon="local_hospital" />
             <RadzenMenuItem Text="All Requests" Path="request/manage" Icon="list_alt" />
-            <RadzenMenuItem Text="Approve" Path="request/approve" Icon="check_circle" />
+            <RadzenMenuItem Text="Approve" Path="request/approve" Icon="check_circle" class="d-none" />
         </RadzenMenuItem>
 
         <RadzenMenuItem Text="Inventory" Icon="inventory" class="d-none">
@@ -28,7 +28,7 @@
             <RadzenMenuItem Text="Update Stock" Path="inventory/update" Icon="sync_alt" />
         </RadzenMenuItem>
 
-        <RadzenMenuItem Text="Reports" Icon="analytics" hidden>
+        <RadzenMenuItem Text="Reports" Icon="analytics" Visible="@IsAdmin">
             <RadzenMenuItem Text="Generate Report" Path="reports/generate" Icon="assessment" />
             <RadzenMenuItem Text="View Reports" Path="reports/view" Icon="visibility" />
         </RadzenMenuItem>

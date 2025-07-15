@@ -214,3 +214,10 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/BloodBankManagementSystem.API.genruntimeconfig.cache
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/obj/Debug/net8.0/ref/BloodBankManagementSystem.API.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/Dapper.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/System.Data.SqlClient.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/runtimes/win-arm64/native/sni.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/runtimes/win-x64/native/sni.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/runtimes/win-x86/native/sni.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/runtimes/unix/lib/net8.0/System.Data.SqlClient.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.API/bin/Debug/net8.0/runtimes/win/lib/net8.0/System.Data.SqlClient.dll

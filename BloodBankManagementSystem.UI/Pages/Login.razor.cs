@@ -55,5 +55,15 @@ namespace BloodBankManagementSystem.UI.Pages
             }
             IsLoading = false;
         }
+
+        private void NavigateToRegister()
+    {
+        Navigation.NavigateTo("/register");
+    }
+
+    private void NavigateToForgotPassword()
+    {
+        Navigation.NavigateTo("/forgot-password");
+    }
     }
 }

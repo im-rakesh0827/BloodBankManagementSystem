@@ -1,0 +1,53 @@
+@page "/verify-otp"
+@inject NavigationManager Navigation
+@inject HttpClient Http
+@using Blazored.LocalStorage
+@inject ILocalStorageService LocalStorage
+@inject JwtAuthStateProvider AuthProvider
+@using BloodBankManagementSystem.UI.Services;
+@using BloodBankManagementSystem.Core.Models
+@code {
+    [Parameter] public string Email { get; set; }
+}
+
+<h3>Verify OTP</h3>
+<EditForm Model="otpModel" OnValidSubmit="Verify">
+    <DataAnnotationsValidator />
+    @* <ValidationSummary /> *@
+
+    <InputText @bind-Value="otpModel.Otp" placeholder="Enter OTP" />
+    <button type="submit">Verify</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <p>@Message</p>
+}
+
+@code {
+    private VerifyOtpRequest otpModel = new();
+    private string Message;
+
+    protected override void OnInitialized()
+    {
+        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        otpModel.Email = query["email"];
+    }
+
+    private async Task Verify()
+    {
+        var res = await Http.PostAsJsonAsync("api/auth/verify-otp", otpModel);
+
+        if (res.IsSuccessStatusCode)
+        {
+            Message = "OTP verified! You can now reset your password.";
+            await Task.Delay(2000);
+            Navigation.NavigateTo($"/reset-password-after-otp?email={otpModel.Email}&otp={otpModel.Otp}");
+        }
+        else
+        {
+            Message = "Invalid OTP.";
+        }
+    }
+}

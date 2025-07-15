@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace BloodBankManagementSystem.API.Controllers
 {
@@ -17,13 +18,15 @@ namespace BloodBankManagementSystem.API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
         private readonly ILogger<AuthController> _logger;
+        private readonly IEmailService _emailService;
 
 
-        public AuthController(IUserRepository userRepository, IJwtService jwtService, ILogger<AuthController> logger)
+        public AuthController(IUserRepository userRepository, IJwtService jwtService, ILogger<AuthController> logger, IEmailService emailService)
         {
             _userRepository = userRepository;
             _jwtService = jwtService;
             _logger = logger;
+            _emailService = emailService;
         }
 
 
@@ -33,7 +36,7 @@ namespace BloodBankManagementSystem.API.Controllers
             try
             {
                 var user = await _userRepository.GetUserByEmailAsync(loginRequest.Email);
-                if (user == null || !VerifyPassword(loginRequest.Password, user.PasswordHash))
+                if (user == null || !EncryptionHelper.VerifyPassword(loginRequest.Password, user.PasswordHash))
                     return Unauthorized(new { message = "Invalid credentials" });
 
                 var token = _jwtService.GenerateJwtToken(user);
@@ -52,18 +55,53 @@ namespace BloodBankManagementSystem.API.Controllers
             }
         }
 
-        private bool VerifyPassword(string inputPassword, string storedHash)
+
+
+    [HttpPost("send-otp")]
+    public async Task<IActionResult> SendOtp([FromBody] ForgotPasswordRequest request)
+    {
+        var user = await _userRepository.GetUserByEmailAsync(request.Email);
+        if (user == null)
         {
-            var hashedInput = HashPassword(inputPassword);
-            return hashedInput == storedHash;
+            return NotFound("User not found");
         }
 
-        private string HashPassword(string password)
+        var otp = new Random().Next(100000, 999999).ToString();
+        var expiry = DateTime.UtcNow.AddMinutes(5);
+        string hashedOtp = BCrypt.Net.BCrypt.HashPassword(otp);
+        // string hashedOtp = EncryptOtp(otp);
+        await _userRepository.UpdateOtpAsync(request.Email, hashedOtp, expiry);
+        await _emailService.SendEmailAsync(request.Email, "Your OTP Code", $"Your OTP code is: {otp}");
+        return Ok("OTP sent successfully");
+    }
+
+    [HttpPost("verify-otp")]
+    public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpRequest request)
+    {
+        // var isValid = await _userRepository.VerifyOtpAsync(request.Email, request.Otp);
+        var user = await _userRepository.GetUserByEmailAsync(request.Email);
+        bool isValid = BCrypt.Net.BCrypt.Verify(request.Otp, user.OtpCode);
+        // bool isValid = VerifyOtp(request.Otp, user.OtpCode);
+
+        if (!isValid)
         {
-            using var sha256 = SHA256.Create();
-            var bytes = Encoding.UTF8.GetBytes(password);
-            var hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
+            return BadRequest("Invalid or expired OTP");
         }
+        return Ok("OTP verified successfully");
+    }
+
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+    {
+        var user = await _userRepository.GetUserByEmailAsync(request.Email);
+        if (user == null)
+        {
+            return NotFound("User not found");
+        }
+        var passwordHash = EncryptionHelper.HashPassword_SHA256(request.NewPassword);
+        await _userRepository.UpdatePasswordAsync(request.Email, passwordHash);
+        return Ok("Password reset successfully");
+    }
+
     }
 }

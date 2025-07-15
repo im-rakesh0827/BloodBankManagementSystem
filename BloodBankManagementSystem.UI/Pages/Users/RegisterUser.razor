@@ -1,8 +1,8 @@
-@page "/user/create"
+@page "/user/register"
 @inject HttpClient Http
 @inject IJSRuntime JSRuntime
-@using Microsoft.AspNetCore.Authorization;
-@attribute [Authorize]
+@* @using Microsoft.AspNetCore.Authorization; *@
+@* @attribute [Authorize] *@
 @if (IsLoading)
 {
      <LoaderComponent></LoaderComponent>

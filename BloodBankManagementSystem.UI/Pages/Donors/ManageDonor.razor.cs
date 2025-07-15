@@ -112,7 +112,7 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
         StateHasChanged(); 
     }
 
-    private async Task ApplyFilterDonorsList(){
+    private async Task ApplyFilterDonorsList1(){
           //FilteredDonorsList = AllDonorsList.Where(x=>x.IsEligible==true).ToList();
         //   FilteredDonorsList = AllDonorsList;
 
@@ -141,6 +141,29 @@ namespace BloodBankManagementSystem.UI.Pages.Donors
               break;
             }
     }
+
+
+    //Filter logic in different way
+    private async Task ApplyFilterDonorsList()
+    {
+
+        var now = DateTime.Now;
+        var sevenDaysAgo = now.AddDays(-7);
+        var thirtyDaysAgo = now.AddDays(-30);
+        var oneYearAgo = now.AddYears(-1);
+        FilteredDonorsList = FilterBasedOn switch
+        {
+            "Active"      => AllDonorsList.Where(p => p.IsActive && p.IsAlive).ToList(),
+            "Last7Days"   => AllDonorsList.Where(p => p.CreatedAt >= sevenDaysAgo && p.IsActive && p.IsAlive).ToList(),
+            "Last30Days"  => AllDonorsList.Where(p => p.CreatedAt >= thirtyDaysAgo && p.IsActive && p.IsAlive).ToList(),
+            "Last1Year"   => AllDonorsList.Where(p => p.CreatedAt >= oneYearAgo && p.IsActive && p.IsAlive).ToList(),
+            "All"         => AllDonorsList.Where(p => p.IsActive).ToList(),
+            _             => AllDonorsList.Where(p => p.IsActive && p.IsAlive).ToList(),
+        };
+        await Task.CompletedTask;
+    }
+
+
 
     private void HandleCancelOrClose()
     {

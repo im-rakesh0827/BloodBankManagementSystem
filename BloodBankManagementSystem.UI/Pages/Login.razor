@@ -5,6 +5,7 @@
 @inject JwtAuthStateProvider AuthProvider
 @inject NavigationManager Navigation
 @using BloodBankManagementSystem.UI.Services;
+@using BloodBankManagementSystem.Core.Models
 
 <style>
 /* Center container */
@@ -59,6 +60,21 @@
     margin-top: 0.5rem;
     text-align: center;
 }
+
+.extra-links {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.extra-links a {
+    margin: 0 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.extra-links a:hover {
+    text-decoration: underline;
+}
 </style>
 
 @if (IsLoading)
@@ -84,5 +100,10 @@
         {
             <div class="text-danger">@ErrorMessage</div>
         }
+
+        <div class="extra-links">
+            <a href="/user/register">Register</a> 
+            <a href="/forgot-password">Forgot Password?</a>
+        </div>
     </div>
 </div>
