@@ -36,7 +36,7 @@ namespace BloodBankManagementSystem.API.Controllers
             try
             {
                 var user = await _userRepository.GetUserByEmailAsync(loginRequest.Email);
-                if (user == null || !EncryptionHelper.VerifyPassword(loginRequest.Password, user.PasswordHash))
+                if (user == null || !EncryptionHelper.VerifyPassword_SHA256(loginRequest.Password, user.PasswordHash))
                     return Unauthorized(new { message = "Invalid credentials" });
 
                 var token = _jwtService.GenerateJwtToken(user);
@@ -68,8 +68,8 @@ namespace BloodBankManagementSystem.API.Controllers
 
         var otp = new Random().Next(100000, 999999).ToString();
         var expiry = DateTime.UtcNow.AddMinutes(5);
-        string hashedOtp = BCrypt.Net.BCrypt.HashPassword(otp);
-        // string hashedOtp = EncryptOtp(otp);
+        string hashedOtp = EncryptionHelper.HashPassword_BCrypt(otp);
+
         await _userRepository.UpdateOtpAsync(request.Email, hashedOtp, expiry);
         await _emailService.SendEmailAsync(request.Email, "Your OTP Code", $"Your OTP code is: {otp}");
         return Ok("OTP sent successfully");
@@ -80,8 +80,7 @@ namespace BloodBankManagementSystem.API.Controllers
     {
         // var isValid = await _userRepository.VerifyOtpAsync(request.Email, request.Otp);
         var user = await _userRepository.GetUserByEmailAsync(request.Email);
-        bool isValid = BCrypt.Net.BCrypt.Verify(request.Otp, user.OtpCode);
-        // bool isValid = VerifyOtp(request.Otp, user.OtpCode);
+        bool isValid = EncryptionHelper.VerifyKey_BCrypt(request.Otp, user.OtpCode);
 
         if (!isValid)
         {
@@ -101,6 +100,40 @@ namespace BloodBankManagementSystem.API.Controllers
         var passwordHash = EncryptionHelper.HashPassword_SHA256(request.NewPassword);
         await _userRepository.UpdatePasswordAsync(request.Email, passwordHash);
         return Ok("Password reset successfully");
+    }
+
+
+
+
+
+
+
+
+    [HttpPost("encrypt")]
+    public IActionResult Encrypt([FromBody] EncryptRequest request)
+    {
+        if (string.IsNullOrWhiteSpace(request.PlainText))
+            return BadRequest("PlainText cannot be empty.");
+
+        var encrypted = EncryptionHelper.Encrypt(request.PlainText);
+        return Ok(new { EncryptedValue = encrypted });
+    }
+
+    [HttpPost("decrypt")]
+    public IActionResult Decrypt([FromBody] DecryptRequest request)
+    {
+        if (string.IsNullOrWhiteSpace(request.CipherText))
+            return BadRequest("CipherText cannot be empty.");
+
+        try
+        {
+            var decrypted = EncryptionHelper.Decrypt(request.CipherText);
+            return Ok(new { DecryptedValue = decrypted });
+        }
+        catch
+        {
+            return BadRequest("Invalid cipher text or decryption failed.");
+        }
     }
 
     }

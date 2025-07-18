@@ -229,6 +229,20 @@ code {
 
 
 
+
+/* .rz-menu:not(.rz-profile-menu) .rz-navigation-item-link {
+    color: #fbfeff !important;
+    white-space: nowrap;
+}
+
+.rz-menu:not(.rz-profile-menu) .rz-navigation-item-link 
+ {
+    color: #fbfeff !important;
+
+} */
+
+
+
 /* .rz-menu:not(.rz-profile-menu) .rz-navigation-item-link {
     color: white !important;
     white-space: nowrap;

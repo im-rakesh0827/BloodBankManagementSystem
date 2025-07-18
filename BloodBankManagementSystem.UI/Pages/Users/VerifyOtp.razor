@@ -11,18 +11,20 @@
 }
 
 <h3>Verify OTP</h3>
-<EditForm Model="otpModel" OnValidSubmit="Verify">
-    <DataAnnotationsValidator />
-    @* <ValidationSummary /> *@
 
-    <InputText @bind-Value="otpModel.Otp" placeholder="Enter OTP" />
-    <button type="submit">Verify</button>
-</EditForm>
+<div class="form-container">
+    <EditForm Model="otpModel" OnValidSubmit="Verify">
+        <DataAnnotationsValidator />
 
-@if (!string.IsNullOrEmpty(Message))
-{
-    <p>@Message</p>
-}
+        <InputText @bind-Value="otpModel.Otp" placeholder="Enter OTP" class="input-text" />
+        <button type="submit" class="submit-btn">Verify</button>
+    </EditForm>
+
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <p class="message">@Message</p>
+    }
+</div>
 
 @code {
     private VerifyOtpRequest otpModel = new();

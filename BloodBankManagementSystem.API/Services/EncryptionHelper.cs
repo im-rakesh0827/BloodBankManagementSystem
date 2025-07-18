@@ -86,25 +86,33 @@ namespace BloodBankManagementSystem.API.Services
 
 
 
-    public  static bool VerifyPassword(string inputPassword, string storedHash)
-        {
-            var hashedInput = HashPassword_SHA256(inputPassword);
-            return hashedInput == storedHash;
-        }
+    public  static bool VerifyPassword_SHA256(string inputPassword, string storedHash)
+    {
+        var hashedInput = HashPassword_SHA256(inputPassword);
+        return hashedInput == storedHash;
+    }
 
-        public static string HashPassword_SHA256(string password)
-        {
-            using var sha256 = SHA256.Create();
-            var bytes = Encoding.UTF8.GetBytes(password);
-            var hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
-        }
+    public static string HashPassword_SHA256(string password)
+    {
+        using var sha256 = SHA256.Create();
+        var bytes = Encoding.UTF8.GetBytes(password);
+        var hash = sha256.ComputeHash(bytes);
+        return Convert.ToBase64String(hash);
+    }
 
 
+
+        //One way hashing
         public static string HashPassword_BCrypt(string key)
         {
             string hashedOtp = BCrypt.Net.BCrypt.HashPassword(key);
             return hashedOtp;
+        }
+
+        public static bool VerifyKey_BCrypt(string key, string hashedKey)
+        {
+            bool isValid = BCrypt.Net.BCrypt.Verify(key, hashedKey);
+            return isValid;
         }
 }
 }

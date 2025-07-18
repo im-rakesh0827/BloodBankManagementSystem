@@ -160,5 +160,16 @@ public class ResetPasswordRequest
     public string NewPassword { get; set; }
 }
 
+public class EncryptRequest
+{
+    public string PlainText { get; set; }
+}
+
+public class DecryptRequest
+{
+    public string CipherText { get; set; }
+}
+
+
 
 }
