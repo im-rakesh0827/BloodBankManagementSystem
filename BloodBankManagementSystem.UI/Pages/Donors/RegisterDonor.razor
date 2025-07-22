@@ -90,13 +90,15 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label">Pin Code:</label>
+                <InputText class="form-control" @bind-Value="DonorModel.PinCode" tabindex="14" @onblur="LoadAddressFromPinCode" />
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label">Country:</label>
                 <InputText class="form-control" @bind-Value="DonorModel.Country" tabindex="11" />
             </div>
-            <div class="mb-3">
-                <label class="form-label">Pin Code:</label>
-                <InputText class="form-control" @bind-Value="DonorModel.PinCode" tabindex="14" />
-            </div>
+            
         </div>
 
         <!-- Third Column -->

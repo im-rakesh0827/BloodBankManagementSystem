@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
 using BloodBankManagementSystem.UI.Helpers;
-
+using BloodBankManagementSystem.UI.Services;
 namespace BloodBankManagementSystem.UI.Pages.Patients
 {
     public partial class RegisterPatient
@@ -29,6 +29,8 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
         private List<string> BloodGroupsList = new List<string>();
         private List<string> GenderList = new List<string>();
         private Notification NotificationModel = new Notification();
+        [Inject] private PincodeAddressService PincodeService { get; set; }
+        
         protected override void OnInitialized()
         {
           BloodGroupsList = BloodBankHelper.GetAllBloodGroups();
@@ -110,6 +112,10 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
                     NotificationModel.Message = "Patient registered successfully!";
                     NotificationModel.Header = "Success";
                     NotificationModel.Icon = "success";
+
+                    PatientModel = new(); 
+                    await OnPatientUpdated.InvokeAsync();
+                    await OnClose.InvokeAsync();
                }
                else
                {
@@ -118,9 +124,7 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
                     NotificationModel.Header = "Information";
                     NotificationModel.Icon = "info";
                }
-               PatientModel = new(); // Reset form
-               await OnPatientUpdated.InvokeAsync();
-               await OnClose.InvokeAsync();
+               
           }
           catch (Exception ex)
           {
@@ -157,6 +161,31 @@ namespace BloodBankManagementSystem.UI.Pages.Patients
                throw ex;
           }
      }
+
+
+
+private async Task LoadAddressFromPinCode()
+{
+    var postOffice = await PincodeService.GetAddressFromPinCodeAsync(PatientModel.PinCode);
+
+    if (postOffice is not null)
+    {
+        PatientModel.District = postOffice.District;
+        PatientModel.State = postOffice.State;
+        PatientModel.Country = postOffice.Country;
+        PatientModel.Address = $"{postOffice.Country}, {postOffice.State}, {postOffice.District}";
+        StateHasChanged();
+    }
+    else
+    {
+     //    await JSRuntime.InvokeVoidAsync("alert", "Invalid pincode or no post office found.");
+          NotificationModel.Message = $"An error occurred";
+          NotificationModel.Header = "Error";
+          NotificationModel.Icon = "error";
+          // await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
+
+    }
+}
 
     }
 }

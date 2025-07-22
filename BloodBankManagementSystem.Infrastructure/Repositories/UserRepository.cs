@@ -56,19 +56,33 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
 
          
 
+        // public async Task<List<User>> GetAllUsersAsync()
+        // {
+        //     try
+        //     {
+        //         var users = await _context.Users.ToListAsync();
+        //         return users ?? new List<User>();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         Console.WriteLine($"Database Error: {ex.Message}");
+        //         return new List<User>();
+        //     }
+        // }
+
         public async Task<List<User>> GetAllUsersAsync()
         {
-            try
-            {
-                var users = await _context.Users.ToListAsync();
-                return users ?? new List<User>();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Database Error: {ex.Message}");
-                return new List<User>();
-            }
+            using var connection = new SqlConnection(_connectionString);
+            var sql = "SELECT * FROM Users";
+            var result = await connection.QueryAsync<User>(sql);
+            return result.ToList();
         }
+
+
+
+
+
+
 
         public async Task AddUserAsync(User user)
         {

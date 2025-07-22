@@ -10,6 +10,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
 using BloodBankManagementSystem.UI.Helpers;
+using System.Net.Http.Json;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using BloodBankManagementSystem.UI.Services;
 
 namespace BloodBankManagementSystem.UI.Pages.Donors{
 
@@ -34,6 +38,9 @@ namespace BloodBankManagementSystem.UI.Pages.Donors{
           private List<string> GenderList = new List<string>();
           private List<string> HealthIssues { get; set; } = new();
           private Notification NotificationModel = new Notification();
+          [Inject] private PincodeAddressService PincodeService { get; set; }
+
+
          protected override void OnInitialized()
         {
           try
@@ -233,5 +240,28 @@ namespace BloodBankManagementSystem.UI.Pages.Donors{
                throw;
           }
      }
+
+
+
+private async Task LoadAddressFromPinCode()
+{
+    var postOffice = await PincodeService.GetAddressFromPinCodeAsync(DonorModel.PinCode);
+
+    if (postOffice is not null)
+    {
+        DonorModel.District = postOffice.District;
+        DonorModel.State = postOffice.State;
+        DonorModel.Country = postOffice.Country;
+        DonorModel.Address = $"{postOffice.Country}, {postOffice.State}, {postOffice.District}";
+        StateHasChanged();
+    }
+    else
+    {
+        await JSRuntime.InvokeVoidAsync("alert", "Invalid pincode or no post office found.");
+    }
+}
+
+
+
      }
 }

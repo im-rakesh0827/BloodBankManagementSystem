@@ -54,29 +54,25 @@
 
             </div>
 
+            
+
             <div class="mb-3">
                 <label class="form-label">Email:</label>
                 <InputText class="form-control" @bind-Value="PatientModel.Email" tabindex="4" />
                 <ValidationMessageComponent For="@(() => PatientModel.Email)" />
+            </div>
 
+            
+
+
+            <div class="mb-3">
+                <label class="form-label">Weight:</label>
+                <InputNumber class="form-control" @bind-Value="PatientModel.Weight" tabindex="7" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Age:</label>
-                <InputNumber class="form-control" @bind-Value="PatientModel.Age" tabindex="7" />
-                <ValidationMessageComponent For="@(() => PatientModel.Age)" />
-
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Blood Type Needed:</label>
-                <InputSelect class="form-control" @bind-Value="PatientModel.BloodTypeNeeded" tabindex="10">
-                    <option value="">Select Blood Type</option>
-                    @foreach (var bloodGroup in BloodGroupsList)
-                    {
-                        <option value="@bloodGroup">@bloodGroup</option>
-                    }
-                </InputSelect>
+                <label class="form-label">State:</label>
+                <InputText class="form-control" @bind-Value="PatientModel.State" tabindex="10" />
             </div>
         </div>
 
@@ -92,34 +88,44 @@
                 <InputText class="form-control" @bind-Value="PatientModel.PhoneNumber" tabindex="5" />
             </div>
 
+            
             <div class="mb-3">
-                <label class="form-label">Weight:</label>
-                <InputNumber class="form-control" @bind-Value="PatientModel.Weight" tabindex="8" />
+                <label class="form-label">Pin Code:</label>
+                <InputText class="form-control" @bind-Value="PatientModel.PinCode" tabindex="8" @onblur="LoadAddressFromPinCode" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Country:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.Country" tabindex="11" />
+                <label class="form-label">District:</label>
+                <InputText class="form-control" @bind-Value="PatientModel.District" tabindex="11" />
             </div>
         </div>
 
         <!-- Right Column -->
         <div class="col-md-4">
+
             <div class="mb-3">
-                <label class="form-label">State:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.State" tabindex="3" />
+                <label class="form-label">Age:</label>
+                <InputNumber class="form-control" @bind-Value="PatientModel.Age" tabindex="3" />
+                <ValidationMessageComponent For="@(() => PatientModel.Age)" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label">District:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.District" tabindex="6" />
+                <label class="form-label">Blood Type Needed:</label>
+                <InputSelect class="form-control" @bind-Value="PatientModel.BloodTypeNeeded" tabindex="6">
+                    <option value="">Select Blood Type</option>
+                    @foreach (var bloodGroup in BloodGroupsList)
+                    {
+                        <option value="@bloodGroup">@bloodGroup</option>
+                    }
+                </InputSelect>
             </div>
+
 
             <div class="mb-3">
-                <label class="form-label">Pin Code:</label>
-                <InputText class="form-control" @bind-Value="PatientModel.PinCode" tabindex="9" />
+                <label class="form-label">Country:</label>
+                <InputText class="form-control" @bind-Value="PatientModel.Country" tabindex="9" />
             </div>
-
+            
             <div class="mb-3">
                 <label class="form-label">Full Address:</label>
                 <InputText class="form-control" @bind-Value="PatientModel.Address" tabindex="12" />
