@@ -29,7 +29,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://
 
 
 
-
 builder.Services.AddScoped<PincodeAddressService>();
 // Your AuthService
 builder.Services.AddScoped<AuthService>();

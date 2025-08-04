@@ -3,6 +3,8 @@
 @inject NavigationManager Nav
 @inject IJSRuntime JSRuntime
 @using Microsoft.AspNetCore.Authorization;
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthProvider
 @attribute [Authorize]
 
 @if (IsLoading)

@@ -14,6 +14,9 @@
                         OnCreateRecord="OpenCreatePopUp">
 </CustomActionComponent>
 
+<button class="btn btn-success btn-sm" style="margin-bottom:1rem;" @onclick="HandleDelete" Id="deleteButton" disabled="@(!IsAnyRecordSelected)">Delete</button>
+
+
 @if (FilteredRequestsList is null)
 {
     <p>Loading...</p>
@@ -38,6 +41,18 @@ else
                         Class="w-100"
                         Style="min-width: 900px;">
             <Columns>
+
+                <RadzenDataGridColumn TItem="BloodRequest" 
+                      Title="Select" 
+                      Sortable="false" 
+                      Filterable="false" 
+                      TextAlign="TextAlign.Center" 
+                      Width="90px">
+                    <Template Context="data">
+                        <RadzenCheckBox @bind-Value="@data.IsDeleteSelected"
+                        Disabled="@((data.Status == "Approved"))"                                        TValue="bool" />
+                    </Template>
+                </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Requester Type" Width="150px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Requester Name" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="100px" />
@@ -51,14 +66,22 @@ else
                         @request.RequestedDate.ToShortDateString()
                     </Template>
                 </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="BloodRequest" Property="Status" Title="Status" Width="160px" />
+
                 <RadzenDataGridColumn TItem="BloodRequest"
-                                      Title="Action"
+                                      Title="Edit/View"
                                       Filterable="false"
                                       Sortable="false"
-                                      Width="300px">
+                                      TextAlign="TextAlign.Center"
+                                      Width="90px">
                     <Template Context="request">
-                        <div class="d-flex gap-1 flex-nowrap">
-                            @if (IsAdmin)
+                        <div class="flex-nowrap">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
+                                    <EditViewIcon />
+                                </RadzenButton>
+
+                            @* @if (IsAdmin || !IsAdmin)
                             {
                                 <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
                                     <EditViewIcon />
@@ -77,14 +100,31 @@ else
                                 Approve
                             </RadzenButton>
 
-                            <RadzenButton ButtonStyle="ButtonStyle.Danger"
+                            <RadzenButton ButtonStyle="ButtonStyle.Info"
                                           Disabled="@(request.Status.Equals("Rejected", StringComparison.OrdinalIgnoreCase))"
                                           Click="@(() => UpdateRequestStatus(request.Id, "Reject"))">
                                 Reject
-                            </RadzenButton>
+                            </RadzenButton> *@
                         </div>
                     </Template>
                 </RadzenDataGridColumn>
+
+                <RadzenDataGridColumn TItem="BloodRequest"
+                                      Title="History"
+                                      Filterable="false"
+                                      Sortable="false"
+                                      TextAlign="TextAlign.Center"
+                                      Width="90px">
+                    <Template Context="request">
+                        <div class="flex-nowrap">
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
+                                    <HistoryIcon />
+                             </RadzenButton>
+                        </div>
+                    </Template>
+                </RadzenDataGridColumn>
+
+
             </Columns>
         </RadzenDataGrid>
     </div>

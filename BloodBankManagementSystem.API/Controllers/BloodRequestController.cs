@@ -10,7 +10,6 @@ namespace BloodBankManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    // [Authorize]
     public class BloodRequestController : ControllerBase
     {
         private readonly IBloodRequestRepository _requestRepository;
@@ -144,5 +143,51 @@ namespace BloodBankManagementSystem.API.Controllers
                 throw;
             }
         }
+
+
+       [HttpPost("updateStatus")]
+        public async Task<IActionResult> BulkUpdateStatus([FromBody] List<BloodRequestStatusUpdateModel> updates)
+        {
+            if (updates == null || !updates.Any())
+                return BadRequest("No requests provided.");
+
+            var affectedRows = await _requestRepository.BulkUpdateStatusAsync(updates);
+            if (affectedRows > 0)
+                return Ok(new { message = "Requests updated successfully." });
+
+            return StatusCode(500, "Something went wrong.");
+        }
+
+
+
+        // [HttpPost("delete")]
+        // public async Task<IActionResult> DeleteBloodRequest([FromBody] List<BloodRequest> reqeusts)
+        // {
+        //     if (reqeusts == null || !reqeusts.Any())
+        //         return BadRequest("No requests provided.");
+
+        //     var affectedRows = await _requestRepository.DeleteBloodRequestAsync(reqeusts);
+        //     if (affectedRows > 0)
+        //         return Ok(new { message = "Requests updated successfully." });
+
+        //     return StatusCode(500, "Something went wrong.");
+        // }
+
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteBloodRequest([FromBody] List<BloodRequest> requests)
+        {
+            if (requests == null || !requests.Any())
+                return BadRequest("No requests provided.");
+
+            var ids = requests.Select(r => r.Id).ToList();
+            var affectedRows = await _requestRepository.SoftDeleteBloodRequestsAsync(ids);
+            if (affectedRows > 0)
+                return Ok(new { message = "Requests updated successfully." });
+
+            return StatusCode(500, "Something went wrong while updating requests.");
+        }
+
+
     }
 }

@@ -12,5 +12,8 @@ namespace BloodBankManagementSystem.Core.Interfaces
           Task DeleteRequestAsync(int id);
           Task AddBloodRequestHistoryAsync(BloodRequestHistory history);
           Task<List<BloodRequestHistory>> GetHistoryByRequestIdAsync(int requestId);
+          Task<int> BulkUpdateStatusAsync(List<BloodRequestStatusUpdateModel> updates);
+          Task<int> DeleteBloodRequestAsync(List<BloodRequest> request);
+          Task<int> SoftDeleteBloodRequestsAsync(List<int> ids);
      }
 }

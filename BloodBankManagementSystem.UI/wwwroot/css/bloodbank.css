@@ -1,4 +1,4 @@
-.popup-overlay {
+/* .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@
 .popup-content {
     background: white;
     width: 90%;
-    max-width: 800px; /* Increased from default */
+    max-width: 800px; 
     max-height: 95vh;
     border-radius: 10px;
     overflow-y: auto;
@@ -194,4 +194,4 @@ h3 {
 
 .extra-links a:hover {
     text-decoration: underline;
-}
+} */

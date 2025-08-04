@@ -19,12 +19,13 @@ namespace BloodBankManagementSystem.API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IEmailService _emailService;
         private readonly ILogger<UsersController> _logger;
-
-        public UsersController(IUserRepository userRepository, IEmailService emailService, ILogger<UsersController> logger)
+        private readonly IDbRoutine _dbRoutine;
+        public UsersController(IUserRepository userRepository, IEmailService emailService, ILogger<UsersController> logger, IDbRoutine dbRoutine)
         {
             _userRepository = userRepository;
             _emailService = emailService;
             _logger = logger;
+            _dbRoutine = dbRoutine;
         }
 
         [HttpPost("register")]
@@ -173,6 +174,14 @@ namespace BloodBankManagementSystem.API.Controllers
                 _logger.LogError(ex, "Error fetching user history");
                 return StatusCode(500, new { message = "Internal server error" });
             }
+        }
+        
+
+        [HttpGet("GetAllUsers")]
+        public async Task<IActionResult> GetUsers()
+        {
+            var users = await _dbRoutine.GetAllUsersAsync();
+            return Ok(users);
         }
 
         private string HashPassword(string password)

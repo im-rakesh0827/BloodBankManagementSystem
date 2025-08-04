@@ -10,3 +10,4 @@
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/refint/BloodBankManagementSystem.Core.dll
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.pdb
 /Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/ref/BloodBankManagementSystem.Core.dll
+/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.Core/obj/Debug/net8.0/BloodBankManagementSystem.Core.csproj.AssemblyReference.cache

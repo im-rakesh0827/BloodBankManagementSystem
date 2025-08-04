@@ -20,7 +20,7 @@
         <RadzenMenuItem Text="Requests" Icon="request_page" >
             <RadzenMenuItem Text="Blood Request" Path="request/create" Icon="local_hospital" />
             <RadzenMenuItem Text="All Requests" Path="request/manage" Icon="list_alt" />
-            <RadzenMenuItem Text="Approve" Path="request/approve" Icon="check_circle" class="d-none" />
+            <RadzenMenuItem Text="Approve" Path="request/approve" Icon="check_circle" Visible="@IsApprovePermissionYN"/>
         </RadzenMenuItem>
 
         <RadzenMenuItem Text="Inventory" Icon="inventory" class="d-none">
@@ -40,7 +40,7 @@
         </RadzenMenuItem>
 
         <!-- ✅ New Settings menu beside Users -->
-        <RadzenMenuItem Text="Settings" Icon="settings">
+        <RadzenMenuItem Text="Settings" Icon="settings" hidden>
             <RadzenMenuItem Text="Profile" Path="settings/profile" Icon="account_circle" />
             <RadzenMenuItem Text="Logout" Path="logout" Icon="logout" />
         </RadzenMenuItem>
@@ -49,5 +49,14 @@
             <RadzenMenuItem Text="Profile Settings" Path="settings/profile" Icon="account_circle" />
             <RadzenMenuItem Text="Role Management" Path="settings/roles" Icon="admin_panel_settings" />
         </RadzenMenuItem>
+
+
+         <!-- Right-side Settings Menu -->
+    <RadzenMenu Style="background-color:rgb(138, 201, 252); color: white; margin-left: auto;">
+        <RadzenMenuItem Text="Settings" Icon="settings">
+            <RadzenMenuItem Text="Profile" Path="settings/profile" Icon="account_circle" />
+            <RadzenMenuItem Text="Logout" Path="logout" Icon="logout" />
+        </RadzenMenuItem>
+    </RadzenMenu>
     </RadzenMenu>
 </div>

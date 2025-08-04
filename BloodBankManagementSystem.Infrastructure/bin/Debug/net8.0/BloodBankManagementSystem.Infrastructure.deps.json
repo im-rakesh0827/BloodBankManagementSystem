@@ -1318,6 +1318,9 @@
         }
       },
       "BloodBankManagementSystem.Core/1.0.0": {
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "5.1.6"
+        },
         "runtime": {
           "BloodBankManagementSystem.Core.dll": {
             "assemblyVersion": "1.0.0",

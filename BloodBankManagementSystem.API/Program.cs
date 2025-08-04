@@ -39,6 +39,13 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(dbConnection, sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()));
 
+
+
+
+builder.Services.AddScoped<DataHandler>();
+builder.Services.AddScoped<IDbRoutine, DbRoutine>();
+
+
 // ✅ Register Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();

@@ -16,6 +16,7 @@ namespace BloodBankManagementSystem.UI.Layout
 
         private bool IsAdmin = false;
         private bool IsManager = false;
+        private bool IsApprovePermissionYN = true;
 
         protected override async Task OnInitializedAsync()
         {
@@ -42,24 +43,9 @@ namespace BloodBankManagementSystem.UI.Layout
         {
             Console.WriteLine($"{args.Text} clicked from parent");
         }
-
         void OnChildClicked(MenuItemEventArgs args)
         {
             Console.WriteLine($"{args.Text} clicked from child");
         }
-
-
-
-    //     protected override async Task OnInitializedAsync()
-    // {
-    //     var role = await LocalStorage.GetItemAsync<string>("userRole");
-    //     Console.WriteLine("Role : "+role);
-
-    //     if (!string.IsNullOrEmpty(role))
-    //     {
-    //         IsAdmin = role.Equals("Admin", StringComparison.OrdinalIgnoreCase);
-    //         IsManager = role.Equals("Manager", StringComparison.OrdinalIgnoreCase);
-    //     }
-    // } 
     }
 }

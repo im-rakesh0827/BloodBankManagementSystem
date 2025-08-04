@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EANjzWFNock=",
+  "dgSpecHash": "1MqfNl2w2QQ=",
   "success": true,
   "projectFilePath": "/Users/rakeshkumar/Developer/Project-Workspace/BloodBankManagementSystem/BloodBankManagementSystem.UI/BloodBankManagementSystem.UI.csproj",
   "expectedPackageFiles": [
@@ -126,5 +126,17 @@
     "/Users/rakeshkumar/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
     "/Users/rakeshkumar/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/8.0.14/microsoft.netcore.app.runtime.mono.browser-wasm.8.0.14.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "BloodBankManagementSystem.Core depends on Microsoft.Data.SqlClient (>= 4.9.0) but Microsoft.Data.SqlClient 4.9.0 was not found. An approximate best match of Microsoft.Data.SqlClient 5.0.0 was resolved.",
+      "libraryId": "Microsoft.Data.SqlClient",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/browser-wasm"
+      ]
+    }
+  ]
 }

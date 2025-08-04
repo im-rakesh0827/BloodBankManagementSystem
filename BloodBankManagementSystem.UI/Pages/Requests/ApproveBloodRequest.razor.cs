@@ -10,27 +10,36 @@ using BloodBankManagementSystem.Core.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
-
 namespace BloodBankManagementSystem.UI.Pages.Requests
 {
-     public partial class ManageBloodRequest
+     public partial class ApproveBloodRequest
      {
           private List<BloodRequest> AllRequestsList = new List<BloodRequest>();
-          private List<BloodRequest> FilteredRequestsList = new List<BloodRequest>();
+          private List<BloodRequest> FilteredBlooodRequestsList = new List<BloodRequest>();
           private Notification NotificationModel = new Notification();
           private BloodRequest SelectedRequest = new BloodRequest();
           private List<int> ApproveListId{get;set;} = new List<int>();
           private List<int> RejectListId{get; set;} = new List<int>();
           private Dictionary<string, string> FilterOptions = new Dictionary<string, string>();
-          private bool IsAnyRecordSelected => FilteredRequestsList?.Any(r => r.IsDeleteSelected) == true;
+
           private bool ShowPendingOnly = true;
           private bool IsCreateUpdatePopup = false;
           private bool IsAdmin = true;
           private bool IsLoading{get; set;} = false;
           private string searchString{get; set;}
           private bool IsReadOnly{get; set;} = false;
+          
           private bool IsButtonEnabled{get; set;} = false;
           private string FilterBasedOn {get; set;} = "Active";
+
+          private bool IsApproved = false;
+          private bool IsRejected = false;
+          private bool BloodRequestApprovalPermissionYN = true;
+          private bool IsAnyRecordSelected => FilteredBlooodRequestsList?.Any(r => r.IsApprovedSelected || r.IsRejectedSelected) == true;
+
+
+
+
 
 
           protected override async Task OnInitializedAsync()
@@ -52,7 +61,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                {
                     var url = $"{ServerConstants.APICallNames.GetAllBloodRequests.GetStringValue()}";
                     AllRequestsList = await Http.GetFromJsonAsync<List<BloodRequest>>(url);
-                    FilteredRequestsList = AllRequestsList;
+                    FilteredBlooodRequestsList = AllRequestsList;
                     ApplyFilter();
                }
                catch (Exception ex)
@@ -64,9 +73,21 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
 
           private void ApplyFilter()
           {
-               FilteredRequestsList = AllRequestsList.Where(r => r.ActiveYN).ToList();
+               if (ShowPendingOnly)
+               {
+                    FilteredBlooodRequestsList = AllRequestsList;
+                    FilteredBlooodRequestsList = AllRequestsList.Where(r => r.Status == "Pending" && r.ActiveYN).ToList();
+               }
+               else
+               {
+                    FilteredBlooodRequestsList = AllRequestsList;
+               }
           }
 
+          private void ViewRequestDetails(BloodRequest request)
+          {
+
+          }
 
           private void OpenCreatePopUp()
           {
@@ -79,7 +100,6 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                SelectedRequest = new BloodRequest
                {
                     Id = request.Id,
-                    //   RequesterId = request.RequesterId,
                     RequesterType = request.RequesterType,
                     PatientName = request.PatientName,
                     Gender = request.Gender,
@@ -176,41 +196,38 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                switch (FilterBasedOn)
             {
               case "Active":
-               //    FilteredRequestsList = AllRequestsList.Where(p => p.IsActive && p.IsAlive).ToList();
+               //    FilteredBlooodRequestsList = AllRequestsList.Where(p => p.IsActive && p.IsAlive).ToList();
               break;
               case "Last7Days":
                   var sevenDaysAgo = DateTime.Now.AddDays(-7);
-                  FilteredRequestsList = AllRequestsList.Where(p => p.RequestedDate >= sevenDaysAgo).ToList();
+                  FilteredBlooodRequestsList = AllRequestsList.Where(p => p.RequestedDate >= sevenDaysAgo).ToList();
               break;
               case "Last30Days":
                     var thirtyDaysAgo = DateTime.Now.AddDays(-30);
-                    FilteredRequestsList = AllRequestsList.Where(p => p.RequestedDate >= thirtyDaysAgo).ToList();
+                    FilteredBlooodRequestsList = AllRequestsList.Where(p => p.RequestedDate >= thirtyDaysAgo).ToList();
                     break;
               case "Last1Year":
                     var oneYearAgo = DateTime.Now.AddYears(-1);
-                    FilteredRequestsList = AllRequestsList.Where(p => p.RequestedDate >= oneYearAgo).ToList();
+                    FilteredBlooodRequestsList = AllRequestsList.Where(p => p.RequestedDate >= oneYearAgo).ToList();
               break;
               case "All":
-                  FilteredRequestsList = AllRequestsList.ToList();
+                  FilteredBlooodRequestsList = AllRequestsList.ToList();
               break;
               default:
-                  FilteredRequestsList = AllRequestsList.ToList();
+                  FilteredBlooodRequestsList = AllRequestsList.ToList();
               break;
             }
-           StateHasChanged();
-
+          StateHasChanged();
           }
-
-
 
           private async Task ExportCSV(){
 
-               await ExportGridData.ExportGridToCsv(FilteredRequestsList, JSRuntime, "RequestsList.csv");
+               await ExportGridData.ExportGridToCsv(FilteredBlooodRequestsList, JSRuntime, "RequestsList.csv");
           }
 
           private async Task ExportExcel()
           {
-               var fileBytes = ExportGridData.ExportToExcelBytes(FilteredRequestsList);
+               var fileBytes = ExportGridData.ExportToExcelBytes(FilteredBlooodRequestsList);
                var base64 = Convert.ToBase64String(fileBytes);
                await JSRuntime.InvokeVoidAsync("BlazorDownloadFile", "RequestsList.xlsx", 
                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", base64);
@@ -239,56 +256,66 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           }
 
 
-
-          public async Task HandleDelete(){
-               var selectedRequests = FilteredRequestsList
-               .Where(r => r.IsDeleteSelected)
-               .ToList();
-
-               foreach (var request in selectedRequests)
-               {
-                    request.ActiveYN = false;
-                    request.UpdatedAt = DateTime.Now;
-               }
-
-               if(selectedRequests.Any()){
-                    IsLoading = true;
-                    await Task.Delay(500);
-                    var response = await Http.PostAsJsonAsync("api/bloodrequest/delete", selectedRequests);
-                    if (response.IsSuccessStatusCode)
-                    {
-                         NotificationModel.Message = $"Blood request deleted successfully!";
-                         NotificationModel.Header = "Success";
-                         NotificationModel.Icon = "success";
-                         IsLoading = false;
-                    }
-                    else
-                    {
-                         NotificationModel.Message = $"Something went wrong!";
-                         NotificationModel.Header = "Failed";
-                         NotificationModel.Icon = "error";
-                         IsLoading = false;
-                    }
-                    await RefreshRequestList();
-                    await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
-                    IsLoading = false;
-               }
-
-
-
-               // IsLoading = true;
-               // await Task.Delay(500);
-               // var selectedIds = FilteredRequestsList.Where(r => r.IsDeleteSelected).Select(r => r.Id).ToList();
-               // for (int i = 0; i < selectedIds.Count; i++)
-               // {
-               //      var url = $"{ServerConstants.APICallNames.DeleteRequest.GetStringValue()}{selectedIds[i]}";
-               //      await Http.DeleteAsync(url);
-               // }
-               // IsLoading = false;
-               // await LoadRequestsAsync();
-
-
-
+     private void OnApproveChanged(BloodRequest request)
+     {
+          if (request.IsApprovedSelected)
+          {
+               request.IsRejectedSelected = false;
           }
      }
+
+private void OnRejectChanged(BloodRequest request)
+{
+    if (request.IsRejectedSelected)
+    {
+        request.IsApprovedSelected = false;
+    }
+}
+
+
+
+
+private async Task SubmitApprovalDecisions()
+{
+    var selectedRequests = FilteredBlooodRequestsList
+        .Where(r => r.IsApprovedSelected || r.IsRejectedSelected)
+        .ToList();
+
+    if (!selectedRequests.Any())
+    {
+        await JSRuntime.InvokeVoidAsync("alert", "Please select at least one request to approve or reject.");
+        return;
+    }
+
+    var updates = selectedRequests.Select(r => new BloodRequestStatusUpdateModel
+    {
+        Id = r.Id,
+        NewStatus = r.IsApprovedSelected ? "Approved"
+                   : r.IsRejectedSelected ? "Rejected"
+                   : "Pending",
+        Notes = r.Notes
+    }).ToList();
+                         IsLoading = true;
+
+    await Task.Delay(500);
+    var response = await Http.PostAsJsonAsync("api/bloodrequest/updateStatus", updates);
+     if (response.IsSuccessStatusCode)
+     {
+          NotificationModel.Message = $"Blood request statuc updated successfully!";
+          NotificationModel.Header = "Success";
+          NotificationModel.Icon = "success";
+          IsLoading = false;
+     }
+    else
+    {
+          NotificationModel.Message = $"Something went wrong!";
+          NotificationModel.Header = "Failed";
+          NotificationModel.Icon = "error";
+          IsLoading = false;
+    }
+    await RefreshRequestList();
+    await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
+}
+
+}
 }

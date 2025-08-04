@@ -2088,6 +2088,9 @@
       "BloodBankManagementSystem.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "4.9.0"
+        },
         "compile": {
           "bin/placeholder/BloodBankManagementSystem.Core.dll": {}
         },
@@ -4024,6 +4027,9 @@
       "BloodBankManagementSystem.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "4.9.0"
+        },
         "compile": {
           "bin/placeholder/BloodBankManagementSystem.Core.dll": {}
         },
@@ -7838,5 +7844,18 @@
         "#import": []
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "BloodBankManagementSystem.Core depends on Microsoft.Data.SqlClient (>= 4.9.0) but Microsoft.Data.SqlClient 4.9.0 was not found. An approximate best match of Microsoft.Data.SqlClient 5.0.0 was resolved.",
+      "libraryId": "Microsoft.Data.SqlClient",
+      "targetGraphs": [
+        "net8.0",
+        "net8.0/browser-wasm"
+      ]
+    }
+  ]
 }

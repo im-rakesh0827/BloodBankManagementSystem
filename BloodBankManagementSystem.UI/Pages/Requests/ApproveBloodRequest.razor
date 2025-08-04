@@ -1,0 +1,130 @@
+@page "/request/approve"
+@using BloodBankManagementSystem.Core.Models;
+@inject IJSRuntime JSRuntime
+@inject HttpClient Http
+@using Microsoft.AspNetCore.Authorization;
+@attribute [Authorize]
+@if (IsLoading)
+{
+    <LoaderComponent></LoaderComponent>
+}
+<CustomActionComponent  OnFilterOptionChanged="HandleApplyFilter" 
+                        OnExportData="HandleExportData"
+                        PageTitle="Approve Requests"
+                        OnCreateRecord="OpenCreatePopUp">
+</CustomActionComponent>
+
+@* <RadzenButton Text="Save"
+              ButtonStyle="ButtonStyle.Secondary"
+              Icon="check_circle"
+              Click="SubmitApprovalDecisions"
+              Style="margin-bottom:1rem;" /> *@
+
+<button class="btn btn-success btn-sm" style="margin-bottom:1rem;" @onclick="SubmitApprovalDecisions" disabled="@(!IsAnyRecordSelected)">Save</button>
+
+@if (FilteredBlooodRequestsList is null)
+{
+    <p>Loading...</p>
+}
+else if (!FilteredBlooodRequestsList.Any())
+{
+    <p>No blood requests found.</p>
+}
+else
+{
+    <div style="overflow-x: auto; width: 100%;">
+        <RadzenDataGrid TItem="BloodRequest"
+                        Data="@FilteredBlooodRequestsList"
+                        Count="@FilteredBlooodRequestsList.Count"
+                        AllowPaging="true"
+                        PageSize="10"
+                        AllowSorting="true"
+                        AllowFiltering="true"
+                        AllowColumnResize="true"
+                        AllowColumnReorder="true"
+                        Class="w-100"
+                        FrozenColumnsPosition="ColumnsPosition.Right"
+                        RightFrozenColumns="3"
+                        Style="min-width: 900px;">
+            <Columns>
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Requester Type" Width="150px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Name" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="150px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="BloodGroup" Title="Blood Group" Width="150px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="UnitsRequired" Title="Units Required" Width="180px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Contact Number" Width="180px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="Email" Title="Email" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="Location" Title="Address" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Requested Date" Width="180px">
+                    <Template Context="request">
+                        @request.RequestedDate.ToShortDateString()
+                    </Template>
+                </RadzenDataGridColumn>
+                
+
+               <RadzenDataGridColumn TItem="BloodRequest"
+                                              Property="Notes"
+                                              Width="200px"
+                                              Title="NOTES"
+                                              TextAlign="TextAlign.Left">
+                            <Template Context="data">
+                                <RadzenTextArea @bind-Value=@data.Notes Style="width: 100%; display: block" Name="Status" />
+                             
+                            </Template>
+                            <EditTemplate Context="data">
+                                <RadzenTextArea Name="IsSelected"
+                                @bind-Value="@data.Notes"
+                                                TValue="text" />
+                            </EditTemplate>
+               </RadzenDataGridColumn>
+
+               <RadzenDataGridColumn TItem="BloodRequest"
+                                      Title="Edit/View"
+                                      Filterable="false"
+                                      Sortable="false"
+                                      TextAlign="TextAlign.Center"
+                                      Frozen="true"
+                                      Width="90px">
+                    <Template Context="request">
+                        <div class="flex-nowrap">
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
+                                    <EditViewIcon />
+                             </RadzenButton>
+                        </div>
+                    </Template>
+                </RadzenDataGridColumn>
+                        
+
+               <RadzenDataGridColumn TItem="BloodRequest" Title="Approve" Sortable="false" Filterable="false" Frozen="true" TextAlign="TextAlign.Center" Width="90px">
+                    <Template Context="data">
+                         <RadzenCheckBox @bind-Value="@data.IsApprovedSelected"
+                                        TValue="bool"
+                                        Change="@(args => OnApproveChanged(data))" />
+                    </Template>
+               </RadzenDataGridColumn>
+
+               <RadzenDataGridColumn TItem="BloodRequest" Title="Reject" Sortable="false" Filterable="false" Frozen="true" TextAlign="TextAlign.Center" Width="90px">
+                    <Template Context="data">
+                         <RadzenCheckBox @bind-Value="@data.IsRejectedSelected"
+                                        TValue="bool"
+                                        Change="@(args => OnRejectChanged(data))" />
+                    </Template>
+               </RadzenDataGridColumn>
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+}
+
+@if (IsCreateUpdatePopup)
+{
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <RequestBlood 
+                SelectedRequest="SelectedRequest"
+                OnClose="HandleCreateUpdatePopup"
+                OnRequestAddedOrUpdated="RefreshBloodRequestList"
+                IsCreateUpdateRequestPopup="IsCreateUpdatePopup"
+            />
+        </div>
+    </div>
+}

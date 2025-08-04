@@ -10,6 +10,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.JSInterop;
 using BloodBankManagementSystem.UI.Helpers;
+using System.Security.Claims;
+
+
+
 
 namespace BloodBankManagementSystem.UI.Pages.Requests
 {
@@ -101,6 +105,10 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
         {
           IsLoading = true;
           await Task.Delay(500);
+          // var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+          // var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+          requestModel.CreatedBy = "Rakesh";
             var url = $"{ServerConstants.APICallNames.CreateBloodRequest.GetStringValue()}";
             var response = await Http.PostAsJsonAsync(url, requestModel);
             if (response.IsSuccessStatusCode)

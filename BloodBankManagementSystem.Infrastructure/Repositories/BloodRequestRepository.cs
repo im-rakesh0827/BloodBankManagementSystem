@@ -3,22 +3,31 @@ using BloodBankManagementSystem.Core.Models;
 using BloodBankManagementSystem.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using Dapper;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+
 
 namespace BloodBankManagementSystem.Infrastructure.Repositories
 {
      public class BloodRequestRepository : IBloodRequestRepository
 {
     private readonly AppDbContext _context;
+    private readonly IConfiguration _config;
+    private readonly string _connectionString;
 
-    public BloodRequestRepository(AppDbContext context)
+    public BloodRequestRepository(AppDbContext context, IConfiguration config)
     {
         try
         {
             _context = context;
+            _config = config;
+            _connectionString = _config.GetConnectionString("DefaultConnection")!;
         }
-        catch (System.Exception)
+        catch (Exception)
         {
-            
             throw;
         }
     }
@@ -76,7 +85,6 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
         if (request != null)
         {
             if(status=="Delete"){
-                // request.IsActive = false;
                 request.ApprovedDate = null;
             }
             if(status=="Approved"){
@@ -90,11 +98,10 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
             return true;
         }
 
-        return false; // Not found
+        return false; 
     }
     catch (Exception)
     {
-        // Log exception if needed
         throw;
     }
 }
@@ -132,6 +139,90 @@ namespace BloodBankManagementSystem.Infrastructure.Repositories
             throw;
         }
     }
+
+
+    public async Task<int> BulkUpdateStatusAsync(List<BloodRequestStatusUpdateModel> updates)
+{
+    using var connection = new SqlConnection(_connectionString);
+    await connection.OpenAsync();
+
+    using var transaction = connection.BeginTransaction();
+    try
+    {
+        var sql = @"UPDATE BloodRequests 
+                    SET Status = @NewStatus, 
+                        Notes = @Notes, 
+                        ApprovedDate = GETDATE() 
+                    WHERE Id = @Id";
+
+        int totalAffected = 0;
+
+        foreach (var update in updates)
+        {
+            var affected = await connection.ExecuteAsync(sql, new
+            {
+                update.NewStatus,
+                update.Notes,
+                update.Id
+            }, transaction);
+
+            totalAffected += affected;
+        }
+
+        transaction.Commit();
+        return totalAffected;
+    }
+    catch
+    {
+        transaction.Rollback();
+        throw;
+    }
+}
+
+
+public async Task<int> DeleteBloodRequestAsync(List<BloodRequest> requests)
+{
+    using var connection = new SqlConnection(_connectionString);
+    await connection.OpenAsync();
+
+    using var transaction = connection.BeginTransaction();
+    try
+    {
+        var sql = @"UPDATE BloodRequests 
+                    SET ActiveYN = @ActiveYN,
+                    WHERE Id = @Id";
+
+        int totalAffected = 0;
+
+        foreach (var request in requests)
+        {
+            var affected = await connection.ExecuteAsync(sql, new
+            {   request.ActiveYN,
+                request.Id
+            }, transaction);
+            totalAffected += affected;
+        }
+        transaction.Commit();
+        return totalAffected;
+    }
+    catch
+    {
+        transaction.Rollback();
+        throw;
+    }
+}
+
+
+public async Task<int> SoftDeleteBloodRequestsAsync(List<int> ids)
+{
+
+    using var connection = new SqlConnection(_connectionString);
+    await connection.OpenAsync();
+    var query = "UPDATE BloodRequests SET ActiveYN = 0 WHERE Id IN @Ids";
+    return await connection.ExecuteAsync(query, new { Ids = ids });
+}
+
+
 }
 }
 
