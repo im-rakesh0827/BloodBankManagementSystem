@@ -31,12 +31,14 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           private bool IsReadOnly{get; set;} = false;
           private bool IsButtonEnabled{get; set;} = false;
           private string FilterBasedOn {get; set;} = "Active";
+          private int RequestCount {get;set;}  = 0;
 
 
           protected override async Task OnInitializedAsync()
           {
                FilterOptions = FilterOptionsHelper.AllFilterOption;
                await LoadRequestsAsync();
+               ApplyFiltereBloodRequest();
           }
 
           private async Task RefreshBloodRequestList()
@@ -52,7 +54,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                {
                     var url = $"{ServerConstants.APICallNames.GetAllBloodRequests.GetStringValue()}";
                     AllRequestsList = await Http.GetFromJsonAsync<List<BloodRequest>>(url);
-                    FilteredRequestsList = AllRequestsList;
+                    // FilteredRequestsList = AllRequestsList;
                     ApplyFilter();
                }
                catch (Exception ex)
@@ -64,7 +66,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
 
           private void ApplyFilter()
           {
-               FilteredRequestsList = AllRequestsList.Where(r => r.ActiveYN).ToList();
+               AllRequestsList = AllRequestsList.Where(r => r.ActiveYN).ToList();
           }
 
 
@@ -79,7 +81,6 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                SelectedRequest = new BloodRequest
                {
                     Id = request.Id,
-                    //   RequesterId = request.RequesterId,
                     RequesterType = request.RequesterType,
                     PatientName = request.PatientName,
                     Gender = request.Gender,
@@ -176,7 +177,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                switch (FilterBasedOn)
             {
               case "Active":
-               //    FilteredRequestsList = AllRequestsList.Where(p => p.IsActive && p.IsAlive).ToList();
+                  FilteredRequestsList = AllRequestsList.Where(p => p.ActiveYN).ToList();
               break;
               case "Last7Days":
                   var sevenDaysAgo = DateTime.Now.AddDays(-7);
@@ -197,6 +198,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                   FilteredRequestsList = AllRequestsList.ToList();
               break;
             }
+            RequestCount = FilteredRequestsList.Count;
            StateHasChanged();
 
           }
@@ -241,14 +243,13 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
 
 
           public async Task HandleDelete(){
-               var selectedRequests = FilteredRequestsList
-               .Where(r => r.IsDeleteSelected)
-               .ToList();
+               var selectedRequests = FilteredRequestsList.Where(r => r.IsDeleteSelected).ToList();
 
                foreach (var request in selectedRequests)
                {
                     request.ActiveYN = false;
                     request.UpdatedAt = DateTime.Now;
+                    request.Status = "Delted";
                }
 
                if(selectedRequests.Any()){
@@ -269,25 +270,11 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                          NotificationModel.Icon = "error";
                          IsLoading = false;
                     }
-                    await RefreshRequestList();
+                    await LoadRequestsAsync();
+                    ApplyFiltereBloodRequest();
                     await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
                     IsLoading = false;
                }
-
-
-
-               // IsLoading = true;
-               // await Task.Delay(500);
-               // var selectedIds = FilteredRequestsList.Where(r => r.IsDeleteSelected).Select(r => r.Id).ToList();
-               // for (int i = 0; i < selectedIds.Count; i++)
-               // {
-               //      var url = $"{ServerConstants.APICallNames.DeleteRequest.GetStringValue()}{selectedIds[i]}";
-               //      await Http.DeleteAsync(url);
-               // }
-               // IsLoading = false;
-               // await LoadRequestsAsync();
-
-
 
           }
      }

@@ -11,6 +11,7 @@ using Blazorise.Icons.FontAwesome;
 using System;
 using System.Net.Http;
 using BloodBankManagementSystem.Infrastructure.Services;
+using BloodBankManagementSystem.UI.Helpers;
 
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -37,6 +38,7 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<JwtAuthStateProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<JwtAuthStateProvider>());
 
+builder.Services.AddScoped<HelperServices>();
 
 
 // MudBlazor services

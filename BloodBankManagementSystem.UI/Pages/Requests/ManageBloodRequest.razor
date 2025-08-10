@@ -14,7 +14,7 @@
                         OnCreateRecord="OpenCreatePopUp">
 </CustomActionComponent>
 
-<button class="btn btn-success btn-sm" style="margin-bottom:1rem;" @onclick="HandleDelete" Id="deleteButton" disabled="@(!IsAnyRecordSelected)">Delete</button>
+<button class="btn btn-success btn-sm" style="margin-bottom:1rem;" @onclick="HandleDelete" Id="deleteButton" disabled="@(!IsAnyRecordSelected)">Remove</button>
 
 
 @if (FilteredRequestsList is null)
@@ -27,6 +27,7 @@ else if (!FilteredRequestsList.Any())
 }
 else
 {
+    <p>Total Records : @RequestCount</p>
     <div style="overflow-x: auto; width: 100%;">
         <RadzenDataGrid TItem="BloodRequest"
                         Data="@FilteredRequestsList"
@@ -47,10 +48,11 @@ else
                       Sortable="false" 
                       Filterable="false" 
                       TextAlign="TextAlign.Center" 
+                      Frozen="true"
                       Width="90px">
                     <Template Context="data">
                         <RadzenCheckBox @bind-Value="@data.IsDeleteSelected"
-                        Disabled="@((data.Status == "Approved"))"                                        TValue="bool" />
+                        Disabled="@((data.Status == "Approved"))" TValue="bool" />
                     </Template>
                 </RadzenDataGridColumn>
                 <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Requester Type" Width="150px" />
@@ -66,7 +68,32 @@ else
                         @request.RequestedDate.ToShortDateString()
                     </Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="BloodRequest" Property="Status" Title="Status" Width="160px" />
+                @* <RadzenDataGridColumn TItem="BloodRequest" Property="Status" Title="Status" Width="160px" /> *@
+                <RadzenDataGridColumn TItem="BloodRequest" Title="Status" Width="160px">
+                    <Template Context=request>
+                        @if (request.Status == "Approved")
+                        {
+                            <RadzenIcon Icon="check_circle" Style="color: green; font-size: 20px; vertical-align: middle;" />
+                            <span style="margin-left: 6px;">Approved</span>
+                        }
+                        else if (request.Status == "Rejected")
+                        {
+                            <RadzenIcon Icon="cancel" Style="color: red; font-size: 20px; vertical-align: middle;" />
+                            <span style="margin-left: 6px;">Rejected</span>
+                        }
+                        else if (request.Status == "Pending")
+                        {
+                            <RadzenIcon Icon="hourglass_empty" Style="color: orange; font-size: 20px; vertical-align: middle;" />
+                            <span style="margin-left: 6px;">Pending</span>
+                        }
+                        else
+                        {
+                            @request.Status
+                        }
+                    </Template>
+                </RadzenDataGridColumn>
+
+
 
                 <RadzenDataGridColumn TItem="BloodRequest"
                                       Title="Edit/View"

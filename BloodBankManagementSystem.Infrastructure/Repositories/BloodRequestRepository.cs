@@ -218,7 +218,7 @@ public async Task<int> SoftDeleteBloodRequestsAsync(List<int> ids)
 
     using var connection = new SqlConnection(_connectionString);
     await connection.OpenAsync();
-    var query = "UPDATE BloodRequests SET ActiveYN = 0 WHERE Id IN @Ids";
+    var query = "UPDATE BloodRequests SET ActiveYN = 0, Status='Delted' WHERE Id IN @Ids";
     return await connection.ExecuteAsync(query, new { Ids = ids });
 }
 
