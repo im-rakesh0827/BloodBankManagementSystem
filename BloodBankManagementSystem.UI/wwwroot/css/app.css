@@ -204,12 +204,9 @@ code {
     background-color: rgba(9, 52, 98, 0.894) !important;
 }
 
-/* .main-content {
-    padding-top: 1rem;
-} */
  .main-content {
     padding-top: 0.5rem;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 

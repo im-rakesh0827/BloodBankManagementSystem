@@ -32,6 +32,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           private bool IsButtonEnabled{get; set;} = false;
           private string FilterBasedOn {get; set;} = "Active";
           private int RequestCount {get;set;}  = 0;
+          private int TotalRequestCount {get; set;} = 0;
 
 
           protected override async Task OnInitializedAsync()
@@ -67,6 +68,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           private void ApplyFilter()
           {
                AllRequestsList = AllRequestsList.Where(r => r.ActiveYN).ToList();
+               TotalRequestCount = AllRequestsList.Count;
           }
 
 
@@ -249,7 +251,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                {
                     request.ActiveYN = false;
                     request.UpdatedAt = DateTime.Now;
-                    request.Status = "Delted";
+                    request.Status = "Deleted";
                }
 
                if(selectedRequests.Any()){

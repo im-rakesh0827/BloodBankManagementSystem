@@ -275,6 +275,57 @@ private void OnRejectChanged(BloodRequest request)
 
 
 
+// private async Task SubmitApprovalDecisions()
+// {
+//     var selectedRequests = FilteredBlooodRequestsList
+//         .Where(r => r.IsApprovedSelected || r.IsRejectedSelected)
+//         .ToList();
+
+//     if (!selectedRequests.Any())
+//     {
+//         await JSRuntime.InvokeVoidAsync("alert", "Please select at least one request to approve or reject.");
+//         return;
+//     }
+
+//     var updates = selectedRequests.Select(r => new BloodRequestStatusUpdateModel
+//     {
+//         Id = r.Id,
+//         NewStatus = r.IsApprovedSelected ? "Approved"
+//                    : r.IsRejectedSelected ? "Rejected"
+//                    : "Pending",
+//         Notes = r.Notes
+//     }).ToList();
+//                          IsLoading = true;
+
+//     await Task.Delay(500);
+//     var response = await Http.PostAsJsonAsync("api/bloodrequest/updateStatus", updates);
+//      if (response.IsSuccessStatusCode)
+//      {
+//           NotificationModel.Message = $"Blood request statuc updated successfully!";
+//           NotificationModel.Header = "Success";
+//           NotificationModel.Icon = "success";
+//           IsLoading = false;
+//      }
+//     else
+//     {
+//           NotificationModel.Message = $"Something went wrong!";
+//           NotificationModel.Header = "Failed";
+//           NotificationModel.Icon = "error";
+//           IsLoading = false;
+//     }
+//     await RefreshRequestList();
+//     await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
+// }
+
+// }
+
+
+
+
+
+
+
+
 private async Task SubmitApprovalDecisions()
 {
     var selectedRequests = FilteredBlooodRequestsList
@@ -287,6 +338,17 @@ private async Task SubmitApprovalDecisions()
         return;
     }
 
+    var invalidRejections = selectedRequests
+        .Where(r => r.IsRejectedSelected && string.IsNullOrWhiteSpace(r.Notes))
+        .ToList();
+
+    if (invalidRejections.Any())
+    {
+        await JSRuntime.InvokeVoidAsync("ShowToastAlert", "Rejection note is required for all rejected requests.", "Warning", "warning");
+
+        return;
+    }
+
     var updates = selectedRequests.Select(r => new BloodRequestStatusUpdateModel
     {
         Id = r.Id,
@@ -295,27 +357,28 @@ private async Task SubmitApprovalDecisions()
                    : "Pending",
         Notes = r.Notes
     }).ToList();
-                         IsLoading = true;
+
+    IsLoading = true;
 
     await Task.Delay(500);
     var response = await Http.PostAsJsonAsync("api/bloodrequest/updateStatus", updates);
-     if (response.IsSuccessStatusCode)
-     {
-          NotificationModel.Message = $"Blood request statuc updated successfully!";
-          NotificationModel.Header = "Success";
-          NotificationModel.Icon = "success";
-          IsLoading = false;
-     }
+    if (response.IsSuccessStatusCode)
+    {
+        NotificationModel.Message = "Blood request status updated successfully!";
+        NotificationModel.Header = "Success";
+        NotificationModel.Icon = "success";
+    }
     else
     {
-          NotificationModel.Message = $"Something went wrong!";
-          NotificationModel.Header = "Failed";
-          NotificationModel.Icon = "error";
-          IsLoading = false;
+        NotificationModel.Message = "Something went wrong!";
+        NotificationModel.Header = "Failed";
+        NotificationModel.Icon = "error";
     }
+    
+    IsLoading = false;
     await RefreshRequestList();
     await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
 }
-
 }
+
 }

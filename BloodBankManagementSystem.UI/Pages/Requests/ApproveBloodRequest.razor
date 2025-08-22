@@ -20,7 +20,23 @@
               Click="SubmitApprovalDecisions"
               Style="margin-bottom:1rem;" /> *@
 
-<button class="btn btn-success btn-sm" style="margin-bottom:1rem;" @onclick="SubmitApprovalDecisions" disabled="@(!IsAnyRecordSelected)">Save</button>
+@* <button class="btn btn-success btn-sm" style="margin-bottom:1rem;" @onclick="SubmitApprovalDecisions" disabled="@(!IsAnyRecordSelected)">Save</button> *@
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem !important;">
+    <button class="btn btn-success btn-sm" 
+            @onclick="SubmitApprovalDecisions" 
+            Id="deleteButton" 
+            disabled="@(!IsAnyRecordSelected)">
+        Save
+    </button>
+
+    @if (FilteredBlooodRequestsList != null)
+    {
+        <span style="font-weight: light;">
+            Total Records: @FilteredBlooodRequestsList.Count
+        </span>
+    }
+</div>
 
 @if (FilteredBlooodRequestsList is null)
 {

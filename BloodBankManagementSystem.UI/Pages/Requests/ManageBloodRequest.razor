@@ -14,7 +14,22 @@
                         OnCreateRecord="OpenCreatePopUp">
 </CustomActionComponent>
 
-<button class="btn btn-success btn-sm" style="margin-bottom:1rem;" @onclick="HandleDelete" Id="deleteButton" disabled="@(!IsAnyRecordSelected)">Remove</button>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem !important;">
+    <button class="btn btn-success btn-sm" 
+            @onclick="HandleDelete" 
+            Id="deleteButton" 
+            disabled="@(!IsAnyRecordSelected)">
+        Remove
+    </button>
+
+    @if (FilteredRequestsList != null)
+    {
+        <span style="font-weight: light;">
+            Total Records: @FilteredRequestsList.Count of @TotalRequestCount
+        </span>
+    }
+</div>
+
 
 
 @if (FilteredRequestsList is null)
@@ -27,7 +42,7 @@ else if (!FilteredRequestsList.Any())
 }
 else
 {
-    <p>Total Records : @RequestCount</p>
+
     <div style="overflow-x: auto; width: 100%;">
         <RadzenDataGrid TItem="BloodRequest"
                         Data="@FilteredRequestsList"
@@ -55,15 +70,15 @@ else
                         Disabled="@((data.Status == "Approved"))" TValue="bool" />
                     </Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Requester Type" Width="150px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Requester Name" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Type" Width="150px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Name" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="100px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="BloodGroup" Title="Blood Group" Width="120px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="UnitsRequired" Title="Units Required" Width="130px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Contact Number" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Email" Title="Email" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Location" Title="Address" Width="160px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Requested Date" Width="140px">
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Date" Width="140px">
                     <Template Context="request">
                         @request.RequestedDate.ToShortDateString()
                     </Template>
@@ -103,35 +118,9 @@ else
                                       Width="90px">
                     <Template Context="request">
                         <div class="flex-nowrap">
-
-                        <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
-                                    <EditViewIcon />
-                                </RadzenButton>
-
-                            @* @if (IsAdmin || !IsAdmin)
-                            {
                                 <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
                                     <EditViewIcon />
                                 </RadzenButton>
-
-                                <RadzenButton ButtonStyle="ButtonStyle.Light"
-                                              Disabled="@(request.Status.Equals("Approved", StringComparison.OrdinalIgnoreCase))"
-                                              Click="@(() => DeleteRequest(request.Id))">
-                                    <DeleteIcon />
-                                </RadzenButton>
-                            }
-
-                            <RadzenButton ButtonStyle="ButtonStyle.Success"
-                                          Disabled="@(request.Status.Equals("Approved", StringComparison.OrdinalIgnoreCase))"
-                                          Click="@(() => UpdateRequestStatus(request.Id, "Approve"))">
-                                Approve
-                            </RadzenButton>
-
-                            <RadzenButton ButtonStyle="ButtonStyle.Info"
-                                          Disabled="@(request.Status.Equals("Rejected", StringComparison.OrdinalIgnoreCase))"
-                                          Click="@(() => UpdateRequestStatus(request.Id, "Reject"))">
-                                Reject
-                            </RadzenButton> *@
                         </div>
                     </Template>
                 </RadzenDataGridColumn>
