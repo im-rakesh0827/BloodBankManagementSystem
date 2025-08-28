@@ -98,7 +98,6 @@ else
                                       Filterable="false"
                                       Sortable="false"
                                       TextAlign="TextAlign.Center"
-                                      Frozen="true"
                                       Width="90px">
                     <Template Context="request">
                         <div class="flex-nowrap">
@@ -110,7 +109,7 @@ else
                 </RadzenDataGridColumn>
                         
 
-               <RadzenDataGridColumn TItem="BloodRequest" Title="Approve" Sortable="false" Filterable="false" Frozen="true" TextAlign="TextAlign.Center" Width="90px">
+               <RadzenDataGridColumn TItem="BloodRequest" Title="Approve" Sortable="false" Filterable="false" Frozen="true" FrozenPosition="FrozenColumnPosition.Right" TextAlign="TextAlign.Center" Width="90px">
                     <Template Context="data">
                          <RadzenCheckBox @bind-Value="@data.IsApprovedSelected"
                                         TValue="bool"
@@ -118,7 +117,7 @@ else
                     </Template>
                </RadzenDataGridColumn>
 
-               <RadzenDataGridColumn TItem="BloodRequest" Title="Reject" Sortable="false" Filterable="false" Frozen="true" TextAlign="TextAlign.Center" Width="90px">
+               <RadzenDataGridColumn TItem="BloodRequest" Title="Reject" Sortable="false" Filterable="false" Frozen="true" FrozenPosition="FrozenColumnPosition.Right" TextAlign="TextAlign.Center" Width="90px">
                     <Template Context="data">
                          <RadzenCheckBox @bind-Value="@data.IsRejectedSelected"
                                         TValue="bool"

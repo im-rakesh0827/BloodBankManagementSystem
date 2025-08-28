@@ -63,13 +63,14 @@ else
                       Sortable="false" 
                       Filterable="false" 
                       TextAlign="TextAlign.Center" 
-                      Frozen="true"
+
                       Width="90px">
                     <Template Context="data">
                         <RadzenCheckBox @bind-Value="@data.IsDeleteSelected"
                         Disabled="@((data.Status == "Approved"))" TValue="bool" />
                     </Template>
                 </RadzenDataGridColumn>
+
                 <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Type" Width="150px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Name" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="100px" />
@@ -83,7 +84,7 @@ else
                         @request.RequestedDate.ToShortDateString()
                     </Template>
                 </RadzenDataGridColumn>
-                @* <RadzenDataGridColumn TItem="BloodRequest" Property="Status" Title="Status" Width="160px" /> *@
+
                 <RadzenDataGridColumn TItem="BloodRequest" Title="Status" Width="160px">
                     <Template Context=request>
                         @if (request.Status == "Approved")
@@ -115,6 +116,7 @@ else
                                       Filterable="false"
                                       Sortable="false"
                                       TextAlign="TextAlign.Center"
+                                      Frozen="true" FrozenPosition="FrozenColumnPosition.Right"
                                       Width="90px">
                     <Template Context="request">
                         <div class="flex-nowrap">
@@ -130,6 +132,7 @@ else
                                       Filterable="false"
                                       Sortable="false"
                                       TextAlign="TextAlign.Center"
+                                      Frozen="true" FrozenPosition="FrozenColumnPosition.Right"
                                       Width="90px">
                     <Template Context="request">
                         <div class="flex-nowrap">
@@ -139,6 +142,25 @@ else
                         </div>
                     </Template>
                 </RadzenDataGridColumn>
+
+
+                @* <RadzenDataGridColumn TItem="BloodRequest"
+                                  Title="Actions"
+                                  Filterable="false"
+                                  Sortable="false"
+                                  Frozen="true" FrozenPosition="FrozenColumnPosition.Right"
+                                  Width="120px">
+                <Template Context="request">
+                    <div class="d-flex gap-1 flex-nowrap">
+                        <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">
+                            <HistoryIcon></HistoryIcon>
+                        </RadzenButton>
+                        <RadzenButton ButtonStyle="ButtonStyle.Light"  Click="@(() => OpenEditOrUpdatePopUp(request))">
+                            <EditViewIcon></EditViewIcon>
+                        </RadzenButton>
+                    </div>
+                </Template>
+            </RadzenDataGridColumn> *@
 
 
             </Columns>

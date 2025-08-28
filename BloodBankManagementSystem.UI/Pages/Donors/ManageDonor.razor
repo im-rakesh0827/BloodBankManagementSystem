@@ -63,7 +63,7 @@ else
                         @(donor.IsEligible ? "Yes" : "No")
                     </Template>
                 </RadzenDataGridColumn>
-                <RadzenDataGridColumn TItem="Donor" Title="Actions" Filterable="false" Sortable="false" Width="130px">
+                @* <RadzenDataGridColumn TItem="Donor" Title="Actions" Filterable="false" Frozen="true" FrozenPosition="FrozenColumnPosition.Right" Sortable="false" Width="130px">
                     <Template Context="donor">
                         <div class="d-flex gap-1 flex-nowrap">
                             <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => ShowDonorHistory(donor))" Icon="history" />
@@ -71,7 +71,27 @@ else
                             <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => DeleteDonor(donor.Id))" Icon="delete" />
                         </div>
                     </Template>
-                </RadzenDataGridColumn>
+                </RadzenDataGridColumn> *@
+
+
+                <RadzenDataGridColumn TItem="Donor"
+                                  Title="Actions"
+                                  Filterable="false"
+                                  Sortable="false"
+                                  Frozen="true" FrozenPosition="FrozenColumnPosition.Right"
+                                  Width="180px">
+                <Template Context="donor">
+                    <div class="d-flex gap-1 flex-nowrap">
+                        <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => ShowDonorHistory(donor))">
+                            <HistoryIcon></HistoryIcon>
+                        </RadzenButton>
+                        <RadzenButton ButtonStyle="ButtonStyle.Light"  Click="@(() => OpenEditOrUpdatePopUp(donor))">
+                            <EditViewIcon></EditViewIcon>
+                        </RadzenButton>
+                        <RadzenButton ButtonStyle="ButtonStyle.Light" Icon="delete" Click="@(() => DeleteDonor(donor.Id))" />
+                    </div>
+                </Template>
+            </RadzenDataGridColumn>
             </Columns>
         </RadzenDataGrid>
     </div>
