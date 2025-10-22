@@ -47,6 +47,7 @@ namespace BloodBankManagementSystem.API.Controllers
                     UserName = $"{user.FirstName} {user.LastName}",
                     Role = user.Role
                 });
+
             }
             catch (Exception ex)
             {

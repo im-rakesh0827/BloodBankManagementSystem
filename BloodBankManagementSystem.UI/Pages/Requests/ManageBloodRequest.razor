@@ -75,13 +75,18 @@ else
                 <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Name" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="100px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="BloodGroup" Title="Blood Group" Width="120px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="UnitsRequired" Title="Units Required" Width="130px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Contact Number" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="UnitsRequired" Title="Req. Unit" Width="140px" TextAlign="TextAlign.Right"/>
+                <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Phone" Width="160px" TextAlign="TextAlign.Right"/>
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Email" Title="Email" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Location" Title="Address" Width="160px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Date" Width="140px">
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Req. On" Width="140px" TextAlign="TextAlign.Right">
                     <Template Context="request">
                         @request.RequestedDate.ToShortDateString()
+                    </Template>
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="BloodRequest" Property="ApprovedDate" Title="Action Date" Width="140px" TextAlign="TextAlign.Right">
+                    <Template Context="request">
+                        @request.ApprovedDate?.ToShortDateString()
                     </Template>
                 </RadzenDataGridColumn>
 

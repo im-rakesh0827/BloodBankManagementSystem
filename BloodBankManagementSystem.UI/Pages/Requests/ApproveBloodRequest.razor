@@ -66,11 +66,11 @@ else
                 <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Name" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="150px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="BloodGroup" Title="Blood Group" Width="150px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="UnitsRequired" Title="Units Required" Width="180px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Contact Number" Width="180px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="UnitsRequired" Title="Req. Unit" Width="140px" TextAlign="TextAlign.Right"/>
+                <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Phone" Width="160px" TextAlign="TextAlign.Right"/>
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Email" Title="Email" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Location" Title="Address" Width="160px" />
-                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Requested Date" Width="180px">
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Req. On" Width="150px" TextAlign="TextAlign.Right">
                     <Template Context="request">
                         @request.RequestedDate.ToShortDateString()
                     </Template>
@@ -79,9 +79,10 @@ else
 
                <RadzenDataGridColumn TItem="BloodRequest"
                                               Property="Notes"
-                                              Width="200px"
+                                              Width="250px"
                                               Title="NOTES"
-                                              TextAlign="TextAlign.Left">
+                                              TextAlign="TextAlign.Left"
+                                              Sortable="false" Filterable="false" Frozen="true" FrozenPosition="FrozenColumnPosition.Right" >
                             <Template Context="data">
                                 <RadzenTextArea @bind-Value=@data.Notes Style="width: 100%; display: block" Name="Status" />
                              
@@ -95,10 +96,9 @@ else
 
                <RadzenDataGridColumn TItem="BloodRequest"
                                       Title="Edit/View"
-                                      Filterable="false"
-                                      Sortable="false"
                                       TextAlign="TextAlign.Center"
-                                      Width="90px">
+                                      Width="90px"
+                                      Sortable="false" Filterable="false" Frozen="true" FrozenPosition="FrozenColumnPosition.Right" >
                     <Template Context="request">
                         <div class="flex-nowrap">
                             <RadzenButton ButtonStyle="ButtonStyle.Light" Click="@(() => OpenEditOrUpdatePopUp(request))">

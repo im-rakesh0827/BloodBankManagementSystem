@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Blazored.LocalStorage;
 using BloodBankManagementSystem.Core.Models;
-
-
 namespace BloodBankManagementSystem.UI.Pages
 {
     public partial class Login
@@ -14,12 +12,6 @@ namespace BloodBankManagementSystem.UI.Pages
         private LoginModel loginModel = new LoginModel();
         private string ErrorMessage { get; set; } = string.Empty;
         private bool IsLoading { get; set; } = false;
-
-        // [Inject] private HttpClient Http { get; set; } = default!;
-        // [Inject] private ILocalStorageService LocalStorage { get; set; } = default!;
-        // [Inject] private JwtAuthStateProvider AuthProvider { get; set; } = default!;
-        // [Inject] private NavigationManager Navigation { get; set; } = default!;
-
         private async Task HandleLogin()
         {
             try
@@ -27,11 +19,9 @@ namespace BloodBankManagementSystem.UI.Pages
                 IsLoading = true;
                 await Task.Delay(500);
                 var response = await Http.PostAsJsonAsync("api/auth/login", loginModel);
-
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadFromJsonAsync<TokenResponse>();
-
                     if (result != null && !string.IsNullOrWhiteSpace(result.Token))
                     {
                         await LocalStorage.SetItemAsync("authToken", result.Token);
