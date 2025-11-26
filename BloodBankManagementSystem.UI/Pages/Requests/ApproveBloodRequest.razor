@@ -33,7 +33,9 @@
     @if (FilteredBlooodRequestsList != null)
     {
         <span style="font-weight: light;">
-            Total Records: @FilteredBlooodRequestsList.Count
+            @* Total Records: @FilteredBlooodRequestsList.Count *@
+            Total Records: @FilteredBlooodRequestsList.Count of @TotalRequestCount
+
         </span>
     }
 </div>
@@ -79,7 +81,7 @@ else
 
                <RadzenDataGridColumn TItem="BloodRequest"
                                               Property="Notes"
-                                              Width="250px"
+                                              Width="200px"
                                               Title="NOTES"
                                               TextAlign="TextAlign.Left"
                                               Sortable="false" Filterable="false" Frozen="true" FrozenPosition="FrozenColumnPosition.Right" >

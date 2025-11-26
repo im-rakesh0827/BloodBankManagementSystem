@@ -36,7 +36,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           private bool IsRejected = false;
           private bool BloodRequestApprovalPermissionYN = true;
           private bool IsAnyRecordSelected => FilteredBlooodRequestsList?.Any(r => r.IsApprovedSelected || r.IsRejectedSelected) == true;
-
+          private int TotalRequestCount{get; set;} = 0;
 
 
 
@@ -77,6 +77,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                {
                     FilteredBlooodRequestsList = AllRequestsList;
                     FilteredBlooodRequestsList = AllRequestsList.Where(r => r.Status == "Pending" && r.ActiveYN).ToList();
+                    TotalRequestCount = AllRequestsList.Count;
                }
                else
                {
@@ -193,10 +194,11 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           public void ApplyFiltereBloodRequest()
           {
 
+               AllRequestsList = AllRequestsList.Where(p=>p.Status=="Pending").ToList();
                switch (FilterBasedOn)
             {
               case "Active":
-               //    FilteredBlooodRequestsList = AllRequestsList.Where(p => p.IsActive && p.IsAlive).ToList();
+                   FilteredBlooodRequestsList = AllRequestsList.Where(p => p.ActiveYN).ToList();
               break;
               case "Last7Days":
                   var sevenDaysAgo = DateTime.Now.AddDays(-7);
@@ -271,59 +273,6 @@ private void OnRejectChanged(BloodRequest request)
         request.IsApprovedSelected = false;
     }
 }
-
-
-
-
-// private async Task SubmitApprovalDecisions()
-// {
-//     var selectedRequests = FilteredBlooodRequestsList
-//         .Where(r => r.IsApprovedSelected || r.IsRejectedSelected)
-//         .ToList();
-
-//     if (!selectedRequests.Any())
-//     {
-//         await JSRuntime.InvokeVoidAsync("alert", "Please select at least one request to approve or reject.");
-//         return;
-//     }
-
-//     var updates = selectedRequests.Select(r => new BloodRequestStatusUpdateModel
-//     {
-//         Id = r.Id,
-//         NewStatus = r.IsApprovedSelected ? "Approved"
-//                    : r.IsRejectedSelected ? "Rejected"
-//                    : "Pending",
-//         Notes = r.Notes
-//     }).ToList();
-//                          IsLoading = true;
-
-//     await Task.Delay(500);
-//     var response = await Http.PostAsJsonAsync("api/bloodrequest/updateStatus", updates);
-//      if (response.IsSuccessStatusCode)
-//      {
-//           NotificationModel.Message = $"Blood request statuc updated successfully!";
-//           NotificationModel.Header = "Success";
-//           NotificationModel.Icon = "success";
-//           IsLoading = false;
-//      }
-//     else
-//     {
-//           NotificationModel.Message = $"Something went wrong!";
-//           NotificationModel.Header = "Failed";
-//           NotificationModel.Icon = "error";
-//           IsLoading = false;
-//     }
-//     await RefreshRequestList();
-//     await JSRuntime.InvokeVoidAsync("ShowToastAlert", NotificationModel.Message, NotificationModel.Header, NotificationModel.Icon);
-// }
-
-// }
-
-
-
-
-
-
 
 
 private async Task SubmitApprovalDecisions()

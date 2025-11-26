@@ -71,7 +71,6 @@ else
                     </Template>
                 </RadzenDataGridColumn>
 
-                <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Type" Width="150px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="PatientName" Title="Name" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Gender" Title="Gender" Width="100px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="BloodGroup" Title="Blood Group" Width="120px" />
@@ -79,6 +78,7 @@ else
                 <RadzenDataGridColumn TItem="BloodRequest" Property="ContactNumber" Title="Phone" Width="160px" TextAlign="TextAlign.Right"/>
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Email" Title="Email" Width="160px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="Location" Title="Address" Width="160px" />
+                <RadzenDataGridColumn TItem="BloodRequest" Property="RequesterType" Title="Type" Width="150px" />
                 <RadzenDataGridColumn TItem="BloodRequest" Property="RequestedDate" Title="Req. On" Width="140px" TextAlign="TextAlign.Right">
                     <Template Context="request">
                         @request.RequestedDate.ToShortDateString()
@@ -92,7 +92,25 @@ else
 
                 <RadzenDataGridColumn TItem="BloodRequest" Title="Status" Width="160px">
                     <Template Context=request>
-                        @if (request.Status == "Approved")
+                        @switch(request.Status){
+                            case "Pending":
+                            <RadzenIcon Icon="hourglass_empty" Style="color: orange; font-size: 20px; vertical-align: middle;" />
+                            <span style="margin-left: 6px;">Pending</span>
+                            break;
+                            case "Approved":
+                            <RadzenIcon Icon="check_circle" Style="color: green; font-size: 20px; vertical-align: middle;" />
+                            <span style="margin-left: 6px;">Approved</span>
+                            break;
+                            case "Rejected":
+                            <RadzenIcon Icon="cancel" Style="color: red; font-size: 20px; vertical-align: middle;" />
+                            <span style="margin-left: 6px;">Rejected</span>
+                            break;
+                            default:
+                            <span style="margin-left: 6px;">@request.Status</span>
+                            break;
+                        }
+
+                        @* @if (request.Status == "Approved")
                         {
                             <RadzenIcon Icon="check_circle" Style="color: green; font-size: 20px; vertical-align: middle;" />
                             <span style="margin-left: 6px;">Approved</span>
@@ -110,7 +128,7 @@ else
                         else
                         {
                             @request.Status
-                        }
+                        } *@
                     </Template>
                 </RadzenDataGridColumn>
 

@@ -33,6 +33,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
           private string FilterBasedOn {get; set;} = "Active";
           private int RequestCount {get;set;}  = 0;
           private int TotalRequestCount {get; set;} = 0;
+          
 
 
           protected override async Task OnInitializedAsync()
@@ -40,6 +41,7 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                FilterOptions = FilterOptionsHelper.AllFilterOption;
                await LoadRequestsAsync();
                ApplyFiltereBloodRequest();
+               Console.WriteLine($"Grade is : {GetGrade(70)}");
           }
 
           private async Task RefreshBloodRequestList()
@@ -241,6 +243,14 @@ namespace BloodBankManagementSystem.UI.Pages.Requests
                FilterBasedOn = filterOption;
                ApplyFiltereBloodRequest();
           }
+
+          public string GetGrade(int score)=>score switch{
+               >=90=>"A",
+               >=80=>"B",
+               >=70=>"C",
+               >=60=>"D",
+               _=>"F"
+          };
 
 
 
